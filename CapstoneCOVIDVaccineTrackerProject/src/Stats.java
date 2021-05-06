@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -16,7 +18,6 @@ import java.util.Scanner;
  */
 public class Stats {
 	
-	private ArrayList<Double> numberOfVaccines = new ArrayList<Double>();
 	String filename;
 	
 //	public Stats(String filename) {
@@ -44,27 +45,22 @@ public class Stats {
 	 * future plan: add parameter with filename so it is used for all
 	 */
 	public void readData() {
+		
 		String fileName = "data/vaccineNumber.csv";
-		File file = new File(fileName);
+		String line = "";
+		
 		try {
-			Scanner inputStream = new Scanner(file);
-			inputStream.next();
-			while(inputStream.hasNext()) {
-
-				String data = inputStream.next(); 
-				String[] values = data.split(",");
-				if(values[3] != "") {
-					double numOfVaccines = Double.parseDouble(values[3]);
-					numberOfVaccines.add(numOfVaccines);
-				}else {
-					numberOfVaccines.add(0.0);
-				}
-			}	
-			inputStream.close();
-			System.out.println(numberOfVaccines);
-		}catch(FileNotFoundException e) {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+				System.out.println(values[0]);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }
