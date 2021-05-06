@@ -11,11 +11,18 @@ import processing.core.PApplet;
 public class CountryMap extends Frame{
 	ArrayList<State> states;
 	JComboBox dropDown;
- 
+	/**constructor
+	 * 
+	 * @param fileName
+	 */	
 	public CountryMap(String fileName) {
 		super(fileName);
 		states = setAllStates();
 	}
+	/**set all the states to their name
+	 * 
+	 * @return ArrayList<State> arraylist of the states with all the information in the fields
+	 */
 	private ArrayList<State> setAllStates(){
 		ArrayList<State> setState = new ArrayList<State>();
 	//	setState.add(new State() )

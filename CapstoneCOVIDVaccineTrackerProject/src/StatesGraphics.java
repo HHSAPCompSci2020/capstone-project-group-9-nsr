@@ -12,10 +12,16 @@ public class StatesGraphics {
 	private int numberOfVaccinesGiven;
 	private double percentGiven;
 	private JButton returnToHome;
-	
+	/**constructor
+	 * if no parameter is inputted, the name is set to null
+	 */
 	public StatesGraphics() {
 		name = null;
 	}
+	/**constructor
+	 * sets the name to the parameter String state
+	 * @param String state
+	 */
 	public StatesGraphics(String state) {
 		name = state;
 	}
