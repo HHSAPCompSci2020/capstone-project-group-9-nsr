@@ -40,7 +40,8 @@ public class State {
 					double numOfVaccines = Double.parseDouble(values[3]);
 					average += numOfVaccines;
 					count++;
-				} //empty array and index out of bounce error why?
+				}
+
 			}	
 			inputStream.close();
 			System.out.println("average: " + average / count);
