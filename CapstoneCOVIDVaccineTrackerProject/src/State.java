@@ -1,7 +1,7 @@
 /*
- * @author: Roopa Srinivas
+ * @author Roopa Srinivas
  * date: 05/06/2021
- * @revision: 1 
+ * @revision 1 
  */
 public class State {
 	StatesGraphics graph;
@@ -15,6 +15,7 @@ public class State {
 	
 	/*
 	 * specifies the state for which we are drawing the graphs and obtaining statistics
+	 * @param String stateName name of the state
 	 */
 	public State(String stateName) {
 		graph = new StatesGraphics(stateName);
