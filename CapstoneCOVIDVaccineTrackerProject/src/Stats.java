@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * This class fetches data and stores them in arraylists
- * @author 
+ * @author nodoka shibasaki
  *
  */
 public class Stats {
