@@ -34,35 +34,14 @@ public class State {
 			Scanner inputStream = new Scanner(file);
 			inputStream.next();
 			while(inputStream.hasNext()) {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				String data = inputStream.next(); 
-=======
+
 				String data = inputStream.next(); //gets the whole thing????
->>>>>>> Stashed changes
-=======
-				String data = inputStream.next(); //gets the whole thing????
->>>>>>> Stashed changes
-=======
-				String data = inputStream.next(); //gets the whole thing????
->>>>>>> Stashed changes
 				String[] values = data.split(",");
 				if(values[3] != "") {
 					double numOfVaccines = Double.parseDouble(values[3]);
 					average += numOfVaccines;
 					count++;
 				}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			}	
 			inputStream.close();
 			System.out.println("average: " + average / count);
