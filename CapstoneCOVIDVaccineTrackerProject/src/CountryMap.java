@@ -12,7 +12,8 @@ public class CountryMap extends Frame{
 	ArrayList<State> states;
 	JComboBox dropDown;
  
-	public CountryMap() {
+	public CountryMap(String fileName) {
+		super(fileName);
 		states = setAllStates();
 	}
 	private ArrayList<State> setAllStates(){
