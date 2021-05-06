@@ -35,7 +35,11 @@ public class State {
 			inputStream.next();
 			while(inputStream.hasNext()) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				String data = inputStream.next(); 
+=======
+				String data = inputStream.next(); //gets the whole thing????
+>>>>>>> Stashed changes
 =======
 				String data = inputStream.next(); //gets the whole thing????
 >>>>>>> Stashed changes
@@ -46,7 +50,10 @@ public class State {
 					count++;
 				}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 			}	
