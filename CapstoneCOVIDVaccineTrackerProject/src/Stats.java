@@ -17,6 +17,16 @@ import java.util.Scanner;
 public class Stats {
 	
 	private ArrayList<Double> numberOfVaccines = new ArrayList<Double>();
+	String filename;
+	
+//	public Stats(String filename) {
+//		this.filename = filename;
+//		downloadData
+//	}
+	
+	public ArrayList<Double> getData(String filename, int column){
+		return null;
+	}
 	
 	/**
 	 * this method uses java.io api to copy the data on cvc approved dataset to the csv file in the data folder.
