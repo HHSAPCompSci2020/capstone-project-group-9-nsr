@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * This class fetches data and stores them in arraylists
@@ -18,15 +16,31 @@ import java.util.Scanner;
  */
 public class Stats {
 	
-	String filename;
+	String dataName;
+	String state;
 	
-//	public Stats(String filename) {
-//		this.filename = filename;
-//		downloadData
-//	}
+	/**
+	 * 
+	 * @param dataName the name of the data
+	 * @param state the name of the state
+	 * @pre to get available vaccines input "VaccineAvailable", to get vaccines given input "VaccineGiven", to get percent given input "PercentGiven" for dataName.
+	 */
+	public Stats(String dataName, String state) {
+		this.dataName = dataName;
+		this.state = state;
+	}
 	
-	public ArrayList<Double> getData(String filename, int column){
-		return null;
+	/**
+	 * 
+	 * @return the data of the dataName in the state
+	 */
+	public ArrayList<String> getData(){
+		try {
+			downloadData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return readData();
 	}
 	
 	/**
@@ -44,22 +58,41 @@ public class Stats {
 	 * reads vaccineNumber.csv data
 	 * future plan: add parameter with filename so it is used for all
 	 */
-	public void readData() {
+	public ArrayList<String> readData() {
+		
+		ArrayList<String> data = new ArrayList<String>();
 		
 		String fileName = "data/vaccineNumber.csv";
 		String line = "";
+		int index = -1;
+		
+		if(dataName.equals("VaccineAvailable")) {
+			index = 2;
+		}else if(dataName.equals("VaccineGiven")){
+			index = 3;
+		}else if(dataName.equals("PercentGiven")){
+			index = 4;
+		}else {
+			System.out.println("Wrong name of the data");
+			return null;
+		}
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
-				System.out.println(values[0]);
+					if(values[1].equals(state)) {
+						data.add(values[index]);
+						System.out.println(values[1] + ": " + values[index]);
+					}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return data;
 		
 	}
 

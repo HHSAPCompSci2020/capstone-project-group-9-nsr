@@ -25,9 +25,6 @@ public class Main {
 
 		window.setVisible(true);
 		
-//		Stats state = new Stats();
-//		state.downloadData();
-//		state.readData();
 	}
 
 }
