@@ -7,7 +7,7 @@ import processing.core.PApplet;
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
-		State state = new State();
+		Stats state = new Stats();
 		state.downloadData();
 		state.readData();
 	}
