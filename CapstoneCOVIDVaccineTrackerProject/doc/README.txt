@@ -89,10 +89,10 @@ We would build a website in HTML and CSS and “publish” our project there. We
 Class List:
 [This section lists the Java classes that make up the program and very briefly describes what each represents. It’s totally fine to put this section in list format and not to use full sentences.]
 Frame- the frame of the whole website or program(Drawing Surface) 
-Map - the interactive map
+CountryMap - the interactive country map
 State - each state with their information (50 objects for this)
-Data - fetches data from website
-Graphs - organizes the data into graphs
+Stats - fetches data from website
+StatesGraphics - organizes the data into graphs
 DrawingSurface
 Main - main class to call the drawing surface
 
@@ -108,16 +108,29 @@ Interactive key
 Design page and add the map picture
 Research information about each state(half) and create the state and map class
 Zoom, Border, colors and regions if have time
+StatesGraphics class
+CountryMap class
+Frame class
+Main class
+DrawingSurface class
 Roopa
 statistics and graph
 Find the information and statistics
 Design and code the page
 Create and statistics and graphs
 Help with the states research(half)
+State class
+Frame class
+Main class
+DrawingSurface class
 Nodoka
 links the website information
 link the information so it consistently updates
 Get the data to be saved
+Stats class
+Frame class
+Main class
+DrawingSurface class
 All of us will work on the frame and graphics together since that involves all of our parts. 
 Buttons or drop down menu 
 Implementing the starting screen
