@@ -5,6 +5,12 @@ import javax.swing.JButton;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+
+/**
+ * creates the frame
+ * @author 
+ *
+ */
 public class Frame {
 	private PImage map;
 	private JButton refresh;
