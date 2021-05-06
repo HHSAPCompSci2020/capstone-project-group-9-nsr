@@ -23,9 +23,16 @@ public class CountryMap extends Frame{
 		}
 		return setState;
 	}
+	/**opens the dropdown menu
+	 * 
+	 */
 	private void openDropDown() {
 		
 	}
+	/**opens the state page 
+	 * @param state
+	 */
+	
 	private void openStatePage(StatesGraphics state) {
 		
 	}
