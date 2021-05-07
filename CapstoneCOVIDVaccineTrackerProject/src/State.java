@@ -1,7 +1,9 @@
-/*
- * @author Roopa Srinivas
- * date: 05/06/2021
- * @revision 1 
+/**
+ * 
+ * @author roopa
+ * date: 05/07/2021
+ * @revision 1
+ *
  */
 public class State extends Frame{
 	StatesGraphics graph;
