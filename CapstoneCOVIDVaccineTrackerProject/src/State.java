@@ -31,6 +31,6 @@ public class State extends Frame{
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
 	 */
 	public void draw() {
-		
+		graph.drawGraph(500, 100, 100, 100);
 	}
 }
