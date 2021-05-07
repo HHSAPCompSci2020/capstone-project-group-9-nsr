@@ -6,11 +6,12 @@
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import processing.core.PApplet;
 public class CountryMap extends Frame{
 	ArrayList<State> states;
-	JComboBox dropDown;
+	
 	/**constructor
 	 * 
 	 * @param fileName
@@ -18,6 +19,7 @@ public class CountryMap extends Frame{
 	public CountryMap(String fileName) {
 		super(fileName);
 		states = setAllStates();
+		createDropDown();
 	}
 	/**set all the states to their name
 	 * 
@@ -91,11 +93,17 @@ public class CountryMap extends Frame{
 		}
 		return -1;
 	}
-	/**opens the dropdown menu
+	/**makes the dropdown menu
 	 * 
 	 */
-	private void openDropDown() {
-		
+	private void createDropDown() {
+		State input = (State)JOptionPane.showInputDialog(null, "Which state?",
+		        "Which state?", JOptionPane.QUESTION_MESSAGE, null,
+		        states.toArray(), // Array of choices
+		        states.toArray()[0]); // Initial choice
+		    
+		if (input == null)
+			return;
 	}
 	/**opens the state page 
 	 * @param state
