@@ -3,21 +3,23 @@
  * date: 05/06/2021
  * @revision 1 
  */
-public class State {
+public class State extends Frame{
 	StatesGraphics graph;
 	
 	/*
 	 * calls the no-args StatesGraphic constructor
 	 */
 	public State() {
+		super("US_MAP");
 		graph = new StatesGraphics();
 	}
 	
 	/*
 	 * specifies the state for which we are drawing the graphs and obtaining statistics
-	 * @param String stateName name of the state
+	 * @param String stateName full name of the state
 	 */
 	public State(String stateName) {
+		super(stateName);
 		graph = new StatesGraphics(stateName);
 	}
 	

@@ -25,7 +25,7 @@ public class CountryMap extends Frame{
 	 */
 	private ArrayList<State> setAllStates(){
 		ArrayList<State> setState = new ArrayList<State>();
-	//	setState.add(new State() )
+		setState.add(new State() )
 		for(int i = 0; i < 50; i++) {
 			
 		}
