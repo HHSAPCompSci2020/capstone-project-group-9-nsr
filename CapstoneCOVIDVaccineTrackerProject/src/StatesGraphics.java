@@ -61,16 +61,28 @@ public class StatesGraphics {
 	 * @param width width of the rectangle the graph is in
 	 * @param height height of the rectangle the graph is in
 	 */
+	@SuppressWarnings("unchecked")
 	public void drawGraph(double x, double y, double width, double height) {
 		
 		Stats stat = new Stats();
+		ArrayList<Double> cases = (ArrayList<Double>) stat.getCasesData(name, 2);
+		ArrayList<String> dates = (ArrayList<String>) stat.getCasesData(name, 1);
 		
-		//figure out the biggest number of the arraylist
-
-		//scale the y axis
+		//figure out the biggest number of the arraylist to scale y
+		double b = cases.get(0); //write this as a text on top of the yaxis
+		
+		for(int i = 1; i < cases.size(); i++) {
+			if(b < cases.get(i)) {
+				b = cases.get(i);
+			}
+		}
+		
+		//figure out the first and the last date to scale x
+		String first = dates.get(0);
 		
 		
 		//calculate the coordinates of the points and store them and draw graph
+		
 		
 
 	}

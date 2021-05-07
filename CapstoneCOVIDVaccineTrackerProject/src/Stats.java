@@ -43,6 +43,10 @@ public class Stats {
 		Files.copy(inputStream2, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
+	/**
+	 * reads vaccineNumber.csv data
+	 * future plan: add parameter with filename so it is used for all
+	 */
 	public ArrayList<String> getVaccinationInfo(String state) {
 		
 		ArrayList<String> data = new ArrayList<String>();
@@ -55,15 +59,15 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 					if(values[1].equals(state)) {
-						
-						data.set(0, values[0]);//date
-						data.set(1, values[2]);//total_vaccinations
-						data.set(2, values[3]);//total_distributed
-						data.set(3, values[9]);//distributed_per_hundred
-						data.set(4, values[4]);//people_vaccinated
-						data.set(5, values[6]);//total_vaccinations_per_hundred
-						data.set(6, values[7]);//people_fully_vaccinated
-						data.set(7, values[5]);//people_fully_vaccinated_per_hundred
+						data = new ArrayList<String>();
+						data.add(values[0]);//date
+						data.add(values[2]);//total_vaccinations
+						data.add(values[3]);//total_distributed
+						data.add(values[9]);//distributed_per_hundred
+						data.add(values[4]);//people_vaccinated
+						data.add(values[6]);//total_vaccinations_per_hundred
+						data.add(values[7]);//people_fully_vaccinated
+						data.add(values[5]);//people_fully_vaccinated_per_hundred
 					}
 			}
 		} catch (FileNotFoundException e) {
@@ -77,6 +81,36 @@ public class Stats {
 		
 	}
 	
+	public ArrayList<?> getCasesData(String state, int index){
+		
+		ArrayList<Double> cases = new ArrayList<Double>();
+		ArrayList<String> string = new ArrayList<String>();
+		
+		String fileName = "data/casees.csv";
+		String line = "";
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+					if(values[4].equals(state)) {
+						if(index == 2) {
+							double d = Double.parseDouble(values[2]);
+							cases.add(d);
+						}else {
+							string.add(values[index]);
+						}
+					}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return cases;
+		
+	}
 	
 	/**
 	 * reads vaccineNumber.csv data
