@@ -12,8 +12,10 @@ import processing.core.PImage;
  *
  */
 public class Frame {
+	
 	private String fileName;
 	private JButton refresh;
+	
 	//Construcotr
 	public Frame(String name) {
 		fileName = name;

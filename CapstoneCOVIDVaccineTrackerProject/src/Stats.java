@@ -16,8 +16,8 @@ import java.util.ArrayList;
  */
 public class Stats {
 	
-	String dataName;
-	String state;
+	private String dataName;
+	private String state;
 	
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class Stats {
 	 * 
 	 * @return the data of the dataName in the state
 	 */
-	public ArrayList<String> getData(){
+	public ArrayList<Double> getData(){
 		try {
 			downloadData();
 		} catch (IOException e) {
@@ -58,9 +58,9 @@ public class Stats {
 	 * reads vaccineNumber.csv data
 	 * future plan: add parameter with filename so it is used for all
 	 */
-	public ArrayList<String> readData() {
+	public ArrayList<Double> readData() {
 		
-		ArrayList<String> data = new ArrayList<String>();
+		ArrayList<Double> data = new ArrayList<Double>();
 		
 		String fileName = "data/vaccineNumber.csv";
 		String line = "";
@@ -82,8 +82,9 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 					if(values[1].equals(state)) {
-						data.add(values[index]);
-						System.out.println(values[1] + ": " + values[index]);
+						double d = Double.parseDouble(values[index]);
+						data.add(d);
+						System.out.println(values[1] + ": " + d);
 					}
 			}
 		} catch (FileNotFoundException e) {
