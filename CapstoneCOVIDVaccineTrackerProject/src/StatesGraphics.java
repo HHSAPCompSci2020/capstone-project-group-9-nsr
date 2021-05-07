@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 
 /**
@@ -8,9 +10,9 @@ import javax.swing.JButton;
  */
 public class StatesGraphics {
 	private String name;
-	private int numberOfVaccinesAvailable;
-	private int numberOfVaccinesGiven;
-	private double percentGiven;
+	private ArrayList<Double> numberOfVaccinesAvailable;
+	private ArrayList<Double> numberOfVaccinesGiven;
+	private ArrayList<Double> percentGiven;
 	private JButton returnToHome;
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -29,19 +31,19 @@ public class StatesGraphics {
 	 * @param int num of how many more vaccines avaliable 
 	 */
 	public void addAvailable(int num) {
-		numberOfVaccinesAvailable += num;
+		//numberOfVaccinesAvailable += num;
 	}
 	/**adds to the number of vaccines given
 	 * @param int num of how many more vaccines given added
 	 */
 	public void addGiven(int num) {
-		numberOfVaccinesGiven += num;
+		//numberOfVaccinesGiven += num;
 	}
 	/** set the percent of given vaccines
 	 * @parameter double percent of given vaccines
 	 */
 	public void setPercent(double percent) {
-		percentGiven = percent;
+		//percentGiven = percent;
 	}
 	/**returns the name of the state
 	 * @return name String
@@ -54,6 +56,13 @@ public class StatesGraphics {
 	 */
 	public void drawGraph() {
 		
+		Stats stat = new Stats();
+		numberOfVaccinesAvailable = stat.readData("VaccineAvailable", name);
+		numberOfVaccinesGiven = stat.readData("VaccineGiven", name);
+		percentGiven = stat.readData("PercentGiven", name);
+		
+		
+
 	}
 
 }

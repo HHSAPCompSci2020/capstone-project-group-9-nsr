@@ -16,31 +16,18 @@ import java.util.ArrayList;
  */
 public class Stats {
 	
-	private String dataName;
-	private String state;
-	
 	/**
 	 * 
 	 * @param dataName the name of the data
 	 * @param state the name of the state
 	 * @pre to get available vaccines input "VaccineAvailable", to get vaccines given input "VaccineGiven", to get percent given input "PercentGiven" for dataName.
 	 */
-	public Stats(String dataName, String state) {
-		this.dataName = dataName;
-		this.state = state;
-	}
-	
-	/**
-	 * 
-	 * @return the data of the dataName in the state
-	 */
-	public ArrayList<Double> getData(){
+	public Stats() {
 		try {
 			downloadData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return readData();
 	}
 	
 	/**
@@ -58,7 +45,7 @@ public class Stats {
 	 * reads vaccineNumber.csv data
 	 * future plan: add parameter with filename so it is used for all
 	 */
-	public ArrayList<Double> readData() {
+	public ArrayList<Double> readData(String dataName, String state) {
 		
 		ArrayList<Double> data = new ArrayList<Double>();
 		
@@ -72,6 +59,8 @@ public class Stats {
 			index = 3;
 		}else if(dataName.equals("PercentGiven")){
 			index = 4;
+		}else if(dataName.equals("date")) {
+			index = 0;
 		}else {
 			System.out.println("Wrong name of the data");
 			return null;
