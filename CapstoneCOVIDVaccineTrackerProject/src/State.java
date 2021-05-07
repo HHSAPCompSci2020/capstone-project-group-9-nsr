@@ -15,13 +15,15 @@ public class State extends Frame{
 	}
 	
 	/*
-	 * specifies the state for which we are drawing the graphs and obtaining statistics
+	 * specifies the state for which we are drawing the graphs and obtaining statistics, also sets the picture of the state
 	 * @param String stateName full name of the state
 	 */
 	public State(String stateName) {
-		super(stateName);
+		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
 	}
+	
+	
 	
 	/*
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
