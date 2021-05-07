@@ -45,9 +45,10 @@ public class Stats {
 	 * reads vaccineNumber.csv data
 	 * future plan: add parameter with filename so it is used for all
 	 */
-	public ArrayList<Double> readData(String dataName, String state) {
+	public ArrayList<?> readData(String dataName, String state) {
 		
 		ArrayList<Double> data = new ArrayList<Double>();
+		ArrayList<String> date = new ArrayList<String>();
 		
 		String fileName = "data/vaccineNumber.csv";
 		String line = "";
@@ -71,9 +72,13 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 					if(values[1].equals(state)) {
-						double d = Double.parseDouble(values[index]);
-						data.add(d);
-						System.out.println(values[1] + ": " + d);
+						if(index == 0) {
+							date.add(values[0]);
+						}else {
+							double d = Double.parseDouble(values[index]);
+							data.add(d);
+							System.out.println(values[1] + ": " + d);
+						}
 					}
 			}
 		} catch (FileNotFoundException e) {
@@ -81,6 +86,9 @@ public class Stats {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		if(index == 0)
+			return date;
 		
 		return data;
 		

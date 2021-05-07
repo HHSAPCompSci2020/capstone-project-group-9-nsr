@@ -13,6 +13,7 @@ public class StatesGraphics {
 	private ArrayList<Double> numberOfVaccinesAvailable;
 	private ArrayList<Double> numberOfVaccinesGiven;
 	private ArrayList<Double> percentGiven;
+	private ArrayList<String> dates;
 	private JButton returnToHome;
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -51,15 +52,22 @@ public class StatesGraphics {
 	public String getName() {
 		return name;
 	}
-	/**draws the graph of the state
+	
+	/**
+	 * draws graph by figuring out all points of where the graph needs to be plotted.
 	 * 
+	 * @param x x coordinate of the left up corner of where the graph is drawn
+	 * @param y y coordinate of the left up corner of where the graph is drawn
+	 * @param width width of the rectangle the graph is in
+	 * @param height height of the rectangle the graph is in
 	 */
-	public void drawGraph() {
+	public void drawGraph(double x, double y, double width, double height) {
 		
 		Stats stat = new Stats();
-		numberOfVaccinesAvailable = stat.readData("VaccineAvailable", name);
-		numberOfVaccinesGiven = stat.readData("VaccineGiven", name);
-		percentGiven = stat.readData("PercentGiven", name);
+		numberOfVaccinesAvailable = (ArrayList<Double>) stat.readData("VaccineAvailable", name);
+		numberOfVaccinesGiven = (ArrayList<Double>) stat.readData("VaccineGiven", name);
+		percentGiven = (ArrayList<Double>) stat.readData("PercentGiven", name);
+		dates = (ArrayList<String>) stat.readData("date", name);
 		
 		
 
