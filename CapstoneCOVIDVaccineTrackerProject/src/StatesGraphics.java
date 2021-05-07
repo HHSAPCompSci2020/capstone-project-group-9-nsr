@@ -64,11 +64,13 @@ public class StatesGraphics {
 	public void drawGraph(double x, double y, double width, double height) {
 		
 		Stats stat = new Stats();
-		numberOfVaccinesAvailable = (ArrayList<Double>) stat.readData("VaccineAvailable", name);
-		numberOfVaccinesGiven = (ArrayList<Double>) stat.readData("VaccineGiven", name);
-		percentGiven = (ArrayList<Double>) stat.readData("PercentGiven", name);
-		dates = (ArrayList<String>) stat.readData("date", name);
 		
+		//figure out the biggest number of the arraylist
+
+		//scale the y axis
+		
+		
+		//calculate the coordinates of the points and store them and draw graph
 		
 
 	}
