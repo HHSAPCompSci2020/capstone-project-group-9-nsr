@@ -26,65 +26,61 @@ public class CountryMap extends Frame{
 	private ArrayList<State> setAllStates(){
 		ArrayList<State> setState = new ArrayList<State>();
 	    states.add(new State("alabama"));
-	    states.add(new State("Alaska"));
-	    states.add(new State("Arizona"));
-	    states.add(new State("Arkansas"));
-	    states.add(new State("California"));
-	    states.add(new State("Colorado"));
-	    states.add(new State("Connecticut"));
-	    states.add(new State("Delaware"));
-	    states.add(new State("Florida"));
-	    states.add(new State("Georgia"));
-	    states.add(new State("Hawaii"));
-	    states.add(new State("Idaho"));
-	    states.add(new State("Illinois"));
-	    states.add(new State("Indiana"));
-	    states.add(new State("Iowa"));
-	    states.add(new State("Kansas"));
-	    states.add(new State("Kentucky"));
-	    states.add(new State("Louisiana"));
-	    states.add(new State("Maine"));
-	    states.add(new State("Maryland"));
-	    states.add(new State("Massachusetts"));
-	    states.add(new State("Michigan"));
-	    states.add(new State("Minnesota"));
-	    states.add(new State("Mississippi"));
-	    states.add(new State("Missouri"));
-	    states.add(new State("Montana"));
-	    states.add(new State("Nebraska"));
-	    states.add(new State("Nevada"));
-	    states.add(new State("New Hampshire"));
-	    states.add(new State("New Jersey"));
-	    states.add(new State("New Mexico"));
-	    states.add(new State("New York"));
-	    states.add(new State("North Carolina"));
-	    states.add(new State("North Dakota"));
-	    states.add(new State("Ohio"));
-	    states.add(new State("Oklahoma"));
-	    states.add(new State("Oregon"));
-	    states.add(new State("Pennsylvania"));
-	    states.add(new State("Rhode Island"));
-	    states.add(new State("South Carolina"));
-	    states.add(new State("South Dakota"));
-	    states.add(new State("Tennessee"));
-	    states.add(new State("Texas"));
-	    states.add(new State("Utah"));
-	    states.add(new State("Vermont"));
-	    states.add(new State("Virginia"));
-	    states.add(new State("Washington"));
-	    states.add(new State("West Virginia"));
-	    states.add(new State("Wisconsin"));
-	    states.add(new State("Wyoming"));
-
-		for(int i = 0; i < 50; i++) {
-			
-		}
+	    states.add(new State("alaska"));
+	    states.add(new State("arizona"));
+	    states.add(new State("arkansas"));
+	    states.add(new State("california"));
+	    states.add(new State("colorado"));
+	    states.add(new State("connecticut"));
+	    states.add(new State("delaware"));
+	    states.add(new State("florida"));
+	    states.add(new State("georgia"));
+	    states.add(new State("hawaii"));
+	    states.add(new State("idaho"));
+	    states.add(new State("illinois"));
+	    states.add(new State("indiana"));
+	    states.add(new State("iowa"));
+	    states.add(new State("kansas"));
+	    states.add(new State("kentucky"));
+	    states.add(new State("louisiana"));
+	    states.add(new State("maine"));
+	    states.add(new State("maryland"));
+	    states.add(new State("massachusetts"));
+	    states.add(new State("michigan"));
+	    states.add(new State("minnesota"));
+	    states.add(new State("mississippi"));
+	    states.add(new State("missouri"));
+	    states.add(new State("montana"));
+	    states.add(new State("nebraska"));
+	    states.add(new State("nevada"));
+	    states.add(new State("new hampshire"));
+	    states.add(new State("new jersey"));
+	    states.add(new State("new mexico"));
+	    states.add(new State("new york"));
+	    states.add(new State("north carolina"));
+	    states.add(new State("north dakota"));
+	    states.add(new State("ohio"));
+	    states.add(new State("oklahoma"));
+	    states.add(new State("oregon"));
+	    states.add(new State("pennsylvania"));
+	    states.add(new State("rhode Island"));
+	    states.add(new State("south carolina"));
+	    states.add(new State("south dakota"));
+	    states.add(new State("tennessee"));
+	    states.add(new State("texas"));
+	    states.add(new State("utah"));
+	    states.add(new State("vermont"));
+	    states.add(new State("virginia"));
+	    states.add(new State("washington"));
+	    states.add(new State("west virginia"));
+	    states.add(new State("wisconsin"));
+	    states.add(new State("wyoming"));
 		return setState;
 	}
 	/**find and returns the index of state that matches the name
 	 * returns -1 if none are found
 	 * 
-	 * @param name
+	 * @param String name of state
 	 * @return int index of state
 	 */
 	private int findIndexOfState(String name) {
