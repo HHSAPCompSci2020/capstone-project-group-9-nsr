@@ -10,11 +10,11 @@ public class DrawingSurface extends PApplet{
 	JButton map;
 	JButton moreInfo;
 	int x, y, w, h;    //width and height and starting point
-	  int animation=0;
-	  boolean mapClicked = false;
+	int animation=0;
+	boolean mapClicked = false;
 	public DrawingSurface() {
-		map = new JButton("Map");
-		moreInfo = new JButton("More Information");
+	map = new JButton("Map");
+	moreInfo = new JButton("More Information");
 	}
 	
 	
