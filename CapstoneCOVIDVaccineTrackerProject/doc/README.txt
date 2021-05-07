@@ -14,7 +14,7 @@ Talk with your group. Consider drawing some pictures of what you think your proj
 
 COVID Vaccine Data Tracker
 Authors: Roopa Srinivas, Sophie Lin, Nodoka Shibasaki
-Revision: 05/06/2021
+Revision: 05/07/2021
 
 Introduction: 
 [In a few paragraphs totaling about ½ page, introduce the high-level concept of your program. What this looks like depends a lot on what type of thing you are making. An introduction for an application will look different than one for a game. In general, your introduction should address questions like these:
@@ -118,6 +118,7 @@ statistics and graph
 Find the information and statistics
 Design and code the page
 Create and statistics and graphs
+Get and format state and country map images
 Help with the states research(half)
 State class
 Frame class
