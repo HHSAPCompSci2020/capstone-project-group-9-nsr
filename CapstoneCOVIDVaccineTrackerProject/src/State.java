@@ -12,7 +12,7 @@ public class State extends Frame{
 	 * calls the no-args StatesGraphic constructor
 	 */
 	public State() {
-		super("US_MAP");
+		super("US_MAP.png");
 		graph = new StatesGraphics();
 	}
 	

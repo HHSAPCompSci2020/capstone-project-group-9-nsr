@@ -25,8 +25,8 @@ public class DrawingSurface extends PApplet{
 	 int x=0;
 	
 	public DrawingSurface() {
-	map = new JButton("Map");
-	moreInfo = new JButton("More Information");
+		map = new JButton("Map");
+		moreInfo = new JButton("More Information");
 	}
 	
 	
@@ -150,9 +150,6 @@ public class DrawingSurface extends PApplet{
 	public void goToMap() {
 		fill(255);
 		rect(0, 0, width, height);
-	}
-	public void goToState(String state) {
-		
 	}
 	public void goToInfo() {
 	

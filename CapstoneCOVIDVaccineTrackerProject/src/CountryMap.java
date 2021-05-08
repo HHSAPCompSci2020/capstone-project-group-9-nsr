@@ -3,21 +3,27 @@
 * date: 5/6/21
 * @revision 1
 */
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 public class CountryMap extends Frame{
 	ArrayList<State> states;
+	PImage map;
 	
 	/**constructor
 	 * 
-	 * @param fileName
 	 */	
-	public CountryMap(String fileName) {
-		super(fileName);
+	public CountryMap() {
+		super("US_MAP.png");
 		states = setAllStates();
 		createDropDown();
 	}
@@ -109,7 +115,12 @@ public class CountryMap extends Frame{
 	 * @param state
 	 */
 	
-	private void openStatePage(StatesGraphics state) {
+	private void goToStatePage(StatesGraphics state) {
 		
+	}
+	
+	public void draw(PApplet surface) {
+		map = surface.loadImage("US_MAP.png");
+		surface.image(map, 10, 10);
 	}
 }
