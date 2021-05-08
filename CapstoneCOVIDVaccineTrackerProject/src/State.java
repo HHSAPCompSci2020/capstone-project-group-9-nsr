@@ -1,3 +1,6 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
 /**
  * 
  * @author roopa
@@ -8,6 +11,7 @@
 public class State extends Frame{
 	StatesGraphics graph;
 	String name;
+	PImage map;
 	
 	/*
 	 * calls the no-args StatesGraphic constructor
@@ -32,8 +36,9 @@ public class State extends Frame{
 	/*
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
 	 */
-	public void draw() {
-		graph.drawGraph(500, 100, 100, 100);
+	public void draw(PApplet surface) {
+		map = surface.loadImage("maps/" + name +".png");
+		surface.image(map, 10, 10);
 	}
 	
 	public String getName() {

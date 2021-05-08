@@ -3,6 +3,7 @@
 * date: 5/6/21
 * @revision 1
 */
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -11,8 +12,10 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
 public class CountryMap extends Frame{
@@ -30,7 +33,7 @@ public class CountryMap extends Frame{
 			String name = states.get(i).getName();
 			stateNames.add(name);
 		}
-		createDropDown();
+		goToStatePage();
 	}
 	/**set all the states to their name
 	 * 
@@ -104,10 +107,11 @@ public class CountryMap extends Frame{
 		}
 		return -1;
 	}
-	/**makes the dropdown menu
-	 * 
+	/**opens the state page 
+	 * @param state
 	 */
-	private void createDropDown() {
+	
+	private void goToStatePage() {
 		State input = (State)JOptionPane.showInputDialog(null, "Which state?",
 		        "Which state?", JOptionPane.QUESTION_MESSAGE, null,
 		        stateNames.toArray(), // Array of choices
@@ -115,13 +119,10 @@ public class CountryMap extends Frame{
 		    
 		if (input == null)
 			return;
-	}
-	/**opens the state page 
-	 * @param state
-	 */
-	
-	private void goToStatePage(StatesGraphics state) {
 		
+		String stateName = input.getName(); 
+		
+		State nextState = new State(stateName);
 	}	
 	
 	public void draw(PApplet surface) {
