@@ -7,6 +7,7 @@
  */
 public class State extends Frame{
 	StatesGraphics graph;
+	String name;
 	
 	/*
 	 * calls the no-args StatesGraphic constructor
@@ -23,6 +24,7 @@ public class State extends Frame{
 	public State(String stateName) {
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
+		name = stateName;
 	}
 	
 	
@@ -32,5 +34,9 @@ public class State extends Frame{
 	 */
 	public void draw() {
 		graph.drawGraph(500, 100, 100, 100);
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

@@ -17,6 +17,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 public class CountryMap extends Frame{
 	ArrayList<State> states;
+	ArrayList<String> stateNames = new ArrayList<String>();
 	PImage map;
 	
 	/**constructor
@@ -25,6 +26,11 @@ public class CountryMap extends Frame{
 	public CountryMap() {
 		super("US_MAP.png");
 		states = setAllStates();
+		for (int i = 0; i < states.size(); i++) {
+			String name = states.get(i).getName();
+			stateNames.add(name);
+		}
+		createDropDown();
 	}
 	/**set all the states to their name
 	 * 
@@ -104,8 +110,8 @@ public class CountryMap extends Frame{
 	private void createDropDown() {
 		State input = (State)JOptionPane.showInputDialog(null, "Which state?",
 		        "Which state?", JOptionPane.QUESTION_MESSAGE, null,
-		        states.toArray(), // Array of choices
-		        states.toArray()[0]); // Initial choice
+		        stateNames.toArray(), // Array of choices
+		        stateNames.toArray()[0]); // Initial choice
 		    
 		if (input == null)
 			return;
