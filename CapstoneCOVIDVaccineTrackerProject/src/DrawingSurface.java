@@ -22,7 +22,7 @@ public class DrawingSurface extends PApplet{
 	boolean mapPage = false;
 	boolean statePage = false;
 	boolean infoPage = false;
-	
+	 int x=0;
 	
 	public DrawingSurface() {
 	map = new JButton("Map");
@@ -38,7 +38,7 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void draw() {
 		
-		  fill(218);
+		  //fill(218);
 		  //update fields
 		  mapX = width/3;
 		  mapY = 5*(int)(height/10.0);
@@ -61,9 +61,13 @@ public class DrawingSurface extends PApplet{
 		  	}
 		  }
 		  if(mapPage) {
-			  reset();
-			  fill(255);
-			  rect(0, 0, width, height);
+			  if(x<300) {
+				  animation("going to map", mapX, mapY, mapW, mapH);
+				  x++;
+			  }
+			  else
+				  goToMap();
+				  
 		  }
 	}
 
@@ -88,12 +92,12 @@ public class DrawingSurface extends PApplet{
 		 fill(218);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
-		  if(animation<=100) 
+		  if(animation<=50) 
 			  text(text+ ".",x+ (w / 2), y + (h / 2));
-		  else if(animation>100 && animation<=200) {
+		  else if(animation>50 && animation<=100) {
 			  text(text+ "..",x + (w / 2), y + (h / 2));
 		  }
-		  else if(animation>200 && animation<=300) 
+		  else if(animation>100 && animation<=150) 
 			  text(text+ "...", x + (w / 2), y + (h / 2));
 		  else
 			  animation = 0;
@@ -114,10 +118,10 @@ public class DrawingSurface extends PApplet{
 	    	fill(0);
 	    	text("map", mapX + mapW/2, mapY + mapH/2);
 	    }
-	    else if(mapClicked) {
+	   /* else if(mapClicked) {
 	    	animation("going to map", mapX, mapY, mapW, mapH);
 	    	//bring to map page
-	    }
+	    }*/
 	    if(overButton(infoX, infoY, infoW, infoH)) 
 			  fill(150);
 			else {
@@ -129,21 +133,23 @@ public class DrawingSurface extends PApplet{
 	    	fill(0);
 	    	text("more information", infoX + infoW/2, infoY + infoH/2);
 	    }
-	    else if(infoClicked) {
+	  /*  else if(infoClicked) {
 	    	animation("going to more information", infoX, infoY, infoW, infoH);
 	    	//bring to map page
-	    }
+	    }*/
 	    
 	}
 	public void reset() {
 		animation=0;
 		mapClicked = false;
+		x = 0;
 	}
 	public void goToMain() {
-		
+		reset();
 	}
 	public void goToMap() {
-		
+		fill(255);
+		rect(0, 0, width, height);
 	}
 	public void goToState(String state) {
 		
