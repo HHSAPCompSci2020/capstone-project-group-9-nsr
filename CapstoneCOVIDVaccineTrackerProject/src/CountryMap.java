@@ -33,7 +33,6 @@ public class CountryMap extends Frame{
 			String name = states.get(i).getName();
 			stateNames.add(name);
 		}
-		goToStatePage();
 	}
 	/**set all the states to their name
 	 * 
@@ -129,5 +128,6 @@ public class CountryMap extends Frame{
 	public void draw(PApplet surface) {
 		map = surface.loadImage("maps/US_MAP.png");
 		surface.image(map, 10, 10);
+		goToStatePage(surface);
 	}
 }
