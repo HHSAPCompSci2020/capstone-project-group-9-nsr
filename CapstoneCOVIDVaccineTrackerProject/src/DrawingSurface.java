@@ -7,9 +7,7 @@ import javax.swing.JButton;
 
 import processing.core.PApplet;
 public class DrawingSurface extends PApplet{
-	JButton map;
-	JButton moreInfo;
-	
+	CountryMap map;
 	int animation=0;
 	
 	int mapX, mapY, mapW, mapH;    
@@ -25,8 +23,6 @@ public class DrawingSurface extends PApplet{
 	 int x=0;
 	
 	public DrawingSurface() {
-		map = new JButton("Map");
-		moreInfo = new JButton("More Information");
 	}
 	
 	
@@ -150,6 +146,7 @@ public class DrawingSurface extends PApplet{
 	public void goToMap() {
 		fill(255);
 		rect(0, 0, width, height);
+		map.draw(this);
 	}
 	public void goToInfo() {
 	
