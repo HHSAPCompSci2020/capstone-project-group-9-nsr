@@ -23,6 +23,7 @@ public class DrawingSurface extends PApplet{
 	 int x=0;
 	
 	public DrawingSurface() {
+		map = new CountryMap();
 	}
 	
 	

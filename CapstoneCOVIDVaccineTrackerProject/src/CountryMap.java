@@ -117,10 +117,11 @@ public class CountryMap extends Frame{
 	
 	private void goToStatePage(StatesGraphics state) {
 		
-	}
+	}	
 	
 	public void draw(PApplet surface) {
 		map = surface.loadImage("US_MAP.png");
 		surface.image(map, 10, 10);
+		
 	}
 }
