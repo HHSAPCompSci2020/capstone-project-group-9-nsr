@@ -57,15 +57,7 @@ public class DrawingSurface extends PApplet{
 			  
 		  	}
 		  }
-		  if(mapPage) {
-			  if(x<300) {
-				  animation("going to map", mapX, mapY, mapW, mapH);
-				  x++;
-			  }
-			  else
-				  goToMap();
-				  
-		  }
+		
 	}
 
 	 boolean overButton(int x, int y, int w, int h) {
@@ -79,11 +71,11 @@ public class DrawingSurface extends PApplet{
 		if(mainPage) {
 			if (mouseX > mapX && mouseX < (mapX + mapW) && mouseY > mapY && mouseY < (mapY + mapH)) {
 				mapClicked = true;
-				infoClicked = false;
+				//infoClicked = false;
 			} 
 			if (mouseX > infoX && mouseX < (infoX + infoW) && mouseY > infoY && mouseY < (infoY + infoH)) {
 				infoClicked = true;
-				mapClicked = false;
+				//mapClicked = false;
 		  } 
 		}
 	}
@@ -111,12 +103,21 @@ public class DrawingSurface extends PApplet{
 			else {
 			  fill(218);
 			}
-	    if(!mapClicked) {
+	   // if(!mapClicked) {
 	    	rect(mapX, mapY, mapW, mapH, 10);
 	    	textAlign(CENTER, CENTER);
 	    	fill(0);
 	    	text("map", mapX + mapW/2, mapY + mapH/2);
-	    }
+	  //  }
+	    	  if(mapPage) {
+				  if(x<300) {
+					  animation("going to map", mapX, mapY, mapW, mapH);
+					  x++;
+				  }
+				  else
+					  goToMap();
+					  
+			  }
 	   /* else if(mapClicked) {
 	    	animation("going to map", mapX, mapY, mapW, mapH);
 	    	//bring to map page
@@ -126,12 +127,12 @@ public class DrawingSurface extends PApplet{
 			else {
 			  fill(218);
 			}
-	    if(!infoClicked) {
+	 //   if(!infoClicked) {
 	    	rect(infoX, infoY, infoW, infoH, 10);
 	    	textAlign(CENTER, CENTER);
 	    	fill(0);
 	    	text("more information", infoX + infoW/2, infoY + infoH/2);
-	    }
+	 //   }
 	  /*  else if(infoClicked) {
 	    	animation("going to more information", infoX, infoY, infoW, infoH);
 	    	//bring to map page
