@@ -75,14 +75,16 @@ public class DrawingSurface extends PApplet{
 		  }
 	 
 	public void mouseClicked() {
-		if (mouseX > mapX && mouseX < (mapX + mapW) && mouseY > mapY && mouseY < (mapY + mapH)) {
-		  mapClicked = true;
-		  infoClicked = false;
-	  } 
-		if (mouseX > infoX && mouseX < (infoX + infoW) && mouseY > infoY && mouseY < (infoY + infoH)) {
-			  infoClicked = true;
-			  mapClicked = false;
+		if(mainPage) {
+			if (mouseX > mapX && mouseX < (mapX + mapW) && mouseY > mapY && mouseY < (mapY + mapH)) {
+				mapClicked = true;
+				infoClicked = false;
+			} 
+			if (mouseX > infoX && mouseX < (infoX + infoW) && mouseY > infoY && mouseY < (infoY + infoH)) {
+				infoClicked = true;
+				mapClicked = false;
 		  } 
+		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {
 		 fill(218);
