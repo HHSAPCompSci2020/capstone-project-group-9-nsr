@@ -54,8 +54,33 @@ public class DrawingSurface extends PApplet{
 				  infoPage = false;
 			  }
 			  if(infoClicked) {
-			  
+				  mapPage = false;
+				  mainPage = false;
+				  statePage = false;
+				  infoPage = true;
 		  	}
+		  }
+		  if(mapPage) {
+			  if(x<150) {
+				  animation("going to map", mapX, mapY, mapW, mapH);
+				  fill(218);
+				  	drawButton(infoX, infoY, infoW, infoH, "more information");
+				  x++;
+			  }
+			  else
+				  goToMap();
+				  
+		  }
+		  if(infoPage) {
+			  if(x<150) {
+				  animation("going to more information", infoX, infoY, infoW, infoH);
+				  fill(218);
+				  	drawButton(mapX, mapY, mapW, mapH, "map");
+				  x++;
+			  }
+			  else
+				  goToInfo();
+				  
 		  }
 		
 	}
@@ -69,18 +94,20 @@ public class DrawingSurface extends PApplet{
 	 
 	public void mouseClicked() {
 		if(mainPage) {
-			if (mouseX > mapX && mouseX < (mapX + mapW) && mouseY > mapY && mouseY < (mapY + mapH)) {
+			if (overButton(mapX, mapY, mapW, mapH)) {
 				mapClicked = true;
-				//infoClicked = false;
+				infoClicked = false;
+				x=0;
 			} 
-			if (mouseX > infoX && mouseX < (infoX + infoW) && mouseY > infoY && mouseY < (infoY + infoH)) {
+			if (overButton(infoX, infoY, infoW, infoH)) {
 				infoClicked = true;
-				//mapClicked = false;
+				mapClicked = false;
+				x= 0;
 		  } 
 		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {
-		 fill(218);
+		 	fill(218);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
 		  if(animation<=50) 
@@ -103,41 +130,21 @@ public class DrawingSurface extends PApplet{
 			else {
 			  fill(218);
 			}
-	   // if(!mapClicked) {
-	    	rect(mapX, mapY, mapW, mapH, 10);
-	    	textAlign(CENTER, CENTER);
-	    	fill(0);
-	    	text("map", mapX + mapW/2, mapY + mapH/2);
-	  //  }
-	    	  if(mapPage) {
-				  if(x<300) {
-					  animation("going to map", mapX, mapY, mapW, mapH);
-					  x++;
-				  }
-				  else
-					  goToMap();
-					  
-			  }
-	   /* else if(mapClicked) {
-	    	animation("going to map", mapX, mapY, mapW, mapH);
-	    	//bring to map page
-	    }*/
+	    	drawButton(mapX, mapY, mapW, mapH, "map");
+	
 	    if(overButton(infoX, infoY, infoW, infoH)) 
 			  fill(150);
 			else {
 			  fill(218);
 			}
-	 //   if(!infoClicked) {
-	    	rect(infoX, infoY, infoW, infoH, 10);
-	    	textAlign(CENTER, CENTER);
-	    	fill(0);
-	    	text("more information", infoX + infoW/2, infoY + infoH/2);
-	 //   }
-	  /*  else if(infoClicked) {
-	    	animation("going to more information", infoX, infoY, infoW, infoH);
-	    	//bring to map page
-	    }*/
+	    	drawButton(infoX, infoY, infoW, infoH, "more information");
 	    
+	}
+	public void drawButton(int x, int y, int w, int h, String text) {
+		rect(x, y, w, h, 10);
+    	textAlign(CENTER, CENTER);
+    	fill(0);
+    	text(text, x + w/2, y + h/2);
 	}
 	public void reset() {
 		animation=0;
