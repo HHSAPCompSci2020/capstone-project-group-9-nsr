@@ -111,7 +111,7 @@ public class CountryMap extends Frame{
 	 * @param state
 	 */
 	
-	private void goToStatePage() {
+	private void goToStatePage(PApplet surface) {
 		State input = (State)JOptionPane.showInputDialog(null, "Which state?",
 		        "Which state?", JOptionPane.QUESTION_MESSAGE, null,
 		        stateNames.toArray(), // Array of choices
@@ -123,6 +123,7 @@ public class CountryMap extends Frame{
 		String stateName = input.getName(); 
 		
 		State nextState = new State(stateName);
+		nextState.draw(surface);
 	}	
 	
 	public void draw(PApplet surface) {
