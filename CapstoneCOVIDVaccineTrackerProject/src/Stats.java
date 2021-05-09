@@ -42,7 +42,7 @@ public class Stats {
 		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv").openStream();
 		Files.copy(inputStream, Paths.get("data/vaccineNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
 		
-		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/datasets/covid-19/main/data/us_confirmed.csv").openStream();
+		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-states.csv").openStream();
 		Files.copy(inputStream2, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
@@ -97,8 +97,8 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 					if(values[4].equals(state)) {
-						if(index == 2) {
-							double d = Double.parseDouble(values[2]);
+						if(index != 0 || index != 1 || index != 2) {
+							double d = Double.parseDouble(values[index]);
 							cases.add(d);
 						}else {
 							string.add(values[index]);

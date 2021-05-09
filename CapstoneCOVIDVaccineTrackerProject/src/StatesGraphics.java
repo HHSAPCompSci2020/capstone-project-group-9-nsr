@@ -56,8 +56,8 @@ public class StatesGraphics {
 	public void drawGraph(PApplet p, double x, double y, double width, double height) throws ParseException {
 		
 		Stats stat = new Stats();
-		ArrayList<Double> cases = (ArrayList<Double>) stat.getCasesData(name, 2);
-		ArrayList<String> dates = (ArrayList<String>) stat.getCasesData(name, 1);
+		ArrayList<Double> cases = (ArrayList<Double>) stat.getCasesData(name, 3);
+		ArrayList<String> dates = (ArrayList<String>) stat.getCasesData(name, 0);
 		
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
