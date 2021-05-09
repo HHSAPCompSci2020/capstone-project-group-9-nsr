@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class CountryMap extends Frame{
+public class Country extends Frame{
 	HashMap<String, State> allStates = new HashMap<String, State>();
 	TreeMap states = new TreeMap();
 	PImage map;
@@ -26,7 +26,7 @@ public class CountryMap extends Frame{
 	/**constructor
 	 * 
 	 */	
-	public CountryMap() {
+	public Country() {
 		super("US_MAP.png");
 		initializeStates();
 		openDropDown = false;

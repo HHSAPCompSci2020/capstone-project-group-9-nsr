@@ -8,7 +8,7 @@ import processing.core.PApplet;
  *
  */
 public class DrawingSurface extends PApplet{
-	CountryMap map;
+	Country map;
 	int animation=0;
 	
 	int mapX, mapY, mapW, mapH;    
@@ -23,7 +23,7 @@ public class DrawingSurface extends PApplet{
 	boolean infoPage = false;
 	int x=0;
 	public DrawingSurface() {
-		map = new CountryMap();
+		map = new Country();
 	}
 	
 	
