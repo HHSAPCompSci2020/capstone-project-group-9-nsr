@@ -14,7 +14,7 @@ import processing.core.PApplet;
 /**
  * This class gets data from stats and creates data graphics.
  * 
- * @author 
+ * @author roopa, sophie, nodoka
  *
  */
 public class StatesGraphics {
