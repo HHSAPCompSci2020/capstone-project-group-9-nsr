@@ -14,7 +14,7 @@ public class State extends Frame{
 	PImage map;
 	int mapWidth, mapHeight;
 	int screenHeight, screenWidth;
-	int widthDiff, heightDiff;
+	int heightDiff;
 	
 	/**
 	 * calls the no-args StatesGraphic constructor
@@ -51,7 +51,6 @@ public class State extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		widthDiff = screenWidth - mapWidth;
 		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, heightDiff/2);
 		surface.strokeWeight(5);

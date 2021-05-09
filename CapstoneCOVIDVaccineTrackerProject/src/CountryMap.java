@@ -17,7 +17,6 @@ public class CountryMap extends Frame{
 	TreeMap states = new TreeMap();
 	PImage map;
 	int mapWidth, mapHeight;
-	private Object widthDiff;
 	private int screenHeight;
 	private int screenWidth;
 	private int heightDiff;
@@ -96,7 +95,6 @@ public class CountryMap extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		widthDiff = screenWidth - mapWidth;
 		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, heightDiff/2);
 		
