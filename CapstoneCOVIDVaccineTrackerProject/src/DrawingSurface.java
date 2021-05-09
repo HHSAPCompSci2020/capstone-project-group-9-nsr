@@ -1,11 +1,12 @@
-/**@author Sophie
- * 
-	 * 
-	 */
 
 import javax.swing.JButton;
-
 import processing.core.PApplet;
+
+/**
+ * 
+ * @author sophie
+ *
+ */
 public class DrawingSurface extends PApplet{
 	CountryMap map;
 	int animation=0;
