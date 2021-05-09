@@ -18,6 +18,7 @@ import processing.core.PApplet;
  *
  */
 public class StatesGraphics {
+	
 	private String name;
 	private JButton returnToHome;
 	
@@ -87,6 +88,10 @@ public class StatesGraphics {
 		final double PIXEL_PER_X = (width - 10) / diff;
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
+		//coordinate of the base of the lines
+		double xAxis = x + 10;
+		double yAxis = y + height - 10;
+		
 		//add one day to first date and check if index of that date is existing
 		//keep track of how many days added
 		//if it is existing access the value at the same index in case data
@@ -95,8 +100,8 @@ public class StatesGraphics {
 		
 		for(int i = 0; i <= diff; i++) {
 			if(dates.indexOf(firstDate.toString()) != -1) {
-				double px = PIXEL_PER_X * dates.indexOf(firstDate.toString());
-				double py = PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString()));
+				double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+				double py = yAxis - PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString())) ;
 				Point po = new Point();
 				po.setLocation(px, py);
 				points.add(po);
