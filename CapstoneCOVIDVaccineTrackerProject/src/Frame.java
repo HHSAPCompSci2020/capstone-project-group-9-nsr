@@ -11,7 +11,7 @@ import processing.core.PImage;
  * @author 
  *
  */
-public class Frame {
+public class Frame extends PApplet{
 	
 	private String fileName;
 	
