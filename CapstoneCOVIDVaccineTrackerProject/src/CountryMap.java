@@ -16,6 +16,10 @@ public class CountryMap extends Frame{
 	TreeMap states = new TreeMap();
 	PImage map;
 	int mapWidth, mapHeight;
+	private Object widthDiff;
+	private int screenHeight;
+	private int screenWidth;
+	private int heightDiff;
 	
 	/**constructor
 	 * 
@@ -79,12 +83,16 @@ public class CountryMap extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		mapWidth = map.width;
 		mapHeight = map.height;
-		if (surface.height < surface.width) {
-			map.resize(0, (surface.height/3)*2);
+		screenHeight = surface.height;
+		screenWidth = surface.width;
+		if (screenHeight < screenWidth) {
+			map.resize(0, (screenHeight/3)*2);
 		} else {
-			map.resize(surface.width/2, 0);
+			map.resize(screenWidth/2, 0);
 		}
-		surface.image(map, 10, 10);
+		widthDiff = screenWidth - mapWidth;
+		heightDiff = screenHeight - mapHeight;
+		surface.image(map, 10, heightDiff/2);
 		createDropDown(surface);
 	}
 }
