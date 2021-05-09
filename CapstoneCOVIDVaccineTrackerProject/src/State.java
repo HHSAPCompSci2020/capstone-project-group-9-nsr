@@ -41,6 +41,7 @@ public class State extends Frame{
 	 * @param surface
 	 */
 	public void draw(PApplet surface) {
+		
 		map = surface.loadImage("maps/" + name +".png");
 		mapWidth = map.width;
 		mapHeight = map.height;
@@ -52,6 +53,7 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
+		graph.drawGraph(surface, 500, 10, 100, 100);
 		surface.image(map, 10, screenHeight/3);
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);

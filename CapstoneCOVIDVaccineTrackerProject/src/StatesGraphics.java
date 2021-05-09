@@ -58,7 +58,7 @@ public class StatesGraphics {
 	 * @throws ParseException 
 	 */
 	@SuppressWarnings("unchecked")
-	public void drawGraph(PApplet p) throws ParseException {
+	public void drawGraph(PApplet p, double x, double y, double width, double height) throws ParseException {
 		
 		Stats stat = new Stats();
 		ArrayList<Double> cases = (ArrayList<Double>) stat.getCasesData(name, 3);
