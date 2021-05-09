@@ -16,7 +16,7 @@ public class State extends Frame{
 	int screenHeight, screenWidth;
 	int widthDiff, heightDiff;
 	
-	/*
+	/**
 	 * calls the no-args StatesGraphic constructor
 	 */
 	public State() {
@@ -24,9 +24,9 @@ public class State extends Frame{
 		graph = new StatesGraphics();
 	}
 	
-	/*
+	/**
 	 * specifies the state for which we are drawing the graphs and obtaining statistics, also sets the picture of the state
-	 * @param String stateName full name of the state
+	 * @param stateName full name of the state
 	 */
 	public State(String stateName) {
 		super(stateName+".png");
@@ -35,9 +35,10 @@ public class State extends Frame{
 	}
 	
 	
-	
-	/*
+	/**
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
+	 * 
+	 * @param surface
 	 */
 	public void draw(PApplet surface) {
 		map = surface.loadImage("maps/" + name +".png");
@@ -56,6 +57,10 @@ public class State extends Frame{
 		
 	}
 	
+	/**
+	 * 
+	 * @return name of the state
+	 */
 	public String getName() {
 		return name;
 	}
