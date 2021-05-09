@@ -52,7 +52,7 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		surface.image(map, 10, heightDiff/2);
+		surface.image(map, 10, screenHeight/3);
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
 		surface.line(screenWidth-40, 20, screenWidth-10, 20);
