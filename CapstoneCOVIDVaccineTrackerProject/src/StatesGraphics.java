@@ -1,19 +1,13 @@
-<<<<<<< Updated upstream
 /**
  * @author roopa, sophie, nodoka
- */
-=======
+*/
 import java.awt.Point;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
->>>>>>> Stashed changes
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+
 
 import javax.swing.JButton;
 
