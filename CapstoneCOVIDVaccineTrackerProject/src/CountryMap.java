@@ -79,7 +79,11 @@ public class CountryMap extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		mapWidth = map.width;
 		mapHeight = map.height;
-		map.resize((surface.width/500)*mapWidth, (surface.height/500)*mapHeight);
+		if (surface.height < surface.width) {
+			map.resize(0, (surface.height/3)*2);
+		} else {
+			map.resize(surface.width/2, 0);
+		}
 		surface.image(map, 10, 10);
 		createDropDown(surface);
 	}
