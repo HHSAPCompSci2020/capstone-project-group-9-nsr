@@ -12,6 +12,7 @@ public class State extends Frame{
 	StatesGraphics graph;
 	String name;
 	PImage map;
+	int mapWidth, mapHeight;
 	
 	/*
 	 * calls the no-args StatesGraphic constructor
@@ -38,6 +39,9 @@ public class State extends Frame{
 	 */
 	public void draw(PApplet surface) {
 		map = surface.loadImage("maps/" + name +".png");
+		mapWidth = map.width;
+		mapHeight = map.height;
+		map.resize((surface.width/500)*mapWidth, (surface.height/500)*mapHeight);
 		surface.image(map, 10, 10);
 	}
 	

@@ -1,6 +1,6 @@
 /**
-	 * 
-	 */
+ * @author roopa, sophie, nodoka
+ */
 import java.awt.Dimension;
 import java.io.IOException;
 

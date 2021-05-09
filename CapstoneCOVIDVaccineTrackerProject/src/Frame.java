@@ -1,5 +1,5 @@
 /**The frame of the classes with pictures, CountryMap and State
-* @author 
+* @author sophie
 */
 import javax.swing.JButton;
 

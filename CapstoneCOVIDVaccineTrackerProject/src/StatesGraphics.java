@@ -1,3 +1,6 @@
+/**
+ * @author roopa, sophie, nodoka
+ */
 import java.util.ArrayList;
 
 import javax.swing.JButton;

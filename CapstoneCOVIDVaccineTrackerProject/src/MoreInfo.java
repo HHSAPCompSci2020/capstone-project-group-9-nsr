@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author nodoka
+ *
+ */
 public class MoreInfo {
 	
 	private int x, y;
