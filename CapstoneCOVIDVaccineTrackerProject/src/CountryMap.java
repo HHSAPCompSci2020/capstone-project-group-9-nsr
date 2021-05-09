@@ -22,7 +22,8 @@ public class CountryMap extends Frame{
 	private int screenWidth;
 	private int heightDiff;
 	boolean openDropDown;
-	
+	boolean statePageOpen;
+	String stateInput;
 	/**constructor
 	 * 
 	 */	
@@ -30,7 +31,7 @@ public class CountryMap extends Frame{
 		super("US_MAP.png");
 		initializeStates();
 		openDropDown = false;
-		
+		statePageOpen =false;
 	}
 	
 	private void initializeStates() {
@@ -60,6 +61,7 @@ public class CountryMap extends Frame{
 	}
 	
 	private void createDropDown(PApplet surface) {
+		openDropDown = false;
 		String input = (String)JOptionPane.showInputDialog(null, "Which state?",
 		        "Which state?", JOptionPane.QUESTION_MESSAGE, null,
 		       states.keySet().toArray(), // Array of choices
@@ -67,8 +69,9 @@ public class CountryMap extends Frame{
 		    
 		if (input == null)
 			return;
+		stateInput = input;
+		statePageOpen = true;
 		
-		goToStatePage(surface, input);
 	}
 	
 	/**opens the state page 
@@ -105,6 +108,10 @@ public class CountryMap extends Frame{
 		if(openDropDown) {
 			createDropDown(surface);
 		}
+		if(statePageOpen) {
+			goToStatePage(surface, stateInput);
+		}
+		//add if you go back, make statePage = false
 		surface.strokeWeight(1);
 	}
 	public int getScreenW() {
