@@ -100,7 +100,7 @@ public class CountryMap extends Frame{
 		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, heightDiff/2);
 		
-		//draw button for drop dowm
+		//draw button for drop down
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
 		surface.line(screenWidth-40, 20, screenWidth-10, 20);
