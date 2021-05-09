@@ -1,6 +1,4 @@
-/**
- * @author roopa, sophie, nodoka
-*/
+
 import java.awt.Point;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -26,12 +24,14 @@ public class StatesGraphics {
 	private ArrayList<Double> percentGiven;
 	private ArrayList<String> dates;
 	private JButton returnToHome;
+	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
 	 */
 	public StatesGraphics() {
 		name = null;
 	}
+	
 	/**constructor
 	 * sets the name to the parameter String state
 	 * @param String state
@@ -39,24 +39,7 @@ public class StatesGraphics {
 	public StatesGraphics(String state) {
 		name = state;
 	}
-	/**adds to the number of vaccines available
-	 * @param int num of how many more vaccines avaliable 
-	 */
-	public void addAvailable(int num) {
-		//numberOfVaccinesAvailable += num;
-	}
-	/**adds to the number of vaccines given
-	 * @param int num of how many more vaccines given added
-	 */
-	public void addGiven(int num) {
-		//numberOfVaccinesGiven += num;
-	}
-	/** set the percent of given vaccines
-	 * @parameter double percent of given vaccines
-	 */
-	public void setPercent(double percent) {
-		//percentGiven = percent;
-	}
+	
 	/**returns the name of the state
 	 * @return name String
 	 */
