@@ -19,10 +19,6 @@ import processing.core.PApplet;
  */
 public class StatesGraphics {
 	private String name;
-	private ArrayList<Double> numberOfVaccinesAvailable;
-	private ArrayList<Double> numberOfVaccinesGiven;
-	private ArrayList<Double> percentGiven;
-	private ArrayList<String> dates;
 	private JButton returnToHome;
 	
 	/**constructor
