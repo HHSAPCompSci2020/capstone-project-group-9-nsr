@@ -86,7 +86,7 @@ public class DrawingSurface extends PApplet{
 	}
 
 	 boolean overButton(int x, int y, int w, int h) {
-		    if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
+		    if (mouseX > x-5 && mouseX < (x + w + 10) && mouseY > y-5 && mouseY < (y + h + 10)) {
 		      return true;
 		    }
 		    return false;
@@ -106,7 +106,7 @@ public class DrawingSurface extends PApplet{
 		  } 
 		}
 		if(mapPage) {
-			map.openDropDown =overButton(map.getScreenW()-60, 0, 40, 30);
+			map.openDropDown =overButton(map.getScreenW()-40, 10, 30, 20);
 			
 		}
 	}
