@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+
 public class CountryMap extends Frame{
 	HashMap<String, State> allStates = new HashMap<String, State>();
 	TreeMap states = new TreeMap();
