@@ -21,8 +21,7 @@ public class DrawingSurface extends PApplet{
 	boolean mapPage = false;
 	boolean statePage = false;
 	boolean infoPage = false;
-	 int x=0;
-	
+	int x=0;
 	public DrawingSurface() {
 		map = new CountryMap();
 	}
@@ -105,6 +104,13 @@ public class DrawingSurface extends PApplet{
 				mapClicked = false;
 				x= 0;
 		  } 
+		}
+		System.out.println(1);
+		if(mapPage) {
+			System.out.println(3);
+			map.openDropDown =overButton(map.getScreenW()-40, 10, 30, 20);
+			System.out.println(map.openDropDown);
+			
 		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {

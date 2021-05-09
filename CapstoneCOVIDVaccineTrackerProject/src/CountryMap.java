@@ -21,6 +21,7 @@ public class CountryMap extends Frame{
 	private int screenHeight;
 	private int screenWidth;
 	private int heightDiff;
+	boolean openDropDown;
 	
 	/**constructor
 	 * 
@@ -28,6 +29,7 @@ public class CountryMap extends Frame{
 	public CountryMap() {
 		super("US_MAP.png");
 		initializeStates();
+		openDropDown = false;
 		
 	}
 	
@@ -94,6 +96,19 @@ public class CountryMap extends Frame{
 		widthDiff = screenWidth - mapWidth;
 		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, heightDiff/2);
-		createDropDown(surface);
+		
+		//draw button for drop dowm
+		surface.strokeWeight(5);
+		surface.line(screenWidth-40, 10, screenWidth-10, 10);
+		surface.line(screenWidth-40, 20, screenWidth-10, 20);
+		surface.line(screenWidth-40, 30, screenWidth-10, 30);
+		if(openDropDown) {
+			createDropDown(surface);
+		}
+		surface.strokeWeight(1);
 	}
+	public int getScreenW() {
+		return screenWidth;
+	}
+	
 }
