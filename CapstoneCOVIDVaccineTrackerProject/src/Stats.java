@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class fetches data and stores them in arraylists
@@ -20,29 +22,17 @@ import java.util.ArrayList;
 public class Stats {
 	
 	/**
-	 * 
-	 * @param dataName the name of the data
-	 * @param state the name of the state
-	 * @pre to get available vaccines input "VaccineAvailable", to get vaccines given input "VaccineGiven", to get percent given input "PercentGiven" for dataName.
-	 */
-	public Stats() {
-		try {
-			downloadData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
 	 * this method uses java.io api to copy the data on cvc approved dataset to the csv file in the data folder.
 	 * @return inputStream the data fetched from the link
 	 * @throws IOException
 	 */
-	public final void downloadData() throws IOException{
+	public final void downloadVaccineData() throws IOException{
 		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv").openStream();
 		Files.copy(inputStream, Paths.get("data/vaccineNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
-		
-		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-states.csv").openStream();
+	}
+	
+	public final void downloadCasesData() throws IOException{
+		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv").openStream();
 		Files.copy(inputStream2, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
@@ -52,6 +42,12 @@ public class Stats {
 	 */
 	public ArrayList<String> getVaccinationInfo(String state) {
 		
+		try {
+			downloadVaccineData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		ArrayList<String> data = new ArrayList<String>();
 		
 		String fileName = "data/vaccineNumber.csv";
@@ -60,17 +56,10 @@ public class Stats {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			while((line = br.readLine()) != null) {
-				String[] values = line.split(",");
-					if(values[1].equals(state)) {
-						data = new ArrayList<String>();
-						data.add(values[0]);//date
-						data.add(values[2]);//total_vaccinations
-						data.add(values[3]);//total_distributed
-						data.add(values[9]);//distributed_per_hundred
-						data.add(values[4]);//people_vaccinated
-						data.add(values[6]);//total_vaccinations_per_hundred
-						data.add(values[7]);//people_fully_vaccinated
-						data.add(values[5]);//people_fully_vaccinated_per_hundred
+				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
+				ArrayList<String> values = new ArrayList<String>(list);
+					if(values.get(1).equals(state)) {
+						data = values;
 					}
 			}
 		} catch (FileNotFoundException e) {
@@ -84,36 +73,106 @@ public class Stats {
 		
 	}
 	
-	public ArrayList<?> getCasesData(String state, int index){
+	/**
+	 * returns data on number of cases of covid, death of covid cased on state name
+	 * 
+	 * @param state name of the state of desire
+	 * @param index counted from 0 from right on cases.csv file
+	 * @return arraylist of string with all desired data from the state inputted
+	 */
+	public ArrayList<String> getCovidData(String state, int index) {
 		
-		ArrayList<Double> cases = new ArrayList<Double>();
-		ArrayList<String> string = new ArrayList<String>();
+		try {
+			downloadVaccineData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		String fileName = "data/casees.csv";
+		ArrayList<String> data = new ArrayList<String>();
+		
+		String fileName = "data/cases.csv";
 		String line = "";
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
-					if(values[4].equals(state)) {
-						if(index != 0 || index != 1 || index != 2) {
-							double d = Double.parseDouble(values[index]);
-							cases.add(d);
-						}else {
-							string.add(values[index]);
-						}
-					}
+				if(values[1].equalsIgnoreCase(state)) {
+						data.add(values[index]);
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return cases;
+
+		System.out.println("length: " + data.size());
+		return data;
 		
 	}
+	
+	/**
+	 * parse the inputted string arraylist into double arraylist
+	 * 
+	 * @param str string arraylist 
+	 * @return parsed to double version of str arraylist
+	 */
+	public ArrayList<Double> parseDouble(ArrayList<String> str){
+		
+		ArrayList<Double> parsed = new ArrayList<Double>();
+		
+		for(int i = 0; i < str.size(); i++) {
+			double d = Double.parseDouble(str.get(i));
+			parsed.add(d);
+		}
+		
+		return parsed;
+		
+	}
+
+	
+//	public ArrayList<?> getCasesData(String state, int index){
+//		
+//		try {
+//			downloadCasesData();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		ArrayList<Double> cases = new ArrayList<Double>();
+//		ArrayList<String> string = new ArrayList<String>();
+//		
+//		String fileName = "data/cases.csv";
+//		String line = "";
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			while((line = br.readLine()) != null) {
+//				System.out.println("lodaing... " + index);
+//				String[] values = line.split(",");
+//					if(values[4].equalsIgnoreCase(state)) {
+//						if(index != 0 && index != 1) {
+//							double d = Double.parseDouble(values[index]);
+//							cases.add(d);
+//						}else {
+//							string.add(values[index]);
+//						}
+//					}
+//			}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		if(index != 0 && index != 1) {
+//			return cases;
+//		}
+//		
+//		return string;
+//		
+//	}
 	
 	/**
 	 * reads vaccineNumber.csv data
