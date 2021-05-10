@@ -22,8 +22,7 @@ import java.util.List;
 public class Stats {
 	
 	/**
-	 * this method uses java.io api to copy the data on cvc approved dataset to the csv file in the data folder.
-	 * @return inputStream the data fetched from the link
+	 * this method uses java.io api to copy the data on cvc approved vaccine dataset to the csv file in the data folder.
 	 * @throws IOException
 	 */
 	public final void downloadVaccineData() throws IOException{
@@ -31,6 +30,10 @@ public class Stats {
 		Files.copy(inputStream, Paths.get("data/vaccineNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
+	/**
+	 * this method uses java.io api to copy the data on cvc approved covid cases dataset to the csv file in the data folder.
+	 * @throws IOException
+	 */
 	public final void downloadCasesData() throws IOException{
 		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv").openStream();
 		Files.copy(inputStream2, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
