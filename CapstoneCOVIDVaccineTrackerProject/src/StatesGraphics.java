@@ -53,12 +53,11 @@ public class StatesGraphics {
 	 * @param height height of the rectangle the graph is in
 	 * @throws ParseException 
 	 */
-	@SuppressWarnings("unchecked")
 	public void drawGraph(PApplet p, double x, double y, double width, double height) throws ParseException {
 		
 		Stats stat = new Stats();
-		ArrayList<Double> cases = (ArrayList<Double>) stat.getCasesData(name, 3);
-		ArrayList<String> dates = (ArrayList<String>) stat.getCasesData(name, 0);
+		ArrayList<Double> cases = stat.parseDouble(stat.getCovidData(name, 3));
+		ArrayList<String> dates = stat.getCovidData(name, 0);
 		
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
