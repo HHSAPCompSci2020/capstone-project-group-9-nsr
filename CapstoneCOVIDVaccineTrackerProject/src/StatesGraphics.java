@@ -20,10 +20,6 @@ import processing.core.PApplet;
 public class StatesGraphics {
 	
 	private String name;
-	private double x;
-	private double y;
-	private double width;
-	private double height;
 	private JButton returnToHome;
 	
 	/**constructor
