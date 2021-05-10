@@ -60,11 +60,7 @@ public class State extends Frame{
 		surface.circle(0, screenHeight/2, 100);
 //		System.out.println("HeightDiff: " + heightDiff);
 
-		surface.strokeWeight(5);
-		surface.line(screenWidth-40, 10, screenWidth-10, 10);
-		surface.line(screenWidth-40, 20, screenWidth-10, 20);
-		surface.line(screenWidth-40, 30, screenWidth-10, 30);
-		surface.strokeWeight(1);
+		drawDropDownButton(surface, screenWidth);
 	}
 	
 	/**
