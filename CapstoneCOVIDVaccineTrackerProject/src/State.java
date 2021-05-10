@@ -1,3 +1,5 @@
+import java.text.ParseException;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -53,8 +55,13 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		graph.drawGraph(surface, 500, 10, 100, 100);
-		surface.image(map, 10, screenHeight/3);
+		try {
+			graph.drawGraph(surface, 500, 10, 100, 100);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		surface.image(map, 10, screenHeight/7);
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
 		surface.line(screenWidth-40, 20, screenWidth-10, 20);
