@@ -54,12 +54,7 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-//		try {
-//			graph.drawGraph(surface, 500, 10, 100, 100);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		graph.drawGraph(surface, 500, 10, 100, 100);
 		surface.image(map, 10, heightDiff/4);
 		surface.circle(0, screenHeight/2, 100);
 		System.out.println("HeightDiff: " + heightDiff);
