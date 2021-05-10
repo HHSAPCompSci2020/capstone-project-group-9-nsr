@@ -108,6 +108,8 @@ public class StatesGraphics {
 			firstDate.plusDays(1);
 		}
 		
+		p.line(100, 100,200, 100);
+		
 		for(int i = 0; i < points.size() - 1; i++) {
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}

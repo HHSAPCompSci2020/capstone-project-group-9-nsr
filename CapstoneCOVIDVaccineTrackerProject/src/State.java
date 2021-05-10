@@ -58,7 +58,7 @@ public class State extends Frame{
 		
 		surface.image(map, 10, heightDiff/4);
 		surface.circle(0, screenHeight/2, 100);
-		System.out.println("HeightDiff: " + heightDiff);
+//		System.out.println("HeightDiff: " + heightDiff);
 
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
