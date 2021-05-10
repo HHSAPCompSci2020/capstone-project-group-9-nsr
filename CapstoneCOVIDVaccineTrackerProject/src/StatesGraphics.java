@@ -53,7 +53,7 @@ public class StatesGraphics {
 	 * @param height height of the rectangle the graph is in
 	 * @throws ParseException 
 	 */
-	public void drawGraph(PApplet p, double x, double y, double width, double height) throws ParseException {
+	public void drawGraph(PApplet p, double x, double y, double width, double height){
 		
 		Stats stat = new Stats();
 		ArrayList<Double> cases = stat.parseDouble(stat.getCovidData(name, 3));
@@ -107,6 +107,8 @@ public class StatesGraphics {
 			}
 			firstDate.plusDays(1);
 		}
+		
+		p.line(100, 100,200, 100);
 		
 		for(int i = 0; i < points.size() - 1; i++) {
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());

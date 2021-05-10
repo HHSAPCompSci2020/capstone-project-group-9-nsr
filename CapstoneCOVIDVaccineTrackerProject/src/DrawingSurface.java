@@ -35,7 +35,6 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void draw() {
 		
-		  //fill(218);
 		  //update fields
 		  mapX = width/3;
 		  mapY = 5*(int)(height/10.0);
@@ -45,6 +44,7 @@ public class DrawingSurface extends PApplet{
 		  infoY = 7*(int)(height/10.0);
 		  infoW = width/3;
 		  infoH = height/10;
+		  
 		  if(mainPage) {
 			  buttons();
 			  if(mapClicked) {

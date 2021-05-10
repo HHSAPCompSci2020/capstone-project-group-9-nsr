@@ -110,7 +110,6 @@ public class Stats {
 			e.printStackTrace();
 		}
 
-		System.out.println("length: " + data.size());
 		return data;
 		
 	}
