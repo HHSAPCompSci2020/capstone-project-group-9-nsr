@@ -58,7 +58,7 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
 				ArrayList<String> values = new ArrayList<String>(list);
-					if(values.get(1).equals(state)) {
+					if(values.get(1).equalsIgnoreCase(state)) {
 						data = values;
 					}
 			}
