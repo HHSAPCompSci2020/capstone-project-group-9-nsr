@@ -14,9 +14,9 @@ public class State extends Frame{
 	StatesGraphics graph;
 	String name;
 	PImage map;
-	int mapWidth, mapHeight;
-	int screenHeight, screenWidth;
-	int heightDiff;
+	private int mapWidth, mapHeight;
+	private int screenHeight, screenWidth;
+	private int heightDiff;
 	
 	/**
 	 * calls the no-args StatesGraphic constructor
@@ -43,7 +43,6 @@ public class State extends Frame{
 	 * @param surface
 	 */
 	public void draw(PApplet surface) {
-		
 		map = surface.loadImage("maps/" + name +".png");
 		mapWidth = map.width;
 		mapHeight = map.height;
@@ -55,13 +54,16 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		try {
-			graph.drawGraph(surface, 500, 10, 100, 100);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		surface.image(map, 10, screenHeight/7);
+//		try {
+//			graph.drawGraph(surface, 500, 10, 100, 100);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		surface.image(map, 10, heightDiff/4);
+		surface.circle(0, screenHeight/2, 100);
+		System.out.println("HeightDiff: " + heightDiff);
+
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
 		surface.line(screenWidth-40, 20, screenWidth-10, 20);

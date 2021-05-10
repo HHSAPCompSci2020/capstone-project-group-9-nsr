@@ -16,9 +16,8 @@ public class Country extends Frame{
 	HashMap<String, State> allStates = new HashMap<String, State>();
 	TreeMap states = new TreeMap();
 	PImage map;
-	int mapWidth, mapHeight;
-	private int screenHeight;
-	private int screenWidth;
+	private int mapWidth, mapHeight;
+	private int screenHeight, screenWidth;
 	private int heightDiff;
 	boolean openDropDown;
 	boolean statePageOpen;
@@ -96,8 +95,8 @@ public class Country extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		surface.image(map, 10, screenHeight/9);
-		
+		surface.image(map, 10, heightDiff/4);
+		surface.circle(0, screenHeight/2, 100);
 		//draw button for drop down
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
