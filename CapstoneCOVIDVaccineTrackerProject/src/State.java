@@ -17,6 +17,7 @@ public class State extends Frame{
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
 	private int heightDiff;
+	private double graphWidth, graphHeight, graphX, graphY;
 	
 	/**
 	 * calls the no-args StatesGraphic constructor
@@ -54,10 +55,19 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		graph.drawGraph(surface, 500.0, 10.0, 400.0, 400.0);
+		if (screenHeight<screenWidth) {
+			graphWidth = 1*(screenHeight/3);
+			graphHeight = 1*(screenHeight/3);
+		} else {
+			graphWidth = 1*(screenWidth/3);
+			graphHeight = 1*(screenWidth/3);
+		}
+		graphX = 2*(screenWidth/3);
+		graphY = screenHeight/20;
+		
+		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
 		
 		surface.image(map, 10, heightDiff/4);
-		surface.circle(0, screenHeight/2, 100);
 //		System.out.println("HeightDiff: " + heightDiff);
 
 		drawDropDownButton(surface, screenWidth);

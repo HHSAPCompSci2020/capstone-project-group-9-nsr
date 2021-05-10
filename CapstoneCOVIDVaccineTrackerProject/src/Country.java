@@ -96,7 +96,6 @@ public class Country extends Frame{
 		}
 		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, heightDiff/4);
-		surface.circle(0, screenHeight/2, 100);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
 		if(openDropDown) {
