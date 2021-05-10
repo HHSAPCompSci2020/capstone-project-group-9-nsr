@@ -98,10 +98,7 @@ public class Country extends Frame{
 		surface.image(map, 10, heightDiff/4);
 		surface.circle(0, screenHeight/2, 100);
 		//draw button for drop down
-		surface.strokeWeight(5);
-		surface.line(screenWidth-40, 10, screenWidth-10, 10);
-		surface.line(screenWidth-40, 20, screenWidth-10, 20);
-		surface.line(screenWidth-40, 30, screenWidth-10, 30);
+		drawDropDownButton(surface, screenWidth);
 		if(openDropDown) {
 			createDropDown(surface);
 		}
@@ -109,7 +106,7 @@ public class Country extends Frame{
 			goToStatePage(surface, stateInput);
 		}
 		//add if you go back, make statePage = false
-		surface.strokeWeight(1);
+		
 	}
 	public int getScreenW() {
 		return screenWidth;
