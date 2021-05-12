@@ -83,7 +83,7 @@ public class Stats {
 	 * @param index counted from 0 from right on cases.csv file
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
-	public ArrayList<String> getCovidData(String state, int index) {
+	public ArrayList<String> getStringCovidData(String state, int index) {
 		
 		try {
 			downloadVaccineData();
@@ -109,6 +109,48 @@ public class Stats {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	
+		return data;
+		
+	}
+	
+	/**
+	 * returns data on number of cases of covid, death of covid cased on state name
+	 * 
+	 * @param state name of the state of desire
+	 * @param index counted from 0 from right on cases.csv file
+	 * @return arraylist of string with all desired data from the state inputted
+	 */
+	public ArrayList<Double> getDoubleCovidData(String state, int index) {
+		
+		try {
+			downloadVaccineData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Double> data = new ArrayList<Double>();
+		
+		String fileName = "data/cases.csv";
+		String line = "";
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+				if(values[1].equalsIgnoreCase(state)) {
+						Double d = Double.parseDouble(values[index]);
+						data.add(d);
+						System.out.println (d);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("");
 	
 		return data;
 		

@@ -56,24 +56,35 @@ public class StatesGraphics {
 	public void drawGraph(PApplet p, double x, double y, double width, double height){
 		
 		Stats stat = new Stats();
-		ArrayList<Double> cases = stat.parseDouble(stat.getCovidData(name, 3));
-		ArrayList<String> dates = stat.getCovidData(name, 0);
+//		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<Double> cases = new ArrayList<Double>();
 		
+		//528784.0
+		cases.add(12.0);
+		cases.add(947.0);
+		cases.add(38962.0);
+		cases.add(70358.0);
+		cases.add(101334.0);
+		cases.add(530988.0);
+		
+//		ArrayList<String> dates = stat.getStringCovidData(name, 0);
+		ArrayList<String> dates = new ArrayList<String>();
+
+		dates.add("2020-12-20");
+		dates.add("2020-12-21");
+		dates.add("2020-12-22");
+		dates.add("2020-12-23");
+		dates.add("2020-12-24");
+		dates.add("2020-12-25");
+
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
-		double s = cases.get(0);
 		
 		for(int i = 1; i < cases.size(); i++) {
 			if(b < cases.get(i)) {
 				b = cases.get(i);
 			}
-			if(s > cases.get(i)) {
-				s = cases.get(i);
-			}
 		}
-		
-		System.out.println(b);
-		
 		
 		//draw the frame of the graph
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
@@ -92,7 +103,7 @@ public class StatesGraphics {
 		
 		//number in each pixel
 		final double PIXEL_PER_X = (width - 10) / diff;
-		final double PIXEL_PER_Y = (height - 10) / (int)(b);
+		final double PIXEL_PER_Y = (height - 10) / b;
 		
 		//coordinate of the base of the lines
 		double xAxis = x + 10;
@@ -107,21 +118,22 @@ public class StatesGraphics {
 		for(int i = 0; i <= diff; i++) {
 			if(dates.indexOf(firstDate.toString()) != -1) {
 				double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
-				System.out.print(yAxis + " - (" + PIXEL_PER_Y + " x "  + cases.get(dates.indexOf(firstDate.toString())) + ") = ");
-				double py = yAxis - (cases.get(dates.indexOf(firstDate.toString())) / b) ;
-				System.out.println( py);
+//				System.out.println(xAxis + " + " + PIXEL_PER_X + " * " + dates.indexOf(firstDate.toString()) + " = " + px);
+				double py = yAxis - PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString())) ;
+//				System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
 				Point po = new Point();
 				po.setLocation(px, py);
 				points.add(po);
+//				System.out.println(px + ", " + py);
 			}
 			firstDate = firstDate.plusDays(1);
-//			System.out.println(firstDate.toString());
 		}
 		
+	
 //		p.line(100, 100,200, 100);
 		
 		for(int i = 0; i < points.size() - 1; i++) {
-//			System.out.println("line points: " + points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
+//			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}
 		
