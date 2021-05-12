@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -12,6 +13,8 @@ import processing.core.PImage;
  */
 public class State extends Frame{
 	StatesGraphics graph;
+	Stats stats;
+	ArrayList<String> stateStats;
 	String name;
 	PImage map;
 	private int mapWidth, mapHeight;
@@ -35,6 +38,9 @@ public class State extends Frame{
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
 		name = stateName;
+		stats = new Stats();
+		stateStats = stats.getVaccinationInfo(name);
+		System.out.println(stateStats.toString());
 	}
 	
 	
