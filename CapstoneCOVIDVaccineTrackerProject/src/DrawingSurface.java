@@ -115,7 +115,13 @@ public class DrawingSurface extends PApplet{
 				mapPage = false;
 				mainPage = true;
 				reset();
-				System.out.println("i");
+			}
+		}
+		if(infoPage) {
+			if(overButton(width-60, height-50, 50, 25)) {
+				infoPage = false;
+				mainPage = true;
+				reset();
 			}
 		}
 	}
@@ -185,6 +191,12 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
+		if(overButton(width-60, height -50, 50, 25)) 
+    		fill(150);
+		else {
+			  fill(218);
+			}
+    	drawButton(width-60, height-50, 50, 25, "back");
 	}
 
 
