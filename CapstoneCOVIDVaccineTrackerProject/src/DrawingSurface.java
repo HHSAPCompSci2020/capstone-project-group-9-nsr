@@ -123,11 +123,29 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
-			if(overButton(moreInfo.x, height-50, 50, 25)) {
-				infoPage = false;
-				mainPage = true;
-				reset();
+<<<<<<< HEAD
+//			if(overButton(moreInfo.x, height-50, 50, 25)) {
+//				infoPage = false;
+//				mainPage = true;
+//				reset();
+//			}
+=======
+			if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+				moreInfo.setPfizer(true);
+				moreInfo.setJohnson(false);
+				moreInfo.setModerna(false);
 			}
+			if(overButton(moreInfo.getX(), moreInfo.getY()+ height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+				moreInfo.setPfizer(false);
+				moreInfo.setJohnson(true);
+				moreInfo.setModerna(false);
+			}
+			if(overButton(moreInfo.getX(), moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+				moreInfo.setPfizer(false);
+				moreInfo.setJohnson(false);
+				moreInfo.setModerna(true);
+			}
+>>>>>>> ca84017561633e6fa9c4308cc9ce5e800dd057ca
 		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {
@@ -144,6 +162,7 @@ public class DrawingSurface extends PApplet{
 		  else
 			  animation = 0;
    	 	animation++;
+   	 	fill(252);
 	}
 	/**
 	 * @post textAlign center, center
