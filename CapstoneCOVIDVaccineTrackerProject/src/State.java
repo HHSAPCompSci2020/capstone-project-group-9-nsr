@@ -37,7 +37,7 @@ public class State extends Frame{
 	public State(String stateName) {
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
-		name = stateName;
+		name = stateName; 
 //		stats = new Stats();
 //		stateStats = stats.getVaccinationInfo(name);
 //		System.out.println(stateStats.toString());

@@ -56,26 +56,26 @@ public class StatesGraphics {
 	public void drawGraph(PApplet p, double x, double y, double width, double height){
 		
 		Stats stat = new Stats();
-//		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
-		ArrayList<Double> cases = new ArrayList<Double>();
+		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+//		ArrayList<Double> cases = new ArrayList<Double>();
+//		
+//		//528784.0
+//		cases.add(12.0);
+//		cases.add(947.0);
+//		cases.add(38962.0);
+//		cases.add(70358.0);
+//		cases.add(101334.0);
+//		cases.add(530988.0);
 		
-		//528784.0
-		cases.add(12.0);
-		cases.add(947.0);
-		cases.add(38962.0);
-		cases.add(70358.0);
-		cases.add(101334.0);
-		cases.add(530988.0);
-		
-//		ArrayList<String> dates = stat.getStringCovidData(name, 0);
-		ArrayList<String> dates = new ArrayList<String>();
-
-		dates.add("2020-12-20");
-		dates.add("2020-12-21");
-		dates.add("2020-12-22");
-		dates.add("2020-12-23");
-		dates.add("2020-12-24");
-		dates.add("2020-12-25");
+		ArrayList<String> dates = stat.getStringCovidData(name, 0);
+//		ArrayList<String> dates = new ArrayList<String>();
+//
+//		dates.add("2020-12-20");
+//		dates.add("2020-12-21");
+//		dates.add("2020-12-22");
+//		dates.add("2020-12-23");
+//		dates.add("2020-12-24");
+//		dates.add("2020-12-25");
 
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
@@ -102,7 +102,8 @@ public class StatesGraphics {
 		int diff = Math.abs(period.getDays());
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / diff;
+		final double PIXEL_PER_X = (width - 10) / dates.size();
+		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
 		//coordinate of the base of the lines
@@ -115,7 +116,7 @@ public class StatesGraphics {
 		//figure out the coordinates
 		ArrayList<Point> points = new ArrayList<Point>();
 		
-		for(int i = 0; i <= diff; i++) {
+		while(!firstDate.equals(lastDate)) {
 			if(dates.indexOf(firstDate.toString()) != -1) {
 				double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
 //				System.out.println(xAxis + " + " + PIXEL_PER_X + " * " + dates.indexOf(firstDate.toString()) + " = " + px);
@@ -129,6 +130,11 @@ public class StatesGraphics {
 			firstDate = firstDate.plusDays(1);
 		}
 		
+		double px = xAxis + PIXEL_PER_X * dates.size()-1;
+		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
+		Point po = new Point();
+		po.setLocation(px, py);
+		points.add(po);
 	
 //		p.line(100, 100,200, 100);
 		
