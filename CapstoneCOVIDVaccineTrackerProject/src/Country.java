@@ -20,6 +20,7 @@ public class Country extends Frame{
 	boolean statePageOpen;
 	String stateInput;
 	String[] allStateNames;
+	Stats stats = new Stats();
 	
 	/**
 	 * constructor that initializes fields:
@@ -127,7 +128,7 @@ public class Country extends Frame{
 	 */
 	public void writeInfo(PApplet p, double x, double y) {
 		
-		Stats stats = new Stats();
+		
 		ArrayList<String> list = stats.getCountryData();
 		
 		p.fill(0);
