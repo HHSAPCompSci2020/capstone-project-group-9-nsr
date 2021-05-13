@@ -107,6 +107,7 @@ public class Country extends Frame{
 		surface.image(map, 10, 10);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
+		writeInfo(surface, (screenWidth/2), screenHeight* 13 /20);
 		if(openDropDown) {
 			createDropDown(surface);
 		}
@@ -116,7 +117,6 @@ public class Country extends Frame{
 		
 		//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
 
-		writeInfo(surface, (screenWidth/2), screenHeight* 13 /20);
 		//add if you go back, make statePage = false
 		
 	}
