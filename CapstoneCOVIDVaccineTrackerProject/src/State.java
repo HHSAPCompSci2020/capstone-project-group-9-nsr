@@ -63,7 +63,7 @@ public class State extends Frame{
 			graphWidth = (screenWidth/2);
 			graphHeight = (screenWidth/2);
 		}
-		graphX = 2*(screenWidth/3);
+		graphX = 5*(screenWidth/9);
 		graphY = screenHeight/20;
 		
 		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);

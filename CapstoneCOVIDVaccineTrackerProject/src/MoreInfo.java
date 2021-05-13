@@ -224,11 +224,13 @@ public class MoreInfo extends PApplet{
 		surface.text("     - how long the vaccination can protect people", 4*screenWidth/7, startY+(yDifference*34));
 	}
 	
+
 	/**
 	 * opens the web page in a browser
 	 * @param uri URI type parameter-one that gets opened in webpage
 	 * @return true or false(if opened webpage successfully or not)
 	 */
+
 	public static boolean openWebpage(URI uri) {
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
