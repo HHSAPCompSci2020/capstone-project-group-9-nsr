@@ -90,8 +90,8 @@ public class StatesGraphics {
 		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
 		
 		p.fill(0);
-		p.textSize(6);
-		p.text(b + "", (float)x - 15, (float)y);
+		p.textSize(10);
+		p.text((int)b + "", (float)x - 15, (float)y);
 
 		for(int i = 1; i < 7; i++) {
 			p.text((int)(b * i / 7)  + "", (float)x - 15, (float)(y + ((height - 10) * i / 7)));
@@ -100,7 +100,7 @@ public class StatesGraphics {
 		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
 		p.text(dates.get(dates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
 
-		p.textSize(10);
+		p.textSize(12);
 		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
 		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
 		p.text("# of cases", (float)((x - 70)), (float)(y + (height - 10)/2));
