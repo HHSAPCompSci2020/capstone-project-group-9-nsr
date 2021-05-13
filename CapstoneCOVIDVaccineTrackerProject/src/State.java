@@ -61,13 +61,14 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		heightDiff = screenHeight - mapHeight;
-		if (screenHeight<screenWidth) {
-			graphWidth = 1*(screenHeight/3);
-			graphHeight = 1*(screenHeight/3);
-		} else if (mapWidth>(mapHeight*2)) {
+		if (mapWidth>(mapHeight)) {
 			graphWidth = 1*(screenWidth/3);
 			graphHeight = 1*(screenWidth/3);
-		} else {
+		} else if (screenHeight<screenWidth) {
+			graphWidth = 1*(screenHeight/3);
+			graphHeight = 1*(screenHeight/3);
+		} 
+		 else {
 			graphWidth = 1*(screenWidth/3);
 			graphHeight = 1*(screenWidth/3);
 		}

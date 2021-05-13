@@ -130,5 +130,17 @@ public class MoreInfo extends PApplet{
 	public int getButtonHeight() {
 		return this.buttonHeight;
 	}
+	
+	public void setPfizer(boolean state) {
+		pfizerButton = state;
+	}
+	
+	public void setJohnson(boolean state) {
+		johnsonButton = state;
+	}
+	
+	public void setModerna(boolean state) {
+		modernaButton = state;
+	}
 
 }
