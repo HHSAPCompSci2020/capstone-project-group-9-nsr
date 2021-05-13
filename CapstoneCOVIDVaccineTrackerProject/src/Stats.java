@@ -27,7 +27,7 @@ public class Stats {
 	 */
 	public final void downloadVaccineData() throws IOException{
 		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv").openStream();
-		Files.copy(inputStream, Paths.get("data/vaccine.csv"), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(inputStream, Paths.get("data/vaccinationNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
 	/**
@@ -35,13 +35,23 @@ public class Stats {
 	 * @throws IOException
 	 */
 	public final void downloadCasesData() throws IOException{
-		InputStream inputStream2 = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv").openStream();
-		Files.copy(inputStream2, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
+		InputStream inputStream = new URL("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv").openStream();
+		Files.copy(inputStream, Paths.get("data/cases.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
 	/**
-	 * reads vaccineNumber.csv data
-	 * future plan: add parameter with filename so it is used for all
+	 * this method uses java.io api to copy the data on cvc approved covid cases dataset to the csv file in the data folder.
+	 * @throws IOException
+	 */
+	public final void downloadCountryVaccinesData() throws IOException{
+		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/United%20States.csv").openStream();
+		Files.copy(inputStream, Paths.get("data/countryVaccinationNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
+	}
+	
+	/**
+	 * reads the vaccination info from the file and gets the recent data.
+	 * @param state name of the state
+	 * @return recent data of vaccination info for that state
 	 */
 	public ArrayList<String> getVaccinationInfo(String state) {
 		
@@ -86,7 +96,7 @@ public class Stats {
 	public ArrayList<String> getStringCovidData(String state, int index) {
 		
 		try {
-			downloadVaccineData();
+			downloadCasesData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,7 +134,7 @@ public class Stats {
 	public ArrayList<Double> getDoubleCovidData(String state, int index) {
 		
 		try {
-			downloadVaccineData();
+			downloadCasesData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -152,6 +162,41 @@ public class Stats {
 			
 		return data;
 		
+	}
+	
+	/**
+	 * get vaccination data on united states as a whole.
+	 * 
+	 * @return string arraylist of united states' most recent dataset
+	 */
+	public ArrayList<String> getCountryData(){
+		
+		try {
+			downloadCountryVaccinesData();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		ArrayList<String> data = new ArrayList<String>();
+		
+		String fileName = "data/countryVaccinationNumber.csv";
+		String line = "";
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while((line = br.readLine()) != null) {
+				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
+				data = new ArrayList<String>(list);
+					
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
+		return data;
 	}
 	
 	/**

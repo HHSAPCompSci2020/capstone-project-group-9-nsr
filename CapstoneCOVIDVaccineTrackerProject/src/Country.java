@@ -22,6 +22,8 @@ public class Country extends Frame{
 	boolean openDropDown;
 	boolean statePageOpen;
 	String stateInput;
+	String[] allStateNames;
+	private double infoWidth,infoHeight, infoX, infoY;
 	/**constructor
 	 * 
 	 */	
@@ -34,7 +36,7 @@ public class Country extends Frame{
 	}
 	
 	private void initializeStates() {
-		String[] allStateNames = new String[] {"alabama", "alaska", "arizona", "arkansas", "california", "colorado", "connecticut", "delaware", "florida", "georgia",
+		allStateNames = new String[] {"alabama", "alaska", "arizona", "arkansas", "california", "colorado", "connecticut", "delaware", "florida", "georgia",
 				"hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", 
 				"massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "new hampshire", "new jersey",
 				"new mexico", "new york", "north carolina", "north dakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhode island", "south carolina", 
@@ -105,15 +107,54 @@ public class Country extends Frame{
 		surface.image(map, 10, 10);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
+		writeInfo(surface, (screenWidth/2), screenHeight* 13 /20);
 		if(openDropDown) {
 			createDropDown(surface);
 		}
 		if(statePageOpen) {
 			goToStatePage(surface, stateInput);
 		}
+		
+		//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
+
 		//add if you go back, make statePage = false
 		
 	}
+	
+	/**
+	 * writes recent information of the country vaccination situation including
+	 * the name of the vaccines, number of doses availbale, population vaccinated and
+	 * people fully vaccinated.
+	 * 
+	 * @param p PApplet to draw on
+	 * @param x x coordinates of center of all texts
+	 * @param y y coordinates of the top of where the text starts
+	 */
+	public void writeInfo(PApplet p, double x, double y) {
+		
+		Stats stats = new Stats();
+		ArrayList<String> list = stats.getCountryData();
+		
+		p.fill(0);
+		p.textSize(20);
+		
+		p.text("updated as of " + list.get(1), (float)x, (float)(y + 30));
+		
+		p.textSize(10);
+		
+		String names = "";
+		
+		for(int i = 0; i < list.size() - 6; i++) {
+			names += list.get(2 + i) + " ";
+		}
+		
+		p.text("names of vaccine used today : " + names, (float)x, (float)(y + 60));
+		p.text("total vaccinations available : " + list.get(list.size()-3), (float)x, (float)(y + 80));
+		p.text("people vaccinated : " + list.get(list.size()-2), (float)x, (float)(y + 100));
+		p.text("people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 120));
+
+	}
+
 	public int getScreenW() {
 		return screenWidth;
 	}
