@@ -169,7 +169,6 @@ public class DrawingSurface extends PApplet{
 				}
 	    	drawButton(width-60, height-50, 50, 25, "back");
 	}
-	
 	public void goToInfo() {
 		fill(255);
 		rect(0, 0, width, height);
