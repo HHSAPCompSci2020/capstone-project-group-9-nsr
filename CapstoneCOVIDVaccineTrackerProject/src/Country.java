@@ -121,7 +121,16 @@ public class Country extends Frame{
 		
 	}
 	
-public void writeInfo(PApplet p, double x, double y) {
+	/**
+	 * writes recent information of the country vaccination situation including
+	 * the name of the vaccines, number of doses availbale, population vaccinated and
+	 * people fully vaccinated.
+	 * 
+	 * @param p PApplet to draw on
+	 * @param x x coordinates of center of all texts
+	 * @param y y coordinates of the top of where the text starts
+	 */
+	public void writeInfo(PApplet p, double x, double y) {
 		
 		Stats stats = new Stats();
 		ArrayList<String> list = stats.getCountryData();
