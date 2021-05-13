@@ -110,7 +110,7 @@ public class DrawingSurface extends PApplet{
 		  } 
 		}
 		if(mapPage) {
-			map.openDropDown = overButton(map.getScreenW()-45, 20, 30, 20);
+			map.openDropDown = overButton(map.getScreenW()-45, 0, 45, 40);
 			if(overButton(width-60, height-50, 50, 25)) {
 				mapPage = false;
 				mainPage = true;
