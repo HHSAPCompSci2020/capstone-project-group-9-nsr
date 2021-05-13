@@ -84,7 +84,7 @@ public class StatesGraphics {
 				b = cases.get(i);
 			}
 		}
-		
+		 
 		//draw the frame of the graph
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
 		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
