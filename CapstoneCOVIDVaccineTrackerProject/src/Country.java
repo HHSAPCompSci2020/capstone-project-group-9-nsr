@@ -102,6 +102,7 @@ public class Country extends Frame{
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
 		writeInfo(surface, (screenWidth/2), screenHeight* 13 /20);
+		drawBackButton(surface, screenWidth, screenHeight);
 		if(openDropDown) {
 			createDropDown(surface);
 		}
