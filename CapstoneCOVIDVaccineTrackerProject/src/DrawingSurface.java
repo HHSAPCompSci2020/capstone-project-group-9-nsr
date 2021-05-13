@@ -8,20 +8,20 @@ import processing.core.PApplet;
  *
  */
 public class DrawingSurface extends PApplet{
-	Country map;
-	MoreInfo moreInfo;
-	int animation=0;
+	private Country map;
+	private MoreInfo moreInfo;
+	private int animation=0;
 	
-	int mapX, mapY, mapW, mapH;    
-	boolean mapClicked = false;
+	private int mapX, mapY, mapW, mapH;    
+	private boolean mapClicked = false;
 	
-	int infoX, infoY, infoW, infoH;    
-	boolean infoClicked = false;
+	private int infoX, infoY, infoW, infoH;    
+	private boolean infoClicked = false;
 	
-	boolean mainPage;
-	boolean mapPage;
-	boolean infoPage;
-	int x=0;
+	private boolean mainPage;
+	private boolean mapPage;
+	private boolean infoPage;
+	private int x=0;
 	public DrawingSurface() {
 		map = new Country();
 		moreInfo = new MoreInfo();
@@ -31,10 +31,6 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	
-	public void setup() {
-	  ellipseMode(CENTER);
-	 
-	}
 	/*
 	 * draws all aspects of the project
 	 */
