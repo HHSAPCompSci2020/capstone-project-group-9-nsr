@@ -123,13 +123,6 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
-<<<<<<< HEAD
-//			if(overButton(moreInfo.x, height-50, 50, 25)) {
-//				infoPage = false;
-//				mainPage = true;
-//				reset();
-//			}
-=======
 			if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(true);
 				moreInfo.setJohnson(false);
@@ -145,7 +138,6 @@ public class DrawingSurface extends PApplet{
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(true);
 			}
->>>>>>> ca84017561633e6fa9c4308cc9ce5e800dd057ca
 		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {
