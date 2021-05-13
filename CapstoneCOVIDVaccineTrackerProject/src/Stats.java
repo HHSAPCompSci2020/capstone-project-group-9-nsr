@@ -136,12 +136,12 @@ public class Stats {
 		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			int n = 0;
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 				if(values[1].equalsIgnoreCase(state)) {
 						Double d = Double.parseDouble(values[index]);
 						data.add(d);
-						System.out.println (d);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -149,9 +149,7 @@ public class Stats {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("");
-	
+			
 		return data;
 		
 	}
@@ -174,6 +172,11 @@ public class Stats {
 		return parsed;
 		
 	}
+//	
+//	public ArrayList<Double> simplifyList(ArrayList<Double> list){
+//		
+//		ArrayList<Double> shortened = new ArrayList<Double>();
+//	}
 
 	
 //	public ArrayList<?> getCasesData(String state, int index){
