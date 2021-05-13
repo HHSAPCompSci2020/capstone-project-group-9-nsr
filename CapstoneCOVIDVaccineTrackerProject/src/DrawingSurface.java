@@ -14,13 +14,13 @@ public class DrawingSurface extends PApplet{
 	
 	private int buttonW, buttonH;
 	private int mapX, mapY, mapW, mapH;   	 //coordinates and width/height  of the map button
-	private boolean mapClicked = false;		//if map button has been lcicked
+	private boolean mapClicked = false;		//if map button has been clicked
 	
 	private int infoX, infoY, infoW, infoH;   //coordinates and width/height  of the map button
-	private boolean infoClicked = false;		//if INFO button has been lcicked
+	private boolean infoClicked = false;		//if INFO button has been clicked
 	
 	private int insX, insY, insW, insH;    //coordinates and width/height  of the map button
-	private boolean insClicked = false;		//if map button has been lcicked
+	private boolean insClicked = false;		//if map button has been clicked
 	
 	private boolean mainPage;
 	private boolean mapPage;
