@@ -329,7 +329,13 @@ public class DrawingSurface extends PApplet{
 		textSize(width/27);
 		text("Instructions", width/2, height/10);
 		textSize(width/60);
-		text("press the map button to go to the country map\n press the more info button to get more information", width/2, 3*height/10);
+		text("press the map button to go to the country map\n"
+				+ "the country map page shows a map of the country with countrywide statistics about the vaccines\n "
+				+ "on the map page, click the three lines in the corner to open a drop down\n"
+				+ "from there, there is an option to choose a state, which leads to the map of that state with its corresponding statistics\n\n\n"
+				+ "press the more info button to get more information\n"
+				+ "the more information page will give you more information about the different types of vaccine\n\n\n"
+				+ "press the back button to go back to the main page", width/2, 5*height/10);
 	    	if(overButton(width-60, height -50, 50, 25)) 
 	    		fill(150);
 			else {
