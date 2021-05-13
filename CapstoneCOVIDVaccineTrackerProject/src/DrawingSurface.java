@@ -13,18 +13,19 @@ public class DrawingSurface extends PApplet{
 	private int animation=0;
 	
 	private int buttonW, buttonH;
-	private int mapX, mapY, mapW, mapH;   	 //coordinates and width/height  of the map button
+	private int mapX, mapY;   	 //coordinates and width/height  of the map button
 	private boolean mapClicked = false;		//if map button has been clicked
 	
-	private int infoX, infoY, infoW, infoH;   //coordinates and width/height  of the map button
+	private int infoX, infoY;   //coordinates and width/height  of the map button
 	private boolean infoClicked = false;		//if INFO button has been clicked
 	
-	private int insX, insY, insW, insH;    //coordinates and width/height  of the map button
+	private int insX, insY;    //coordinates and width/height  of the map button
 	private boolean insClicked = false;		//if map button has been clicked
 	
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
+	private boolean insPage;
 	private int x=0;
 	public DrawingSurface() {
 		map = new Country();
@@ -33,48 +34,62 @@ public class DrawingSurface extends PApplet{
 		mapPage = false;
 		infoPage = false;
 	}
-	
+	public void setup() {
+		textSize(width/60);
+		fill(252);
+		textSize(12);
+	}
 	
 	/*
 	 * draws all aspects of the project
 	 */
 	public void draw() {
+		textSize(width/60);
+		fill(252);
 		  //update fields
 		buttonW= width/3;
 		buttonH = height/10;
 		insX = width/3;
-		insY = 7*(int)(height/10.0);
-		  insW = width/3;
-		  insH = height/10;
-		  mapX = width/3;
-		  mapY = 5*(int)(height/10.0);
-		  mapW = width/3;
-		  mapH = height/10;
-		  infoX = width/3;
-		  infoY = 7*(int)(height/10.0);
-		  infoW = width/3;
-		  infoH = height/10;
+		insY = 3*(int)(height/10.0);
+		mapX = width/3;
+		mapY = 5*(int)(height/10.0);
+		infoX = width/3;
+		infoY = 7*(int)(height/10.0);
 		  //checks what page the window is on
 		  if(mainPage) {
 			  fill(252);
 			  rect(0, 0, width, height);
+			  fill(0);
+			  textSize(width/18);
+				text("Covid Vaccine Tracker", width/2, height/10);
+				textSize(width/60);
+				 fill(252);
 			  buttons();
 			  if(mapClicked) {
 				  mapPage = true;
 				  mainPage = false;
 				  infoPage = false;
+				  insPage = false;
 			  }
 			  if(infoClicked) {
 				  mapPage = false;
 				  mainPage = false;
 				  infoPage = true;
+				  insPage = false;
 		  	}
+			  if(insClicked) {
+				  mapPage = false;
+				  mainPage = false;
+				  infoPage = false;
+				  insPage = true;
+			  }
 		  }
 		  if(mapPage) {
 			  if(x<150) {
-				  animation("going to map", mapX, mapY, mapW, mapH);
+				  animation("going to map", mapX, mapY, buttonW, buttonH);
 				  fill(218);
-				  	drawButton(infoX, infoY, infoW, infoH, "more information");
+				  	drawButton(infoX, infoY, buttonW, buttonH, "more information");
+				  	drawButton(insX, insY, buttonW, buttonH, "instructions");
 				  x++;
 			  }
 			  else
@@ -83,14 +98,26 @@ public class DrawingSurface extends PApplet{
 		  }
 		  if(infoPage) {
 			  if(x<150) {
-				  animation("going to more information", infoX, infoY, infoW, infoH);
+				  animation("going to more information", infoX, infoY, buttonW, buttonH);
 				  fill(218);
-				  	drawButton(mapX, mapY, mapW, mapH, "map");
+				  	drawButton(mapX, mapY, buttonW, buttonH, "map");
+				  	drawButton(insX, insY, buttonW, buttonH, "instructions");
 				  x++;
 			  }
 			  else
 				  goToInfo();
 			  
+		  }
+		  if(insPage) {
+			  if(x<150) {
+				  animation("going to instructions", insX, insY, buttonW, buttonH);
+				  fill(218);
+				  drawButton(mapX, mapY, buttonW, buttonH, "map");
+				  drawButton(infoX, infoY, buttonW, buttonH, "more information");
+				  x++;
+			  }
+			  else
+				  goToIns();
 		  }
 		
 	}
@@ -113,14 +140,22 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void mouseClicked() {
 		if(mainPage) {
-			if (overButton(mapX, mapY, mapW, mapH)) {
+			if (overButton(mapX, mapY, buttonW, buttonH)) {
 				mapClicked = true;
 				infoClicked = false;
+				insClicked = false;
 				x=0;
 			} 
-			if (overButton(infoX, infoY, infoW, infoH)) {
+			if (overButton(infoX, infoY, buttonW, buttonH)) {
 				infoClicked = true;
 				mapClicked = false;
+				insClicked = false;
+				x= 0;
+		  } 
+			if (overButton(insX, insY, buttonW, buttonH)) {
+				insClicked = true;
+				mapClicked = false;
+				infoClicked = false;
 				x= 0;
 		  } 
 		}
@@ -152,6 +187,13 @@ public class DrawingSurface extends PApplet{
 				moreInfo.setPfizer(false);
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(true);
+			}
+		}
+		if(insPage) {
+			if(overButton(width-60, height-50, 50, 25)) {
+				insPage = false;
+				mainPage = true;
+				reset();
 			}
 		}
 	}
@@ -186,20 +228,25 @@ public class DrawingSurface extends PApplet{
 	 * @post fill
 	 */
 	public void buttons() {
-		if(overButton(mapX, mapY, mapW, mapH)) 
+		if(overButton(mapX, mapY, buttonW,buttonH)) 
 			  fill(150);
-			else {
+		else {
 			  fill(218);
 			}
-	    	drawButton(mapX, mapY, mapW, mapH, "map");
+	    drawButton(mapX, mapY, buttonW, buttonH, "map");
 	
-	    if(overButton(infoX, infoY, infoW, infoH)) 
+	    if(overButton(infoX, infoY, buttonW, buttonH)) 
 			  fill(150);
-			else {
+		else {
 			  fill(218);
 			}
-	    	drawButton(infoX, infoY, infoW, infoH, "more information");
-	    
+	    drawButton(infoX, infoY, buttonW, buttonH, "more information");
+	    if(overButton(insX, insY, buttonW, buttonH)) 
+				fill(150);
+		else {
+				  fill(218);
+		}
+		 drawButton(insX, insY, buttonW, buttonH, "instructions");
 	    
 	}
 	/**
@@ -215,6 +262,7 @@ public class DrawingSurface extends PApplet{
     	textAlign(CENTER, CENTER);
     	fill(0);
     	text(text, x + w/2, y + h/2);
+    	fill(218);
 	}
 	/**resets all the variables to default so when someone decides to go back, it will be all default
 	 * 
@@ -223,6 +271,7 @@ public class DrawingSurface extends PApplet{
 		animation=0;
 		mapClicked = false;
 		infoClicked= false;
+		insClicked = false;
 		map.statePageOpen = false;
 		x = 0;
 	}
@@ -272,6 +321,22 @@ public class DrawingSurface extends PApplet{
 			drawButton( moreInfo.getX(),  moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
 		}
 		fill(218);
+	}
+	public void goToIns() {
+		fill(255);
+		rect(0, 0, width, height);
+		fill(0);
+		textSize(width/27);
+		text("Instructions", width/2, height/10);
+		textSize(width/60);
+		text("press the map button to go to the country map\n press the more info button to get more information", width/2, 3*height/10);
+	    	if(overButton(width-60, height -50, 50, 25)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(width-60, height-50, 50, 25, "back");
+	    	
 	}
 
 
