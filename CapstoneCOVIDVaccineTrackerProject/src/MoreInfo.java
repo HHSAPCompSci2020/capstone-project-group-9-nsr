@@ -87,7 +87,6 @@ public class MoreInfo extends PApplet{
 		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
 		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
 		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
-
 	}
 	
 	public void keyPressed() {
@@ -116,11 +115,11 @@ public class MoreInfo extends PApplet{
 	    return false;
 	}
 	
-	public double getX() {
+	public int getX() {
 		return this.x;
 	}
 	
-	public double getY() {
+	public int getY() {
 		return this.y;
 	}
 	
