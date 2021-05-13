@@ -13,9 +13,9 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Country extends Frame{
-	HashMap<String, State> allStates = new HashMap<String, State>();
-	TreeMap states = new TreeMap();
+	TreeMap<String, State> states = new TreeMap<String, State>();
 	PImage map;
+	MoreInfo moreInfo;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
 	private int heightDiff;
@@ -30,6 +30,7 @@ public class Country extends Frame{
 		initializeStates();
 		openDropDown = false;
 		statePageOpen =false;
+//		DrawingSurface drawingSurface = new DrawingSurface();
 	}
 	
 	private void initializeStates() {
@@ -81,7 +82,13 @@ public class Country extends Frame{
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
 		nextState.draw(surface);
-	}	
+	}
+	
+	public void goToHome(PApplet surface) {
+		surface.fill(255);
+		surface.rect(0, 0, surface.width, surface.height);
+		moreInfo.draw(surface);
+	}
 	
 	public void draw(PApplet surface) {
 		map = surface.loadImage("maps/US_MAP.png");
