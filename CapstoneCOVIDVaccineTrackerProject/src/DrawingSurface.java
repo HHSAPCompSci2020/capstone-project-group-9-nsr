@@ -213,6 +213,21 @@ public class DrawingSurface extends PApplet{
 			  fill(218);
 			}
     	drawButton(width-60, height-50, 50, 25, "back");
+    	if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+    		fill(150);
+    		drawButton( moreInfo.getX(),  moreInfo.getY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
+		}
+    	fill(218);
+		if(overButton(moreInfo.getX(), moreInfo.getY()+ height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			fill(150);
+			drawButton( moreInfo.getX(),  moreInfo.getY()+ height/3, moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
+		}
+		fill(218);
+		if(overButton(moreInfo.getX(), moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			fill(150);
+			drawButton( moreInfo.getX(),  moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
+		}
+		fill(218);
 	}
 
 
