@@ -18,13 +18,16 @@ public class DrawingSurface extends PApplet{
 	int infoX, infoY, infoW, infoH;    
 	boolean infoClicked = false;
 	
-	boolean mainPage = true;
-	boolean mapPage = false;
-	boolean infoPage = false;
+	boolean mainPage;
+	boolean mapPage;
+	boolean infoPage;
 	int x=0;
 	public DrawingSurface() {
 		map = new Country();
 		moreInfo = new MoreInfo();
+		mainPage = true;
+		mapPage = false;
+		infoPage = false;
 	}
 	
 	
@@ -47,6 +50,8 @@ public class DrawingSurface extends PApplet{
 		  infoH = height/10;
 		  
 		  if(mainPage) {
+			  fill(252);
+			  rect(0, 0, width, height);
 			  buttons();
 			  if(mapClicked) {
 				  mapPage = true;
@@ -84,8 +89,8 @@ public class DrawingSurface extends PApplet{
 		
 	}
 
-	 boolean overButton(int x, int y, int w, int h) {
-		    if (mouseX > x-5 && mouseX < (x + w + 10) && mouseY > y-5 && mouseY < (y + h + 10)) {
+	public boolean overButton(int x, int y, int w, int h) {
+		    if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
 		      return true;
 		    }
 		    return false;
@@ -105,8 +110,13 @@ public class DrawingSurface extends PApplet{
 		  } 
 		}
 		if(mapPage) {
-			map.openDropDown =overButton(map.getScreenW()-40, 10, 30, 20);
-			
+			map.openDropDown = overButton(map.getScreenW()-45, 20, 30, 20);
+			if(overButton(width-60, height-50, 50, 25)) {
+				mapPage = false;
+				mainPage = true;
+				reset();
+				System.out.println("i");
+			}
 		}
 	}
 	private void animation(String text, int x, int y, int w, int h) {
@@ -153,6 +163,7 @@ public class DrawingSurface extends PApplet{
 	public void reset() {
 		animation=0;
 		mapClicked = false;
+		infoClicked= false;
 		x = 0;
 	}
 	public void goToMain() {
@@ -162,7 +173,7 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
-	    	if(overButton(width-50, height -50, 25, 25)) 
+	    	if(overButton(width-60, height -50, 50, 25)) 
 	    		fill(150);
 			else {
 				  fill(218);
