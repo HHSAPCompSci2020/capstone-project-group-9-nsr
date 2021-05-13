@@ -164,6 +164,7 @@ public class DrawingSurface extends PApplet{
 		animation=0;
 		mapClicked = false;
 		infoClicked= false;
+		map.statePageOpen = false;
 		x = 0;
 	}
 	public void goToMain() {
