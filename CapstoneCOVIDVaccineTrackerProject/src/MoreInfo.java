@@ -21,6 +21,12 @@ public class MoreInfo extends PApplet{
 	private boolean pfizerButton, johnsonButton, modernaButton;
 	private int screenHeight, screenWidth;
 	
+	/**
+	 * constructor that initializes all fields:
+	 * x, y
+	 * buttonWidth, buttonHeight
+	 * x and y coordinates of each of the vaccine company buttons
+	 */
 	public MoreInfo() {
 		this.x = 100;
 		this.y = 100;
@@ -34,6 +40,15 @@ public class MoreInfo extends PApplet{
 		modernaY = johnsonY + buttonHeight + 10;
 	}
 	
+	/**
+	 * 
+	 * @param surface papplet parameter
+	 * @param x x coordinate of button
+	 * @param y y coordinate of button
+	 * @param w width of button
+	 * @param h height of button
+	 * @param text text to be displayed inside button
+	 */
 	public void drawButton(PApplet surface, int x, int y, int w, int h, String text) {
 		surface.rect(x, y, w, h, 10);
     	surface.textAlign(surface.CENTER, surface.CENTER);
@@ -85,6 +100,11 @@ public class MoreInfo extends PApplet{
 		 * - how long the vaccination can protect people
 		 * 
 	 */
+	
+	/**
+	 * draws all aspects of moreInfo class
+	 * @param surface papplet parameter
+	 */
 	public void draw(PApplet surface) {
 		screenHeight = surface.height;
 		screenWidth = surface.width;
@@ -125,6 +145,11 @@ public class MoreInfo extends PApplet{
 		}
 	}
 	
+	/**
+	 * opens the web page in a browser
+	 * @param uri URI type parameter-one that gets opened in webpage
+	 * @return true or false(if opened webpage successfully or not)
+	 */
 	public static boolean openWebpage(URI uri) {
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
@@ -137,7 +162,12 @@ public class MoreInfo extends PApplet{
 	    }
 	    return false;
 	}
-
+	
+	/**
+	 * calls URI version of openWebPage method
+	 * @param url URL type parameter-the actual url from the web browser
+	 * @return true or false(if called URL version of method successfully or not)
+	 */
 	public static boolean openWebpage(URL url) {
 	    try {
 	        return openWebpage(url.toURI());
@@ -147,30 +177,54 @@ public class MoreInfo extends PApplet{
 	    return false;
 	}
 	
+	/**
+	 * @return x coordinate of this class
+	 */
 	public int getX() {
 		return this.x;
 	}
 	
+	/**
+	 * @return y coordinate of this class
+	 */
 	public int getY() {
 		return this.y;
 	}
 	
+	/**
+	 * @return width of buttons on page
+	 */
 	public int getButtonWidth() {
 		return this.buttonWidth;
 	}
 	
+	/**
+	 * @return height of buttons on page
+	 */
 	public int getButtonHeight() {
 		return this.buttonHeight;
 	}
 	
+	/**
+	 * sets the state of pfizer button to true or false
+	 * @param state new state of button
+	 */
 	public void setPfizer(boolean state) {
 		pfizerButton = state;
 	}
 	
+	/**
+	 * sets the state of johnson button to true or false
+	 * @param state new state of button
+	 */
 	public void setJohnson(boolean state) {
 		johnsonButton = state;
 	}
 	
+	/**
+	 * sets the state of moderna button to true or false
+	 * @param state new state of button
+	 */
 	public void setModerna(boolean state) {
 		modernaButton = state;
 	}
