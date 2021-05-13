@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public class MoreInfo extends PApplet{
 	
 	private int x, y;
-	private double buttonWidth, buttonHeight;
+	private int buttonWidth, buttonHeight;
 	private double pfizerX, pfizerY;
 	private double johnsonX, johnsonY;
 	private double modernaX, modernaY;
@@ -123,11 +123,11 @@ public class MoreInfo extends PApplet{
 		return this.y;
 	}
 	
-	public double getButtonWidth() {
+	public int getButtonWidth() {
 		return this.buttonWidth;
 	}
 	
-	public double getButtonHeight() {
+	public int getButtonHeight() {
 		return this.buttonHeight;
 	}
 
