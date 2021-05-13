@@ -164,6 +164,11 @@ public class Stats {
 		
 	}
 	
+	/**
+	 * get vaccination data on united states as a whole.
+	 * 
+	 * @return string arraylist of united states' most recent dataset
+	 */
 	public ArrayList<String> getCountryData(){
 		
 		try {
