@@ -1,4 +1,5 @@
 import java.awt.Desktop;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -18,6 +19,7 @@ public class MoreInfo extends PApplet{
 	private double johnsonX, johnsonY;
 	private double modernaX, modernaY;
 	private boolean pfizerButton, johnsonButton, modernaButton;
+	private int screenHeight, screenWidth;
 	
 	public MoreInfo() {
 		this.x = 100;
@@ -84,9 +86,41 @@ public class MoreInfo extends PApplet{
 		 * 
 	 */
 	public void draw(PApplet surface) {
+		screenHeight = surface.height;
+		screenWidth = surface.width;
+		johnsonY = this.y+screenHeight/3;
+		modernaY = this.y+ 2*(screenHeight/3);
 		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
 		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
 		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
+		if (pfizerButton) {
+			URL url;
+			try {
+				url = new URL("https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Pfizer-BioNTech.html");
+				openWebpage(url);
+				pfizerButton = false;
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}	
+		} if (johnsonButton) {
+			URL url;
+			try {
+				url = new URL("https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/janssen.html");
+				openWebpage(url);
+				johnsonButton = false;
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}	
+		} if (modernaButton) {
+			URL url;
+			try {
+				url = new URL("https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Moderna.html");
+				openWebpage(url);
+				modernaButton = false;
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}	
+		}
 	}
 	
 	public void keyPressed() {
