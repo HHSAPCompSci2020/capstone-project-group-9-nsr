@@ -31,10 +31,6 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	
-	public void setup() {
-	  ellipseMode(CENTER);
-	 
-	}
 	/*
 	 * draws all aspects of the project
 	 */
