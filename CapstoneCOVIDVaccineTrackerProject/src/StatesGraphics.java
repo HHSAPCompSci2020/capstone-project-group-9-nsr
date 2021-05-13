@@ -90,7 +90,13 @@ public class StatesGraphics {
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
 		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
 		
-		p.text(b + "", (float)x, (float)y);
+		p.fill(0);
+		p.textSize(10);
+		p.text(b + "", (float)x - 15, (float)y);
+
+		for(int i = 1; i < 7; i++) {
+			p.text(b * i / 7 + "", (float)x - 15, (float)(y + ((height  + 10) * i / 7)));
+		}
 		
 		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
@@ -103,7 +109,7 @@ public class StatesGraphics {
 		
 		//number in each pixel
 		final double PIXEL_PER_X = (width - 10) / dates.size();
-		System.out.println(width + " - " + 10 + " / " + diff);
+//		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
 		//coordinate of the base of the lines
@@ -135,6 +141,8 @@ public class StatesGraphics {
 		Point po = new Point();
 		po.setLocation(px, py);
 		points.add(po);
+		
+		
 	
 //		p.line(100, 100,200, 100);
 		
