@@ -6,9 +6,9 @@ import javax.swing.JButton;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-/**
+/**the frame of the state and the country page
  * creates the frame
- * @author 
+ * @author Sophie
  *
  */
 public class Frame extends PApplet{
@@ -19,6 +19,11 @@ public class Frame extends PApplet{
 	public Frame(String name) {
 		fileName = name;
 	}
+	/**
+	 * draws the drop down button for each page in state or map
+	 * @param surface PApplet
+	 * @param screenWidth width of the window
+	 */
 	public void drawDropDownButton(PApplet surface, int screenWidth) {
 		surface.strokeWeight(5);
 		surface.line(screenWidth-40, 10, screenWidth-10, 10);
@@ -26,7 +31,13 @@ public class Frame extends PApplet{
 		surface.line(screenWidth-40, 30, screenWidth-10, 30);
 		surface.strokeWeight(1);
 	}
+	/**
+	 * draws the back button for state and country
+	 * @param surface PApplet 
+	 * @param screenWidth  width of the window
+	 * @param screenHeight height of the window
+	 */
 	public void drawBackButton(PApplet surface, int screenWidth, int screenHeight) {
-		surface.rect(height, height, height, width);
+		surface.rect(width-60, height -50, 50, 25);
 	}
 }
