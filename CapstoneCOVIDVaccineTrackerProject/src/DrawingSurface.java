@@ -20,7 +20,6 @@ public class DrawingSurface extends PApplet{
 	
 	boolean mainPage = true;
 	boolean mapPage = false;
-	boolean statePage = false;
 	boolean infoPage = false;
 	int x=0;
 	public DrawingSurface() {
@@ -52,13 +51,11 @@ public class DrawingSurface extends PApplet{
 			  if(mapClicked) {
 				  mapPage = true;
 				  mainPage = false;
-				  statePage = false;
 				  infoPage = false;
 			  }
 			  if(infoClicked) {
 				  mapPage = false;
 				  mainPage = false;
-				  statePage = false;
 				  infoPage = true;
 		  	}
 		  }
@@ -145,6 +142,7 @@ public class DrawingSurface extends PApplet{
 			}
 	    	drawButton(infoX, infoY, infoW, infoH, "more information");
 	    
+	    
 	}
 	public void drawButton(int x, int y, int w, int h, String text) {
 		rect(x, y, w, h, 10);
@@ -164,6 +162,12 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
+	    	if(overButton(width-50, height -50, 25, 25)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(width-60, height-50, 50, 25, "back");
 	}
 	
 	public void goToInfo() {

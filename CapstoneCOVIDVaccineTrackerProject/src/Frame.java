@@ -33,4 +33,7 @@ public class Frame extends PApplet{
 		surface.line(screenWidth-40, 30, screenWidth-10, 30);
 		surface.strokeWeight(1);
 	}
+	public void drawBackButton(PApplet surface, int screenWidth, int screenHeight) {
+		surface.rect(height, height, height, width);
+	}
 }
