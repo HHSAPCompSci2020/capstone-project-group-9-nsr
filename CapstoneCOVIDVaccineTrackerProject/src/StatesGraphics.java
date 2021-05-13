@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import processing.core.PApplet;
 
 /**
- * This class gets data from stats and creates data graphics.
+ * This class gets creates graohics for the individual state classes including graphs and statistics.
  * 
  * @author nodoka
  *
