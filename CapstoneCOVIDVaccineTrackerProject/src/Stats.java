@@ -27,7 +27,7 @@ public class Stats {
 	 */
 	public final void downloadVaccineData() throws IOException{
 		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv").openStream();
-		Files.copy(inputStream, Paths.get("data/vaccine.csv"), StandardCopyOption.REPLACE_EXISTING);
+		Files.copy(inputStream, Paths.get("data/vaccinationNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
 	}
 	
 	/**

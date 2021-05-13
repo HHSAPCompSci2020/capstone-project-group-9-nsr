@@ -14,7 +14,7 @@ import processing.core.PApplet;
 /**
  * This class gets data from stats and creates data graphics.
  * 
- * @author roopa, sophie, nodoka
+ * @author nodoka
  *
  */
 public class StatesGraphics {
@@ -162,6 +162,28 @@ public class StatesGraphics {
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}
 		
+		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50);
+		
+	}
+	
+	public void writeInfo(PApplet p, double x, double y) {
+		
+		Stats stats = new Stats();
+		ArrayList<String> list = stats.getVaccinationInfo(name);
+		
+		p.fill(0);
+		p.textSize(20);
+		
+		p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
+		
+		p.textSize(10);
+		p.text("total vaccinations available : " + list.get(2), (float)x, (float)(y + 60));
+		p.text("total distributed : " + list.get(3), (float)x, (float)(y + 80));
+		p.text("total distribution percentage : " + list.get(9), (float)x, (float)(y + 100));
+		p.text("people vaccinated : " + list.get(4), (float)x, (float)(y + 120));
+		p.text("total vaccinations percentage : " + list.get(6) + "% of the population", (float)x, (float)(y + 140));
+		p.text("people fully vaccinated : " + list.get(7), (float)x, (float)(y + 160));
+		p.text("fully vaccinated percentage : " + list.get(5) + "% of the population", (float)x, (float)(y + 180));
 	}
 
 }
