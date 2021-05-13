@@ -177,7 +177,7 @@ public class Stats {
 			e1.printStackTrace();
 		}
 		
-		ArrayList<String> data = new ArrayList<String>();
+		ArrayList<String> data = null;
 		
 		String fileName = "data/countryVaccinationNumber.csv";
 		String line = "";
@@ -185,8 +185,11 @@ public class Stats {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			while((line = br.readLine()) != null) {
-				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
-				data = new ArrayList<String>(list);
+				String[] values = line.split(",");
+				data = new ArrayList<String>();
+				for(int i = 0; i < values.length; i++) {
+					data.add(values[i]);
+				}
 					
 			}
 		} catch (FileNotFoundException e) {

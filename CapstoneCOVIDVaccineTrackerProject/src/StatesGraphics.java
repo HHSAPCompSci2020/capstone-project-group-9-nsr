@@ -20,7 +20,6 @@ import processing.core.PApplet;
 public class StatesGraphics {
 	
 	private String name;
-	private JButton returnToHome;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
