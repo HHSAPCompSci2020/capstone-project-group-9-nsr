@@ -17,23 +17,11 @@ public class MoreInfo extends PApplet{
 	private double pfizerX, pfizerY;
 	private double johnsonX, johnsonY;
 	private double modernaX, modernaY;
+	private boolean pfizerButton, johnsonButton, modernaButton;
 	
 	public MoreInfo() {
 		this.x = 100;
 		this.y = 100;
-		buttonWidth = width*2;
-		buttonHeight = 20;
-		pfizerX = this.x+10;
-		pfizerY = this.y+10;
-		johnsonX = pfizerX;
-		johnsonY = pfizerY + buttonHeight + 10;
-		modernaX = johnsonX;
-		modernaY = johnsonY + buttonHeight + 10;
-	}
-	
-	public MoreInfo(int x, int y) {
-		this.x = x;
-		this.y = y;
 		buttonWidth = width*2;
 		buttonHeight = 20;
 		pfizerX = this.x+10;
@@ -126,6 +114,22 @@ public class MoreInfo extends PApplet{
 	        e.printStackTrace();
 	    }
 	    return false;
+	}
+	
+	public double getX() {
+		return this.x;
+	}
+	
+	public double getY() {
+		return this.y;
+	}
+	
+	public double getButtonWidth() {
+		return this.buttonWidth;
+	}
+	
+	public double getButtonHeight() {
+		return this.buttonHeight;
 	}
 
 }

@@ -64,6 +64,9 @@ public class State extends Frame{
 		if (screenHeight<screenWidth) {
 			graphWidth = 1*(screenHeight/3);
 			graphHeight = 1*(screenHeight/3);
+		} else if (mapWidth>(mapHeight*2)) {
+			graphWidth = 1*(screenWidth/3);
+			graphHeight = 1*(screenWidth/3);
 		} else {
 			graphWidth = 1*(screenWidth/3);
 			graphHeight = 1*(screenWidth/3);
