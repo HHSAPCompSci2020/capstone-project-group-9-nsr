@@ -2,10 +2,10 @@
 import javax.swing.JButton;
 import processing.core.PApplet;
 
-/**
+/**draws the graphics and
  * 
  * @author sophie
- *
+ *	@revision 5/13
  */
 public class DrawingSurface extends PApplet{
 	private Country map;
@@ -226,6 +226,10 @@ public class DrawingSurface extends PApplet{
 		map.statePageOpen = false;
 		x = 0;
 	}
+	/**goes to map page
+	 * draws a back button
+	 * @post fill(255)
+	 */
 	public void goToMap() {
 		fill(255);
 		rect(0, 0, width, height);
@@ -237,6 +241,12 @@ public class DrawingSurface extends PApplet{
 				}
 	    	drawButton(width-60, height-50, 50, 25, "back");
 	}
+	/**
+	 * goes to info page 
+	 * also makes the buttons dark when hovering over it
+	 * draws a back button
+	 * @post fill
+	 */
 	public void goToInfo() {
 		fill(255);
 		rect(0, 0, width, height);
