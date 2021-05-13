@@ -90,6 +90,8 @@ public class MoreInfo extends PApplet{
 		screenWidth = surface.width;
 		johnsonY = this.y+screenHeight/3;
 		modernaY = this.y+ 2*(screenHeight/3);
+		buttonWidth = screenWidth/3;
+		buttonHeight = screenHeight/7;
 		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
 		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
 		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
@@ -121,10 +123,6 @@ public class MoreInfo extends PApplet{
 				e.printStackTrace();
 			}	
 		}
-	}
-	
-	public void keyPressed() {
-		
 	}
 	
 	public static boolean openWebpage(URI uri) {
