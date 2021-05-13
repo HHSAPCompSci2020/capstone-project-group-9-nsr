@@ -102,6 +102,10 @@ public class MoreInfo extends PApplet{
 
 	}
 	
+	public void keyPressed() {
+		
+	}
+	
 	public static boolean openWebpage(URI uri) {
 	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
