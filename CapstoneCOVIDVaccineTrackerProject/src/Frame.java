@@ -15,16 +15,9 @@ public class Frame extends PApplet{
 	
 	private String fileName;
 	
-	//Construcotr
+	//Constructor
 	public Frame(String name) {
 		fileName = name;
-	}
-	/**refreshes the page so that the information is up to date
-	 * The information refreshes automatically, but this is just in case theres a bug and we need to refresh.
-	 * 
-	 */
-	private void refresh() {
-		
 	}
 	public void drawDropDownButton(PApplet surface, int screenWidth) {
 		surface.strokeWeight(5);

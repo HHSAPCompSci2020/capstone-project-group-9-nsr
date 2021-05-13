@@ -33,12 +33,12 @@ public class DrawingSurface extends PApplet{
 	
 	public void setup() {
 	  ellipseMode(CENTER);
+	 
 	}
 	/*
 	 * draws all aspects of the project
 	 */
 	public void draw() {
-		
 		  //update fields
 		  mapX = width/3;
 		  mapY = 5*(int)(height/10.0);
@@ -84,7 +84,7 @@ public class DrawingSurface extends PApplet{
 			  }
 			  else
 				  goToInfo();
-				  
+			  
 		  }
 		
 	}
@@ -119,6 +119,11 @@ public class DrawingSurface extends PApplet{
 		}
 		if(infoPage) {
 			if(overButton(width-60, height-50, 50, 25)) {
+				infoPage = false;
+				mainPage = true;
+				reset();
+			}
+			if(overButton(moreInfo.x, height-50, 50, 25)) {
 				infoPage = false;
 				mainPage = true;
 				reset();
