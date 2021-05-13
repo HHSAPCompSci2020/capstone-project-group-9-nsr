@@ -2,21 +2,25 @@
 import javax.swing.JButton;
 import processing.core.PApplet;
 
-/**
+/**draws the graphics and
  * 
  * @author sophie
- *
+ *	@revision 5/13
  */
 public class DrawingSurface extends PApplet{
 	private Country map;
 	private MoreInfo moreInfo;
 	private int animation=0;
 	
-	private int mapX, mapY, mapW, mapH;    
-	private boolean mapClicked = false;
+	private int buttonW, buttonH;
+	private int mapX, mapY, mapW, mapH;   	 //coordinates and width/height  of the map button
+	private boolean mapClicked = false;		//if map button has been clicked
 	
-	private int infoX, infoY, infoW, infoH;    
-	private boolean infoClicked = false;
+	private int infoX, infoY, infoW, infoH;   //coordinates and width/height  of the map button
+	private boolean infoClicked = false;		//if INFO button has been clicked
+	
+	private int insX, insY, insW, insH;    //coordinates and width/height  of the map button
+	private boolean insClicked = false;		//if map button has been clicked
 	
 	private boolean mainPage;
 	private boolean mapPage;
@@ -36,6 +40,12 @@ public class DrawingSurface extends PApplet{
 	 */
 	public void draw() {
 		  //update fields
+		buttonW= width/3;
+		buttonH = height/10;
+		insX = width/3;
+		insY = 7*(int)(height/10.0);
+		  insW = width/3;
+		  insH = height/10;
 		  mapX = width/3;
 		  mapY = 5*(int)(height/10.0);
 		  mapW = width/3;
@@ -44,7 +54,7 @@ public class DrawingSurface extends PApplet{
 		  infoY = 7*(int)(height/10.0);
 		  infoW = width/3;
 		  infoH = height/10;
-		  
+		  //checks what page the window is on
 		  if(mainPage) {
 			  fill(252);
 			  rect(0, 0, width, height);
@@ -84,14 +94,23 @@ public class DrawingSurface extends PApplet{
 		  }
 		
 	}
-
+	/**checks if the mouse is over the button
+	 * 
+	 * @param x x coordinate of the button
+	 * @param y y coordinate of the button
+	 * @param w width of the button
+	 * @param h height of the button
+	 * @return boolean if the mouse is over the button
+	 */
 	public boolean overButton(int x, int y, int w, int h) {
 		    if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
 		      return true;
 		    }
 		    return false;
 		  }
-	 
+	/**detects if the mouse is clicked
+	 * and changes booleans to change pages
+	 */
 	public void mouseClicked() {
 		if(mainPage) {
 			if (overButton(mapX, mapY, mapW, mapH)) {
@@ -136,6 +155,15 @@ public class DrawingSurface extends PApplet{
 			}
 		}
 	}
+	/**
+	 * draws the animation for the buttons
+	 * @param text text of what the animation is going to look like
+	 * @param x x coordinate of the button
+	 * @param y y coordinate of the button
+	 * @param w width of the butotn
+	 * @param h height of the button]
+	 * @post fill(252)
+	 */
 	private void animation(String text, int x, int y, int w, int h) {
 		 	fill(218);
 		  rect(x, y, w, h, 10);
@@ -152,8 +180,10 @@ public class DrawingSurface extends PApplet{
    	 	animation++;
    	 	fill(252);
 	}
-	/**
+	/**checks if the mouse is over the map and info button
+	 * makes the button darker when you hover over it and draws the button
 	 * @post textAlign center, center
+	 * @post fill
 	 */
 	public void buttons() {
 		if(overButton(mapX, mapY, mapW, mapH)) 
@@ -172,12 +202,23 @@ public class DrawingSurface extends PApplet{
 	    
 	    
 	}
+	/**
+	 * draws a button 
+	 * @param x x coordinate of the button
+	 * @param y y coordinate of the button
+	 * @param w width of the btuton
+	 * @param h height of the button
+	 * @param text text on the button
+	 */
 	public void drawButton(int x, int y, int w, int h, String text) {
 		rect(x, y, w, h, 10);
     	textAlign(CENTER, CENTER);
     	fill(0);
     	text(text, x + w/2, y + h/2);
 	}
+	/**resets all the variables to default so when someone decides to go back, it will be all default
+	 * 
+	 */
 	public void reset() {
 		animation=0;
 		mapClicked = false;
@@ -185,9 +226,10 @@ public class DrawingSurface extends PApplet{
 		map.statePageOpen = false;
 		x = 0;
 	}
-	public void goToMain() {
-		reset();
-	}
+	/**goes to map page
+	 * draws a back button
+	 * @post fill(255)
+	 */
 	public void goToMap() {
 		fill(255);
 		rect(0, 0, width, height);
@@ -199,6 +241,12 @@ public class DrawingSurface extends PApplet{
 				}
 	    	drawButton(width-60, height-50, 50, 25, "back");
 	}
+	/**
+	 * goes to info page 
+	 * also makes the buttons dark when hovering over it
+	 * draws a back button
+	 * @post fill
+	 */
 	public void goToInfo() {
 		fill(255);
 		rect(0, 0, width, height);

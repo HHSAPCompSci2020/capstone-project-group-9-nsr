@@ -14,7 +14,7 @@ Talk with your group. Consider drawing some pictures of what you think your proj
 
 COVID Vaccine Data Tracker
 Authors: Roopa Srinivas, Sophie Lin, Nodoka Shibasaki
-Revision: 05/07/2021
+Revision: 05/13/2021
 
 Introduction: 
 [In a few paragraphs totaling about ½ page, introduce the high-level concept of your program. What this looks like depends a lot on what type of thing you are making. An introduction for an application will look different than one for a game. In general, your introduction should address questions like these:
@@ -88,13 +88,14 @@ We would build a website in HTML and CSS and “publish” our project there. We
 
 Class List:
 [This section lists the Java classes that make up the program and very briefly describes what each represents. It’s totally fine to put this section in list format and not to use full sentences.]
-Frame- the frame of the whole website or program(Drawing Surface) 
-CountryMap - the interactive country map
+Frame- the frame of the State and Map class 
+Country - the interactive country map
 State - each state with their information (50 objects for this)
 Stats - fetches data from website
 StatesGraphics - organizes the data into graphs
-DrawingSurface
+DrawingSurface-draws the main page and transitions between pages, also detects user interactions
 Main - main class to call the drawing surface
+MoreInfo - displays information about vaccinations, links to cdc webpages for more specific info about each vaccine
 
 
 Credits:
@@ -103,45 +104,48 @@ List the group members and describe how each member contributed to the completio
 Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
 
 Sophie
-interactive map
-Interactive key
-Design page and add the map picture
-Research information about each state(half) and create the state and map class
-Zoom, Border, colors and regions if have time
-StatesGraphics class
-CountryMap class
+DrawingSurface class
+Frame class
+Part of Country class
+Transitions between all pages 
+Buttons and user interaction- open dropdown button, back button, map button, more information button
+Designed graphics and layout of pages
+Main menu graphics
+Roopa
+Get and format state and country map images
+State class
+MoreInfo class
+Link buttons to webpage
+Display information in text form
 Frame class
 Main class
 DrawingSurface class
-Roopa
+Made DropDown
+Nodoka
+All StatesGraphics and Stats methods and constructors
+WriteInfo method in country class
 statistics and graph
 Find the information and statistics
 Design and code the page
+Getters/reader of the retrieved data
 Create and statistics and graphs
-Get and format state and country map images
-Help with the states research(half)
-State class
-Frame class
-Main class
-DrawingSurface class
-Nodoka
+Wrote recent information 
 links the website information
 link the information so it consistently updates
 Get the data to be saved
-Stats class
-Frame class
-Main class
-DrawingSurface class
+
 All of us will work on the frame and graphics together since that involves all of our parts. 
 Buttons or drop down menu 
 Implementing the starting screen
 Transitions between each page
 The design of the program
+We all led part of the project, but also helped each other when needed.
 Sources:
 Research:
 https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html
 https://covid.cdc.gov/covid-data-tracker/#datatracker-home
 https://covid.cdc.gov/covid-data-tracker/#testing_testsper100k30day
 Vaccines by states
+Linking buttons to webpage
 Images:
 https://suncatcherstudio.com/patterns/us-states/

@@ -57,50 +57,6 @@ public class MoreInfo extends PApplet{
     	surface.noFill();
 	}
 	
-	/*
-	 * ALL INFO GATHERED DIRECTLY FROM CDC WEBSITE
-	 * general info about COVID and vaccines: 
-	 * vaccines:
-	 * 
-		 * eligibility and types:
-		 * - 16 and older are eligible (in all vaccination sites)
-		 * - 12-15 eligible (in some vaccination sites)
-		 * - types available: Pfizer-BioNTech(2 shots), Moderna(2 shots), Johnson & Johnson/Janssen (1 shot)
-		 * - Pfizer-BioNTech info: https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Pfizer-BioNTech.html
-		 * - Moderna info: https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/Moderna.html
-		 * - Johnson & Johnson info: https://www.cdc.gov/coronavirus/2019-ncov/vaccines/different-vaccines/janssen.html
-		 * - as of feb 27, 2021, astra zeneca and novavax are in phase 3 clinical trials
-		 * - you will be fully protected 2 weeks after your second shot
-		 * 
-		 * potential side effects
-		 * - on arm where you got the shot: pain, redness, swelling
-		 * - throughout body: tiredness, headache, muscle pain, chils, fever, nausea
-		 * - to reduce discomfort where you got the shot: apply clean, cool, wet washcloth over the area, use or exercise your arm
-		 * - to reduce discomfort throughout your whole body: drink lots of fluids, dress lightly
-		 * - side effects of second shot is typically more intense
-		 * 
-		 * after vaccination:
-		 * - should continue to wear your mask and follow social distancing guidelines (but not required if others around you are fully vaccinated) as best you can to help protect others who have not yer recieved the vaccine, as you could be a carrier
-		 * - outdoor activities are safer than indoor activities (but indoor activities are still allowed)
-		 * - if in US, don't need to get tested before or after travel or even self-quarantine (if traveling outside US, make sure to check the situation of your destination)
-		 * - should still watch out for covid symptoms if you've been around someone who was/is sick
-		 * 
-		 * effectiveness: 
-		 * - to recieve most protection, you should recieve all recommended doses of vaccination
-		 * - no vaccine is 100% effective, so some people can still get sick
-		 * - CDC recommends to get vaccine as soon as one is available
-		 * 
-		 * known:
-		 * - effective in preventing death and severe illness
-		 * - regular prevention methods(masks and social distancing) are still vital to protect others
-		 * 
-		 * unkown:
-		 * - how effective it is against variants
-		 * - how effective it is in people with weakened immune systems (includes who take immunosuppressive medications)
-		 * - how long the vaccination can protect people
-		 * 
-	 */
-	
 	/**
 	 * draws all aspects of moreInfo class
 	 * @param surface papplet parameter
@@ -112,9 +68,8 @@ public class MoreInfo extends PApplet{
 		modernaY = this.y+ 2*(screenHeight/3);
 		buttonWidth = screenWidth/3;
 		buttonHeight = screenHeight/7;
-		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
-		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
-		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
+		drawVaccineButtons(surface);
+		drawInfo(surface);
 		if (pfizerButton) {
 			URL url;
 			try {
@@ -143,6 +98,86 @@ public class MoreInfo extends PApplet{
 				e.printStackTrace();
 			}	
 		}
+	}
+	
+	/**
+	 * draws the vaccine buttons
+	 * @param surface papplet parameter
+	 * @post textSize screen height/50
+	 */
+	private void drawVaccineButtons(PApplet surface) {
+		surface.textSize(screenHeight/50);
+		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
+		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
+		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
+	}
+	
+	/**
+	 * draws the actual info
+	 * @param surface papplet parameter
+	 * @post textSize screenHeight/50
+	 * @post textAlign left
+	 */
+	private void drawInfo(PApplet surface) {
+		int startY = screenHeight/20 + 60;
+		int yDifference = screenHeight/40;
+		float textSize1 = screenHeight/25;
+		float textSize2 = screenHeight/35;
+		float textSize3 = screenHeight/50;
+		float textSize4 = screenHeight/75;
+		surface.textSize(textSize1);
+		surface.text("ALL INFO GATHERED DIRECTLY FROM CDC WEBSITE (as of 05/13/2021)", screenWidth/2, screenHeight/20);
+		surface.textSize(textSize2);
+		surface.textAlign(LEFT);
+		surface.text("vaccines: ", 6*screenWidth/11, startY);
+		surface.textSize(textSize3);
+		surface.text("eligibility: ", 4*screenWidth/7, startY+(yDifference));
+		surface.textSize(textSize4);
+		surface.text("     - 16 and older (in all vaccination sites) ", 4*screenWidth/7, startY+(yDifference*2));
+		surface.text("     - 12-15 (in some vaccination sites) ", 4*screenWidth/7, startY+(yDifference*3));
+		surface.textSize(textSize3);
+		surface.text("types: ", 4*screenWidth/7, startY+(yDifference*4));
+		surface.textSize(textSize4);
+		surface.text("     - Pfizer-BioNTech (must take 2 shots for full effectiveness) ", 4*screenWidth/7, startY+(yDifference*5));
+		surface.text("     - Johnson & Johnson (must take 1 shot for full effectiveness)", 4*screenWidth/7, startY+(yDifference*6));
+		surface.text("     - Moderna (must take 2 shots for full effectiveness)", 4*screenWidth/7, startY+(yDifference*7));
+		surface.text("     *use buttons on left for more information*", 4*screenWidth/7, startY+(yDifference*8));
+		surface.textSize(textSize3);
+		surface.text("potential side effects: ", 4*screenWidth/7, startY+(yDifference*9));
+		surface.textSize(textSize4);
+		surface.text("     - on arm where you got the shot: pain, redness, swelling", 4*screenWidth/7, startY+(yDifference*10));
+		surface.text("     - throughout body: tiredness, headache, muscle pain, chils, fever, nausea", 4*screenWidth/7, startY+(yDifference*11));
+		surface.text("     - to reduce discomfort where you got the shot: apply clean, cool, wet washcloth over the area, use or exercise your arm ", 4*screenWidth/7, startY+(yDifference*12));
+		surface.text("     - to reduce discomfort throughout your whole body: drink lots of fluids, dress lightly ", 4*screenWidth/7, startY+(yDifference*13));
+		surface.text("     - side effects of second shot is typically more intense", 4*screenWidth/7, startY+(yDifference*14));
+		surface.textSize(textSize3);
+		surface.text("after vaccination: ", 4*screenWidth/7, startY+(yDifference*15));
+		surface.textSize(textSize4);
+		surface.text("     - should continue to wear your mask and follow social distancing guidelines \n"
+				   + "       (but not required if others around you are fully vaccinated) as best you can to help protect others who have \n"
+				   + "       not yet recieved the vaccine, as you could be a carrier", 4*screenWidth/7, startY+(yDifference*16));
+		surface.text("     - outdoor activities are safer than indoor activities (but indoor activities are still allowed)", 4*screenWidth/7, startY+(yDifference*19));
+		surface.text("     - if in US, don't need to get tested before or after travel or even self-quarantine\n"
+				   + "       (if traveling outside US, make sure to check the situation of your destination)", 4*screenWidth/7, startY+(yDifference*20));
+		surface.text("     - should still watch out for covid symptoms if you've been around someone who was/is sick", 4*screenWidth/7, startY+(yDifference*22));
+		surface.textSize(textSize3);
+		surface.text("effectiveness: ", 4*screenWidth/7, startY+(yDifference*23));
+		surface.textSize(textSize4);
+		surface.text("     - to recieve most protection, you should recieve all recommended doses of vaccination", 4*screenWidth/7, startY+(yDifference*24));
+		surface.text("     - no vaccine is 100% effective, so some people can still get sick", 4*screenWidth/7, startY+(yDifference*25));
+		surface.text("     - CDC recommends to get vaccine as soon as one is available", 4*screenWidth/7, startY+(yDifference*26));
+		surface.text("     - you will be fully protected 2 weeks after your second shot", 4*screenWidth/7, startY+(yDifference*27));
+		surface.textSize(textSize3);
+		surface.text("things we know about the vaccine: ", 4*screenWidth/7, startY+(yDifference*28));
+		surface.textSize(textSize4);
+		surface.text("     - effective in preventing death and severe illness", 4*screenWidth/7, startY+(yDifference*29));
+		surface.text("     - regular prevention methods(masks and social distancing) are still vital to protect others", 4*screenWidth/7, startY+(yDifference*30));
+		surface.textSize(textSize3);
+		surface.text("things we don't know yet about the vaccine: ", 4*screenWidth/7, startY+(yDifference*31));
+		surface.textSize(textSize4);
+		surface.text("     - how effective it is against variants", 4*screenWidth/7, startY+(yDifference*32));
+		surface.text("     - how effective it is in people with weakened immune systems (includes those who take immunosuppressive medications)", 4*screenWidth/7, startY+(yDifference*33));
+		surface.text("     - how long the vaccination can protect people", 4*screenWidth/7, startY+(yDifference*34));
 	}
 	
 
