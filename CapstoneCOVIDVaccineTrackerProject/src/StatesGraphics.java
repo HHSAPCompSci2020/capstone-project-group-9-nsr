@@ -91,17 +91,26 @@ public class StatesGraphics {
 		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
 		
 		p.fill(0);
-		p.textSize(10);
+		p.textSize(6);
 		p.text(b + "", (float)x - 15, (float)y);
 
 		for(int i = 1; i < 7; i++) {
-			p.text(b * i / 7 + "", (float)x - 15, (float)(y + ((height  + 10) * i / 7)));
+			p.text((int)(b * i / 7)  + "", (float)x - 15, (float)(y + ((height - 10) * i / 7)));
 		}
+		
+		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
+		p.text(dates.get(dates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
+
+		p.textSize(10);
+		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
+		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
+		p.text("# of cases", (float)((x - 70)), (float)(y + (height - 10)/2));
 		
 		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		LocalDate firstDate = LocalDate.parse(dates.get(0), DATEFORMATTER);
 		LocalDate lastDate = LocalDate.parse(dates.get(dates.size()-1), DATEFORMATTER);
+
 		
 		//find diff in last and first date
 		Period period = Period.between(firstDate, lastDate);
@@ -115,6 +124,8 @@ public class StatesGraphics {
 		//coordinate of the base of the lines
 		double xAxis = x + 10;
 		double yAxis = y + height - 10;
+		
+		
 		
 		//add one day to first date and check if index of that date is existing
 		//keep track of how many days added
