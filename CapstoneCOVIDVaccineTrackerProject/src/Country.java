@@ -4,7 +4,6 @@
 * @revision 1
 */
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
@@ -16,25 +15,26 @@ public class Country extends Frame{
 	TreeMap<String, State> states = new TreeMap<String, State>();
 	PImage map;
 	MoreInfo moreInfo;
-	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
-	private int heightDiff;
 	boolean openDropDown;
 	boolean statePageOpen;
 	String stateInput;
 	String[] allStateNames;
-	private double infoWidth,infoHeight, infoX, infoY;
-	/**constructor
-	 * 
-	 */	
+	
+	/**
+	 * constructor that initializes fields:
+	 * openDropDown, statePageOpen
+	 */
 	public Country() {
 		super("US_MAP.png");
 		initializeStates();
 		openDropDown = false;
 		statePageOpen =false;
-//		DrawingSurface drawingSurface = new DrawingSurface();
 	}
 	
+	/**
+	 * initializes the TreeMap allStates to contain all the states and their statistical info
+	 */
 	private void initializeStates() {
 		allStateNames = new String[] {"alabama", "alaska", "arizona", "arkansas", "california", "colorado", "connecticut", "delaware", "florida", "georgia",
 				"hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", 
@@ -46,21 +46,10 @@ public class Country extends Frame{
 		}
 	}
 	
-	/**find and returns the index of state that matches the name
-	 * returns -1 if none are found
-	 * 
-	 * @param String name of state
-	 * @return int index of state
+	/**
+	 * creates the drop down menu for user to choose any state
+	 * @param surface papplet parameter
 	 */
-	private int findIndexOfState(String name) {
-//		for(int i = 0; i < 50; i++) {
-//			if(states.get(i).graph.getName() == name) {
-//				return i;
-//			}
-//		}
-		return -1;
-	}
-	
 	private void createDropDown(PApplet surface) {
 		openDropDown = false;
 		String input = (String)JOptionPane.showInputDialog(null, "Which state?",
@@ -72,13 +61,13 @@ public class Country extends Frame{
 			return;
 		stateInput = input;
 		statePageOpen = true;
-		
 	}
 	
-	/**opens the state page 
-	 * @param state
+	/**
+	 * opens the state page that the user chooses
+	 * @param surface papplet parameter
+	 * @param stateName name of state chosen by user
 	 */
-	
 	private void goToStatePage(PApplet surface, String stateName) {
 		State nextState = new State(stateName);
 		surface.fill(255);
@@ -86,16 +75,22 @@ public class Country extends Frame{
 		nextState.draw(surface);
 	}
 	
+	/**
+	 * takes you back to the home page of program
+	 * @param surface papplet parameter
+	 */
 	public void goToHome(PApplet surface) {
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
 		moreInfo.draw(surface);
 	}
 	
+	/**
+	 * draws all aspects of country class
+	 * @param surface papplet parameter
+	 */
 	public void draw(PApplet surface) {
 		map = surface.loadImage("maps/US_MAP.png");
-		mapWidth = map.width;
-		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
 		if (screenHeight < screenWidth) {
@@ -103,7 +98,6 @@ public class Country extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		heightDiff = screenHeight - mapHeight;
 		surface.image(map, 10, 10);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
@@ -154,7 +148,10 @@ public class Country extends Frame{
 		p.text("people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 120));
 
 	}
-
+	
+	/**
+	 * @return width of the screen(drawing window)
+	 */
 	public int getScreenW() {
 		return screenWidth;
 	}

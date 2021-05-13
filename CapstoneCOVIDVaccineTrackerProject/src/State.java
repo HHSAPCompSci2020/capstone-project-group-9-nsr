@@ -1,6 +1,3 @@
-import java.text.ParseException;
-import java.util.ArrayList;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -13,13 +10,10 @@ import processing.core.PImage;
  */
 public class State extends Frame{
 	StatesGraphics graph;
-//	Stats stats;
-//	ArrayList<String> stateStats;
 	String name;
 	PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
-	private int heightDiff;
 	private double graphWidth, graphHeight, graphX, graphY;
 	
 	/**
@@ -46,7 +40,6 @@ public class State extends Frame{
 	
 	/**
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
-	 * 
 	 * @param surface
 	 */
 	public void draw(PApplet surface) {
@@ -59,17 +52,16 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		if (screenHeight < screenWidth) {
-			map.resize(0, (screenHeight/3)*2);
+			map.resize(0, (screenHeight/2));
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		heightDiff = screenHeight - mapHeight;
 		if (screenHeight<screenWidth) {
-			graphWidth = 1*(screenHeight/3);
-			graphHeight = 1*(screenHeight/3);
+			graphWidth = (screenHeight/2);
+			graphHeight = (screenHeight/2);
 		} else {
-			graphWidth = 1*(screenWidth/3);
-			graphHeight = 1*(screenWidth/3);
+			graphWidth = (screenWidth/2);
+			graphHeight = (screenWidth/2);
 		}
 		graphX = 2*(screenWidth/3);
 		graphY = screenHeight/20;
@@ -77,13 +69,11 @@ public class State extends Frame{
 		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
 		
 		surface.image(map, 10, 10);
-//		System.out.println("HeightDiff: " + heightDiff);
 
 		drawDropDownButton(surface, screenWidth);
 	}
 	
 	/**
-	 * 
 	 * @return name of the state
 	 */
 	public String getName() {
