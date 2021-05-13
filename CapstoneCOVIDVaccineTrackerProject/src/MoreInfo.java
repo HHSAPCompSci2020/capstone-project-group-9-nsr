@@ -146,11 +146,14 @@ public class MoreInfo extends PApplet{
 	}
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	/**
 	 * opens the web page in a browser
 	 * @param uri URI type parameter-one that gets opened in webpage
 	 * @return true or false(if opened webpage successfully or not)
 	 */
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	public static boolean openWebpage(URI uri) {
