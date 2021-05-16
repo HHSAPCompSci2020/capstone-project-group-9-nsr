@@ -14,7 +14,7 @@ Talk with your group. Consider drawing some pictures of what you think your proj
 
 COVID Vaccine Data Tracker
 Authors: Roopa Srinivas, Sophie Lin, Nodoka Shibasaki
-Revision: 05/13/2021
+Revision: 05/15/2021
 
 Introduction: 
 [In a few paragraphs totaling about ½ page, introduce the high-level concept of your program. What this looks like depends a lot on what type of thing you are making. An introduction for an application will look different than one for a game. In general, your introduction should address questions like these:
@@ -41,21 +41,21 @@ When the user runs the COVID Vaccine Data Tracker, the map appears on the screen
 Features List (THE ONLY SECTION THAT CANNOT CHANGE LATER):
 Must-have Features:
 [These are features that we agree you will definitely have by the project due date. A good final project would have all of these completed. At least 5 are required. Each feature should be fully described (at least a few full sentences for each)]
-Something that allows us to read data live from a website
+[DONE] Something that allows us to read data live from a website
 The information should be updated consistently and frequently from the website.
-Facts about the vaccines
+[DONE] Facts about the vaccines
 The page will include chemicals of each vaccinations and their success rate and eligibility (16 and 17 is only allowed to get Pfizer vaccines).
-Information for individual states 
+[DONE] Information for individual states 
 Find a way to bring the user to individual states with information. 
 Each state will include facts and statistics on the state.
-Takes user to another page with statistics about the single state
+[DONE] Takes user to another page with statistics about the single state
 The statistics page will include different types of information like the percentage of vaccines out of the whole country that have been given, actual number of vaccines given, and number of vaccines.
- Country-wide statistics
+ [DONE] Country-wide statistics
 The project will include total number of vaccines administered, total number of vaccines distributed, breakdown of vaccine companies’ vaccinations (percentage wise) and more.
 
 Want-to-have Features:
 [These are features that you would like to have by the project due date, but you’re unsure whether you’ll hit all of them. A good final project would have perhaps half of these completed. At least 5 are required. Again, fully describe each.]
- Retrieve graphs and statistics from CDC data sets
+ [DONE] Retrieve graphs and statistics from CDC data sets
 We would use buttons to the particular forms of statistics and it would take you to another page with the current data and graphs.
  Mouse interactions
 We would allow the user to hover over a certain state and it will show a brief version of the statistics and the user can also click on the state itself, which would bring them to another page that has more detailed information. This would require us (group members) to calculate the actual coordinates of each state (which would be irregularly shaped).
@@ -79,7 +79,7 @@ Stretch Features:
 For countries besides North America, statistics only for the country as a whole and not for every state.
  On the drop down menu, include a new page called “COVID rules”
 What places are open?
-Restaurants, arcade, amusement parks etc.
+Restaurants, arcades, amusement parks etc.
 What are the mask and social distancing requirements?
 The rule would be the national wide rule.
 If there are any exceptions amongst states, those will be stated as an exception.
