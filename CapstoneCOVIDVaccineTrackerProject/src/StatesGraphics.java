@@ -180,6 +180,7 @@ public class StatesGraphics {
 		ArrayList<String> list = stats.getVaccinationInfo(name);
 		
 		p.fill(0);
+		p.stroke(0);
 		p.textSize(20);
 		
 		p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
