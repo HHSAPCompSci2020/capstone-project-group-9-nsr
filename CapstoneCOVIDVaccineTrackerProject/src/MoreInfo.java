@@ -107,9 +107,9 @@ public class MoreInfo extends PApplet{
 	 */
 	private void drawVaccineButtons(PApplet surface) {
 		surface.textSize(screenHeight/50);
-		drawButton(surface, (int)pfizerX, (int)pfizerY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
-		drawButton(surface, (int)johnsonX, (int)johnsonY, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
-		drawButton(surface, (int)modernaX, (int)modernaY, (int)buttonWidth, (int)buttonHeight, "Moderna");
+		drawButton(surface, (int)x, (int)y, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
+		drawButton(surface, (int)x, (int)y+surface.height/3, (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
+		drawButton(surface, (int)x, (int)y+2*surface.height/3, (int)buttonWidth, (int)buttonHeight, "Moderna");
 	}
 	
 	/**
