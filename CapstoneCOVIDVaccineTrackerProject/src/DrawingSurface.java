@@ -41,17 +41,17 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	public void settings() {
-		fullScreen();
+//		fullScreen();
+		size(700,700);
 	}
 	
 	public void setup() {
-		size(700,700);
 		titles = createFont("fonts/LondrinaOutline-Regular.ttf", 10);
 		body = createFont("fonts/Montserrat-Regular.ttf", 10);
 		textSize(width/60);
 		fill(252);
 		textSize(12);
-//		surface.setResizable(false);
+		surface.setResizable(false);
 	}
 	
 	/*
