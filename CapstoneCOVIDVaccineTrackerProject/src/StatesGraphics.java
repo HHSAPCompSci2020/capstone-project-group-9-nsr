@@ -19,6 +19,7 @@ import processing.core.PApplet;
  */
 public class StatesGraphics {
 	
+	private Stats stat = new Stats();	
 	private String name;
 	
 	/**constructor
@@ -54,7 +55,6 @@ public class StatesGraphics {
 	 */
 	public void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		Stats stat = new Stats();
 		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
 //		ArrayList<Double> cases = new ArrayList<Double>();
 //		
@@ -175,9 +175,8 @@ public class StatesGraphics {
 	 * @param y y coordinates of the top of where the text starts
 	 */
 	public void writeInfo(PApplet p, double x, double y) {
-		
-		Stats stats = new Stats();
-		ArrayList<String> list = stats.getVaccinationInfo(name);
+
+		ArrayList<String> list = stat.getVaccinationInfo(name);
 		
 		p.fill(0);
 		p.stroke(0);
