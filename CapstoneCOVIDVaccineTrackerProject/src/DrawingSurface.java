@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -9,7 +11,7 @@ import processing.core.PFont;
  *	@revision 5/13
  */
 public class DrawingSurface extends PApplet{
-	private PFont titles;
+	private PFont titles, body;
 	
 	private Country map;
 	private MoreInfo moreInfo;
@@ -37,11 +39,19 @@ public class DrawingSurface extends PApplet{
 		mapPage = false;
 		infoPage = false;
 	}
+	
+	public void settings() {
+		fullScreen();
+	}
+	
 	public void setup() {
+		size(700,700);
 		titles = createFont("fonts/LondrinaOutline-Regular.ttf", 10);
+		body = createFont("fonts/Montserrat-Regular.ttf", 10);
 		textSize(width/60);
 		fill(252);
 		textSize(12);
+//		surface.setResizable(false);
 	}
 	
 	/*
@@ -65,7 +75,7 @@ public class DrawingSurface extends PApplet{
 			  fill(252);
 			  rect(0, 0, width, height);
 			  fill(0);
-			  textFont(titles);
+			  callFont(titles, 0);
 			  textSize(width/18);
 				text("Covid Vaccine Tracker", width/2, height/10);
 				textSize(width/60);
@@ -93,10 +103,11 @@ public class DrawingSurface extends PApplet{
 		  if(mapPage) {
 			  if(x<150) {
 				  fill(0);
-				  textFont(titles);
+				  callFont(titles, 0);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
 				  textSize(width/60);
+				  callFont(body, 0);
 				  fill(252);
 				  animation("going to map", mapX, mapY, buttonW, buttonH);
 				  fill(218);
@@ -111,10 +122,11 @@ public class DrawingSurface extends PApplet{
 		  if(infoPage) {
 			  if(x<150) {
 				  fill(0);
-				  textFont(titles);
+				  callFont(titles, 0);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
 				  textSize(width/60);
+				  callFont(body, 0);
 				  fill(252);
 				  animation("going to more information", infoX, infoY, buttonW, buttonH);
 				  fill(218);
@@ -129,9 +141,10 @@ public class DrawingSurface extends PApplet{
 		  if(insPage) {
 			  if(x<150) {
 				  fill(0);
-				  textFont(titles);
+				  callFont(titles, 0);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
+				  callFont(body, 0);
 				  textSize(width/60);
 				  fill(252);
 				  animation("going to instructions", insX, insY, buttonW, buttonH);
@@ -231,7 +244,8 @@ public class DrawingSurface extends PApplet{
 	 * @post fill(252)
 	 */
 	private void animation(String text, int x, int y, int w, int h) {
-		textFont(titles);
+		callFont(body, 0);
+		textSize(width/60);
 		 	fill(218);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
@@ -253,7 +267,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill
 	 */
 	public void buttons() {
-		textFont(titles);
+		callFont(body, 0);
 		textSize(width/60);
 		if(overButton(mapX, mapY, buttonW,buttonH)) 
 			  fill(150);
@@ -325,6 +339,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill
 	 */
 	public void goToInfo() {
+		callFont(titles, 0);
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
@@ -333,7 +348,6 @@ public class DrawingSurface extends PApplet{
 		else {
 			  fill(218);
 			}
-		textSize(width/60);
 		textSize(15);
     	drawButton(width-60, height-50, 50, 25, "back");
     	if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
@@ -353,14 +367,17 @@ public class DrawingSurface extends PApplet{
 		fill(218);
 	}
 	public void goToIns() {
+		callFont(titles, 0);
 		fill(255);
 		rect(0, 0, width, height);
 		fill(0);
 		textSize(width/60);
 		textSize(width/27);
 		text("Instructions", width/2, height/10);
+		callFont(body, 0);
 		textSize(width/60);
 		textAlign(LEFT);
+		
 		text("- press the map button to go to the country map\n"
 				+ "- the country map page shows a map of the country with countrywide statistics about the vaccines\n"
 				+ "- on the map page, click the three lines in the corner to open a drop down\n"
@@ -376,6 +393,11 @@ public class DrawingSurface extends PApplet{
 	    textSize(15);	
 	    drawButton(width-60, height-50, 50, 25, "back");
 	    	
+	}
+	
+	private void callFont(PFont font, int fontColor) {
+		fill(fontColor);
+		textFont(font);
 	}
 
 

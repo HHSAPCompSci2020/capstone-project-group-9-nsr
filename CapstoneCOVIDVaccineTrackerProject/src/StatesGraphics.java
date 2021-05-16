@@ -161,7 +161,7 @@ public class StatesGraphics {
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}
 		
-		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50);
+		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50, (float)height/45, (float)height/60, (float)height/50);
 		
 	}
 	
@@ -174,24 +174,30 @@ public class StatesGraphics {
 	 * @param x x coordinates of center of all texts
 	 * @param y y coordinates of the top of where the text starts
 	 */
-	public void writeInfo(PApplet p, double x, double y) {
+	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		
 		Stats stats = new Stats();
 		ArrayList<String> list = stats.getVaccinationInfo(name);
 		
 		p.fill(0);
-		p.textSize(20);
+		p.textSize(titleSize);
 		
 		p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
-		
-		p.textSize(10);
-		p.text("total vaccinations available : " + list.get(2), (float)x, (float)(y + 60));
-		p.text("total distributed : " + list.get(3), (float)x, (float)(y + 80));
-		p.text("total distribution percentage : " + list.get(9), (float)x, (float)(y + 100));
-		p.text("people vaccinated : " + list.get(4), (float)x, (float)(y + 120));
-		p.text("total vaccinations percentage : " + list.get(6) + "% of the population", (float)x, (float)(y + 140));
-		p.text("people fully vaccinated : " + list.get(7), (float)x, (float)(y + 160));
-		p.text("fully vaccinated percentage : " + list.get(5) + "% of the population", (float)x, (float)(y + 180));
+		p.textLeading(leading);
+		p.textSize(writingSize);
+		p.text("total vaccinations available : " + list.get(2) + "\n" +
+				"total distributed : " + list.get(3) + "\n" + 
+				"total distribution percentage : " + list.get(9) + "\n" + 
+				"people vaccinated : " + list.get(4) + "\n" + 
+				"total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" + 
+				"people fully vaccinated : " + list.get(7) + "\n" +
+				"fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
+//		p.text("total distributed : " + list.get(3), (float)x, (float)(y + 80));
+//		p.text("total distribution percentage : " + list.get(9), (float)x, (float)(y + 100));
+//		p.text("people vaccinated : " + list.get(4), (float)x, (float)(y + 120));
+//		p.text("total vaccinations percentage : " + list.get(6) + "% of the state population", (float)x, (float)(y + 140));
+//		p.text("people fully vaccinated : " + list.get(7), (float)x, (float)(y + 160));
+//		p.text("fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 180));
 	}
 
 }

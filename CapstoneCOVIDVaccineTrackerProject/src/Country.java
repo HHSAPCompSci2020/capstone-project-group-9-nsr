@@ -102,7 +102,7 @@ public class Country extends Frame{
 		surface.image(map, 10, 10);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
-		writeInfo(surface, (screenWidth/2), screenHeight* 13 /20);
+		writeInfo(surface, (6*screenWidth/9), screenHeight* 5 /20, screenHeight/45, screenHeight/60, screenHeight/50);
 		drawBackButton(surface, screenWidth, screenHeight);
 		if(openDropDown) {
 			createDropDown(surface);
@@ -126,28 +126,31 @@ public class Country extends Frame{
 	 * @param x x coordinates of center of all texts
 	 * @param y y coordinates of the top of where the text starts
 	 */
-	public void writeInfo(PApplet p, double x, double y) {
+	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		
 		
 		ArrayList<String> list = stats.getCountryData();
-		
+		p.textAlign(LEFT);
 		p.fill(0);
-		p.textSize(20);
+		p.textSize(titleSize);
 		
 		p.text("updated as of " + list.get(1), (float)x, (float)(y + 30));
 		
-		p.textSize(10);
+		p.textSize(writingSize);
 		
 		String names = "";
 		
 		for(int i = 0; i < list.size() - 6; i++) {
 			names += list.get(2 + i) + " ";
 		}
-		
-		p.text("names of vaccine used today : " + names, (float)x, (float)(y + 60));
-		p.text("total vaccinations available : " + list.get(list.size()-3), (float)x, (float)(y + 80));
-		p.text("people vaccinated : " + list.get(list.size()-2), (float)x, (float)(y + 100));
-		p.text("people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 120));
+		p.textLeading(leading);
+		p.text("names of vaccine used today : " + names + "\n" +
+		       "total vaccinations available : " + "\n" +
+		       "people vaccinated : " + "\n" +
+		       "people fully vaccinated : ", (float)x, (float)(y + 60));
+//		p.text("total vaccinations available : " + list.get(list.size()-3), (float)x, (float)(y + 80));
+//		p.text("people vaccinated : " + list.get(list.size()-2), (float)x, (float)(y + 100));
+//		p.text("people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 120));
 
 	}
 	
