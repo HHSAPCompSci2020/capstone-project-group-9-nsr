@@ -27,6 +27,10 @@ public class DrawingSurface extends PApplet{
 	private int insX, insY;    //coordinates and width/height  of the map button
 	private boolean insClicked = false;		//if map button has been clicked
 	
+	private int backButtonWidth, backButtonHeight;
+	private int backButtonX, backButtonY;
+	private int backButtonTextSize;
+	
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
@@ -70,6 +74,11 @@ public class DrawingSurface extends PApplet{
 		mapY = 5*(int)(height/10.0);
 		infoX = width/3;
 		infoY = 7*(int)(height/10.0);
+		backButtonWidth = width/25;
+		backButtonHeight = height/25;
+		backButtonX = width-backButtonWidth-width/100;
+		backButtonY = height-backButtonHeight-height/100;
+		backButtonTextSize = height/50;
 		  //checks what page the window is on
 		  if(mainPage) {
 			  fill(252);
@@ -198,14 +207,14 @@ public class DrawingSurface extends PApplet{
 		}
 		if(mapPage) {
 			map.openDropDown = overButton(map.getScreenW()-45, 0, 45, 40);
-			if(overButton(width-60, height-50, 50, 25)) {
+			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
 				mapPage = false;
 				mainPage = true;
 				reset();
 			}
 		}
 		if(infoPage) {
-			if(overButton(width-60, height-50, 50, 25)) {
+			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
 				infoPage = false;
 				mainPage = true;
 				reset();
@@ -227,7 +236,7 @@ public class DrawingSurface extends PApplet{
 			}
 		}
 		if(insPage) {
-			if(overButton(width-60, height-50, 50, 25)) {
+			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
 				insPage = false;
 				mainPage = true;
 				reset();
@@ -324,13 +333,13 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
-	    	if(overButton(width-60, height -50, 50, 25)) 
+	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-			textSize(15);
-	    	drawButton(width-60, height-50, 50, 25, "back");
+			textSize(backButtonTextSize);
+	    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
 	}
 	/**
 	 * goes to info page 
@@ -343,13 +352,13 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
-		if(overButton(width-60, height -50, 50, 25)) 
+		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
     		fill(150);
 		else {
 			  fill(218);
 			}
-		textSize(15);
-    	drawButton(width-60, height-50, 50, 25, "back");
+		textSize(backButtonTextSize);
+    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
     	if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
     		textSize(height/50);
     		fill(150);
@@ -388,13 +397,13 @@ public class DrawingSurface extends PApplet{
 				+ "- press the more info button to get more information\n"
 				+ "- the more information page will give you more information about the different types of vaccine\n\n\n"
 				+ "- press the back button to go back to the main page", 2*width/25, 3*height/10);
-	    	if(overButton(width-60, height -50, 50, 25)) 
+	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    textSize(15);	
-	    drawButton(width-60, height-50, 50, 25, "back");
+	    textSize(backButtonTextSize);	
+	    drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
 	    	
 	}
 	
