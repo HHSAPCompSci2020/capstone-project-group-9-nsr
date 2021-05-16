@@ -44,6 +44,7 @@ public class DrawingSurface extends PApplet{
 	 * draws all aspects of the project
 	 */
 	public void draw() {
+		background(255);
 		textSize(width/60);
 		fill(252);
 		  //update fields
@@ -86,6 +87,11 @@ public class DrawingSurface extends PApplet{
 		  }
 		  if(mapPage) {
 			  if(x<150) {
+				  fill(0);
+				  textSize(width/18);
+				  text("Covid Vaccine Tracker", width/2, height/10);
+				  textSize(width/60);
+				  fill(252);
 				  animation("going to map", mapX, mapY, buttonW, buttonH);
 				  fill(218);
 				  	drawButton(infoX, infoY, buttonW, buttonH, "more information");
@@ -98,6 +104,11 @@ public class DrawingSurface extends PApplet{
 		  }
 		  if(infoPage) {
 			  if(x<150) {
+				  fill(0);
+				  textSize(width/18);
+				  text("Covid Vaccine Tracker", width/2, height/10);
+				  textSize(width/60);
+				  fill(252);
 				  animation("going to more information", infoX, infoY, buttonW, buttonH);
 				  fill(218);
 				  	drawButton(mapX, mapY, buttonW, buttonH, "map");
@@ -110,6 +121,11 @@ public class DrawingSurface extends PApplet{
 		  }
 		  if(insPage) {
 			  if(x<150) {
+				  fill(0);
+				  textSize(width/18);
+				  text("Covid Vaccine Tracker", width/2, height/10);
+				  textSize(width/60);
+				  fill(252);
 				  animation("going to instructions", insX, insY, buttonW, buttonH);
 				  fill(218);
 				  drawButton(mapX, mapY, buttonW, buttonH, "map");
@@ -253,7 +269,7 @@ public class DrawingSurface extends PApplet{
 	 * draws a button 
 	 * @param x x coordinate of the button
 	 * @param y y coordinate of the button
-	 * @param w width of the btuton
+	 * @param w width of the button
 	 * @param h height of the button
 	 * @param text text on the button
 	 */
@@ -288,6 +304,7 @@ public class DrawingSurface extends PApplet{
 			else {
 				  fill(218);
 				}
+			textSize(15);
 	    	drawButton(width-60, height-50, 50, 25, "back");
 	}
 	/**
@@ -305,6 +322,7 @@ public class DrawingSurface extends PApplet{
 		else {
 			  fill(218);
 			}
+		textSize(15);
     	drawButton(width-60, height-50, 50, 25, "back");
     	if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
     		fill(150);
@@ -329,19 +347,21 @@ public class DrawingSurface extends PApplet{
 		textSize(width/27);
 		text("Instructions", width/2, height/10);
 		textSize(width/60);
-		text("press the map button to go to the country map\n"
-				+ "the country map page shows a map of the country with countrywide statistics about the vaccines\n "
-				+ "on the map page, click the three lines in the corner to open a drop down\n"
-				+ "from there, there is an option to choose a state, which leads to the map of that state with its corresponding statistics\n\n\n"
-				+ "press the more info button to get more information\n"
-				+ "the more information page will give you more information about the different types of vaccine\n\n\n"
-				+ "press the back button to go back to the main page", width/2, 5*height/10);
+		textAlign(LEFT);
+		text("- press the map button to go to the country map\n"
+				+ "- the country map page shows a map of the country with countrywide statistics about the vaccines\n"
+				+ "- on the map page, click the three lines in the corner to open a drop down\n"
+				+ "- from there, there is an option to choose a state, which leads to the map of that state with its corresponding statistics\n\n\n"
+				+ "- press the more info button to get more information\n"
+				+ "- the more information page will give you more information about the different types of vaccine\n\n\n"
+				+ "- press the back button to go back to the main page", 2*width/25, 3*height/10);
 	    	if(overButton(width-60, height -50, 50, 25)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    	drawButton(width-60, height-50, 50, 25, "back");
+	    textSize(15);	
+	    drawButton(width-60, height-50, 50, 25, "back");
 	    	
 	}
 
