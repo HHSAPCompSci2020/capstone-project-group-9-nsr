@@ -17,10 +17,12 @@ import processing.core.PApplet;
  * @author nodoka
  *
  */
-public class StatesGraphics {
+public class StatesGraphics extends PApplet{
 	
 	private Stats stat = new Stats();	
 	private String name;
+	
+	private double graphWidth, graphHeight;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -53,7 +55,7 @@ public class StatesGraphics {
 	 * @param height height of the rectangle the graph is in
 	 * @throws ParseException 
 	 */
-	public void drawGraph(PApplet p, double x, double y, double width, double height){
+	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
 		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
 //		ArrayList<Double> cases = new ArrayList<Double>();
@@ -161,8 +163,22 @@ public class StatesGraphics {
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}
 		
-		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50);
+//		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50, (float)height/45, (float)height/60, (float)height/50);
 		
+
+	}
+	
+	
+	public void draw (PApplet surface) {
+		if (height<width) {
+			graphWidth = (height/2);
+			graphHeight = (height/2);
+		} else {
+			graphWidth = (width/2);
+			graphHeight = (width/2);
+		}
+		drawGraph(surface, 5*(width/9), height/20, graphWidth, graphHeight);
+		writeInfo(surface, (6*width/9) / 2 , height* 5 /20, (float)height/45, (float)height/60, (float)height/50);
 	}
 	
 	/**
@@ -174,24 +190,23 @@ public class StatesGraphics {
 	 * @param x x coordinates of center of all texts
 	 * @param y y coordinates of the top of where the text starts
 	 */
-	public void writeInfo(PApplet p, double x, double y) {
-
+	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		ArrayList<String> list = stat.getVaccinationInfo(name);
-		
 		p.fill(0);
 		p.stroke(0);
-		p.textSize(20);
-		
+		p.textSize(titleSize);
+		p.textAlign(LEFT);
 		p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
 		
-		p.textSize(10);
-		p.text("total vaccinations available : " + list.get(2), (float)x, (float)(y + 60));
-		p.text("total distributed : " + list.get(3), (float)x, (float)(y + 80));
-		p.text("total distribution percentage : " + list.get(9), (float)x, (float)(y + 100));
-		p.text("people vaccinated : " + list.get(4), (float)x, (float)(y + 120));
-		p.text("total vaccinations percentage : " + list.get(6) + "% of the population", (float)x, (float)(y + 140));
-		p.text("people fully vaccinated : " + list.get(7), (float)x, (float)(y + 160));
-		p.text("fully vaccinated percentage : " + list.get(5) + "% of the population", (float)x, (float)(y + 180));
+		p.textSize(writingSize);
+		p.textLeading(leading);
+		p.text("total vaccinations available : " + list.get(2) + "\n" +
+			   "total distributed : " + list.get(3) + "\n" +
+			   "total distribution percentage : " + list.get(9) + "\n" +
+			   "people vaccinated : " + list.get(4) + "\n" +
+			   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
+			   "people fully vaccinated : " + list.get(7) + "\n" +
+			   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
 	}
 
 }

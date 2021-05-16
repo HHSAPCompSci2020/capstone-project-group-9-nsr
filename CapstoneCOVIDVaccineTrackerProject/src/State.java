@@ -56,17 +56,12 @@ public class State extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		if (screenHeight<screenWidth) {
-			graphWidth = (screenHeight/2);
-			graphHeight = (screenHeight/2);
-		} else {
-			graphWidth = (screenWidth/2);
-			graphHeight = (screenWidth/2);
-		}
-		graphX = 5*(screenWidth/9);
-		graphY = screenHeight/20;
-		
-		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
+//		
+//		graphX = 5*(screenWidth/9);
+//		graphY = screenHeight/20;
+//		surface.textAlign(LEFT);
+//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
+		graph.draw(this);
 		
 		surface.image(map, 10, 10);
 

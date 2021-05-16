@@ -128,7 +128,6 @@ public class Country extends Frame{
 	 */
 	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		
-		
 		ArrayList<String> list = stats.getCountryData();
 		p.textAlign(LEFT);
 		p.fill(0);
@@ -148,9 +147,6 @@ public class Country extends Frame{
 		       "total vaccinations available : " + "\n" +
 		       "people vaccinated : " + "\n" +
 		       "people fully vaccinated : ", (float)x, (float)(y + 60));
-//		p.text("total vaccinations available : " + list.get(list.size()-3), (float)x, (float)(y + 80));
-//		p.text("people vaccinated : " + list.get(list.size()-2), (float)x, (float)(y + 100));
-//		p.text("people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 120));
 
 	}
 	
