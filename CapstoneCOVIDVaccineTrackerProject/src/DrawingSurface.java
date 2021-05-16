@@ -1,6 +1,7 @@
 
 import javax.swing.JButton;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 /**draws the graphics and
  * 
@@ -8,6 +9,8 @@ import processing.core.PApplet;
  *	@revision 5/13
  */
 public class DrawingSurface extends PApplet{
+	private PFont titles;
+	
 	private Country map;
 	private MoreInfo moreInfo;
 	private int animation=0;
@@ -35,6 +38,7 @@ public class DrawingSurface extends PApplet{
 		infoPage = false;
 	}
 	public void setup() {
+		titles = createFont("fonts/LondrinaOutline-Regular.ttf", 10);
 		textSize(width/60);
 		fill(252);
 		textSize(12);
@@ -61,6 +65,7 @@ public class DrawingSurface extends PApplet{
 			  fill(252);
 			  rect(0, 0, width, height);
 			  fill(0);
+			  textFont(titles);
 			  textSize(width/18);
 				text("Covid Vaccine Tracker", width/2, height/10);
 				textSize(width/60);
@@ -88,6 +93,7 @@ public class DrawingSurface extends PApplet{
 		  if(mapPage) {
 			  if(x<150) {
 				  fill(0);
+				  textFont(titles);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
 				  textSize(width/60);
@@ -105,6 +111,7 @@ public class DrawingSurface extends PApplet{
 		  if(infoPage) {
 			  if(x<150) {
 				  fill(0);
+				  textFont(titles);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
 				  textSize(width/60);
@@ -122,6 +129,7 @@ public class DrawingSurface extends PApplet{
 		  if(insPage) {
 			  if(x<150) {
 				  fill(0);
+				  textFont(titles);
 				  textSize(width/18);
 				  text("Covid Vaccine Tracker", width/2, height/10);
 				  textSize(width/60);
@@ -223,6 +231,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill(252)
 	 */
 	private void animation(String text, int x, int y, int w, int h) {
+		textFont(titles);
 		 	fill(218);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
@@ -244,6 +253,8 @@ public class DrawingSurface extends PApplet{
 	 * @post fill
 	 */
 	public void buttons() {
+		textFont(titles);
+		textSize(width/60);
 		if(overButton(mapX, mapY, buttonW,buttonH)) 
 			  fill(150);
 		else {
@@ -322,6 +333,7 @@ public class DrawingSurface extends PApplet{
 		else {
 			  fill(218);
 			}
+		textSize(width/60);
 		textSize(15);
     	drawButton(width-60, height-50, 50, 25, "back");
     	if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
@@ -344,6 +356,7 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		fill(0);
+		textSize(width/60);
 		textSize(width/27);
 		text("Instructions", width/2, height/10);
 		textSize(width/60);
