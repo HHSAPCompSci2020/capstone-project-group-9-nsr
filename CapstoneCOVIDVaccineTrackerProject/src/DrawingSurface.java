@@ -51,7 +51,7 @@ public class DrawingSurface extends PApplet{
 		textSize(width/60);
 		fill(252);
 		textSize(12);
-		surface.setResizable(false);
+//		surface.setResizable(false);
 	}
 	
 	/*
@@ -210,17 +210,17 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
-			if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(true);
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(false);
 			}
-			if(overButton(moreInfo.getX(), moreInfo.getY()+ height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)moreInfo.getButtonX(),(int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(false);
 				moreInfo.setJohnson(true);
 				moreInfo.setModerna(false);
 			}
-			if(overButton(moreInfo.getX(), moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)moreInfo.getButtonX(), (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(false);
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(true);
@@ -339,7 +339,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill
 	 */
 	public void goToInfo() {
-		callFont(titles, 0);
+		callFont(body, 0);
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
@@ -350,19 +350,22 @@ public class DrawingSurface extends PApplet{
 			}
 		textSize(15);
     	drawButton(width-60, height-50, 50, 25, "back");
-    	if(overButton(moreInfo.getX(), moreInfo.getY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+    	if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+    		textSize(height/50);
     		fill(150);
-    		drawButton( moreInfo.getX(),  moreInfo.getY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
+    		drawButton((int) moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
 		}
     	fill(218);
-		if(overButton(moreInfo.getX(), moreInfo.getY()+ height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+		if(overButton((int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			textSize(height/50);
 			fill(150);
-			drawButton( moreInfo.getX(),  moreInfo.getY()+ height/3, moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
+			drawButton( (int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
 		}
 		fill(218);
-		if(overButton(moreInfo.getX(), moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+		if(overButton((int)moreInfo.getButtonX(), (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			textSize(height/50);
 			fill(150);
-			drawButton( moreInfo.getX(),  moreInfo.getY()+ 2*height/3, moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
+			drawButton( (int)moreInfo.getButtonX(),  (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
 		}
 		fill(218);
 	}
