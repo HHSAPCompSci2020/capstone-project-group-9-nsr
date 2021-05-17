@@ -183,7 +183,7 @@ public class StatesGraphics extends PApplet{
 		p.text((int)b + "", (float)x - 15, (float)y);
 
 		for(int i = 1; i < 7; i++) {
-			p.text((int)(b * i / 7)  + "", (float)x - 15, (float)(y + ((height - 10) * i / 7)));
+			p.text((int)(b * (7 - i) / 7)  + "", (float)x - 15, (float)(y + ((height - 10) * i / 7)));
 		}
 		
 		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
