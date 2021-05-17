@@ -48,11 +48,14 @@ public class State extends Frame{
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		if (mapWidth > screenWidth/2) {
-			map.resize(screenWidth/2, 0);
-		}
+		
+		
 		if (screenHeight < screenWidth) {
-			map.resize(0, (screenHeight/2));
+			if (mapWidth > screenWidth/2) {
+				map.resize(screenWidth/2, 0);
+			} else {
+				map.resize(0, (screenHeight-screenHeight/60));
+			}
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
@@ -64,7 +67,7 @@ public class State extends Frame{
 		
 		graph.draw(surface);
 		
-		surface.image(map, 10, 10);
+		surface.image(map, screenWidth/100, screenHeight/100);
 
 		drawDropDownButton(surface, screenWidth);
 	}

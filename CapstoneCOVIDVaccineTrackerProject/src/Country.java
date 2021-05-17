@@ -99,7 +99,7 @@ public class Country extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-		surface.image(map, 10, 10);
+		surface.image(map, screenWidth/100, screenHeight/100);
 		//draw button for drop down
 		drawDropDownButton(surface, screenWidth);
 		writeInfo(surface, (6*screenWidth/9), screenHeight* 5 /20, screenHeight/45, screenHeight/60, screenHeight/50);
@@ -144,9 +144,9 @@ public class Country extends Frame{
 		}
 		p.textLeading(leading);
 		p.text("names of vaccine used today : " + names + "\n" +
-		       "total vaccinations available : " + "\n" +
-		       "people vaccinated : " + "\n" +
-		       "people fully vaccinated : ", (float)x, (float)(y + 60));
+		       "total vaccinations available : " + list.get(list.size()-3) + "\n" +
+		       "people vaccinated : " + list.get(list.size()-2) + "\n" +
+		       "people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 60));
 
 	}
 	

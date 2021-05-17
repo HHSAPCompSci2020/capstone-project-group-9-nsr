@@ -180,7 +180,7 @@ public class StatesGraphics extends PApplet{
 			graphHeight = (surface.width/2);
 		}
 		drawGraph(surface, 5*(surface.width/9), surface.height/20, graphWidth, graphHeight);
-		writeInfo(surface, (6*surface.width/9) / 2 , surface.height* 5 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		writeInfo(surface, (5*surface.width/9) , surface.height* 13 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 	}
 	
 	/**
