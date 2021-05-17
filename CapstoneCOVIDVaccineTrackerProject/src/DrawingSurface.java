@@ -175,7 +175,7 @@ public class DrawingSurface extends PApplet{
 		  drawButton(quitX, quitY, backButtonWidth, backButtonHeight, "quit");
 		  textSize(width/60);
 		  if(quit) {
-			  //quit the window
+			  exit();
 		  }
 		
 	}
