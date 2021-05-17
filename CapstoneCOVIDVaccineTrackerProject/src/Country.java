@@ -169,12 +169,6 @@ public class Country extends Frame{
 		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, "total vaccinations available", 218);
 		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, "people vaccinated", 218);
 		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, "people fully vaccinated", 218);
-		
-		
-//		p.text("names of vaccine used today : " + names + "\n" +
-//		       "total vaccinations available : " + list.get(list.size()-3) + "\n" +
-//		       "people vaccinated : " + list.get(list.size()-2) + "\n" +
-//		       "people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 60));
 
 	}
 	
