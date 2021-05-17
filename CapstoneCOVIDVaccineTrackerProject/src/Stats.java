@@ -97,26 +97,33 @@ public class Stats {
 	 */
 	public ArrayList<String> getStringCovidData(String state, int index) {
 		
-		
 		ArrayList<String> data = new ArrayList<String>();
 		
 		String fileName = "data/cases.csv";
 		String line = "";
 		
+		int totalDeath = 0;
+		int totalCases = 0;
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			int n = 0;
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 				if(values[1].equalsIgnoreCase(state)) {
 						data.add(values[index]);
+//						totalCases += d;
+//						totalDeath += Integer.parseInt(values[4]);
 				}
-			}
+			}    
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
+		
+//		mortalityRate = totalDeath / totalCases;
+			
 		return data;
 		
 	}

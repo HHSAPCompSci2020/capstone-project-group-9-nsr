@@ -88,9 +88,9 @@ public class StatesGraphics extends PApplet{
 		
 		int N = population[states2.indexOf(name)]; // Population
 		double I0 = cases.get(cases.size()-1); // Starting infected/exposed
-		double beta = totalCase/N * 100; // Infection rate
-		double gamma = Math.pow(14, -1); // recovery time (days to the -1)
-		double a = Math.pow(7, -1); // incubation period (days to the -1)
+		double beta = 0.57; // Infection rate
+		double gamma = 0.0714; // recovery time (days to the -1)
+		double a = 0.142; // incubation period (days to the -1)
 		
 		ArrayList<Double> S = new ArrayList<>();
 		ArrayList<Double> E = new ArrayList<>();
@@ -135,8 +135,8 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		ArrayList<String> dates = stat.getStringCovidData(name, 0);
 		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<String> dates = stat.getStringCovidData(name, 0);
 		ArrayList<Double> pre = predictData();
 		
 //		ArrayList<Double> cases = new ArrayList<Double>();
@@ -166,6 +166,12 @@ public class StatesGraphics extends PApplet{
 				b = cases.get(i);
 			}
 		}
+		
+		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		LocalDate firstDate = LocalDate.parse(dates.get(0), DATEFORMATTER);
+		LocalDate lastDate = LocalDate.parse(dates.get(dates.size()-1), DATEFORMATTER);
+		LocalDate copyOfLastDate = lastDate;
 		 
 		//draw the frame of the graph
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
@@ -180,19 +186,13 @@ public class StatesGraphics extends PApplet{
 		}
 		
 		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
-		p.text(dates.get(dates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
+		p.text(copyOfLastDate.plusDays(14).toString(), (float)(x - 10 + width), (float)(y + height - 5));
 
 		p.textSize(12);
 		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
 		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
 		p.text("# of cases", (float)((x - 70)), (float)(y + (height - 10)/2));
-		
-		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
-		LocalDate firstDate = LocalDate.parse(dates.get(0), DATEFORMATTER);
-		LocalDate lastDate = LocalDate.parse(dates.get(dates.size()-1), DATEFORMATTER);
-
-		
+				
 		//find diff in last and first date
 		Period period = Period.between(firstDate, lastDate);
 		int diff = Math.abs(period.getDays());
@@ -228,12 +228,18 @@ public class StatesGraphics extends PApplet{
 			firstDate = firstDate.plusDays(1);
 		}
 		
+		double rate = cases.get(cases.size()-2) / cases.get(cases.size()-1);
+
+		
 		for(int i = 0; i < pre.size(); i++) {
-			double px = points.get(points.size()-1).getX() + PIXEL_PER_X;
-			double py = yAxis - PIXEL_PER_Y * pre.get(i);
-			Point po = new Point();
-			po.setLocation(px,py);
-			points.add(po);
+//			if(pre.get(i) > 0) {
+				double px = points.get(points.size()-1).getX() + PIXEL_PER_X;
+				//double py = yAxis - PIXEL_PER_Y * pre.get(i);
+				double py = points.get(points.size()-1).getY() + points.get(points.size()-1).getY() * rate;
+				Point po = new Point();
+				po.setLocation(px,py);
+				points.add(po);
+//			}
 		}
 		
 		double px = xAxis + PIXEL_PER_X * dates.size()-1;
@@ -248,7 +254,7 @@ public class StatesGraphics extends PApplet{
 		
 		for(int i = 0; i < points.size() - 1; i++) {
 //			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
-			if(i > cases.size()) {
+			if(i >= cases.size()) {
 				p.stroke(255,0,0);
 			}
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
@@ -284,17 +290,23 @@ public class StatesGraphics extends PApplet{
 		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(LEFT);
-		p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
 		
-		p.textSize(writingSize);
-		p.textLeading(leading);
-		p.text("total vaccinations available : " + list.get(2) + "\n" +
-			   "total distributed : " + list.get(3) + "\n" +
-			   "total distribution percentage : " + list.get(9) + "\n" +
-			   "people vaccinated : " + list.get(4) + "\n" +
-			   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
-			   "people fully vaccinated : " + list.get(7) + "\n" +
-			   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
+		if(list.size() > 0){
+			p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
+			
+			p.textSize(writingSize);
+			p.textLeading(leading);
+			p.text("total vaccinations available : " + list.get(2) + "\n" +
+				   "total distributed : " + list.get(3) + "\n" +
+				   "total distribution percentage : " + list.get(9) + "\n" +
+				   "people vaccinated : " + list.get(4) + "\n" +
+				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
+				   "people fully vaccinated : " + list.get(7) + "\n" +
+				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
+		}else {
+			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
+		}
+		
 	}
 
 }
