@@ -19,7 +19,7 @@ import processing.core.PApplet;
  */
 public class StatesGraphics extends PApplet{
 	
-	private Stats stat = new Stats();	
+	private Stats stat;	
 	private String name;
 	
 	private double graphWidth, graphHeight;
@@ -29,6 +29,7 @@ public class StatesGraphics extends PApplet{
 	 */
 	public StatesGraphics() {
 		name = null;
+		stat = new Stats();
 	}
 	
 	/**constructor
@@ -37,6 +38,7 @@ public class StatesGraphics extends PApplet{
 	 */
 	public StatesGraphics(String state) {
 		name = state;
+		stat = new Stats();
 	}
 	
 	/**returns the name of the state
@@ -170,15 +172,15 @@ public class StatesGraphics extends PApplet{
 	
 	
 	public void draw (PApplet surface) {
-		if (height<width) {
-			graphWidth = (height/2);
-			graphHeight = (height/2);
+		if (surface.height<surface.width) {
+			graphWidth = (surface.height/2);
+			graphHeight = (surface.height/2);
 		} else {
-			graphWidth = (width/2);
-			graphHeight = (width/2);
+			graphWidth = (surface.width/2);
+			graphHeight = (surface.width/2);
 		}
-		drawGraph(surface, 5*(width/9), height/20, graphWidth, graphHeight);
-		writeInfo(surface, (6*width/9) / 2 , height* 5 /20, (float)height/45, (float)height/60, (float)height/50);
+		drawGraph(surface, 5*(surface.width/9), surface.height/20, graphWidth, graphHeight);
+		writeInfo(surface, (6*surface.width/9) / 2 , surface.height* 5 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 	}
 	
 	/**

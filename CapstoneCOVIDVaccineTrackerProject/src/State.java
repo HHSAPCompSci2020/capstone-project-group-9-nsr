@@ -61,7 +61,8 @@ public class State extends Frame{
 //		graphY = screenHeight/20;
 //		surface.textAlign(LEFT);
 //		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
-		graph.draw(this);
+		
+		graph.draw(surface);
 		
 		surface.image(map, 10, 10);
 
