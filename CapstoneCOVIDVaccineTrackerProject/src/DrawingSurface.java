@@ -259,6 +259,9 @@ public class DrawingSurface extends PApplet{
 					map.clickVaxName = true;
 				}
 			}
+			else {
+				 
+			}
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
@@ -361,7 +364,7 @@ public class DrawingSurface extends PApplet{
     	textAlign(CENTER, CENTER);
     	fill(0);
     	text(text, x + w/2, y + h/2);
-    	fill(r, g, b);
+    	fill(r1, g1, b1);
 	}
 	/**resets all the variables to default so when someone decides to go back, it will be all default
 	 * 
@@ -423,6 +426,9 @@ public class DrawingSurface extends PApplet{
 				}
 	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, map.string4);
 		}	
+		else {
+			
+		}
 	}
 	/**
 	 * goes to info page 
