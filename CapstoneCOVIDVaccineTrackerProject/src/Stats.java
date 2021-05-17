@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class Stats {
 	
+	private double mortalityRate = 0.0;
+	
 	/**
 	 * this method uses java.io api to copy the data on cvc approved vaccine dataset to the csv file in the data folder.
 	 * @throws IOException
@@ -95,11 +97,6 @@ public class Stats {
 	 */
 	public ArrayList<String> getStringCovidData(String state, int index) {
 		
-		try {
-			downloadCasesData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		ArrayList<String> data = new ArrayList<String>();
 		
@@ -144,6 +141,9 @@ public class Stats {
 		String fileName = "data/cases.csv";
 		String line = "";
 		
+		int totalDeath = 0;
+		int totalCases = 0;
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			int n = 0;
@@ -152,13 +152,17 @@ public class Stats {
 				if(values[1].equalsIgnoreCase(state)) {
 						Double d = Double.parseDouble(values[index]);
 						data.add(d);
+//						totalCases += d;
+//						totalDeath += Integer.parseInt(values[4]);
 				}
-			}
+			}    
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+//		mortalityRate = totalDeath / totalCases;
 			
 		return data;
 		
