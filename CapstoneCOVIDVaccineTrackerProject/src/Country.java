@@ -132,16 +132,16 @@ public class Country extends Frame{
 		}
 		
 		if (clickVaxName) {
-			drawButton(surface, (int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, names, 218);
+			string1 = names;
 		}
 		if (clickAvailableVax) {
-			drawButton(surface, (int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-3), 218);
+			string2 = list.get(list.size()-3);
 		}
 		if (clickPeopleVaxed) {
-			drawButton(surface, (int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-2), 218);
+			string3 = list.get(list.size()-2);
 		}
 		if (clickFullyVaxed) {
-			drawButton(surface, (int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-1), 218);
+			string4 = list.get(list.size()-1);
 		}
 		
 		//add if you go back, make statePage = false
