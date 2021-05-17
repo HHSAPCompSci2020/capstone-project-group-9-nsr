@@ -224,6 +224,7 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
+			if(!map.statePageOpen) {
 			if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) {
 				map.clickAvailableVax = true;
 			}
@@ -236,6 +237,7 @@ public class DrawingSurface extends PApplet{
 			}
 			if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *4), backButtonWidth, backButtonHeight)) {
 				map.clickVaxName = true;
+			}
 			}
 		}
 		if(infoPage) {
@@ -368,6 +370,7 @@ public class DrawingSurface extends PApplet{
 		rect(0, 0, width, height);
 		map.draw(this);
 		fillBackButton();
+		if(!map.statePageOpen) {
 	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) 
 	    		fill(150);
 			else {
@@ -393,7 +396,7 @@ public class DrawingSurface extends PApplet{
 				  fill(218);
 				}
 	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, map.string4);
-	    	
+		}	
 	}
 	/**
 	 * goes to info page 
