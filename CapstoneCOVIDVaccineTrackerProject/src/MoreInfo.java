@@ -130,7 +130,7 @@ public class MoreInfo extends PApplet{
 		float textSize3 = screenHeight/75;
 		surface.textLeading(leading);
 		surface.textSize(textSize1);
-		surface.text("ALL INFO GATHERED DIRECTLY FROM CDC WEBSITE (as of 05/13/2021)", screenWidth/2, screenHeight/20);
+		surface.text("ALL INFO GATHERED DIRECTLY FROM CDC WEBSITE (as of 05/15/2021)", screenWidth/2, screenHeight/20);
 		surface.textAlign(LEFT);
 		surface.textSize(textSize2);
 		surface.text("eligibility: ", startX, startY+(yDifference));

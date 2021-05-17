@@ -31,10 +31,7 @@ public class State extends Frame{
 	public State(String stateName) {
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
-		name = stateName; 
-//		stats = new Stats();
-//		stateStats = stats.getVaccinationInfo(name);
-//		System.out.println(stateStats.toString());
+		name = stateName;
 	}
 	
 	
@@ -48,23 +45,21 @@ public class State extends Frame{
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		if (mapWidth > screenWidth/2) {
-			map.resize(screenWidth/2, 0);
-		}
+		
+		
 		if (screenHeight < screenWidth) {
-			map.resize(0, (screenHeight/2));
+			if (mapWidth > screenWidth/2) {
+				map.resize(screenWidth/2, 0);
+			} else {
+				map.resize(0, (screenHeight-screenHeight/60));
+			}
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-//		
-//		graphX = 5*(screenWidth/9);
-//		graphY = screenHeight/20;
-//		surface.textAlign(LEFT);
-//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
 		
 		graph.draw(surface);
 		
-		surface.image(map, 10, 10);
+		surface.image(map, screenWidth/100, screenHeight/100);
 
 		drawDropDownButton(surface, screenWidth);
 	}
