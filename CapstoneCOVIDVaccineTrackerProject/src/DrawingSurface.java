@@ -29,13 +29,14 @@ public class DrawingSurface extends PApplet{
 	
 	private int backButtonWidth, backButtonHeight;
 	private int backButtonX, backButtonY;
-	private int backButtonX, backButtonY;
+	private int quitX, quitY;
 	private int backButtonTextSize;
 	
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
 	private boolean insPage;
+	public boolean quit = false;
 	private int x=0;
 	public DrawingSurface() {
 		map = new Country();
@@ -73,9 +74,11 @@ public class DrawingSurface extends PApplet{
 		mapY = 5*(int)(height/10.0);
 		infoX = width/3;
 		infoY = 7*(int)(height/10.0);
-		backButtonWidth = width/25;
+		backButtonWidth = width/20;
 		backButtonHeight = height/25;
-		backButtonX = width-backButtonWidth-width/100;
+		quitX = width-backButtonWidth-width/100;
+		quitY = height-backButtonHeight-height/100;
+		backButtonX = width-backButtonWidth-width/50;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
 		  //checks what page the window is on
@@ -163,6 +166,15 @@ public class DrawingSurface extends PApplet{
 			  }
 			  else
 				  goToIns();
+		  }
+		  
+		  if(overButton(quitX, quitY, backButtonHeight, backButtonWidth)) 
+			  fill(150);
+		  else 
+			  fill(218);
+		  drawButton(quitX, quitY, backButtonHeight, backButtonWidth, "quit");
+		  if(quit) {
+			  //quit the window
 		  }
 		
 	}
@@ -254,6 +266,8 @@ public class DrawingSurface extends PApplet{
 				reset();
 			}
 		}
+		 if(overButton(quitX, quitY, backButtonHeight, backButtonWidth)) 
+			 quit = true;
 	}
 	/**
 	 * draws the animation for the buttons

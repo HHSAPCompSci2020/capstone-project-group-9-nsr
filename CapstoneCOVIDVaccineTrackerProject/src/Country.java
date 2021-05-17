@@ -26,6 +26,7 @@ public class Country extends Frame{
 	int buttonX, buttonY;
 	ArrayList<String> list = stats.getCountryData();
 	String names = "";
+	String string1, string2, string3, string4;
 	
 	/**
 	 * constructor that initializes fields:
@@ -40,6 +41,10 @@ public class Country extends Frame{
 		clickAvailableVax = false;
 		clickPeopleVaxed = false;
 		clickFullyVaxed = false;
+		string1 = "names of vaccines used today";
+		string2 = "total vaccinations available";
+		string3 = "people vaccinated";
+		string4 = "people fully vaccinated";
 		for(int i = 0; i < list.size() - 6; i++) {
 			names += list.get(2 + i) + " ";
 		}
@@ -165,10 +170,10 @@ public class Country extends Frame{
 		
 		
 		p.textLeading(leading);
-		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, "names of vaccines used today", 218);
-		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, "total vaccinations available", 218);
-		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, "people vaccinated", 218);
-		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, "people fully vaccinated", 218);
+		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, string1, 218);
+		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, string2, 218);
+		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, string3, 218);
+		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, string4, 218);
 
 	}
 	
