@@ -16,11 +16,16 @@ public class Country extends Frame{
 	PImage map;
 	MoreInfo moreInfo;
 	private int screenHeight, screenWidth;
-	boolean openDropDown;
+	boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
 	boolean statePageOpen;
 	String stateInput;
 	String[] allStateNames;
 	Stats stats = new Stats();
+	float buttonDistance;
+	int buttonWidth, buttonHeight;
+	int buttonX, buttonY;
+	ArrayList<String> list = stats.getCountryData();
+	String names = "";
 	
 	/**
 	 * constructor that initializes fields:
@@ -30,7 +35,14 @@ public class Country extends Frame{
 		super("US_MAP.png");
 		initializeStates();
 		openDropDown = false;
-		statePageOpen =false;
+		statePageOpen = false;
+		clickVaxName = false;
+		clickAvailableVax = false;
+		clickPeopleVaxed = false;
+		clickFullyVaxed = false;
+		for(int i = 0; i < list.size() - 6; i++) {
+			names += list.get(2 + i) + " ";
+		}
 	}
 	
 	/**
@@ -94,6 +106,9 @@ public class Country extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		screenHeight = surface.height;
 		screenWidth = surface.width;
+		buttonDistance = screenHeight/30;
+		buttonWidth = screenWidth/5;
+		buttonHeight = screenHeight/35;
 		if (screenHeight < screenWidth) {
 			map.resize(0, (screenHeight/3)*2);
 		} else {
@@ -110,6 +125,20 @@ public class Country extends Frame{
 		if(statePageOpen) {
 			goToStatePage(surface, stateInput);
 		}
+		
+		if (clickVaxName) {
+			drawButton(surface, (int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, names, 218);
+		}
+		if (clickAvailableVax) {
+			drawButton(surface, (int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-3), 218);
+		}
+		if (clickPeopleVaxed) {
+			drawButton(surface, (int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-2), 218);
+		}
+		if (clickFullyVaxed) {
+			drawButton(surface, (int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, list.get(list.size()-1), 218);
+		}
+		
 		//add if you go back, make statePage = false
 		
 	}
@@ -124,27 +153,60 @@ public class Country extends Frame{
 	 * @param y y coordinates of the top of where the text starts
 	 */
 	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
-		
-		ArrayList<String> list = stats.getCountryData();
+		buttonX = (int)x;
+		buttonY = (int)y;
 		p.textAlign(LEFT);
 		p.fill(0);
 		p.textSize(titleSize);
 		
-		p.text("updated as of " + list.get(1), (float)x, (float)(y + 30));
+		p.text("updated as of " + list.get(1), (float)x, (float)(y));
 		
 		p.textSize(writingSize);
 		
-		String names = "";
 		
-		for(int i = 0; i < list.size() - 6; i++) {
-			names += list.get(2 + i) + " ";
-		}
 		p.textLeading(leading);
-		p.text("names of vaccine used today : " + names + "\n" +
-		       "total vaccinations available : " + list.get(list.size()-3) + "\n" +
-		       "people vaccinated : " + list.get(list.size()-2) + "\n" +
-		       "people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 60));
+		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, "names of vaccines used today", 218);
+		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, "total vaccinations available", 218);
+		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, "people vaccinated", 218);
+		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, "people fully vaccinated", 218);
+		
+		
+//		p.text("names of vaccine used today : " + names + "\n" +
+//		       "total vaccinations available : " + list.get(list.size()-3) + "\n" +
+//		       "people vaccinated : " + list.get(list.size()-2) + "\n" +
+//		       "people fully vaccinated : " + list.get(list.size()-1), (float)x, (float)(y + 60));
 
+	}
+	
+	public void drawButton(PApplet surface, int x, int y, int w, int h, String text, int fillColor) {
+		surface.fill(fillColor);
+		surface.rect(x, y, w, h, 10);
+    	surface.textAlign(surface.CENTER, surface.CENTER);
+    	surface.fill(0);
+    	surface.text(text, x + w/2, y + h/2);
+    	surface.noFill();
+	}
+	
+	public boolean overButton(int x, int y, int w, int h) {
+	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
+	    return true;
+	  }
+	  return false;
+	}
+	
+	public void mouseClicked() {
+		if (overButton((int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight)) {
+			clickVaxName = true;
+		}
+		if (overButton((int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight)) {
+			clickAvailableVax = true;
+		}
+		if (overButton((int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight)) {
+			clickPeopleVaxed = true;
+		}
+		if (overButton((int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight)) {
+			clickFullyVaxed = true;
+		}
 	}
 	
 	/**
