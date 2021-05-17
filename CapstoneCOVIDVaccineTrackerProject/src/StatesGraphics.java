@@ -330,7 +330,7 @@ public class StatesGraphics extends PApplet{
 				   "people fully vaccinated : " + list.get(7) + "\n" +
 				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
 		}else {
-			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
+			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
 		
 	}
