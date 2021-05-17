@@ -136,8 +136,9 @@ public class StatesGraphics extends PApplet{
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
 		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<Double> deaths = stat.getDoubleCovidData(name, 4);
 		ArrayList<String> dates = stat.getStringCovidData(name, 0);
-		ArrayList<Double> pre = predictData();
+//		ArrayList<Double> pre = predictData();
 		
 //		ArrayList<Double> cases = new ArrayList<Double>();
 //		
@@ -186,19 +187,23 @@ public class StatesGraphics extends PApplet{
 		}
 		
 		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
-		p.text(copyOfLastDate.plusDays(14).toString(), (float)(x - 10 + width), (float)(y + height - 5));
+		p.text(dates.get(dates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
 
 		p.textSize(12);
 		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
 		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
-		p.text("# of cases", (float)((x - 70)), (float)(y + (height - 10)/2));
-				
+		p.text("population", (float)((x - 70)), (float)(y + (height - 10)/2));
+		p.text("number of cases", (float)(x + 10), (float)((y + height + 10)));
+		
+		p.fill(255, 0, 0);
+		p.text("number of deathss", (float)(x + 10), (float)((y + height + 20)));
+
 		//find diff in last and first date
 		Period period = Period.between(firstDate, lastDate);
 		int diff = Math.abs(period.getDays());
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / (dates.size() + pre.size());
+		final double PIXEL_PER_X = (width - 10) / (dates.size());
 //		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
@@ -213,34 +218,48 @@ public class StatesGraphics extends PApplet{
 		//if it is existing access the value at the same index in case data
 		//figure out the coordinates
 		ArrayList<Point> points = new ArrayList<Point>();
+		ArrayList<Point> points2 = new ArrayList<Point>();
 		
 		while(!firstDate.equals(lastDate)) {
 			if(dates.indexOf(firstDate.toString()) != -1) {
-				double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
-//				System.out.println(xAxis + " + " + PIXEL_PER_X + " * " + dates.indexOf(firstDate.toString()) + " = " + px);
-				double py = yAxis - PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString())) ;
-//				System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
-				Point po = new Point();
-				po.setLocation(px, py);
-				points.add(po);
-//				System.out.println(px + ", " + py);
+				
+				if(dates.indexOf(firstDate.toString()) < cases.size()) {
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+//					System.out.println(xAxis + " + " + PIXEL_PER_X + " * " + dates.indexOf(firstDate.toString()) + " = " + px);
+					double py = yAxis - PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString())) ;
+//					System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
+					Point po = new Point();
+					po.setLocation(px, py);
+					points.add(po);
+//					System.out.println(px + ", " + py);
+				}
+				
+				if(dates.indexOf(firstDate.toString()) < deaths.size()) {
+					double py = yAxis - PIXEL_PER_Y * deaths.get(dates.indexOf(firstDate.toString())) ;
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+
+//					System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
+					Point po = new Point();
+					po.setLocation(px, py);
+					points2.add(po);
+				}
 			}
 			firstDate = firstDate.plusDays(1);
 		}
 		
-		double rate = cases.get(cases.size()-2) / cases.get(cases.size()-1);
+//		double rate = cases.get(cases.size()-2) / cases.get(cases.size()-1);
 
-		
-		for(int i = 0; i < pre.size(); i++) {
-//			if(pre.get(i) > 0) {
-				double px = points.get(points.size()-1).getX() + PIXEL_PER_X;
-				//double py = yAxis - PIXEL_PER_Y * pre.get(i);
-				double py = points.get(points.size()-1).getY() + points.get(points.size()-1).getY() * rate;
-				Point po = new Point();
-				po.setLocation(px,py);
-				points.add(po);
-//			}
-		}
+//		
+//		for(int i = 0; i < pre.size(); i++) {
+////			if(pre.get(i) > 0) {
+//				double px = points.get(points.size()-1).getX() + PIXEL_PER_X;
+//				//double py = yAxis - PIXEL_PER_Y * pre.get(i);
+//				double py = points.get(points.size()-1).getY() + points.get(points.size()-1).getY() * rate;
+//				Point po = new Point();
+//				po.setLocation(px,py);
+//				points.add(po);
+////			}
+//		}
 		
 		double px = xAxis + PIXEL_PER_X * dates.size()-1;
 		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
@@ -248,16 +267,23 @@ public class StatesGraphics extends PApplet{
 		po.setLocation(px, py);
 		points.add(po);
 		
+		py = yAxis - PIXEL_PER_Y * deaths.get(deaths.size()-1) ;
+		po.setLocation(px, py);
+		points2.add(po);
+		
 		
 	
 //		p.line(100, 100,200, 100);
 		
-		for(int i = 0; i < points.size() - 1; i++) {
+		for(int i = 0; i < points.size() - 2; i++) {
 //			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
-			if(i >= cases.size()) {
-				p.stroke(255,0,0);
-			}
+	
+			p.stroke(0, 0, 0);
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
+			
+			p.stroke(255, 0, 0);
+			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
+
 		}		
 
 	}
