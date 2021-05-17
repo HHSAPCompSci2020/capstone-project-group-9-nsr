@@ -59,7 +59,7 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<Double> cases = stat.getDoubleCovidData(name);
 //		ArrayList<Double> cases = new ArrayList<Double>();
 //		
 //		//528784.0
