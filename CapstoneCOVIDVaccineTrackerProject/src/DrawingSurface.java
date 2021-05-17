@@ -29,6 +29,7 @@ public class DrawingSurface extends PApplet{
 	
 	private int backButtonWidth, backButtonHeight;
 	private int backButtonX, backButtonY;
+	private int backButtonX, backButtonY;
 	private int backButtonTextSize;
 	
 	private boolean mainPage;
@@ -351,39 +352,32 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
-	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-	    		fill(150);
-			else {
-				  fill(218);
-				}
-			textSize(backButtonTextSize);
-	    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
-	    	
+		fillBackButton();
 	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight, "names of vaccines used today");
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight, map.string1);
 	    	
 	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight, "total vaccinations available");
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight, map.string2);
 	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight, "people vaccinated");
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight, map.string3);
 	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight)) 
 	    		fill(150);
 			else {
 				  fill(218);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, "people fully vaccinated");
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, map.string4);
 	    	
 	}
 	/**
@@ -397,13 +391,7 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
-		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-    		fill(150);
-		else {
-			  fill(218);
-			}
-		textSize(backButtonTextSize);
-    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+		fillBackButton();
     	if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
     		textSize(height/50);
     		fill(150);
@@ -442,19 +430,22 @@ public class DrawingSurface extends PApplet{
 				+ "- press the more info button to get more information\n"
 				+ "- the more information page will give you more information about the different types of vaccine\n\n\n"
 				+ "- press the back button to go back to the main page", 2*width/25, 3*height/10);
-	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-	    		fill(150);
-			else {
-				  fill(218);
-				}
-	    textSize(backButtonTextSize);	
-	    drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+	    	fillBackButton();
 	    	
 	}
 	
 	private void callFont(PFont font, int fontColor) {
 		fill(fontColor);
 		textFont(font);
+	}
+	public void fillBackButton() {
+		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
+    		fill(150);
+		else {
+			  fill(218);
+			}
+		textSize(backButtonTextSize);	
+		drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
 	}
 
 
