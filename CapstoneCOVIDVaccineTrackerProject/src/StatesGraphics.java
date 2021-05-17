@@ -301,8 +301,8 @@ public class StatesGraphics extends PApplet{
 			graphWidth = (surface.width/2);
 			graphHeight = (surface.width/2);
 		}
-		drawGraph(surface, 5*(surface.width/9), surface.height/20, graphWidth, graphHeight);
-		writeInfo(surface, (5*surface.width/9) , surface.height* 13 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
+		writeInfo(surface, (7*surface.width/11) , surface.height* 13 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 	}
 	
 	/**
@@ -336,7 +336,7 @@ public class StatesGraphics extends PApplet{
 				   "people fully vaccinated : " + list.get(7) + "\n" +
 				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
 		}else {
-			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
+			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
 		
 	}
