@@ -97,11 +97,6 @@ public class Stats {
 	 */
 	public ArrayList<String> getStringCovidData(String state, int index) {
 		
-		try {
-			downloadCasesData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		ArrayList<String> data = new ArrayList<String>();
 		
@@ -133,7 +128,7 @@ public class Stats {
 	 * @param index counted from 0 from right on cases.csv file
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
-	public ArrayList<Double> getDoubleCovidData(String state) {
+	public ArrayList<Double> getDoubleCovidData(String state, int index) {
 		
 		try {
 			downloadCasesData();
@@ -155,10 +150,10 @@ public class Stats {
 			while((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 				if(values[1].equalsIgnoreCase(state)) {
-						Double d = Double.parseDouble(values[3]);
+						Double d = Double.parseDouble(values[index]);
 						data.add(d);
-						totalCases += d;
-						totalDeath += Integer.parseInt(values[4]);
+//						totalCases += d;
+//						totalDeath += Integer.parseInt(values[4]);
 				}
 			}    
 		} catch (FileNotFoundException e) {
@@ -167,7 +162,7 @@ public class Stats {
 			e.printStackTrace();
 		}
 		
-		mortalityRate = totalDeath / totalCases;
+//		mortalityRate = totalDeath / totalCases;
 			
 		return data;
 		

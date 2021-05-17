@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 import javax.swing.JButton;
 
@@ -49,6 +49,82 @@ public class StatesGraphics extends PApplet{
 	}
 	
 	/**
+	 * 
+	 * @return
+	 */
+	private ArrayList<Double> predictData(){
+		
+		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<Double> deaths = stat.getDoubleCovidData(name, 4);
+		
+		String[] states  = {"california", "texas", "florida", "new york", "pennsylvania", 
+				"illinois", "ohio", "georgia", "north carolina", "michigan", "new jersey",
+				"virginia", "washington", "arizona", "massachusetts", "tennessee", "indiana",
+				"missouri", "maryland", "wisconsin", "colorado", "minnesota", "south carolina",
+				"alabama", "louisiana", "kentucky", "oregon", "oklahoma", "connecticut",
+				"utah", "iowa", "nevada", "arkansas", "mississippi", "kansas", "new mexico",
+				"nebraska", "idaho", "west virginia", "hawaii", "new hampshire", "maine",
+				"montana", "rhode island", "delaware", "south dakota", "north dakota", "alaska",
+				"vermont", "wyoming"};
+		
+		int[] population = {39512223, 28995881, 21477737, 19453561, 12801989, 12671821, 11689100,
+				10617423, 10488084, 9986857, 8882190, 8535519, 7614893, 7278717, 6949503, 6833174,
+				6732219, 6137428, 6045680, 5822434, 5758736, 5639632, 5148714, 4903185, 4648794, 
+				4467673, 4217737, 3956971, 3565287, 3205958, 3155070, 3080156, 3017825, 2976149,
+				2913314, 2096829, 1934408, 1787065, 1792147, 1415872, 1359711, 1344212, 1068778,
+				1059361, 973764, 884659, 762062, 731545, 623989, 578759};
+		
+		double totalCase = 0;
+		
+		for(int i = 0; i < cases.size(); i++) {
+			totalCase += cases.get(i);
+		}
+		
+		ArrayList<String> states2 = new ArrayList<String>(); 
+		
+		for(int i = 0; i < states.length; i++) {
+			states2.add(states[i]);
+		}
+		
+		int N = population[states2.indexOf(name)]; // Population
+		double I0 = cases.get(cases.size()-1); // Starting infected/exposed
+		double beta = totalCase/N * 100; // Infection rate
+		double gamma = Math.pow(14, -1); // recovery time (days to the -1)
+		double a = Math.pow(7, -1); // incubation period (days to the -1)
+		
+		ArrayList<Double> S = new ArrayList<>();
+		ArrayList<Double> E = new ArrayList<>();
+		ArrayList<Double> I = new ArrayList<>();
+		ArrayList<Double> R = new ArrayList<>();
+		
+		final int R0 = 0;
+		final int S0 = (int) (N - I0 - R0);
+		
+		S.add((double)S0);
+		E.add((double)I0);
+		I.add(0.0);
+		R.add(0.0);
+		
+
+	    for (int day = 0; day < 15; day++) {
+
+		    double dS = (beta * S.get(day) * I.get(day)) / N;
+		    double newS = S.get(day) - (dS);
+		    double newE = E.get(day) + (dS - (a * E.get(day)));
+		    double newI = I.get(day) + ((a * E.get(day)) - (gamma * I.get(day)));
+		    double newR = R.get(day) + (gamma * I.get(day));
+		    
+		    S.add(newS);
+	        E.add(newE);
+	        I.add(newI);
+	        R.add(newR);
+	    }
+		
+		return I;
+	}
+	
+	
+	/**
 	 * draws graph by figuring out all points of where the graph needs to be plotted.
 	 * 
 	 * @param x x coordinate of the left up corner of where the graph is drawn
@@ -59,7 +135,10 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		ArrayList<Double> cases = stat.getDoubleCovidData(name);
+		ArrayList<String> dates = stat.getStringCovidData(name, 0);
+		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
+		ArrayList<Double> pre = predictData();
+		
 //		ArrayList<Double> cases = new ArrayList<Double>();
 //		
 //		//528784.0
@@ -70,7 +149,6 @@ public class StatesGraphics extends PApplet{
 //		cases.add(101334.0);
 //		cases.add(530988.0);
 		
-		ArrayList<String> dates = stat.getStringCovidData(name, 0);
 //		ArrayList<String> dates = new ArrayList<String>();
 //
 //		dates.add("2020-12-20");
@@ -120,7 +198,7 @@ public class StatesGraphics extends PApplet{
 		int diff = Math.abs(period.getDays());
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / dates.size();
+		final double PIXEL_PER_X = (width - 10) / (dates.size() + pre.size());
 //		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
@@ -150,6 +228,14 @@ public class StatesGraphics extends PApplet{
 			firstDate = firstDate.plusDays(1);
 		}
 		
+		for(int i = 0; i < pre.size(); i++) {
+			double px = points.get(points.size()-1).getX() + PIXEL_PER_X;
+			double py = yAxis - PIXEL_PER_Y * pre.get(i);
+			Point po = new Point();
+			po.setLocation(px,py);
+			points.add(po);
+		}
+		
 		double px = xAxis + PIXEL_PER_X * dates.size()-1;
 		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
 		Point po = new Point();
@@ -162,6 +248,9 @@ public class StatesGraphics extends PApplet{
 		
 		for(int i = 0; i < points.size() - 1; i++) {
 //			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
+			if(i > cases.size()) {
+				p.stroke(255,0,0);
+			}
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 		}		
 
