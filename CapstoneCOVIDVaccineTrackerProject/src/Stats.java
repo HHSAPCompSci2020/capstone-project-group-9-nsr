@@ -51,6 +51,53 @@ public class Stats {
 	}
 	
 	/**
+	 * this method uses java.io api to copy the data on cvc approved covid cases dataset to the csv file in the data folder.
+	 * @throws IOException
+	 */
+	public final void downloadCountryCases() throws IOException{
+		InputStream inputStream = new URL("https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv").openStream();
+		Files.copy(inputStream, Paths.get("data/countryCaseNumber.csv"), StandardCopyOption.REPLACE_EXISTING);
+	}
+	
+	/**
+	 * reads the covid info from the file and gets the recent data.
+	 * @param country name of the country
+	 * @return recent data of cases and deaths info for that country
+	 */
+	public ArrayList<String> getCountryCases(String country) {
+		
+		try {
+			downloadCountryCases();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<String> data = new ArrayList<String>();
+		
+		String fileName = "data/countryCaseNumber.csv";
+		String line = "";
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			while((line = br.readLine()) != null) {
+				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
+				ArrayList<String> values = new ArrayList<String>(list);
+					if(values.get(2).equalsIgnoreCase(country)) {
+						data = values;
+					}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		
+		return data;
+		
+	}
+	
+	/**
 	 * reads the vaccination info from the file and gets the recent data.
 	 * @param state name of the state
 	 * @return recent data of vaccination info for that state
