@@ -45,8 +45,7 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	public void settings() {
-//		fullScreen();
-		size(700,700);
+		fullScreen();
 	}
 	
 	public void setup() {
@@ -55,7 +54,6 @@ public class DrawingSurface extends PApplet{
 		textSize(width/60);
 		fill(252);
 		textSize(12);
-//		surface.setResizable(false);
 	}
 	
 	/*
