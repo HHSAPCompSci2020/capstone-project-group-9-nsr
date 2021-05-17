@@ -1,5 +1,6 @@
 
 import java.awt.Point;
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -23,6 +24,9 @@ public class StatesGraphics extends PApplet{
 	private String name;
 	
 	private double graphWidth, graphHeight;
+	
+	ArrayList<Double> cases, deaths;
+	ArrayList<String> dates;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -135,9 +139,9 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		ArrayList<Double> cases = stat.getDoubleCovidData(name, 3);
-		ArrayList<Double> deaths = stat.getDoubleCovidData(name, 4);
-		ArrayList<String> dates = stat.getStringCovidData(name, 0);
+		cases = stat.getDoubleCovidData(name, 3);
+		deaths = stat.getDoubleCovidData(name, 4);
+		dates = stat.getStringCovidData(name, 0);
 //		ArrayList<Double> pre = predictData();
 		
 //		ArrayList<Double> cases = new ArrayList<Double>();
@@ -311,6 +315,8 @@ public class StatesGraphics extends PApplet{
 	 * @param y y coordinates of the top of where the text starts
 	 */
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
+
+		
 		ArrayList<String> list = stat.getVaccinationInfo(name);
 		p.fill(0);
 		p.stroke(0);
@@ -318,7 +324,7 @@ public class StatesGraphics extends PApplet{
 		p.textAlign(LEFT);
 		
 		if(list.size() > 0){
-			p.text("updated as of " + list.get(0), (float)x, (float)(y + 30));
+			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y + 30));
 			
 			p.textSize(writingSize);
 			p.textLeading(leading);

@@ -22,7 +22,7 @@ import java.util.List;
 public class Stats {
 	
 	private double mortalityRate = 0.0;
-	
+
 	/**
 	 * this method uses java.io api to copy the data on cvc approved vaccine dataset to the csv file in the data folder.
 	 * @throws IOException
@@ -143,6 +143,7 @@ public class Stats {
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
 	public ArrayList<String> getStringCovidData(String state, int index) {
+		
 		
 		ArrayList<String> data = new ArrayList<String>();
 		
