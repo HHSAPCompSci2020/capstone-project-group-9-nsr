@@ -163,10 +163,7 @@ public class StatesGraphics extends PApplet{
 		for(int i = 0; i < points.size() - 1; i++) {
 //			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
-		}
-		
-//		writeInfo(p, (x - 70 + x + width) / 2 , y + height + 50, (float)height/45, (float)height/60, (float)height/50);
-		
+		}		
 
 	}
 	

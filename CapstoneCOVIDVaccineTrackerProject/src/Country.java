@@ -110,9 +110,6 @@ public class Country extends Frame{
 		if(statePageOpen) {
 			goToStatePage(surface, stateInput);
 		}
-		
-		//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
-
 		//add if you go back, make statePage = false
 		
 	}

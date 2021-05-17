@@ -31,10 +31,7 @@ public class State extends Frame{
 	public State(String stateName) {
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
-		name = stateName; 
-//		stats = new Stats();
-//		stateStats = stats.getVaccinationInfo(name);
-//		System.out.println(stateStats.toString());
+		name = stateName;
 	}
 	
 	
@@ -59,11 +56,6 @@ public class State extends Frame{
 		} else {
 			map.resize(screenWidth/2, 0);
 		}
-//		
-//		graphX = 5*(screenWidth/9);
-//		graphY = screenHeight/20;
-//		surface.textAlign(LEFT);
-//		graph.drawGraph(surface, graphX, graphY, graphWidth, graphHeight);
 		
 		graph.draw(surface);
 		
