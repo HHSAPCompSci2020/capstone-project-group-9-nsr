@@ -212,6 +212,19 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
+			if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) {
+				map.clickAvailableVax = true;
+			}
+			if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *2), backButtonWidth, backButtonHeight)) {
+				map.clickFullyVaxed = true;
+				reset();
+			}
+			if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *3), backButtonWidth, backButtonHeight)) {
+				map.clickPeopleVaxed = true; 
+			}
+			if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *4), backButtonWidth, backButtonHeight)) {
+				map.clickVaxName = true;
+			}
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
@@ -322,7 +335,14 @@ public class DrawingSurface extends PApplet{
 		mapClicked = false;
 		infoClicked= false;
 		insClicked = false;
+		moreInfo.setPfizer(false);
+		moreInfo.setJohnson(false);
+		moreInfo.setModerna(false);
 		map.statePageOpen = false;
+		map.clickAvailableVax = false;
+		map.clickFullyVaxed = false;
+		map.clickPeopleVaxed = false; 
+		map.clickVaxName = false;
 		x = 0;
 	}
 	/**goes to map page
@@ -340,6 +360,33 @@ public class DrawingSurface extends PApplet{
 				}
 			textSize(backButtonTextSize);
 	    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+	    	
+	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight, "names of vaccines used today");
+	    	
+	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight, "total vaccinations available");
+	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight, "people vaccinated");
+	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight)) 
+	    		fill(150);
+			else {
+				  fill(218);
+				}
+	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, "people fully vaccinated");
+	    	
 	}
 	/**
 	 * goes to info page 

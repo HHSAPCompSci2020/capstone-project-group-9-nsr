@@ -194,20 +194,6 @@ public class Country extends Frame{
 	  return false;
 	}
 	
-	public void mouseClicked() {
-		if (overButton((int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight)) {
-			clickVaxName = true;
-		}
-		if (overButton((int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight)) {
-			clickAvailableVax = true;
-		}
-		if (overButton((int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight)) {
-			clickPeopleVaxed = true;
-		}
-		if (overButton((int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight)) {
-			clickFullyVaxed = true;
-		}
-	}
 	
 	/**
 	 * @return width of the screen(drawing window)
