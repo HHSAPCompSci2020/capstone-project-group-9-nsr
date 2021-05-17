@@ -31,6 +31,7 @@ public class StatesGraphics extends PApplet{
 	float buttonDistance;
 	int buttonWidth, buttonHeight;
 	int buttonX, buttonY;
+	boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -38,6 +39,13 @@ public class StatesGraphics extends PApplet{
 	public StatesGraphics() {
 		name = null;
 		stat = new Stats();
+		clickVaxAvailable = false;
+		clickVaxDistributed = false;
+		clickDistPercent = false;
+		clickPeopleVaxed = false;
+		clickTotalVaxPercent = false;
+		clickFullyVaxed = false;
+		clickFullyVaxedPercent = false;
 	}
 	
 	/**constructor
@@ -47,6 +55,13 @@ public class StatesGraphics extends PApplet{
 	public StatesGraphics(String state) {
 		name = state;
 		stat = new Stats();
+		clickVaxAvailable = false;
+		clickVaxDistributed = false;
+		clickDistPercent = false;
+		clickPeopleVaxed = false;
+		clickTotalVaxPercent = false;
+		clickFullyVaxed = false;
+		clickFullyVaxedPercent = false;
 	}
 	
 	/**returns the name of the state
