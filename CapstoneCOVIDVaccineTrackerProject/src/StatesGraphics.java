@@ -196,7 +196,7 @@ public class StatesGraphics extends PApplet{
 		p.text("number of cases", (float)(x + 10), (float)((y + height + 10)));
 		
 		p.fill(255, 0, 0);
-		p.text("number of deathss", (float)(x + 10), (float)((y + height + 20)));
+		p.text("number of deaths", (float)(x + 10), (float)((y + height + 20)));
 
 		//find diff in last and first date
 		Period period = Period.between(firstDate, lastDate);
@@ -330,7 +330,7 @@ public class StatesGraphics extends PApplet{
 				   "people fully vaccinated : " + list.get(7) + "\n" +
 				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
 		}else {
-			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
+			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
 		}
 		
 	}
