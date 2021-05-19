@@ -291,4 +291,8 @@ public class Country extends Frame{
 	public boolean getClickFullyVaxed() {
 		return clickFullyVaxed;
 	}
+	
+	public TreeMap<String, State> getStates(){
+		return states;
+	}
 }

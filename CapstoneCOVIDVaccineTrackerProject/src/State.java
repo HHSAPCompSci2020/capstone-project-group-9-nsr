@@ -51,7 +51,7 @@ public class State extends Frame{
 			if (mapWidth > screenWidth/2) {
 				map.resize(screenWidth/2, 0);
 			} else {
-				map.resize(0, (screenHeight-screenHeight/60));
+				map.resize(0, (screenHeight/2));
 			}
 		} else {
 			map.resize(screenWidth/2, 0);
