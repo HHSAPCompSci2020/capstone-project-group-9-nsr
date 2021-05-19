@@ -50,7 +50,8 @@ public class State extends Frame{
 		if (screenHeight < screenWidth) {
 			if (mapWidth > screenWidth/2) {
 				map.resize(screenWidth/2, 0);
-			} else {
+			} 
+			if (mapHeight > screenHeight/2) {
 				map.resize(0, (screenHeight/2));
 			}
 		} else {
@@ -64,6 +65,7 @@ public class State extends Frame{
 		drawDropDownButton(surface, screenWidth);
 	}
 	
+	//get methods
 	/**
 	 * @return name of the state
 	 */
@@ -121,5 +123,34 @@ public class State extends Frame{
 	
 	public boolean getClickFullyVaxedPercent() {
 		return graph.getClickFullyVaxedPercent();
+	}
+	
+	//set methods
+	public void setClickVaxAvailable(boolean state) {
+		graph.setClickVaxAvailable(state);
+	}
+	
+	public void setClickVaxDistributed(boolean state) {
+		graph.setClickVaxDistributed(state);
+	}
+	
+	public void setClickDistPercent(boolean state) {
+		graph.setClickDistPercent(state);
+	}
+	
+	public void setClickPeopleVaxed(boolean state) {
+		graph.setClickPeopleVaxed(state);
+	}
+	
+	public void setClickTotalVaxPercent(boolean state) {
+		graph.setClickTotalVaxPercent(state);
+	}
+	
+	public void setClickFullyVaxed(boolean state) {
+		graph.setClickFullyVaxed(state);
+	}
+	
+	public void setClickFullyVaxedPercent(boolean state) {
+		graph.setClickFullyVaxedPercent(state);
 	}
 }

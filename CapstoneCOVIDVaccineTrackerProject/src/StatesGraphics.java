@@ -437,5 +437,34 @@ public class StatesGraphics extends PApplet{
 	public boolean getClickFullyVaxedPercent() {
 		return clickFullyVaxedPercent;
 	}
+	
+	public void setClickVaxAvailable(boolean state) {
+		clickVaxAvailable = state;
+	}
+	
+	public void setClickVaxDistributed(boolean state) {
+		clickVaxDistributed = state;
+	}
+	
+	public void setClickDistPercent(boolean state) {
+		clickDistPercent = state;
+	}
+	
+	public void setClickPeopleVaxed(boolean state) {
+		clickPeopleVaxed = state;
+	}
+	
+	public void setClickTotalVaxPercent(boolean state) {
+		clickTotalVaxPercent = state;
+	}
+	
+	public void setClickFullyVaxed(boolean state) {
+		clickFullyVaxed = state;
+	}
+	
+	public void setClickFullyVaxedPercent(boolean state) {
+		clickFullyVaxedPercent = state;
+	}
+
 
 }

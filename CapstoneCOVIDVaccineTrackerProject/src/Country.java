@@ -258,37 +258,12 @@ public class Country extends Frame{
 		}
 	}
 	
-	
+	//get methods
 	/**
 	 * @return width of the screen(drawing window)
 	 */
 	public int getScreenW() {
 		return screenWidth;
-	}
-	//	boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
-
-	public void setClickVaxName(boolean state) {
-		clickVaxName = state;
-	}
-	
-	public void setClickAvailableVax(boolean state) {
-		clickAvailableVax = state;
-	}
-	
-	public void setClickPeopleVaxed(boolean state) {
-		clickPeopleVaxed = state;
-	}
-	
-	public void setClickFullyVaxed(boolean state) {
-		clickFullyVaxed = state;
-	}
-	
-	public void setStatePageOpen(boolean state) {
-		statePageOpen = state;
-	}
-	
-	public void setOpenDropDown(boolean state) {
-		openDropDown = state;
 	}
 	
 	public boolean getStatePageOpen() {
@@ -353,5 +328,30 @@ public class Country extends Frame{
 	
 	public String getStateInput() {
 		return stateInput;
+	}
+	
+	//set methods
+	public void setClickVaxName(boolean state) {
+		clickVaxName = state;
+	}
+	
+	public void setClickAvailableVax(boolean state) {
+		clickAvailableVax = state;
+	}
+	
+	public void setClickPeopleVaxed(boolean state) {
+		clickPeopleVaxed = state;
+	}
+	
+	public void setClickFullyVaxed(boolean state) {
+		clickFullyVaxed = state;
+	}
+	
+	public void setStatePageOpen(boolean state) {
+		statePageOpen = state;
+	}
+	
+	public void setOpenDropDown(boolean state) {
+		openDropDown = state;
 	}
 }
