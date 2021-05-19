@@ -389,5 +389,55 @@ public class StatesGraphics extends PApplet{
 	  }
 	  return false;
 	}
+	
+	public int getButtonX() {
+		return buttonX;
+	}
+	
+	public int getButtonY() {
+		return buttonY;
+	}
+	
+	public int getButtonWidth() {
+		return buttonWidth;
+	}
+	
+	public int getButtonHeight() {
+		return buttonHeight;
+	}
+	
+	public float getButtonDistance() {
+		return buttonDistance;
+	}
+	
+	//	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
+	
+	public boolean getClickVaxAvailable() {
+		return clickVaxAvailable;
+	}
+	
+	public boolean getClickVaxDistributed() {
+		return clickVaxDistributed;
+	}
+	
+	public boolean getClickDistPercent() {
+		return clickDistPercent;
+	}
+	
+	public boolean getClickPeopleVaxed() {
+		return clickPeopleVaxed;
+	}
+	
+	public boolean getClickTotalVaxPercent() {
+		return clickTotalVaxPercent;
+	}
+	
+	public boolean getClickFullyVaxed() {
+		return clickFullyVaxed;
+	}
+	
+	public boolean getClickFullyVaxedPercent() {
+		return clickFullyVaxedPercent;
+	}
 
 }

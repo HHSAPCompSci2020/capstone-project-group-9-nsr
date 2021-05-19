@@ -70,4 +70,56 @@ public class State extends Frame{
 	public String getName() {
 		return name;
 	}
+	
+	public StatesGraphics getGraph() {
+		return graph;
+	}
+	
+	public int getButtonX() {
+		return graph.getButtonX();
+	}
+	
+	public int getButtonY() {
+		return graph.getButtonY();
+	}
+	
+	public int getButtonWidth() {
+		return graph.getButtonWidth();
+	}
+	
+	public int getButtonHeight() {
+		return graph.getButtonHeight();
+	}
+	
+	public float getButtonDistance() {
+		return graph.getButtonDistance();
+	}
+		
+	public boolean getClickVaxAvailable() {
+		return graph.getClickVaxAvailable();
+	}
+	
+	public boolean getClickVaxDistributed() {
+		return graph.getClickVaxDistributed();
+	}
+	
+	public boolean getClickDistPercent() {
+		return graph.getClickDistPercent();
+	}
+	
+	public boolean getClickPeopleVaxed() {
+		return graph.getClickPeopleVaxed();
+	}
+	
+	public boolean getClickTotalVaxPercent() {
+		return graph.getClickTotalVaxPercent();
+	}
+	
+	public boolean getClickFullyVaxed() {
+		return graph.getClickFullyVaxed();
+	}
+	
+	public boolean getClickFullyVaxedPercent() {
+		return graph.getClickFullyVaxedPercent();
+	}
 }

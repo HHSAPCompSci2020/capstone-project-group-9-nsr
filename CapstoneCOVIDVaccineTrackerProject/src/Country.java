@@ -27,6 +27,9 @@ public class Country extends Frame{
 	private ArrayList<String> list = stats.getCountryData();
 	private String names = "";
 	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
+	private String vaxNamesString, vaxAvailableString, peopleVaxedString, peopleFullyVaxedString;
+	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
+
 	
 	/**
 	 * constructor that initializes fields:
@@ -41,10 +44,14 @@ public class Country extends Frame{
 		clickAvailableVax = false;
 		clickPeopleVaxed = false;
 		clickFullyVaxed = false;
-		vaxNames = "names of vaccines used today";
-		vaxAvailable = "total vaccinations available";
-		peopleVaxed = "people vaccinated";
-		peopleFullyVaxed = "people fully vaccinated";
+		vaxNamesDisplay = "";
+		vaxAvailableDisplay = "";
+		peopleVaxedDisplay = "";
+		peopleFullyVaxedDisplay = "";
+		vaxNamesString = "names of vaccines used today";
+		vaxAvailableString = "total vaccinations available";
+		peopleVaxedString = "people vaccinated";
+		peopleFullyVaxedString = "people fully vaccinated";
 		for(int i = 0; i < list.size() - 6; i++) {
 			names += list.get(2 + i) + " ";
 		}
@@ -111,9 +118,9 @@ public class Country extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		buttonDistance = screenHeight/30;
-		buttonWidth = screenWidth/5;
-		buttonHeight = screenHeight/35;
+		buttonDistance = screenHeight/20;
+		buttonWidth = screenWidth/4;
+		buttonHeight = screenHeight/25;
 		if(!statePageOpen) {
 		if (screenHeight < screenWidth) {
 			map.resize(0, (screenHeight/3)*2);
@@ -134,24 +141,24 @@ public class Country extends Frame{
 		}
 		
 		if (clickVaxName) {
-			vaxNames = names;
+			vaxNamesDisplay = vaxNames;
 		} else {
-			vaxNames = "names of vaccines used today";
+			vaxNamesDisplay = vaxNamesString;
 		}
 		if (clickAvailableVax) {
-			vaxAvailable = list.get(list.size()-3);
+			vaxAvailableDisplay = vaxAvailableString;
 		} else {
-			vaxAvailable = "total vaccinations available";
+			vaxAvailableDisplay = vaxAvailable;
 		}
 		if (clickPeopleVaxed) {
-			peopleVaxed = list.get(list.size()-2);
+			peopleVaxedDisplay = peopleVaxedString;
 		} else {
-			peopleVaxed = "people vaccinated";
+			peopleVaxedDisplay = peopleVaxed;
 		}
 		if (clickFullyVaxed) {
-			peopleFullyVaxed = list.get(list.size()-1);
+			peopleFullyVaxedDisplay = peopleFullyVaxedString;
 		} else {
-			peopleFullyVaxed = "people fully vaccinated";
+			peopleFullyVaxedDisplay = peopleFullyVaxed;
 		}
 		
 		//add if you go back, make statePage = false
@@ -180,10 +187,37 @@ public class Country extends Frame{
 		
 		
 		p.textLeading(leading);
-		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, vaxNames, 218);
-		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, vaxAvailable, 218);
-		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, peopleVaxed, 218);
-		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxed, 218);
+		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, vaxNamesDisplay, 218);
+		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
+		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
+		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
+		
+		String vaxAvailableTemp = list.get(list.size()-3);
+		System.out.println("vaxAvialable: " + vaxAvailable);
+		for (int i = vaxAvailableTemp.length()-1; i >= 0; i--) {
+			vaxAvailable = vaxAvailableTemp.substring(i, i+1) + vaxAvailable;
+			if (i % 3 == 0) {
+				vaxAvailable = "," + vaxAvailable;
+			} 
+		}
+		
+		String peopleVaxedTemp = list.get(list.size()-2);
+		System.out.println("vaxAvialable: " + peopleVaxed);
+		for (int i = peopleVaxedTemp.length()-1; i >= 0; i--) {
+			peopleVaxed = peopleVaxedTemp.substring(i, i+1) + peopleVaxed;
+			if (i % 3 == 0) {
+				peopleVaxed = "," + peopleVaxed;
+			} 
+		}
+		
+		String peopleFullyVaxedTemp = list.get(list.size()-1);
+		System.out.println("vaxAvialable: " + peopleFullyVaxed);
+		for (int i = peopleFullyVaxedTemp.length()-1; i >= 0; i--) {
+			peopleFullyVaxed = peopleFullyVaxedTemp.substring(i, i+1) + peopleFullyVaxed;
+			if (i % 3 == 0) {
+				peopleFullyVaxed = "," + peopleFullyVaxed;
+			} 
+		}
 
 	}
 	
@@ -261,19 +295,19 @@ public class Country extends Frame{
 	}
 	
 	public String getVaxNames() {
-		return vaxNames;
+		return vaxNamesDisplay;
 	}
 	
 	public String getVaxAvailable() {
-		return vaxAvailable;
+		return vaxAvailableDisplay;
 	}
 	
 	public String getPeopleVaxed() {
-		return peopleVaxed;
+		return peopleVaxedDisplay;
 	}
 	
 	public String getPeopleFullyVaxed() {
-		return peopleFullyVaxed;
+		return peopleFullyVaxedDisplay;
 	}
 	
 	public boolean getClickVaxName() {
