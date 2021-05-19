@@ -257,7 +257,45 @@ public class DrawingSurface extends PApplet{
 				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *4), map.getButtonWidth(), map.getButtonHeight())) {
 					map.setClickFullyVaxed(!map.getClickFullyVaxed());
 				}
+			}	else { 
+			
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxAvailable(true);
+				}
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*2),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxDistributed(true);
+				}
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*3),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickDistPercent(true);
+				}
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*4),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickPeopleVaxed(true);
+				}
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*5),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickTotalVaxPercent(true);
+				} 
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*6),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxed(true);
+				}
+				if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(), 
+						(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*7),
+						map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxedPercent(true);
+				}
 			}
+				//get boolean and check over button, then change boolean
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
@@ -428,6 +466,49 @@ public class DrawingSurface extends PApplet{
 			r1= 214;
 			g1= 244;
 			b1= 255;
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+					fill(r, g, b);
+				else 
+					fill(r1,g1,b1);
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*2),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*3),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*4),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*5),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*6),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.getStates().get(map.getStateInput()).getGraph().getButtonX(),
+					(int)(map.getStates().get(map.getStateInput()).getGraph().getButtonY()+map.getStates().get(map.getStateInput()).getGraph().getButtonDistance()*7),
+					map.getStates().get(map.getStateInput()).getGraph().getButtonWidth(), map.getStates().get(map.getStateInput()).getGraph().getButtonHeight())) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
 		}
 		fillBackButton();
 	}
