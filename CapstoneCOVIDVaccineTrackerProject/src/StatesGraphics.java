@@ -390,6 +390,7 @@ public class StatesGraphics extends PApplet{
 	  return false;
 	}
 	
+	//get methods
 	public int getButtonX() {
 		return buttonX;
 	}
@@ -438,6 +439,7 @@ public class StatesGraphics extends PApplet{
 		return clickFullyVaxedPercent;
 	}
 	
+	//set methods	
 	public void setClickVaxAvailable(boolean state) {
 		clickVaxAvailable = state;
 	}
