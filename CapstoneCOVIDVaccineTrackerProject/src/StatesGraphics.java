@@ -409,9 +409,7 @@ public class StatesGraphics extends PApplet{
 	public float getButtonDistance() {
 		return buttonDistance;
 	}
-	
-	//	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
-	
+		
 	public boolean getClickVaxAvailable() {
 		return clickVaxAvailable;
 	}
