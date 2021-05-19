@@ -248,19 +248,49 @@ public class DrawingSurface extends PApplet{
 				if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) {
 					map.clickAvailableVax = true;
 				}
-				if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *2), backButtonWidth, backButtonHeight)) {
+				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *2), map.buttonWidth, map.buttonHeight)) {
 					map.clickFullyVaxed = true;
 					reset();
 				}
-				if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *3), backButtonWidth, backButtonHeight)) {
+				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *3), map.buttonWidth, map.buttonHeight)) {
 					map.clickPeopleVaxed = true; 
 				}
-				if(overButton(backButtonX, (int)(backButtonY+ map.buttonDistance *4), backButtonWidth, backButtonHeight)) {
+				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *4), map.buttonWidth, map.buttonHeight)) {
 					map.clickVaxName = true;
 				}
 			}
-			else {
-				 
+			else { 
+			
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickVaxAvailable = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*2),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickVaxDistributed = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*3),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickDistPercent = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*4),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickPeopleVaxed = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*5),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickTotalVaxPercent = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*6),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickFullyVaxed = true;
+				}
+				if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*7),
+						map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) {
+					map.states.get(map.stateInput).graph.clickFullyVaxedPercent= true;
+				}
+				
+				//get boolean and check over button, then change boolean
 			}
 		}
 		if(infoPage) {
@@ -427,7 +457,43 @@ public class DrawingSurface extends PApplet{
 	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, map.string4);
 		}	
 		else {
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+					fill(r, g, b);
+				else 
+					fill(r1,g1,b1);
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*2),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
 			
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*3),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*4),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*5),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*6),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			if(overButton(map.states.get(map.stateInput).graph.buttonX, (int)(map.states.get(map.stateInput).graph.buttonY+map.states.get(map.stateInput).graph.buttonDistance*7),
+					map.states.get(map.stateInput).graph.buttonWidth, map.states.get(map.stateInput).graph.buttonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			//draw and fill button when hovering over
 		}
 	}
 	/**
