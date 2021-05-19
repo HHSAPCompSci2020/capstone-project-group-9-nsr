@@ -9,9 +9,9 @@ import processing.core.PImage;
  *
  */
 public class State extends Frame{
-	StatesGraphics graph;
-	String name;
-	PImage map;
+	private StatesGraphics graph;
+	private String name;
+	private PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
 	private double graphWidth, graphHeight, graphX, graphY;

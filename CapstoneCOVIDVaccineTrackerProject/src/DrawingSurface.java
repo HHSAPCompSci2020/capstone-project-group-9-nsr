@@ -186,7 +186,7 @@ public class DrawingSurface extends PApplet{
 			  else
 				  goToIns();
 		  }
-		  textSize(width/70);
+		  textSize(backButtonTextSize);
 		  if(overButton(quitX, quitY, backButtonWidth, backButtonHeight)) 
 			  fill(r, g, b);
 			else {
@@ -238,25 +238,24 @@ public class DrawingSurface extends PApplet{
 		  } 
 		}
 		if(mapPage) {
-			map.openDropDown = overButton(map.getScreenW()-45, 0, 45, 40);
+			map.setOpenDropDown(overButton(map.getScreenW()-45, 0, 45, 40));
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
 				mapPage = false;
 				mainPage = true;
 				reset();
 			}
-			if(!map.statePageOpen) {
-				if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) {
-					map.clickAvailableVax = true;
+			if(!map.getStatePageOpen()) {
+				if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickVaxName(!map.getClickVaxName());
 				}
-				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *2), map.buttonWidth, map.buttonHeight)) {
-					map.clickFullyVaxed = true;
-					reset();
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *2), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickAvailableVax(!map.getClickAvailableVax());
 				}
-				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *3), map.buttonWidth, map.buttonHeight)) {
-					map.clickPeopleVaxed = true; 
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *3), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickPeopleVaxed(!map.getClickPeopleVaxed()); 
 				}
-				if(overButton(map.buttonX, (int)(map.buttonY+ map.buttonDistance *4), map.buttonWidth, map.buttonHeight)) {
-					map.clickVaxName = true;
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *4), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickFullyVaxed(!map.getClickFullyVaxed());
 				}
 			}
 		}
@@ -374,11 +373,11 @@ public class DrawingSurface extends PApplet{
 		moreInfo.setPfizer(false);
 		moreInfo.setJohnson(false);
 		moreInfo.setModerna(false);
-		map.statePageOpen = false;
-		map.clickAvailableVax = false;
-		map.clickFullyVaxed = false;
-		map.clickPeopleVaxed = false; 
-		map.clickVaxName = false;
+		map.setStatePageOpen(false);
+		map.setClickAvailableVax(false);
+		map.setClickFullyVaxed(false);
+		map.setClickPeopleVaxed(false);
+		map.setClickVaxName(false);
 		x = 0;
 		r = 255;
 		g = 202;
@@ -395,32 +394,32 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
-		if(!map.statePageOpen) {
-	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight)) 
+		if(!map.getStatePageOpen()) {
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance), map.buttonWidth, map.buttonHeight, map.string1);
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight(), map.getVaxNames());
 	    	
-	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight)) 
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*2), map.buttonWidth, map.buttonHeight, map.string2);
-	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight)) 
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight(), map.getVaxAvailable());
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*3), map.buttonWidth, map.buttonHeight, map.string3);
-	    	if(overButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight)) 
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleVaxed());
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.buttonX,(int)(map.buttonY+ map.buttonDistance*4), map.buttonWidth, map.buttonHeight, map.string4);
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleFullyVaxed());
 		}	
 		else {
 			r = 99;

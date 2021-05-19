@@ -12,21 +12,21 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Country extends Frame{
-	TreeMap<String, State> states = new TreeMap<String, State>();
-	PImage map;
-	MoreInfo moreInfo;
+	private TreeMap<String, State> states = new TreeMap<String, State>();
+	private PImage map;
+	private MoreInfo moreInfo;
 	private int screenHeight, screenWidth;
-	boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
-	boolean statePageOpen;
-	String stateInput;
-	String[] allStateNames;
-	Stats stats = new Stats();
-	float buttonDistance;
-	int buttonWidth, buttonHeight;
-	int buttonX, buttonY;
-	ArrayList<String> list = stats.getCountryData();
-	String names = "";
-	String string1, string2, string3, string4;
+	private boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
+	private boolean statePageOpen;
+	private String stateInput;
+	private String[] allStateNames;
+	private Stats stats = new Stats();
+	private float buttonDistance;
+	private int buttonWidth, buttonHeight;
+	private int buttonX, buttonY;
+	private ArrayList<String> list = stats.getCountryData();
+	private String names = "";
+	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
 	
 	/**
 	 * constructor that initializes fields:
@@ -41,10 +41,10 @@ public class Country extends Frame{
 		clickAvailableVax = false;
 		clickPeopleVaxed = false;
 		clickFullyVaxed = false;
-		string1 = "names of vaccines used today";
-		string2 = "total vaccinations available";
-		string3 = "people vaccinated";
-		string4 = "people fully vaccinated";
+		vaxNames = "names of vaccines used today";
+		vaxAvailable = "total vaccinations available";
+		peopleVaxed = "people vaccinated";
+		peopleFullyVaxed = "people fully vaccinated";
 		for(int i = 0; i < list.size() - 6; i++) {
 			names += list.get(2 + i) + " ";
 		}
@@ -134,16 +134,24 @@ public class Country extends Frame{
 		}
 		
 		if (clickVaxName) {
-			string1 = names;
+			vaxNames = names;
+		} else {
+			vaxNames = "names of vaccines used today";
 		}
 		if (clickAvailableVax) {
-			string2 = list.get(list.size()-3);
+			vaxAvailable = list.get(list.size()-3);
+		} else {
+			vaxAvailable = "total vaccinations available";
 		}
 		if (clickPeopleVaxed) {
-			string3 = list.get(list.size()-2);
+			peopleVaxed = list.get(list.size()-2);
+		} else {
+			peopleVaxed = "people vaccinated";
 		}
 		if (clickFullyVaxed) {
-			string4 = list.get(list.size()-1);
+			peopleFullyVaxed = list.get(list.size()-1);
+		} else {
+			peopleFullyVaxed = "people fully vaccinated";
 		}
 		
 		//add if you go back, make statePage = false
@@ -172,10 +180,10 @@ public class Country extends Frame{
 		
 		
 		p.textLeading(leading);
-		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, string1, 218);
-		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, string2, 218);
-		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, string3, 218);
-		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, string4, 218);
+		drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, vaxNames, 218);
+		drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, vaxAvailable, 218);
+		drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, peopleVaxed, 218);
+		drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxed, 218);
 
 	}
 	
@@ -202,5 +210,85 @@ public class Country extends Frame{
 	public int getScreenW() {
 		return screenWidth;
 	}
+	//	boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
+
+	public void setClickVaxName(boolean state) {
+		clickVaxName = state;
+	}
 	
+	public void setClickAvailableVax(boolean state) {
+		clickAvailableVax = state;
+	}
+	
+	public void setClickPeopleVaxed(boolean state) {
+		clickPeopleVaxed = state;
+	}
+	
+	public void setClickFullyVaxed(boolean state) {
+		clickFullyVaxed = state;
+	}
+	
+	public void setStatePageOpen(boolean state) {
+		statePageOpen = state;
+	}
+	
+	public void setOpenDropDown(boolean state) {
+		openDropDown = state;
+	}
+	
+	public boolean getStatePageOpen() {
+		return statePageOpen;
+	}
+	
+	public int getButtonX() {
+		return buttonX;
+	}
+	
+	public int getButtonY() {
+		return buttonY;
+	}
+	
+	public float getButtonDistance() {
+		return buttonDistance;
+	}
+	
+	public int getButtonWidth() {
+		return buttonWidth;
+	}
+	
+	public int getButtonHeight() {
+		return buttonHeight;
+	}
+	
+	public String getVaxNames() {
+		return vaxNames;
+	}
+	
+	public String getVaxAvailable() {
+		return vaxAvailable;
+	}
+	
+	public String getPeopleVaxed() {
+		return peopleVaxed;
+	}
+	
+	public String getPeopleFullyVaxed() {
+		return peopleFullyVaxed;
+	}
+	
+	public boolean getClickVaxName() {
+		return clickVaxName;
+	}
+	
+	public boolean getClickAvailableVax() {
+		return clickAvailableVax;
+	}
+	
+	public boolean getClickPeopleVaxed() {
+		return clickPeopleVaxed;
+	}
+	
+	public boolean getClickFullyVaxed() {
+		return clickFullyVaxed;
+	}
 }
