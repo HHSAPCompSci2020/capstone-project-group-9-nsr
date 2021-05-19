@@ -114,6 +114,7 @@ public class Country extends Frame{
 		buttonDistance = screenHeight/30;
 		buttonWidth = screenWidth/5;
 		buttonHeight = screenHeight/35;
+		if(!statePageOpen) {
 		if (screenHeight < screenWidth) {
 			map.resize(0, (screenHeight/3)*2);
 		} else {
@@ -124,6 +125,7 @@ public class Country extends Frame{
 		drawDropDownButton(surface, screenWidth);
 		writeInfo(surface, (6*screenWidth/9), screenHeight* 5 /20, screenHeight/45, screenHeight/60, screenHeight/50);
 		drawBackButton(surface, screenWidth, screenHeight);
+		}
 		if(openDropDown) {
 			createDropDown(surface);
 		}
