@@ -20,59 +20,24 @@ import processing.core.PApplet;
  */
 public class StatesGraphics extends PApplet{
 	
-	private Stats stat = new Stats();	
+	private Stats stat;	
 	private String name;
 	
 	private double graphWidth, graphHeight;
 	
-	private ArrayList<Double> cases, deaths;
-	private ArrayList<String> dates;
-	
-	ArrayList<String> list = stat.getVaccinationInfo(name);
-	
-	private float buttonDistance;
-	private int buttonWidth, buttonHeight;
-	private int buttonX, buttonY;
-	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
-	private String vaxAvailable, vaxDist, distPercent, peopleVaxed, vaxedPercent, peopleFullyVaxed, fullyVaxedPercent;
-	private String vaxAvailableString, vaxDistString, distPercentString, peopleVaxedString, vaxedPercentString, peopleFullyVaxedString, fullyVaxedPercentString;
-	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
+	ArrayList<Double> cases, deaths;
+	ArrayList<String> dates, vaccine;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
 	 */
 	public StatesGraphics() {
-		name = null;
-		buttonX = 0;
-		buttonY = 0;
-		clickVaxAvailable = false;
-		clickVaxDistributed = false;
-		clickDistPercent = false;
-		clickPeopleVaxed = false;
-		clickTotalVaxPercent = false;
-		clickFullyVaxed = false;
-		clickFullyVaxedPercent = false;
-		vaxAvailable = " " ;
-		vaxDist = " " ;
-		distPercent = " " ;
-		peopleVaxed = " " ;
-		vaxedPercent = " " ;
-		peopleFullyVaxed = " " ;
-		fullyVaxedPercent = " " ;
-		vaxAvailableString = "total vaccinations available";
-		vaxDistString = "total vaccinations distributed";
-		distPercentString = "total distribution percentage";
-		peopleVaxedString = "people vaccinated";
-		vaxedPercentString = "total vaccinations percentage";
-		peopleFullyVaxedString = "people fully vaccinated";
-		fullyVaxedPercentString = "fully vaccinated percentage";
-		vaxAvailableDisplay = " " ;
-		vaxDistDisplay = " " ;
-		distPercentDisplay = " " ;
-		peopleVaxedDisplay = " " ;
-		vaxedPercentDisplay = " " ;
-		peopleFullyVaxedDisplay = " " ;
-		fullyVaxedPercentDisplay = " " ;
+		name = "";
+		stat = new Stats();
+		cases = stat.getDoubleCovidData(name, 3);
+		deaths = stat.getDoubleCovidData(name, 4);
+		dates = stat.getStringCovidData(name, 0);
+		vaccine = stat.getVaccinationInfo(name);
 	}
 	
 	/**constructor
@@ -81,40 +46,13 @@ public class StatesGraphics extends PApplet{
 	 */
 	public StatesGraphics(String state) {
 		name = state;
-		buttonX = 0;
-		buttonY = 0;
-		clickVaxAvailable = false;
-		clickVaxDistributed = false;
-		clickDistPercent = false;
-		clickPeopleVaxed = false;
-		clickTotalVaxPercent = false;
-		clickFullyVaxed = false;
-		clickFullyVaxedPercent = false;
-		vaxAvailable = " " ;
-		vaxDist = " " ;
-		distPercent = " " ;
-		peopleVaxed = " " ;
-		vaxedPercent = " " ;
-		peopleFullyVaxed = " " ;
-		fullyVaxedPercent = " " ;
-		vaxAvailableString = "total vaccinations available";
-		vaxDistString = "total vaccinations distributed";
-		distPercentString = "total distribution percentage";
-		peopleVaxedString = "people vaccinated";
-		vaxedPercentString = "total vaccinations percentage";
-		peopleFullyVaxedString = "people fully vaccinated";
-		fullyVaxedPercentString = "fully vaccinated percentage";
-		vaxAvailableDisplay = " " ;
-		vaxDistDisplay = " " ;
-		distPercentDisplay = " " ;
-		peopleVaxedDisplay = " " ;
-		vaxedPercentDisplay = " " ;
-		peopleFullyVaxedDisplay = " " ;
-		fullyVaxedPercentDisplay = " " ;
+		stat = new Stats();
+		cases = stat.getDoubleCovidData(name, 3);
+		deaths = stat.getDoubleCovidData(name, 4);
+		dates = stat.getStringCovidData(name, 0);
+		vaccine = stat.getVaccinationInfo(name);
 	}
 	
-	
-
 	/**returns the name of the state
 	 * @return name String
 	 */
@@ -122,6 +60,34 @@ public class StatesGraphics extends PApplet{
 		return name;
 	}
 	
+	private ArrayList<Double> predictData(LocalDate lastDay){
+		
+		ArrayList<Double> preCases = new ArrayList<Double>();
+		vaccine = stat.getVaccinationInfo(name);
+		
+		double full = Double.parseDouble(vaccine.get(5));
+		double once = Double.parseDouble(vaccine.get(4));
+
+		preCases.add(cases.get(cases.size()-1));
+		
+		for(int i = 0; i < 14; i++) {
+			
+			double casesFifteen = cases.get(((dates.indexOf(dates.size()-15))));
+			double casesFourteen = cases.get(((dates.indexOf(dates.size()-14))));
+			double diff = casesFifteen - casesFourteen;
+			
+			if(diff < 0) {
+				diff = 0;
+			}
+			
+			preCases.add(preCases.get(i) * 2 - (full * 0.9) - (once * 0.8));
+			
+		}
+		
+		return preCases;
+	}
+	
+
 	/**
 	 * 
 	 * @return
@@ -209,9 +175,6 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		cases = stat.getDoubleCovidData(name, 3);
-		deaths = stat.getDoubleCovidData(name, 4);
-		dates = stat.getStringCovidData(name, 0);
 //		ArrayList<Double> pre = predictData();
 		
 //		ArrayList<Double> cases = new ArrayList<Double>();
@@ -335,6 +298,9 @@ public class StatesGraphics extends PApplet{
 ////			}
 //		}
 		
+//		ArrayList<Double> preData = predictData(lastDate);
+//		System.out.println(preData.toString());
+		 
 		double px = xAxis + PIXEL_PER_X * dates.size()-1;
 		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
 		Point po = new Point();
@@ -358,19 +324,12 @@ public class StatesGraphics extends PApplet{
 			p.stroke(255, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
 
-		}
-		
-		p.stroke(0,0,0);
-		p.noFill();
+		}		
 
 	}
 	
 	
 	public void draw (PApplet surface) {
-		list = stat.getVaccinationInfo(name);
-		buttonDistance = surface.height/20;
-		buttonWidth = surface.width/3;
-		buttonHeight = surface.height/25;
 		if (surface.height<surface.width) {
 			graphWidth = (surface.height/2);
 			graphHeight = (surface.height/2);
@@ -378,56 +337,8 @@ public class StatesGraphics extends PApplet{
 			graphWidth = (surface.width/2);
 			graphHeight = (surface.width/2);
 		}
-		
-		vaxAvailable = list.get(2);
-		vaxDist = list.get(3);
-		distPercent = list.get(9);
-		peopleVaxed = list.get(4);
-		vaxedPercent = list.get(6) + "% of the state population";
-		peopleFullyVaxed = list.get(7);
-		fullyVaxedPercent = list.get(5) + "% of the state population";
-		
-		
-		
-		if (clickVaxAvailable) {
-			vaxAvailableDisplay = vaxAvailable;
-		} else {
-			vaxAvailableDisplay = vaxAvailableString;
-		}
-		if (clickVaxDistributed) {
-			vaxDistDisplay = vaxDist;
-		} else {
-			vaxDistDisplay = vaxDistString;
-		}
-		if (clickDistPercent) {
-			distPercentDisplay = distPercent;
-		} else {
-			distPercentDisplay = distPercentString;
-		}
-		if (clickPeopleVaxed) {
-			peopleVaxedDisplay = peopleVaxed;
-		} else {
-			peopleVaxedDisplay = peopleVaxedString;
-		}
-		if (clickTotalVaxPercent) {
-			vaxedPercentDisplay = vaxedPercent;
-		} else {
-			vaxedPercentDisplay = vaxedPercentString;
-		}
-		if (clickFullyVaxed) {
-			peopleFullyVaxedDisplay = peopleFullyVaxed;
-		} else {
-			peopleFullyVaxedDisplay = peopleFullyVaxedString;
-		}
-		if (clickFullyVaxedPercent) {
-			fullyVaxedPercentDisplay = fullyVaxedPercent;
-		} else {
-			fullyVaxedPercentDisplay = fullyVaxedPercent;
-		}
-		
-		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
-		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
-		
+		drawGraph(surface, 5*(surface.width/9), surface.height/20, graphWidth, graphHeight);
+		writeInfo(surface, (5*surface.width/9) , surface.height* 13 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 	}
 	
 	/**
@@ -440,136 +351,28 @@ public class StatesGraphics extends PApplet{
 	 * @param y y coordinates of the top of where the text starts
 	 */
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
-		buttonX = (int)x;
-		buttonY = (int)y;
-		
+
 		p.fill(0);
-//		p.stroke(0);
+		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(LEFT);
 		
-		if(list.size() > 0){
-			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y));
+		if(vaccine.size() > 0){
+			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y + 30));
 			
 			p.textSize(writingSize);
 			p.textLeading(leading);
-			
-			drawButton(p, buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxDistDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, distPercentDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(5*buttonDistance)), buttonWidth, buttonHeight, vaxedPercentDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
-			drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay, 218);
-
-//			p.text("total vaccinations available : " + list.get(2) + "\n" +
-//			
-//				   "total vaccinations distributed : " + list.get(3) + "\n" +
-//				   "total distribution percentage : " + list.get(9) + "\n" +
-//				   "people vaccinated : " + list.get(4) + "\n" +
-//				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
-//				   "people fully vaccinated : " + list.get(7) + "\n" +
-//				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x+500, (float)(y + 60));
-		} else {
-			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
+			p.text("total vaccinations available : " + vaccine.get(2) + "\n" +
+				   "total distributed : " + vaccine.get(3) + "\n" +
+				   "total distribution percentage : " + vaccine.get(9) + "\n" +
+				   "people vaccinated : " + vaccine.get(4) + "\n" +
+				   "total vaccinations percentage : " + vaccine.get(6) + "% of the state population" + "\n" +
+				   "people fully vaccinated : " + vaccine.get(7) + "\n" +
+				   "fully vaccinated percentage : " + vaccine.get(5) + "% of the state population", (float)x, (float)(y + 60));
+		}else {
+			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
 		}
 		
 	}
-	
-	public void drawButton(PApplet surface, int x, int y, int w, int h, String text, int fillColor) {
-		surface.fill(fillColor);
-		surface.rect(x, y, w, h, 10);
-    	surface.textAlign(surface.CENTER, surface.CENTER);
-    	surface.fill(0);
-    	surface.text(text, x + w/2, y + h/2);
-    	surface.noFill();
-	}
-	
-	public boolean overButton(int x, int y, int w, int h) {
-	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
-	    return true;
-	  }
-	  return false;
-	}
-	
-	
-	//get methods
-	public int getButtonX() {
-		return buttonX;
-	}
-	
-	public int getButtonY() {
-		return buttonY;
-	}
-	
-	public int getButtonWidth() {
-		return buttonWidth;
-	}
-	
-	public int getButtonHeight() {
-		return buttonHeight;
-	}
-	
-	public float getButtonDistance() {
-		return buttonDistance;
-	}
-		
-	public boolean getClickVaxAvailable() {
-		return clickVaxAvailable;
-	}
-	
-	public boolean getClickVaxDistributed() {
-		return clickVaxDistributed;
-	}
-	
-	public boolean getClickDistPercent() {
-		return clickDistPercent;
-	}
-	
-	public boolean getClickPeopleVaxed() {
-		return clickPeopleVaxed;
-	}
-	
-	public boolean getClickTotalVaxPercent() {
-		return clickTotalVaxPercent;
-	}
-	
-	public boolean getClickFullyVaxed() {
-		return clickFullyVaxed;
-	}
-	
-	public boolean getClickFullyVaxedPercent() {
-		return clickFullyVaxedPercent;
-	}
-	
-	//set methods	
-	public void setClickVaxAvailable(boolean state) {
-		clickVaxAvailable = state;
-	}
-	
-	public void setClickVaxDistributed(boolean state) {
-		clickVaxDistributed = state;
-	}
-	
-	public void setClickDistPercent(boolean state) {
-		clickDistPercent = state;
-	}
-	
-	public void setClickPeopleVaxed(boolean state) {
-		clickPeopleVaxed = state;
-	}
-	
-	public void setClickTotalVaxPercent(boolean state) {
-		clickTotalVaxPercent = state;
-	}
-	
-	public void setClickFullyVaxed(boolean state) {
-		clickFullyVaxed = state;
-	}
-	
-	public void setClickFullyVaxedPercent(boolean state) {
-		clickFullyVaxedPercent = state;
-	}
-
 
 }
