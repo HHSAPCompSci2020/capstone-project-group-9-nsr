@@ -73,7 +73,6 @@ public class StatesGraphics extends PApplet{
 		vaxedPercentDisplay = " " ;
 		peopleFullyVaxedDisplay = " " ;
 		fullyVaxedPercentDisplay = " " ;
-		setDisplayInfo();
 	}
 	
 	/**constructor
@@ -112,7 +111,6 @@ public class StatesGraphics extends PApplet{
 		vaxedPercentDisplay = " " ;
 		peopleFullyVaxedDisplay = " " ;
 		fullyVaxedPercentDisplay = " " ;
-//		setDisplayInfo();
 	}
 	
 	
@@ -380,8 +378,17 @@ public class StatesGraphics extends PApplet{
 			graphWidth = (surface.width/2);
 			graphHeight = (surface.width/2);
 		}
-		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
-		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		
+		vaxAvailable = list.get(2);
+		vaxDist = list.get(3);
+		distPercent = list.get(9);
+		peopleVaxed = list.get(4);
+		vaxedPercent = list.get(6) + "% of the state population";
+		peopleFullyVaxed = list.get(7);
+		fullyVaxedPercent = list.get(5) + "% of the state population";
+		
+		
+		
 		if (clickVaxAvailable) {
 			vaxAvailableDisplay = vaxAvailable;
 		} else {
@@ -417,6 +424,10 @@ public class StatesGraphics extends PApplet{
 		} else {
 			fullyVaxedPercentDisplay = fullyVaxedPercent;
 		}
+		
+		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
+		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		
 	}
 	
 	/**
@@ -481,65 +492,6 @@ public class StatesGraphics extends PApplet{
 	  return false;
 	}
 	
-	private void setDisplayInfo() {
-		vaxAvailable = list.get(2);
-//		for (int i = vaxAvailableTemp.length()-1; i >= 0; i--) {
-//			vaxAvailable = vaxAvailableTemp.substring(i, i+1) + vaxAvailable;
-//			if (i % 3 == 0 && i!=0) {
-//				vaxAvailable = "," + vaxAvailable;
-//			} 
-//		}
-		
-		vaxDist = list.get(3);
-//		for (int i = vaxDistTemp.length()-1; i >= 0; i--) {
-//			vaxDist = vaxDistTemp.substring(i, i+1) + vaxDist;
-//			if (i % 3 == 0 && i!=0) {
-//				vaxDist = "," + vaxDist;
-//			} 
-//		}
-		
-		distPercent = list.get(9);
-//		for (int i = distPercentTemp.length()-1; i >= 0; i--) {
-//			distPercent = distPercentTemp.substring(i, i+1) + distPercent;
-//			if (i % 3 == 0 && i!=0) {
-//				distPercent = "," + distPercent;
-//			} 
-//		}
-		
-		peopleVaxed = list.get(4);
-//		for (int i = peopleVaxedTemp.length()-1; i >= 0; i--) {
-//			peopleVaxed = peopleVaxedTemp.substring(i, i+1) + peopleVaxed;
-//			if (i % 3 == 0 && i!=0) {
-//				peopleVaxed = "," + peopleVaxed;
-//			} 
-//		}
-		
-		vaxedPercent = list.get(6);
-//		for (int i = vaxedPercentTemp.length()-1; i >= 0; i--) {
-//			vaxedPercent = vaxedPercentTemp.substring(i, i+1) + vaxedPercent;
-//			if (i % 3 == 0 && i!=0) {
-//				vaxedPercent = "," + vaxedPercent;
-//			} 
-//		}
-		vaxedPercent += "% of the state population";
-		
-		peopleFullyVaxed = list.get(7);
-//		for (int i = peopleFullyVaxedTemp.length()-1; i >= 0; i--) {
-//			peopleFullyVaxed = peopleFullyVaxedTemp.substring(i, i+1) + peopleFullyVaxed;
-//			if (i % 3 == 0 && i!=0) {
-//				peopleFullyVaxed = "," + peopleFullyVaxed;
-//			} 
-//		}
-		
-		fullyVaxedPercent = list.get(5);
-//		for (int i = fullyVaxedPercentTemp.length()-1; i >= 0; i--) {
-//			fullyVaxedPercent = fullyVaxedPercentTemp.substring(i, i+1) + fullyVaxedPercent;
-//			if (i % 3 == 0 && i!=0) {
-//				fullyVaxedPercent = "," + fullyVaxedPercent;
-//			} 
-//		}
-		fullyVaxedPercent += "% of the state population";
-	}
 	
 	//get methods
 	public int getButtonX() {
