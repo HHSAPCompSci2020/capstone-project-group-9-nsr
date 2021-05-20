@@ -32,6 +32,9 @@ public class StatesGraphics extends PApplet{
 	private int buttonWidth, buttonHeight;
 	private int buttonX, buttonY;
 	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
+	private String vaxAvailable, vaxDist, distPercent, peopleVaxed, vaxedPercent, peopleFullyVaxed, fullyVaxedPercent;
+	private String vaxAvailableString, vaxDistString, distPercentString, peopleVaxedString, vaxedPercentString, peopleFullyVaxedString, fullyVaxedPercentString;
+	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
@@ -39,6 +42,8 @@ public class StatesGraphics extends PApplet{
 	public StatesGraphics() {
 		name = null;
 		stat = new Stats();
+		buttonX = 0;
+		buttonY = 0;
 		clickVaxAvailable = false;
 		clickVaxDistributed = false;
 		clickDistPercent = false;
@@ -46,6 +51,28 @@ public class StatesGraphics extends PApplet{
 		clickTotalVaxPercent = false;
 		clickFullyVaxed = false;
 		clickFullyVaxedPercent = false;
+		vaxAvailable = " " ;
+		vaxDist = " " ;
+		distPercent = " " ;
+		peopleVaxed = " " ;
+		vaxedPercent = " " ;
+		peopleFullyVaxed = " " ;
+		fullyVaxedPercent = " " ;
+		vaxAvailableString = "total vaccinations available";
+		vaxDistString = "total vaccinations distributed";
+		distPercentString = "total distribution percentage";
+		peopleVaxedString = "people vaccinated";
+		vaxedPercentString = "total vaccinations percentage";
+		peopleFullyVaxedString = "people fully vaccinated";
+		fullyVaxedPercentString = "fully vaccinated percentage";
+		vaxAvailableDisplay = " " ;
+		vaxDistDisplay = " " ;
+		distPercentDisplay = " " ;
+		peopleVaxedDisplay = " " ;
+		vaxedPercentDisplay = " " ;
+		peopleFullyVaxedDisplay = " " ;
+		fullyVaxedPercentDisplay = " " ;
+		setDisplayInfo();
 	}
 	
 	/**constructor
@@ -55,6 +82,8 @@ public class StatesGraphics extends PApplet{
 	public StatesGraphics(String state) {
 		name = state;
 		stat = new Stats();
+		buttonX = 0;
+		buttonY = 0;
 		clickVaxAvailable = false;
 		clickVaxDistributed = false;
 		clickDistPercent = false;
@@ -62,8 +91,32 @@ public class StatesGraphics extends PApplet{
 		clickTotalVaxPercent = false;
 		clickFullyVaxed = false;
 		clickFullyVaxedPercent = false;
+		vaxAvailable = " " ;
+		vaxDist = " " ;
+		distPercent = " " ;
+		peopleVaxed = " " ;
+		vaxedPercent = " " ;
+		peopleFullyVaxed = " " ;
+		fullyVaxedPercent = " " ;
+		vaxAvailableString = "total vaccinations available";
+		vaxDistString = "total vaccinations distributed";
+		distPercentString = "total distribution percentage";
+		peopleVaxedString = "people vaccinated";
+		vaxedPercentString = "total vaccinations percentage";
+		peopleFullyVaxedString = "people fully vaccinated";
+		fullyVaxedPercentString = "fully vaccinated percentage";
+		vaxAvailableDisplay = " " ;
+		vaxDistDisplay = " " ;
+		distPercentDisplay = " " ;
+		peopleVaxedDisplay = " " ;
+		vaxedPercentDisplay = " " ;
+		peopleFullyVaxedDisplay = " " ;
+		fullyVaxedPercentDisplay = " " ;
+		setDisplayInfo();
 	}
 	
+	
+
 	/**returns the name of the state
 	 * @return name String
 	 */
@@ -325,6 +378,41 @@ public class StatesGraphics extends PApplet{
 		}
 		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		if (clickVaxAvailable) {
+			vaxAvailableDisplay = vaxAvailable;
+		} else {
+			vaxAvailableDisplay = vaxAvailableString;
+		}
+		if (clickVaxDistributed) {
+			vaxDistDisplay = vaxDist;
+		} else {
+			vaxDistDisplay = vaxDistString;
+		}
+		if (clickDistPercent) {
+			distPercentDisplay = distPercent;
+		} else {
+			distPercentDisplay = distPercentString;
+		}
+		if (clickPeopleVaxed) {
+			peopleVaxedDisplay = peopleVaxed;
+		} else {
+			peopleVaxedDisplay = peopleVaxedString;
+		}
+		if (clickTotalVaxPercent) {
+			vaxedPercentDisplay = vaxedPercent;
+		} else {
+			vaxedPercentDisplay = vaxedPercentString;
+		}
+		if (clickFullyVaxed) {
+			peopleFullyVaxedDisplay = peopleFullyVaxed;
+		} else {
+			peopleFullyVaxedDisplay = peopleFullyVaxedString;
+		}
+		if (clickFullyVaxedPercent) {
+			fullyVaxedPercentDisplay = fullyVaxedPercent;
+		} else {
+			fullyVaxedPercentDisplay = fullyVaxedPercent;
+		}
 	}
 	
 	/**
@@ -352,22 +440,22 @@ public class StatesGraphics extends PApplet{
 			p.textSize(writingSize);
 			p.textLeading(leading);
 			
-			drawButton(p, buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, "total vaccinations available", 218);
-			drawButton(p, buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, "total vaccinations distributed", 218);
-			drawButton(p, buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, "total distribution percentage", 218);
-			drawButton(p, buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, "people vaccinated", 218);
-			drawButton(p, buttonX, (int)(buttonY+(5*buttonDistance)), buttonWidth, buttonHeight, "total vaccinations percentage", 218);
-			drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, "people fully vaccinated", 218);
-			drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, "fully vaccinated percentage", 218);
+			drawButton(p, buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxDistDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, distPercentDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(5*buttonDistance)), buttonWidth, buttonHeight, vaxedPercentDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
+			drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay, 218);
 
-//			p.text("total vaccinations available : " + list.get(2) + "\n" +
-//			
-//				   "total vaccinations distributed : " + list.get(3) + "\n" +
-//				   "total distribution percentage : " + list.get(9) + "\n" +
-//				   "people vaccinated : " + list.get(4) + "\n" +
-//				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
-//				   "people fully vaccinated : " + list.get(7) + "\n" +
-//				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
+			p.text("total vaccinations available : " + list.get(2) + "\n" +
+			
+				   "total vaccinations distributed : " + list.get(3) + "\n" +
+				   "total distribution percentage : " + list.get(9) + "\n" +
+				   "people vaccinated : " + list.get(4) + "\n" +
+				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
+				   "people fully vaccinated : " + list.get(7) + "\n" +
+				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
 		}else {
 			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
@@ -388,6 +476,10 @@ public class StatesGraphics extends PApplet{
 	    return true;
 	  }
 	  return false;
+	}
+	
+	private void setDisplayInfo() {
+		
 	}
 	
 	//get methods

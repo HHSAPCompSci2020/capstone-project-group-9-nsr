@@ -36,6 +36,7 @@ public class Country extends Frame{
 	public Country() {
 		super("US_MAP.png");
 		initializeStates();
+		stateInput = "";
 		openDropDown = false;
 		statePageOpen = false;
 		clickVaxName = false;
@@ -215,9 +216,6 @@ public class Country extends Frame{
 	
 	private void setDisplayInfo() {
 		
-		
-		
-		System.out.println("vaxAvialable: " + vaxNames);
 		String[] vaxNamesTemp = vaxNames.split("\\s+");
 		vaxNames = " ";
 		for (int i = 0; i < vaxNamesTemp.length; i++) {
@@ -230,8 +228,6 @@ public class Country extends Frame{
 		
 		
 		String vaxAvailableTemp = list.get(list.size()-3);
-		
-		System.out.println("vaxAvialable: " + vaxAvailableTemp);
 		for (int i = vaxAvailableTemp.length()-1; i >= 0; i--) {
 			vaxAvailable = vaxAvailableTemp.substring(i, i+1) + vaxAvailable;
 			if (i % 3 == 0 && i!=0) {
@@ -240,7 +236,6 @@ public class Country extends Frame{
 		}
 		
 		String peopleVaxedTemp = list.get(list.size()-2);
-		System.out.println("vaxAvialable: " + peopleVaxedTemp);
 		for (int i = peopleVaxedTemp.length()-1; i >= 0; i--) {
 			peopleVaxed = peopleVaxedTemp.substring(i, i+1) + peopleVaxed;
 			if (i % 3 == 0 && i!=0) {
@@ -249,7 +244,6 @@ public class Country extends Frame{
 		}
 		
 		String peopleFullyVaxedTemp = list.get(list.size()-1);
-		System.out.println("vaxAvialable: " + peopleFullyVaxedTemp);
 		for (int i = peopleFullyVaxedTemp.length()-1; i >= 0; i--) {
 			peopleFullyVaxed = peopleFullyVaxedTemp.substring(i, i+1) + peopleFullyVaxed;
 			if (i % 3 == 0 && i!=0) {
