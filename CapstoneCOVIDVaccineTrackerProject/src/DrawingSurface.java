@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import processing.core.PApplet;
@@ -29,13 +30,22 @@ public class DrawingSurface extends PApplet{
 	
 	private int backButtonWidth, backButtonHeight;
 	private int backButtonX, backButtonY;
+	private int quitX, quitY;
 	private int backButtonTextSize;
-	
+	int r, g, b, r1, g1, b1;
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
 	private boolean insPage;
+	public boolean quit = false;
 	private int x=0;
+	
+	private int stateButtonX = 0;
+	private int stateButtonY = 0;
+	private float stateButtonDist = 0;
+	private int stateButtonWidth = 0;
+	private int stateButtonHeight = 0;
+	
 	public DrawingSurface() {
 		map = new Country();
 		moreInfo = new MoreInfo();
@@ -45,8 +55,7 @@ public class DrawingSurface extends PApplet{
 	}
 	
 	public void settings() {
-//		fullScreen();
-		size(700,700);
+		fullScreen();
 	}
 	
 	public void setup() {
@@ -55,7 +64,6 @@ public class DrawingSurface extends PApplet{
 		textSize(width/60);
 		fill(252);
 		textSize(12);
-//		surface.setResizable(false);
 	}
 	
 	/*
@@ -76,19 +84,36 @@ public class DrawingSurface extends PApplet{
 		infoY = 7*(int)(height/10.0);
 		backButtonWidth = width/25;
 		backButtonHeight = height/25;
-		backButtonX = width-backButtonWidth-width/100;
+		quitX = width-backButtonWidth-width/50;
+		quitY = height-backButtonHeight-height/100;
+		backButtonX = width-backButtonWidth-2*width/25;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
+		if (map.getStateInput() != "") {
+			stateButtonX = map.getStates().get(map.getStateInput()).getGraph().getButtonX();
+			stateButtonY = map.getStates().get(map.getStateInput()).getGraph().getButtonY();
+			stateButtonDist = map.getStates().get(map.getStateInput()).getGraph().getButtonDistance();
+			stateButtonWidth = map.getStates().get(map.getStateInput()).getGraph().getButtonWidth();
+			stateButtonHeight = map.getStates().get(map.getStateInput()).getGraph().getButtonHeight();
+		}
+		
+		
+		
 		  //checks what page the window is on
 		  if(mainPage) {
-			  fill(252);
+			  r = 255;
+			  g = 202;
+			  b = 240;
+			  r1= 255;
+			  g1= 237;
+			  b1= 251;
+			  fill(255);
 			  rect(0, 0, width, height);
 			  fill(0);
 			  callFont(titles, 0);
 			  textSize(width/18);
 				text("Covid Vaccine Tracker", width/2, height/10);
 				textSize(width/60);
-				 fill(252);
 			  buttons();
 			  if(mapClicked) {
 				  mapPage = true;
@@ -119,14 +144,21 @@ public class DrawingSurface extends PApplet{
 				  callFont(body, 0);
 				  fill(252);
 				  animation("going to map", mapX, mapY, buttonW, buttonH);
-				  fill(218);
+				  fill(r1, g1, b1);
 				  	drawButton(infoX, infoY, buttonW, buttonH, "more information");
 				  	drawButton(insX, insY, buttonW, buttonH, "instructions");
 				  x++;
 			  }
-			  else
+			  else {
+				  r1 = 255;
+				  g1 = 255;
+				  b1 = 230;
+				  r= 255;
+				  g= 255;
+				  b= 168;
+			  
 				  goToMap();
-				  
+			  }
 		  }
 		  if(infoPage) {
 			  if(x<150) {
@@ -138,14 +170,21 @@ public class DrawingSurface extends PApplet{
 				  callFont(body, 0);
 				  fill(252);
 				  animation("going to more information", infoX, infoY, buttonW, buttonH);
-				  fill(218);
+				  fill(r1, g1, b1);
 				  	drawButton(mapX, mapY, buttonW, buttonH, "map");
 				  	drawButton(insX, insY, buttonW, buttonH, "instructions");
 				  x++;
 			  }
-			  else
-				  goToInfo();
+			  else {
+				  r = 221;
+				  g = 200;
+				  b = 255;
+				  r1= 243;
+				  g1= 232;
+				  b1= 255;
 			  
+				  goToInfo();
+			  }
 		  }
 		  if(insPage) {
 			  if(x<150) {
@@ -157,13 +196,24 @@ public class DrawingSurface extends PApplet{
 				  textSize(width/60);
 				  fill(252);
 				  animation("going to instructions", insX, insY, buttonW, buttonH);
-				  fill(218);
+				  fill(r1, g1, b1);
 				  drawButton(mapX, mapY, buttonW, buttonH, "map");
 				  drawButton(infoX, infoY, buttonW, buttonH, "more information");
 				  x++;
 			  }
 			  else
 				  goToIns();
+		  }
+		  textSize(backButtonTextSize);
+		  if(overButton(quitX, quitY, backButtonWidth, backButtonHeight)) 
+			  fill(r, g, b);
+			else {
+				fill(r1,g1,b1);
+			}
+		  drawButton(quitX, quitY, backButtonWidth, backButtonHeight, "quit");
+		  textSize(width/60);
+		  if(quit) {
+			  exit();
 		  }
 		
 	}
@@ -206,12 +256,50 @@ public class DrawingSurface extends PApplet{
 		  } 
 		}
 		if(mapPage) {
-			map.openDropDown = overButton(map.getScreenW()-45, 0, 45, 40);
+			map.setOpenDropDown(overButton(map.getScreenW()-45, 0, 45, 40));
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
 				mapPage = false;
 				mainPage = true;
 				reset();
 			}
+			if(!map.getStatePageOpen()) {
+				if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickVaxName(!map.getClickVaxName());
+				}
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *2), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickAvailableVax(!map.getClickAvailableVax());
+				}
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *3), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickPeopleVaxed(!map.getClickPeopleVaxed()); 
+				}
+				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *4), map.getButtonWidth(), map.getButtonHeight())) {
+					map.setClickFullyVaxed(!map.getClickFullyVaxed());
+				}
+			}	else { 
+			
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxAvailable(true);
+				}
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxDistributed(true);
+				}
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickDistPercent(true);
+				}
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickPeopleVaxed(true);
+				}
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickTotalVaxPercent(true);
+				} 
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxed(true);
+				}
+				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) {
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxedPercent(true);
+				}
+			}
+				//get boolean and check over button, then change boolean
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
@@ -242,6 +330,8 @@ public class DrawingSurface extends PApplet{
 				reset();
 			}
 		}
+		 if(overButton(quitX, quitY, backButtonWidth, backButtonHeight)) 
+			 quit = true;
 	}
 	/**
 	 * draws the animation for the buttons
@@ -255,7 +345,7 @@ public class DrawingSurface extends PApplet{
 	private void animation(String text, int x, int y, int w, int h) {
 		callFont(body, 0);
 		textSize(width/60);
-		 	fill(218);
+		 fill(r, g, b);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
 		  if(animation<=50) 
@@ -268,7 +358,7 @@ public class DrawingSurface extends PApplet{
 		  else
 			  animation = 0;
    	 	animation++;
-   	 	fill(252);
+   	 	fill(r1, g1, b1);
 	}
 	/**checks if the mouse is over the map and info button
 	 * makes the button darker when you hover over it and draws the button
@@ -279,23 +369,23 @@ public class DrawingSurface extends PApplet{
 		callFont(body, 0);
 		textSize(width/60);
 		if(overButton(mapX, mapY, buttonW,buttonH)) 
-			  fill(150);
+			fill(r, g, b);
 		else {
-			  fill(218);
+			fill(r1,g1,b1);
 			}
 	    drawButton(mapX, mapY, buttonW, buttonH, "map");
 	
 	    if(overButton(infoX, infoY, buttonW, buttonH)) 
-			  fill(150);
+	    	fill(r, g, b);
 		else {
-			  fill(218);
+			fill(r1,g1,b1);
 			}
 	    drawButton(infoX, infoY, buttonW, buttonH, "more information");
 	    if(overButton(insX, insY, buttonW, buttonH)) 
-				fill(150);
+	    	fill(r, g, b);
 		else {
-				  fill(218);
-		}
+			fill(r1,g1,b1);
+			}
 		 drawButton(insX, insY, buttonW, buttonH, "instructions");
 	    
 	}
@@ -312,7 +402,7 @@ public class DrawingSurface extends PApplet{
     	textAlign(CENTER, CENTER);
     	fill(0);
     	text(text, x + w/2, y + h/2);
-    	fill(218);
+    	fill(r1, g1, b1);
 	}
 	/**resets all the variables to default so when someone decides to go back, it will be all default
 	 * 
@@ -322,8 +412,21 @@ public class DrawingSurface extends PApplet{
 		mapClicked = false;
 		infoClicked= false;
 		insClicked = false;
-		map.statePageOpen = false;
+		moreInfo.setPfizer(false);
+		moreInfo.setJohnson(false);
+		moreInfo.setModerna(false);
+		map.setStatePageOpen(false);
+		map.setClickAvailableVax(false);
+		map.setClickFullyVaxed(false);
+		map.setClickPeopleVaxed(false);
+		map.setClickVaxName(false);
 		x = 0;
+		r = 255;
+		g = 202;
+		b = 240;
+		r1= 255;
+		g1= 237;
+		b1= 251;
 	}
 	/**goes to map page
 	 * draws a back button
@@ -333,13 +436,77 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
-	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-	    		fill(150);
+		if(!map.getStatePageOpen()) {
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) 
+	    		fill(r, g, b);
 			else {
-				  fill(218);
+				fill(r1,g1,b1);
 				}
-			textSize(backButtonTextSize);
-	    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight(), map.getVaxNames());
+	    	
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight())) 
+	    		fill(r, g, b);
+			else {
+				fill(r1,g1,b1);
+				}
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight(), map.getVaxAvailable());
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight())) 
+	    		fill(r, g, b);
+			else {
+				fill(r1,g1,b1);
+				}
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleVaxed());
+	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight())) 
+	    		fill(r, g, b);
+			else {
+				fill(r1,g1,b1);
+				}
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleFullyVaxed());
+		}	
+		else {
+			r = 99;
+			g = 207;
+			b = 248;
+			r1= 214;
+			g1= 244;
+			b1= 255;
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) 
+					fill(r, g, b);
+				else 
+					fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) 
+				fill(r, g, b);
+			else 
+				fill(r1,g1,b1);
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+		}
+		fillBackButton();
 	}
 	/**
 	 * goes to info page 
@@ -352,31 +519,29 @@ public class DrawingSurface extends PApplet{
 		fill(255);
 		rect(0, 0, width, height);
 		moreInfo.draw(this);
-		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-    		fill(150);
-		else {
-			  fill(218);
-			}
-		textSize(backButtonTextSize);
-    	drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+		fillBackButton();
+		textSize(height/50);
     	if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
-    		textSize(height/50);
-    		fill(150);
-    		drawButton((int) moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
-		}
-    	fill(218);
+    		fill(r, g, b);
+    	}else {
+    			fill(r1,g1,b1);
+    			}
+    	drawButton((int) moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
+	
 		if(overButton((int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
-			textSize(height/50);
-			fill(150);
+			fill(r, g, b);
+		}else {
+				fill(r1,g1,b1);
+				}
 			drawButton( (int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
-		}
-		fill(218);
+		
 		if(overButton((int)moreInfo.getButtonX(), (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
-			textSize(height/50);
-			fill(150);
-			drawButton( (int)moreInfo.getButtonX(),  (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
-		}
-		fill(218);
+			fill(r, g, b);
+		}else {
+			fill(r1,g1,b1);
+			}
+		drawButton( (int)moreInfo.getButtonX(),  (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
+		
 	}
 	public void goToIns() {
 		callFont(titles, 0);
@@ -393,23 +558,27 @@ public class DrawingSurface extends PApplet{
 		text("- press the map button to go to the country map\n"
 				+ "- the country map page shows a map of the country with countrywide statistics about the vaccines\n"
 				+ "- on the map page, click the three lines in the corner to open a drop down\n"
-				+ "- from there, there is an option to choose a state, which leads to the map of that state with its corresponding statistics\n\n\n"
+				+ "- from there, there is an option to choose a state, which leads to the map of that state with its \n   corresponding statistics\n\n"
 				+ "- press the more info button to get more information\n"
-				+ "- the more information page will give you more information about the different types of vaccine\n\n\n"
-				+ "- press the back button to go back to the main page", 2*width/25, 3*height/10);
-	    	if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
-	    		fill(150);
-			else {
-				  fill(218);
-				}
-	    textSize(backButtonTextSize);	
-	    drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
+				+ "- the more information page will give you more information about the different types of vaccine\n\n"
+				+ "- press the back button to go back to the main page\n"
+				+ "- press the quit button to exit the program", 2*width/25, 3*height/10);
+	    	fillBackButton();
 	    	
 	}
 	
 	private void callFont(PFont font, int fontColor) {
 		fill(fontColor);
 		textFont(font);
+	}
+	public void fillBackButton() {
+		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
+			fill(r, g, b);
+		else {
+			fill(r1,g1,b1);
+			}
+		textSize(backButtonTextSize);	
+		drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
 	}
 
 

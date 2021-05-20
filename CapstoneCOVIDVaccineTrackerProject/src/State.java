@@ -9,9 +9,9 @@ import processing.core.PImage;
  *
  */
 public class State extends Frame{
-	StatesGraphics graph;
-	String name;
-	PImage map;
+	private StatesGraphics graph;
+	private String name;
+	private PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
 	private double graphWidth, graphHeight, graphX, graphY;
@@ -50,8 +50,9 @@ public class State extends Frame{
 		if (screenHeight < screenWidth) {
 			if (mapWidth > screenWidth/2) {
 				map.resize(screenWidth/2, 0);
-			} else {
-				map.resize(0, (screenHeight-screenHeight/60));
+			} 
+			if (mapHeight > screenHeight/2) {
+				map.resize(0, (screenHeight/2));
 			}
 		} else {
 			map.resize(screenWidth/2, 0);
@@ -64,10 +65,92 @@ public class State extends Frame{
 		drawDropDownButton(surface, screenWidth);
 	}
 	
+	//get methods
 	/**
 	 * @return name of the state
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	public StatesGraphics getGraph() {
+		return graph;
+	}
+	
+	public int getButtonX() {
+		return graph.getButtonX();
+	}
+	
+	public int getButtonY() {
+		return graph.getButtonY();
+	}
+	
+	public int getButtonWidth() {
+		return graph.getButtonWidth();
+	}
+	
+	public int getButtonHeight() {
+		return graph.getButtonHeight();
+	}
+	
+	public float getButtonDistance() {
+		return graph.getButtonDistance();
+	}
+		
+	public boolean getClickVaxAvailable() {
+		return graph.getClickVaxAvailable();
+	}
+	
+	public boolean getClickVaxDistributed() {
+		return graph.getClickVaxDistributed();
+	}
+	
+	public boolean getClickDistPercent() {
+		return graph.getClickDistPercent();
+	}
+	
+	public boolean getClickPeopleVaxed() {
+		return graph.getClickPeopleVaxed();
+	}
+	
+	public boolean getClickTotalVaxPercent() {
+		return graph.getClickTotalVaxPercent();
+	}
+	
+	public boolean getClickFullyVaxed() {
+		return graph.getClickFullyVaxed();
+	}
+	
+	public boolean getClickFullyVaxedPercent() {
+		return graph.getClickFullyVaxedPercent();
+	}
+	
+	//set methods
+	public void setClickVaxAvailable(boolean state) {
+		graph.setClickVaxAvailable(state);
+	}
+	
+	public void setClickVaxDistributed(boolean state) {
+		graph.setClickVaxDistributed(state);
+	}
+	
+	public void setClickDistPercent(boolean state) {
+		graph.setClickDistPercent(state);
+	}
+	
+	public void setClickPeopleVaxed(boolean state) {
+		graph.setClickPeopleVaxed(state);
+	}
+	
+	public void setClickTotalVaxPercent(boolean state) {
+		graph.setClickTotalVaxPercent(state);
+	}
+	
+	public void setClickFullyVaxed(boolean state) {
+		graph.setClickFullyVaxed(state);
+	}
+	
+	public void setClickFullyVaxedPercent(boolean state) {
+		graph.setClickFullyVaxedPercent(state);
 	}
 }
