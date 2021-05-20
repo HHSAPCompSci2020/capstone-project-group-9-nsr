@@ -199,7 +199,7 @@ public class Country extends Frame{
 	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		buttonX = (int)x;
 		buttonY = (int)y;
-		p.textAlign(LEFT);
+		p.textAlign(p.LEFT);
 		p.fill(0);
 		p.textSize(titleSize);
 		
@@ -225,8 +225,8 @@ public class Country extends Frame{
     	surface.noFill();
 	}
 	
-	public boolean overButton(int x, int y, int w, int h) {
-	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
+	public boolean overButton(PApplet p, int x, int y, int w, int h) {
+	  if (p.mouseX > x && p.mouseX < (x + w) && p.mouseY > y && p.mouseY < (y + h)) {
 	    return true;
 	  }
 	  return false;

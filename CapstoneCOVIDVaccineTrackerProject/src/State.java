@@ -98,37 +98,37 @@ public class State extends Frame{
 		r1= 214;
 		g1= 244;
 		b1= 255;
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth,stateButtonHeight, graph.getVaxAvailable(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth,stateButtonHeight)) 
 			surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth,stateButtonHeight, graph.getVaxDistDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth,stateButtonHeight, graph.getDistPercent(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth,stateButtonHeight, graph.getPeopleVaxedDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth,stateButtonHeight, graph.getVaxedPercentDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
 		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth,stateButtonHeight, graph.getPeopleFullyVaxedDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth,stateButtonHeight)) 
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth,stateButtonHeight)) 
 				surface.fill(r, g, b);
 			else 
 				surface.fill(r1,g1,b1);
@@ -136,33 +136,33 @@ public class State extends Frame{
 		
 	}
 	
-	public void mouseClicked() {
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) {
+	public void mouseClicked(PApplet surface) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickVaxAvailable(!getClickVaxAvailable());
 		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickVaxDistributed(!getClickVaxDistributed());
 		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickDistPercent(!getClickDistPercent());
 		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickPeopleVaxed(!getClickPeopleVaxed());
 		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickTotalVaxPercent(!getClickTotalVaxPercent());
 		} 
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickFullyVaxed(!getClickFullyVaxed());
 		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) {
+		if(overButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) {
 			graph.setClickFullyVaxedPercent(!getClickFullyVaxedPercent());
 		}
 	}
 	
 
-	public boolean overButton(int x, int y, int w, int h) {
-	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
+	public boolean overButton(PApplet p, int x, int y, int w, int h) {
+	  if (p.mouseX > x && p.mouseX < (x + w) && p.mouseY > y && p.mouseY < (y + h)) {
 	    return true;
 	  }
 	  return false;
