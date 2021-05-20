@@ -39,11 +39,11 @@ public class DrawingSurface extends PApplet{
 	public boolean quit = false;
 	private int x=0;
 	
-	private int stateButtonX;
-	private int stateButtonY;
-	private float stateButtonDist;
-	private int stateButtonWidth;
-	private int stateButtonHeight;
+	private int stateButtonX = 0;
+	private int stateButtonY = 0;
+	private float stateButtonDist = 0;
+	private int stateButtonWidth = 0;
+	private int stateButtonHeight = 0;
 	
 	public DrawingSurface() {
 		map = new Country();
