@@ -463,49 +463,7 @@ public class DrawingSurface extends PApplet{
 				}
 	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleFullyVaxed());
 		}	
-		else {
-			r = 99;
-			g = 207;
-			b = 248;
-			r1= 214;
-			g1= 244;
-			b1= 255;
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxAvailable());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxDist());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getDistPercent());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getPeopleVaxed());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxedPercent());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getPeopleFullyVaxed());
-			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) 
-				fill(r, g, b);
-			else 
-				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getFullyVaxedPercent());
-		}
+	
 		fillBackButton();
 	}
 	/**
