@@ -116,6 +116,7 @@ public class Stats {
 		
 	}
 	
+	
 	/**
 	 * returns data on number of cases of covid, death of covid cased on state name
 	 * 
@@ -123,12 +124,12 @@ public class Stats {
 	 * @param index counted from 0 from right on cases.csv file
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
-	public ArrayList<String> getAllVaccineInfo(String state, int index) {
+	public ArrayList<String> getStringData(String state, int index, String filename) {
 		
 		
 		try {
 			
-			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
+			List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
 			ArrayList<String> data = new ArrayList<String >();
 			
 			for(int i = 0; i < lines.size(); i++) {
@@ -155,51 +156,22 @@ public class Stats {
 	 * @param index counted from 0 from right on cases.csv file
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
-	public ArrayList<String> getStringCovidData(String state, int index) {
-		
-		
-		try {
-			
-			List<String> lines = Files.readAllLines(Paths.get("data/cases.csv"), Charset.defaultCharset());
-			ArrayList<String> data = new ArrayList<String >();
-			
-			for(int i = 0; i < lines.size(); i++) {
-				String[] values = lines.get(i).split(",");
-				if(values[1].equalsIgnoreCase(state)) {
-					data.add(values[index]);
-				}
-			}
-			
-			return data;
-			
-		} catch (IOException e) {
-            System.out.format("I/O error: %s%n", e);
-		}
-		
-		return null;
-		
-	}
-	
-	/**
-	 * returns data on number of cases of covid, death of covid cased on state name
-	 * 
-	 * @param state name of the state of desire
-	 * @param index counted from 0 from right on cases.csv file
-	 * @return arraylist of string with all desired data from the state inputted
-	 */
-	public ArrayList<Double> getDoubleCovidData(String state, int index) {
+	public ArrayList<Double> getDoubleData(String state, int index, String filename) {
 
 		try {
 			
-			List<String> lines = Files.readAllLines(Paths.get("data/cases.csv"), Charset.defaultCharset());
+			List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
 			ArrayList<Double> data = new ArrayList<Double>();
 			
 			for(int i = 0; i < lines.size(); i++) {
 				String[] values = lines.get(i).split(",");
-				System.out.println(values.length);
 				if(values[1].equalsIgnoreCase(state)) {
-					double d = Double.parseDouble(values[index]);
-					data.add(d);
+					if(!values[index].equals("")) {
+						double d = Double.parseDouble(values[index]);
+						data.add(d);
+					}else {
+						data.add(data.get(data.size()-1));
+					}
 				}
 			}
 			

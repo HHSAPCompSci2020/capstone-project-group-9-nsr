@@ -2,6 +2,7 @@
 import java.awt.Point;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -18,15 +19,15 @@ import processing.core.PApplet;
  * @author nodoka
  *
  */
-public class StatesGraphics extends PApplet{
+public class StatesGraphics{
 	
 	private Stats stat = new Stats();	
 	private String name;
 	
 	private double graphWidth, graphHeight;
 	
-	private ArrayList<Double> cases, deaths;
-	private ArrayList<String> dates, vaccine;
+	private ArrayList<Double> cases, deaths, vaccineList;
+	private ArrayList<String> dates, vaccine, vaccineDates, covidDates;
 	
 	
 	private float buttonDistance;
@@ -240,9 +241,13 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		cases = stat.getDoubleCovidData(name, 3);
-		deaths = stat.getDoubleCovidData(name, 4);
-		dates = stat.getStringCovidData(name, 0);
+		cases = stat.getDoubleData(name, 3, "data/cases.csv");
+		deaths = stat.getDoubleData(name, 4, "data/cases.csv");
+		covidDates = stat.getStringData(name, 0, "data/cases.csv");
+		vaccineDates = stat.getStringData(name, 0, "data/vaccineNumber.csv");
+		vaccineList = stat.getDoubleData(name, 7, "data/vaccineNumber.csv");
+		
+		
 
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
@@ -255,8 +260,19 @@ public class StatesGraphics extends PApplet{
 		
 		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
-		LocalDate firstDate = LocalDate.parse(dates.get(0), DATEFORMATTER);
-		LocalDate lastDate = LocalDate.parse(dates.get(dates.size()-1), DATEFORMATTER);
+		LocalDate firstDate = LocalDate.parse(covidDates.get(0), DATEFORMATTER);
+		LocalDate covidLastDate = LocalDate.parse(covidDates.get(covidDates.size()-1), DATEFORMATTER);
+		LocalDate vaccineLastDate = LocalDate.parse(vaccineDates.get(vaccineDates.size()-1), DATEFORMATTER);
+		LocalDate lastDate = covidLastDate;
+		
+		if(covidLastDate.compareTo(vaccineLastDate) < 0) {
+			lastDate = vaccineLastDate;
+			dates = vaccineDates;
+		}else {
+			lastDate = covidLastDate;
+			dates = covidDates;
+		}
+		
 		LocalDate copyOfLastDate = lastDate;
 		 
 		//draw the frame of the graph
@@ -271,8 +287,8 @@ public class StatesGraphics extends PApplet{
 			p.text((int)(b * (7 - i) / 7)  + "", (float)x - 30, (float)(y + ((height - 10) * i / 7)));
 		}
 		
-		p.text(dates.get(0), (float)(x), (float)(y + height - 5));
-		p.text(dates.get(dates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
+		p.text(firstDate.toString(), (float)(x), (float)(y + height - 5));
+		p.text(lastDate.toString(), (float)(x - 10 + width), (float)(y + height - 5));
 
 		p.textSize(12);
 		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
@@ -284,11 +300,11 @@ public class StatesGraphics extends PApplet{
 		p.text("number of deaths", (float)(x + 10), (float)((y + height + 20)));
 
 		//find diff in last and first date
-		Period period = Period.between(firstDate, lastDate);
-		int diff = Math.abs(period.getDays());
+		
+		Duration duration = Duration.between(firstDate.atStartOfDay(), lastDate.atStartOfDay());
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / (dates.size());
+		final double PIXEL_PER_X = (width - 10) / duration.toDays();
 //		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
@@ -304,53 +320,55 @@ public class StatesGraphics extends PApplet{
 		//figure out the coordinates
 		ArrayList<Point> points = new ArrayList<Point>();
 		ArrayList<Point> points2 = new ArrayList<Point>();
+		ArrayList<Point> points3 = new ArrayList<Point>();
 		
 		while(!firstDate.equals(lastDate)) {
-			if(dates.indexOf(firstDate.toString()) != -1) {
 				
-				if(dates.indexOf(firstDate.toString()) < cases.size()) {
+				if(covidDates.indexOf(firstDate.toString()) != -1) {
 					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
-//					System.out.println(xAxis + " + " + PIXEL_PER_X + " * " + dates.indexOf(firstDate.toString()) + " = " + px);
-					double py = yAxis - PIXEL_PER_Y * cases.get(dates.indexOf(firstDate.toString())) ;
-//					System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
 					Point po = new Point();
-					po.setLocation(px, py);
-					points.add(po);
-//					System.out.println(px + ", " + py);
-				}
-				
-				if(dates.indexOf(firstDate.toString()) < deaths.size()) {
-					double py = yAxis - PIXEL_PER_Y * deaths.get(dates.indexOf(firstDate.toString())) ;
-					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
-
-//					System.out.println(yAxis + " + " + PIXEL_PER_Y + " * " + cases.get(dates.indexOf(firstDate.toString())) + " = " + py);
-					Point po = new Point();
+					double py = yAxis - PIXEL_PER_Y * deaths.get(covidDates.indexOf(firstDate.toString())) ;
 					po.setLocation(px, py);
 					points2.add(po);
 				}
-			}
+				
+				if(covidDates.indexOf(firstDate.toString()) != -1) {
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+					Point po = new Point();
+					double py = yAxis - PIXEL_PER_Y * cases.get(covidDates.indexOf(firstDate.toString())) ;
+					po.setLocation(px, py);
+					points.add(po);
+				}
+				
+				if(vaccineDates.indexOf(firstDate.toString()) != -1) {
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+					Point po = new Point();
+					double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
+					po.setLocation(px, py);
+					points3.add(po);
+				}
+				
 			firstDate = firstDate.plusDays(1);
 		}
-		
-		double px = xAxis + PIXEL_PER_X * dates.size()-1;
-		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
-		Point po = new Point();
-		po.setLocation(px, py);
-		points.add(po);
-		
-		py = yAxis - PIXEL_PER_Y * deaths.get(deaths.size()-1) ;
-		po.setLocation(px, py);
-		points2.add(po);
 				
-		for(int i = 0; i < points.size() - 2; i++) {
+		for(int i = 0; i < dates.size()-1; i++) {
 //			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
 	
-			p.stroke(0, 0, 0);
-			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
+			if(i < points.size()-1) {
+				
+				p.stroke(255, 0, 0);
+				p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
+				
+				p.stroke(0, 0, 0);
+				p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
+				
+			}
 			
-			p.stroke(255, 0, 0);
-			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
-
+			if(i < points3.size()-1) {
+				p.stroke(0, 255, 0);
+				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
+			}
+			
 		}
 		
 		p.stroke(0,0,0);
@@ -439,7 +457,7 @@ public class StatesGraphics extends PApplet{
 		p.fill(0);
 //		p.stroke(0);
 		p.textSize(titleSize);
-		p.textAlign(LEFT);
+		p.textAlign(p.LEFT);
 		
 		if(vaccine.size() > 0){
 			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y));
@@ -470,8 +488,8 @@ public class StatesGraphics extends PApplet{
     	surface.noFill();
 	}
 	
-	public boolean overButton(int x, int y, int w, int h) {
-	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
+	public boolean overButton(PApplet surface, int x, int y, int w, int h) {
+	  if (surface.mouseX > x && surface.mouseX < (x + w) && surface.mouseY > y && surface.mouseY < (y + h)) {
 	    return true;
 	  }
 	  return false;
