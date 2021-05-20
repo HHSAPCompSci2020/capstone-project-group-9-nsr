@@ -26,14 +26,18 @@ public class StatesGraphics extends PApplet{
 	private double graphWidth, graphHeight;
 	
 	ArrayList<Double> cases, deaths;
-	ArrayList<String> dates;
+	ArrayList<String> dates, vaccine;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
 	 */
 	public StatesGraphics() {
-		name = null;
+		name = "";
 		stat = new Stats();
+		cases = stat.getDoubleCovidData(name, 3);
+		deaths = stat.getDoubleCovidData(name, 4);
+		dates = stat.getStringCovidData(name, 0);
+		vaccine = stat.getVaccinationInfo(name);
 	}
 	
 	/**constructor
@@ -43,6 +47,10 @@ public class StatesGraphics extends PApplet{
 	public StatesGraphics(String state) {
 		name = state;
 		stat = new Stats();
+		cases = stat.getDoubleCovidData(name, 3);
+		deaths = stat.getDoubleCovidData(name, 4);
+		dates = stat.getStringCovidData(name, 0);
+		vaccine = stat.getVaccinationInfo(name);
 	}
 	
 	/**returns the name of the state
@@ -52,6 +60,34 @@ public class StatesGraphics extends PApplet{
 		return name;
 	}
 	
+	private ArrayList<Double> predictData(LocalDate lastDay){
+		
+		ArrayList<Double> preCases = new ArrayList<Double>();
+		vaccine = stat.getVaccinationInfo(name);
+		
+		double full = Double.parseDouble(vaccine.get(5));
+		double once = Double.parseDouble(vaccine.get(4));
+
+		preCases.add(cases.get(cases.size()-1));
+		
+		for(int i = 0; i < 14; i++) {
+			
+			double casesFifteen = cases.get(((dates.indexOf(dates.size()-15))));
+			double casesFourteen = cases.get(((dates.indexOf(dates.size()-14))));
+			double diff = casesFifteen - casesFourteen;
+			
+			if(diff < 0) {
+				diff = 0;
+			}
+			
+			preCases.add(preCases.get(i) * 2 - (full * 0.9) - (once * 0.8));
+			
+		}
+		
+		return preCases;
+	}
+	
+
 	/**
 	 * 
 	 * @return
@@ -139,9 +175,6 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void drawGraph(PApplet p, double x, double y, double width, double height){
 		
-		cases = stat.getDoubleCovidData(name, 3);
-		deaths = stat.getDoubleCovidData(name, 4);
-		dates = stat.getStringCovidData(name, 0);
 //		ArrayList<Double> pre = predictData();
 		
 //		ArrayList<Double> cases = new ArrayList<Double>();
@@ -265,6 +298,9 @@ public class StatesGraphics extends PApplet{
 ////			}
 //		}
 		
+//		ArrayList<Double> preData = predictData(lastDate);
+//		System.out.println(preData.toString());
+		 
 		double px = xAxis + PIXEL_PER_X * dates.size()-1;
 		double py = yAxis - PIXEL_PER_Y * cases.get(cases.size()-1) ;
 		Point po = new Point();
@@ -316,25 +352,23 @@ public class StatesGraphics extends PApplet{
 	 */
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 
-		
-		ArrayList<String> list = stat.getVaccinationInfo(name);
 		p.fill(0);
 		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(LEFT);
 		
-		if(list.size() > 0){
+		if(vaccine.size() > 0){
 			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y + 30));
 			
 			p.textSize(writingSize);
 			p.textLeading(leading);
-			p.text("total vaccinations available : " + list.get(2) + "\n" +
-				   "total distributed : " + list.get(3) + "\n" +
-				   "total distribution percentage : " + list.get(9) + "\n" +
-				   "people vaccinated : " + list.get(4) + "\n" +
-				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
-				   "people fully vaccinated : " + list.get(7) + "\n" +
-				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
+			p.text("total vaccinations available : " + vaccine.get(2) + "\n" +
+				   "total distributed : " + vaccine.get(3) + "\n" +
+				   "total distribution percentage : " + vaccine.get(9) + "\n" +
+				   "people vaccinated : " + vaccine.get(4) + "\n" +
+				   "total vaccinations percentage : " + vaccine.get(6) + "% of the state population" + "\n" +
+				   "people fully vaccinated : " + vaccine.get(7) + "\n" +
+				   "fully vaccinated percentage : " + vaccine.get(5) + "% of the state population", (float)x, (float)(y + 60));
 		}else {
 			p.text("there is no data available for " + name, (float)x, (float)(y + 30));
 		}

@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -66,34 +68,46 @@ public class Stats {
 	 */
 	public ArrayList<String> getCountryCases(String country) {
 		
-		try {
-			downloadCountryCases();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<String> data = new ArrayList<String>();
-		
-		String fileName = "data/countryCaseNumber.csv";
-		String line = "";
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			while((line = br.readLine()) != null) {
-				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
-				ArrayList<String> values = new ArrayList<String>(list);
-					if(values.get(2).equalsIgnoreCase(country)) {
-						data = values;
-					}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			downloadCountryCases();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		ArrayList<String> data = new ArrayList<String>();
+//		
+//		String fileName = "data/countryCaseNumber.csv";
+//		String line = "";
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			while((line = br.readLine()) != null) {
+//				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
+//				ArrayList<String> values = new ArrayList<String>(list);
+//					if(values.get(2).equalsIgnoreCase(country)) {
+//						data = values;
+//					}
+//			}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
+		List<String> lines = new ArrayList<String>();
 		
-		return data;
+		try {
+			lines = Files.readAllLines(Paths.get("countryCaseNumber.csv"), Charset.defaultCharset());
+		} catch (IOException e) {
+            System.out.format("I/O error: %s%n", e);
+		}
+		
+		String latest = lines.get(lines.size()-1);
+		
+		List<String> list = Arrays.asList(latest.split("\\s*,\\s*"));
+		ArrayList<String> values = new ArrayList<String>(list);
+		
+		return values;
 		
 	}
 	
@@ -104,34 +118,56 @@ public class Stats {
 	 */
 	public ArrayList<String> getVaccinationInfo(String state) {
 		
+//		try {
+//			downloadVaccineData();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		ArrayList<String> data = new ArrayList<String>();
+//		
+//		String fileName = "data/vaccineNumber.csv";
+//		String line = "";
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			while((line = br.readLine()) != null) {
+//				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
+//				ArrayList<String> values = new ArrayList<String>(list);
+//					if(values.get(1).equalsIgnoreCase(state)) {
+//						data = values;
+//					}
+//			}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		
+//		return data;
+				
 		try {
-			downloadVaccineData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<String> data = new ArrayList<String>();
-		
-		String fileName = "data/vaccineNumber.csv";
-		String line = "";
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			while((line = br.readLine()) != null) {
-				List<String> list = Arrays.asList(line.split("\\s*,\\s*"));
-				ArrayList<String> values = new ArrayList<String>(list);
-					if(values.get(1).equalsIgnoreCase(state)) {
-						data = values;
-					}
+			
+			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
+			String latest = "";
+			
+			for(int i = 0; i < lines.size(); i++) {
+				String[] values = lines.get(i).split(",");
+				if(values[1].equalsIgnoreCase(state)) {
+					latest = lines.get(i);
+				}
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
+			List<String> values = new ArrayList<>(Arrays.asList(latest.split(",")));
+						
+			return (ArrayList<String>) values;
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+            System.out.format("I/O error: %s%n", e);
 		}
-
 		
-		return data;
+		return null;
 		
 	}
 	
@@ -145,34 +181,57 @@ public class Stats {
 	public ArrayList<String> getStringCovidData(String state, int index) {
 		
 		
-		ArrayList<String> data = new ArrayList<String>();
+//		ArrayList<String> data = new ArrayList<String>();
+//		
+//		String fileName = "data/cases.csv";
+//		String line = "";
+//		
+//		int totalDeath = 0;
+//		int totalCases = 0;
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			int n = 0;
+//			while((line = br.readLine()) != null) {
+//				String[] values = line.split(",");
+//				if(values.length > 2) {
+//					if(values[1].equalsIgnoreCase(state)) {
+//						data.add(values[index]);
+////						totalCases += d;
+////						totalDeath += Integer.parseInt(values[4]);
+//					}
+//				}
+//			}    
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+////		mortalityRate = totalDeath / totalCases;
+//			
+//		return data;
 		
-		String fileName = "data/cases.csv";
-		String line = "";
-		
-		int totalDeath = 0;
-		int totalCases = 0;
 		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			int n = 0;
-			while((line = br.readLine()) != null) {
-				String[] values = line.split(",");
+			
+			List<String> lines = Files.readAllLines(Paths.get("data/cases.csv"), Charset.defaultCharset());
+			ArrayList<String> data = new ArrayList<String >();
+			
+			for(int i = 0; i < lines.size(); i++) {
+				String[] values = lines.get(i).split(",");
 				if(values[1].equalsIgnoreCase(state)) {
-						data.add(values[index]);
-//						totalCases += d;
-//						totalDeath += Integer.parseInt(values[4]);
+					data.add(values[index]);
 				}
-			}    
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			}
+			
+			return data;
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+            System.out.format("I/O error: %s%n", e);
 		}
 		
-//		mortalityRate = totalDeath / totalCases;
-			
-		return data;
+		return null;
 		
 	}
 	
@@ -185,41 +244,65 @@ public class Stats {
 	 */
 	public ArrayList<Double> getDoubleCovidData(String state, int index) {
 		
+//		try {
+//			downloadCasesData();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		ArrayList<Double> data = new ArrayList<Double>();
+//		
+//		String fileName = "data/cases.csv";
+//		String line = "";
+//		
+//		int totalDeath = 0;
+//		int totalCases = 0;
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			int n = 0;
+//			while((line = br.readLine()) != null) {
+//				String[] values = line.split(",");
+//				if(values.length > 2) {
+//					if(values[1].equalsIgnoreCase(state)) {
+//						Double d = Double.parseDouble(values[index]);
+//						data.add(d);
+////						totalCases += d;
+////						totalDeath += Integer.parseInt(values[4]);
+//					}
+//				}
+//			}    
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+////		mortalityRate = totalDeath / totalCases;
+//			
+//		return data;
+		
 		try {
-			downloadCasesData();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		ArrayList<Double> data = new ArrayList<Double>();
-		
-		String fileName = "data/cases.csv";
-		String line = "";
-		
-		int totalDeath = 0;
-		int totalCases = 0;
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			int n = 0;
-			while((line = br.readLine()) != null) {
-				String[] values = line.split(",");
-				if(values[1].equalsIgnoreCase(state)) {
-						Double d = Double.parseDouble(values[index]);
-						data.add(d);
-//						totalCases += d;
-//						totalDeath += Integer.parseInt(values[4]);
-				}
-			}    
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-//		mortalityRate = totalDeath / totalCases;
 			
-		return data;
+			List<String> lines = Files.readAllLines(Paths.get("data/cases.csv"), Charset.defaultCharset());
+			ArrayList<Double> data = new ArrayList<Double>();
+			
+			for(int i = 0; i < lines.size(); i++) {
+				String[] values = lines.get(i).split(",");
+				System.out.println(values.length);
+				if(values[1].equalsIgnoreCase(state)) {
+					double d = Double.parseDouble(values[index]);
+					data.add(d);
+				}
+			}
+			
+			return data;
+			
+		} catch (IOException e) {
+            System.out.format("I/O error: %s%n", e);
+		}
+		
+		return null;
 		
 	}
 	
@@ -230,35 +313,54 @@ public class Stats {
 	 */
 	public ArrayList<String> getCountryData(){
 		
+//		try {
+//			downloadCountryVaccinesData();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		ArrayList<String> data = null;
+//		
+//		String fileName = "data/countryVaccinationNumber.csv";
+//		String line = "";
+//		
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(fileName));
+//			while((line = br.readLine()) != null) {
+//				String[] values = line.split(",");
+//				data = new ArrayList<String>();
+//				for(int i = 0; i < values.length; i++) {
+//					data.add(values[i]);
+//				}
+//					
+//			}
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		
+//		return data;
+		
 		try {
-			downloadCountryVaccinesData();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		ArrayList<String> data = null;
-		
-		String fileName = "data/countryVaccinationNumber.csv";
-		String line = "";
-		
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			while((line = br.readLine()) != null) {
-				String[] values = line.split(",");
-				data = new ArrayList<String>();
-				for(int i = 0; i < values.length; i++) {
-					data.add(values[i]);
-				}
-					
+			
+			List<String> lines = Files.readAllLines(Paths.get("data/countryVaccinationNumber.csv"), Charset.defaultCharset());
+			String latest = "";
+			
+			for(int i = 0; i < lines.size(); i++) {
+				latest = lines.get(i);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
+			List<String> values = new ArrayList<>(Arrays.asList(latest.split(",")));
+						
+			return (ArrayList<String>) values;
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+            System.out.format("I/O error: %s%n", e);
 		}
-
 		
-		return data;
+		return null;
 	}
 	
 	/**
