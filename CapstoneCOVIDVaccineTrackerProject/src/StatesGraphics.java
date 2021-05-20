@@ -250,11 +250,14 @@ public class StatesGraphics{
 		
 
 		//figure out the biggest number of the arraylist to scale y
-		double b = cases.get(0); //write this as a text on top of the yaxis
+		double b = 0; //write this as a text on top of the yaxis
 		
-		for(int i = 1; i < cases.size(); i++) {
+		for(int i = 0; i < cases.size(); i++) {
 			if(b < cases.get(i)) {
 				b = cases.get(i);
+			}else if(i < vaccineList.size()) {
+				if(i < vaccineList.get(i));
+//					b = vaccineList.get(i);
 			}
 		}
 		
@@ -304,8 +307,11 @@ public class StatesGraphics{
 		Duration duration = Duration.between(firstDate.atStartOfDay(), lastDate.atStartOfDay());
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / duration.toDays();
+		final double PIXEL_PER_X = (width - 10) / dates.size();
 //		System.out.println(width + " - " + 10 + " / " + diff);
+		
+		
+		
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
 		//coordinate of the base of the lines
@@ -325,7 +331,7 @@ public class StatesGraphics{
 		while(!firstDate.equals(lastDate)) {
 				
 				if(covidDates.indexOf(firstDate.toString()) != -1) {
-					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+					double px = xAxis + PIXEL_PER_X * covidDates.indexOf(firstDate.toString());
 					Point po = new Point();
 					double py = yAxis - PIXEL_PER_Y * deaths.get(covidDates.indexOf(firstDate.toString())) ;
 					po.setLocation(px, py);
@@ -333,7 +339,7 @@ public class StatesGraphics{
 				}
 				
 				if(covidDates.indexOf(firstDate.toString()) != -1) {
-					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
+					double px = xAxis + PIXEL_PER_X * covidDates.indexOf(firstDate.toString());
 					Point po = new Point();
 					double py = yAxis - PIXEL_PER_Y * cases.get(covidDates.indexOf(firstDate.toString())) ;
 					po.setLocation(px, py);

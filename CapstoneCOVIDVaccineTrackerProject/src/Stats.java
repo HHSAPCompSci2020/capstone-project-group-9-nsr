@@ -105,6 +105,7 @@ public class Stats {
 			}
 			
 			List<String> values = new ArrayList<>(Arrays.asList(latest.split(",")));
+			System.out.println(values.toString());
 						
 			return (ArrayList<String>) values;
 			
