@@ -28,7 +28,6 @@ public class StatesGraphics extends PApplet{
 	private ArrayList<Double> cases, deaths;
 	private ArrayList<String> dates, vaccine;
 	
-	ArrayList<String> list = stat.getVaccinationInfo(name);
 	
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
@@ -130,7 +129,7 @@ public class StatesGraphics extends PApplet{
 	private ArrayList<Double> predictData(LocalDate lastDay){
 		
 		ArrayList<Double> preCases = new ArrayList<Double>();
-		vaccine = stat.getVaccinationInfo(name);
+		vaccine = stat.getLatestVaccineInfo(name);
 		
 		double full = Double.parseDouble(vaccine.get(5));
 		double once = Double.parseDouble(vaccine.get(4));
@@ -361,7 +360,7 @@ public class StatesGraphics extends PApplet{
 	
 	
 	public void draw (PApplet surface) {
-		list = stat.getVaccinationInfo(name);
+		vaccine = stat.getLatestVaccineInfo(name);
 		buttonDistance = surface.height/20;
 		buttonWidth = surface.width/3;
 		buttonHeight = surface.height/25;
@@ -373,13 +372,13 @@ public class StatesGraphics extends PApplet{
 			graphHeight = (surface.width/2);
 		}
 		
-		vaxAvailable = list.get(2);
-		vaxDist = list.get(3);
-		distPercent = list.get(9);
-		peopleVaxed = list.get(4);
-		vaxedPercent = list.get(6) + "% of the state population";
-		peopleFullyVaxed = list.get(7);
-		fullyVaxedPercent = list.get(5) + "% of the state population";
+		vaxAvailable = vaccine.get(2);
+		vaxDist = vaccine.get(3);
+		distPercent = vaccine.get(9);
+		peopleVaxed = vaccine.get(4);
+		vaxedPercent = vaccine.get(6) + "% of the state population";
+		peopleFullyVaxed = vaccine.get(7);
+		fullyVaxedPercent = vaccine.get(5) + "% of the state population";
 		
 		
 		
@@ -442,7 +441,7 @@ public class StatesGraphics extends PApplet{
 		p.textSize(titleSize);
 		p.textAlign(LEFT);
 		
-		if(list.size() > 0){
+		if(vaccine.size() > 0){
 			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y));
 			
 			p.textSize(writingSize);
