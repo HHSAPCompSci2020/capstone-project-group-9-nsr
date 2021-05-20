@@ -125,6 +125,35 @@ public class State extends Frame{
 		return graph.getClickFullyVaxedPercent();
 	}
 	
+	public String getVaxAvailable() {
+		return graph.getVaxAvailable();
+	}
+	
+	public String getVaxDist() {
+		return graph.getVaxDistDisplay();
+	}
+	
+	public String getDistPercent() {
+		return graph.getDistPercent();
+	}
+	
+	public String getPeopleVaxed() {
+		return graph.getPeopleVaxedDisplay();
+	}
+	
+	public String getVaxedPercent() {
+		return graph.getVaxedPercentDisplay();
+	}
+	
+	public String getPeopleFullyVaxed() {
+		return graph.getPeopleFullyVaxedDisplay();
+	}
+	
+	public String getFullyVaxedPercent() {
+		return graph.getFullyVaxedPercentDisplay();
+	}
+	
+	
 	//set methods
 	public void setClickVaxAvailable(boolean state) {
 		graph.setClickVaxAvailable(state);

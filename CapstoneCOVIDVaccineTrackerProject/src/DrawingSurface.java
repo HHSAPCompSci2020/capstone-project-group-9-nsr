@@ -278,25 +278,25 @@ public class DrawingSurface extends PApplet{
 			}	else { 
 			
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickVaxAvailable(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxAvailable(!map.getStates().get(map.getStateInput()).getClickVaxAvailable());
 				}
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickVaxDistributed(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickVaxDistributed(!map.getStates().get(map.getStateInput()).getClickVaxDistributed());
 				}
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickDistPercent(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickDistPercent(!map.getStates().get(map.getStateInput()).getClickDistPercent());
 				}
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickPeopleVaxed(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickPeopleVaxed(!map.getStates().get(map.getStateInput()).getClickPeopleVaxed());
 				}
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickTotalVaxPercent(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickTotalVaxPercent(!map.getStates().get(map.getStateInput()).getClickTotalVaxPercent());
 				} 
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxed(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxed(!map.getStates().get(map.getStateInput()).getClickFullyVaxed());
 				}
 				if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) {
-					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxedPercent(true);
+					map.getStates().get(map.getStateInput()).getGraph().setClickFullyVaxedPercent(!map.getStates().get(map.getStateInput()).getClickFullyVaxedPercent());
 				}
 			}
 				//get boolean and check over button, then change boolean
@@ -474,37 +474,37 @@ public class DrawingSurface extends PApplet{
 					fill(r, g, b);
 				else 
 					fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxAvailable());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxDist());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getDistPercent());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getPeopleVaxed());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getVaxedPercent());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getPeopleFullyVaxed());
 			if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) 
 				fill(r, g, b);
 			else 
 				fill(r1,g1,b1);
-			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight, map.getVaxNames());
+			drawButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight, map.getStates().get(map.getStateInput()).getFullyVaxedPercent());
 		}
 		fillBackButton();
 	}

@@ -416,7 +416,7 @@ public class StatesGraphics extends PApplet{
 		if (clickFullyVaxedPercent) {
 			fullyVaxedPercentDisplay = fullyVaxedPercent;
 		} else {
-			fullyVaxedPercentDisplay = fullyVaxedPercent;
+			fullyVaxedPercentDisplay = fullyVaxedPercentString;
 		}
 		
 		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
@@ -527,6 +527,37 @@ public class StatesGraphics extends PApplet{
 	public boolean getClickFullyVaxedPercent() {
 		return clickFullyVaxedPercent;
 	}
+	
+	//	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
+
+	public String getVaxAvailable() {
+		return vaxAvailableDisplay;
+	}
+	
+	public String getVaxDistDisplay() {
+		return vaxDistDisplay;
+	}
+	
+	public String getDistPercent() {
+		return distPercentDisplay;
+	}
+	
+	public String getPeopleVaxedDisplay() {
+		return peopleVaxedDisplay;
+	}
+	
+	public String getVaxedPercentDisplay() {
+		return vaxedPercentDisplay;
+	}
+	
+	public String getPeopleFullyVaxedDisplay() {
+		return peopleFullyVaxedDisplay;
+	}
+	
+	public String getFullyVaxedPercentDisplay() {
+		return fullyVaxedPercentDisplay;
+	}
+	
 	
 	//set methods	
 	public void setClickVaxAvailable(boolean state) {
