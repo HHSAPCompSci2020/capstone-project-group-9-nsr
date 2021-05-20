@@ -26,7 +26,7 @@ public class StatesGraphics extends PApplet{
 	private double graphWidth, graphHeight;
 	
 	private ArrayList<Double> cases, deaths;
-	private ArrayList<String> dates;
+	private ArrayList<String> dates, vaccine;
 	
 	ArrayList<String> list = stat.getVaccinationInfo(name);
 	
@@ -120,6 +120,38 @@ public class StatesGraphics extends PApplet{
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * 
+	 * @param lastDay
+	 * @return
+	 */
+	private ArrayList<Double> predictData(LocalDate lastDay){
+		
+		ArrayList<Double> preCases = new ArrayList<Double>();
+		vaccine = stat.getVaccinationInfo(name);
+		
+		double full = Double.parseDouble(vaccine.get(5));
+		double once = Double.parseDouble(vaccine.get(4));
+
+		preCases.add(cases.get(cases.size()-1));
+		
+		for(int i = 0; i < 14; i++) {
+			
+			double casesFifteen = cases.get(((dates.indexOf(dates.size()-15))));
+			double casesFourteen = cases.get(((dates.indexOf(dates.size()-14))));
+			double diff = casesFifteen - casesFourteen;
+			
+			if(diff < 0) {
+				diff = 0;
+			}
+			
+			preCases.add(preCases.get(i) * 2 - (full * 0.9) - (once * 0.8));
+			
+		}
+		
+		return preCases;
 	}
 	
 	/**
