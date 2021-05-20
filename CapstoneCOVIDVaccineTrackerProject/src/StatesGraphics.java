@@ -20,13 +20,15 @@ import processing.core.PApplet;
  */
 public class StatesGraphics extends PApplet{
 	
-	private Stats stat;	
+	private Stats stat = new Stats();	
 	private String name;
 	
 	private double graphWidth, graphHeight;
 	
 	private ArrayList<Double> cases, deaths;
 	private ArrayList<String> dates;
+	
+	ArrayList<String> list = stat.getVaccinationInfo(name);
 	
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
@@ -41,7 +43,6 @@ public class StatesGraphics extends PApplet{
 	 */
 	public StatesGraphics() {
 		name = null;
-		stat = new Stats();
 		buttonX = 0;
 		buttonY = 0;
 		clickVaxAvailable = false;
@@ -81,7 +82,6 @@ public class StatesGraphics extends PApplet{
 	 */
 	public StatesGraphics(String state) {
 		name = state;
-		stat = new Stats();
 		buttonX = 0;
 		buttonY = 0;
 		clickVaxAvailable = false;
@@ -112,7 +112,7 @@ public class StatesGraphics extends PApplet{
 		vaxedPercentDisplay = " " ;
 		peopleFullyVaxedDisplay = " " ;
 		fullyVaxedPercentDisplay = " " ;
-		setDisplayInfo();
+//		setDisplayInfo();
 	}
 	
 	
@@ -366,6 +366,7 @@ public class StatesGraphics extends PApplet{
 	
 	
 	public void draw (PApplet surface) {
+		list = stat.getVaccinationInfo(name);
 		buttonDistance = surface.height/20;
 		buttonWidth = surface.width/3;
 		buttonHeight = surface.height/25;
@@ -428,9 +429,8 @@ public class StatesGraphics extends PApplet{
 		buttonX = (int)x;
 		buttonY = (int)y;
 		
-		ArrayList<String> list = stat.getVaccinationInfo(name);
 		p.fill(0);
-		p.stroke(0);
+//		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(LEFT);
 		
@@ -448,15 +448,15 @@ public class StatesGraphics extends PApplet{
 			drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
 			drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay, 218);
 
-			p.text("total vaccinations available : " + list.get(2) + "\n" +
-			
-				   "total vaccinations distributed : " + list.get(3) + "\n" +
-				   "total distribution percentage : " + list.get(9) + "\n" +
-				   "people vaccinated : " + list.get(4) + "\n" +
-				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
-				   "people fully vaccinated : " + list.get(7) + "\n" +
-				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x, (float)(y + 60));
-		}else {
+//			p.text("total vaccinations available : " + list.get(2) + "\n" +
+//			
+//				   "total vaccinations distributed : " + list.get(3) + "\n" +
+//				   "total distribution percentage : " + list.get(9) + "\n" +
+//				   "people vaccinated : " + list.get(4) + "\n" +
+//				   "total vaccinations percentage : " + list.get(6) + "% of the state population" + "\n" +
+//				   "people fully vaccinated : " + list.get(7) + "\n" +
+//				   "fully vaccinated percentage : " + list.get(5) + "% of the state population", (float)x+500, (float)(y + 60));
+		} else {
 			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
 		
@@ -479,7 +479,63 @@ public class StatesGraphics extends PApplet{
 	}
 	
 	private void setDisplayInfo() {
+		vaxAvailable = list.get(2);
+//		for (int i = vaxAvailableTemp.length()-1; i >= 0; i--) {
+//			vaxAvailable = vaxAvailableTemp.substring(i, i+1) + vaxAvailable;
+//			if (i % 3 == 0 && i!=0) {
+//				vaxAvailable = "," + vaxAvailable;
+//			} 
+//		}
 		
+		vaxDist = list.get(3);
+//		for (int i = vaxDistTemp.length()-1; i >= 0; i--) {
+//			vaxDist = vaxDistTemp.substring(i, i+1) + vaxDist;
+//			if (i % 3 == 0 && i!=0) {
+//				vaxDist = "," + vaxDist;
+//			} 
+//		}
+		
+		distPercent = list.get(9);
+//		for (int i = distPercentTemp.length()-1; i >= 0; i--) {
+//			distPercent = distPercentTemp.substring(i, i+1) + distPercent;
+//			if (i % 3 == 0 && i!=0) {
+//				distPercent = "," + distPercent;
+//			} 
+//		}
+		
+		peopleVaxed = list.get(4);
+//		for (int i = peopleVaxedTemp.length()-1; i >= 0; i--) {
+//			peopleVaxed = peopleVaxedTemp.substring(i, i+1) + peopleVaxed;
+//			if (i % 3 == 0 && i!=0) {
+//				peopleVaxed = "," + peopleVaxed;
+//			} 
+//		}
+		
+		vaxedPercent = list.get(6);
+//		for (int i = vaxedPercentTemp.length()-1; i >= 0; i--) {
+//			vaxedPercent = vaxedPercentTemp.substring(i, i+1) + vaxedPercent;
+//			if (i % 3 == 0 && i!=0) {
+//				vaxedPercent = "," + vaxedPercent;
+//			} 
+//		}
+		vaxedPercent += "% of the state population";
+		
+		peopleFullyVaxed = list.get(7);
+//		for (int i = peopleFullyVaxedTemp.length()-1; i >= 0; i--) {
+//			peopleFullyVaxed = peopleFullyVaxedTemp.substring(i, i+1) + peopleFullyVaxed;
+//			if (i % 3 == 0 && i!=0) {
+//				peopleFullyVaxed = "," + peopleFullyVaxed;
+//			} 
+//		}
+		
+		fullyVaxedPercent = list.get(5);
+//		for (int i = fullyVaxedPercentTemp.length()-1; i >= 0; i--) {
+//			fullyVaxedPercent = fullyVaxedPercentTemp.substring(i, i+1) + fullyVaxedPercent;
+//			if (i % 3 == 0 && i!=0) {
+//				fullyVaxedPercent = "," + fullyVaxedPercent;
+//			} 
+//		}
+		fullyVaxedPercent += "% of the state population";
 	}
 	
 	//get methods

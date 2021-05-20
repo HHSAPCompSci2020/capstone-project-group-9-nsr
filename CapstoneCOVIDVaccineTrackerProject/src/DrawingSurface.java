@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import processing.core.PApplet;
@@ -88,11 +89,16 @@ public class DrawingSurface extends PApplet{
 		backButtonX = width-backButtonWidth-2*width/25;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
-		stateButtonX = map.getStates().get(map.getStateInput()).getGraph().getButtonX();
-		stateButtonY = map.getStates().get(map.getStateInput()).getGraph().getButtonY();
-		stateButtonDist = map.getStates().get(map.getStateInput()).getGraph().getButtonDistance();
-		stateButtonWidth = map.getStates().get(map.getStateInput()).getGraph().getButtonWidth();
-		stateButtonHeight = map.getStates().get(map.getStateInput()).getGraph().getButtonHeight();
+		if (map.getStateInput() != "") {
+			stateButtonX = map.getStates().get(map.getStateInput()).getGraph().getButtonX();
+			stateButtonY = map.getStates().get(map.getStateInput()).getGraph().getButtonY();
+			stateButtonDist = map.getStates().get(map.getStateInput()).getGraph().getButtonDistance();
+			stateButtonWidth = map.getStates().get(map.getStateInput()).getGraph().getButtonWidth();
+			stateButtonHeight = map.getStates().get(map.getStateInput()).getGraph().getButtonHeight();
+		}
+		
+		
+		
 		  //checks what page the window is on
 		  if(mainPage) {
 			  r = 255;
