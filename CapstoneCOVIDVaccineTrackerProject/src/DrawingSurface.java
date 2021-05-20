@@ -48,7 +48,7 @@ public class DrawingSurface extends PApplet{
 	
 	public DrawingSurface() {
 		map = new Country();
-		moreInfo = new MoreInfo();
+		moreInfo = new MoreInfo(this);
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;

@@ -11,7 +11,7 @@ import processing.core.PApplet;
  * @author roopa
  *
  */
-public class MoreInfo extends PApplet{
+public class MoreInfo{
 	
 	private int x, y;
 	private float buttonX, buttonY;
@@ -28,10 +28,10 @@ public class MoreInfo extends PApplet{
 	 * buttonWidth, buttonHeight
 	 * x and y coordinates of each of the vaccine company buttons
 	 */
-	public MoreInfo() {
+	public MoreInfo(PApplet p) {
 		this.x = 100;
 		this.y = 100;
-		buttonWidth = width*2;
+		buttonWidth = p.width*2;
 		buttonHeight = 20;
 		pfizerX = this.x+10;
 		pfizerY = this.y+10;
@@ -131,7 +131,7 @@ public class MoreInfo extends PApplet{
 		surface.textLeading(leading);
 		surface.textSize(textSize1);
 		surface.text("ALL INFO GATHERED DIRECTLY FROM CDC WEBSITE (as of 05/15/2021)", screenWidth/2, screenHeight/20);
-		surface.textAlign(LEFT);
+		surface.textAlign(surface.LEFT);
 		surface.textSize(textSize2);
 		surface.text("eligibility: ", startX, startY+(yDifference));
 		surface.textSize(textSize3);
