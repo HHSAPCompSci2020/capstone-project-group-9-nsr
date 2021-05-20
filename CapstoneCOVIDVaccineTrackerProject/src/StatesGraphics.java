@@ -360,7 +360,10 @@ public class StatesGraphics extends PApplet{
 			p.stroke(255, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
 
-		}		
+		}
+		
+		p.stroke(0,0,0);
+		p.noFill();
 
 	}
 	
