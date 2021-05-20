@@ -126,16 +126,16 @@ public class Country extends Frame{
 		buttonWidth = screenWidth/4;
 		buttonHeight = screenHeight/25;
 		if(!statePageOpen) {
-		if (screenHeight < screenWidth) {
-			map.resize(0, (screenHeight/3)*2);
-		} else {
-			map.resize(screenWidth/2, 0);
-		}
-		surface.image(map, screenWidth/100, screenHeight/100);
-		//draw button for drop down
-		drawDropDownButton(surface, screenWidth);
-		writeInfo(surface, (6*screenWidth/9), screenHeight* 5 /20, screenHeight/45, screenHeight/60, screenHeight/50);
-		drawBackButton(surface, screenWidth, screenHeight);
+			if (screenHeight < screenWidth) {
+				map.resize(0, (screenHeight/3)*2);
+			} else {
+				map.resize(screenWidth/2, 0);
+			}
+			surface.image(map, screenWidth/100, screenHeight/100);
+			//draw button for drop down
+			drawDropDownButton(surface, screenWidth);
+			writeInfo(surface, (6*screenWidth/9), screenHeight* 5 /20, screenHeight/45, screenHeight/60, screenHeight/50);
+			drawBackButton(surface, screenWidth, screenHeight);
 		}
 		if(openDropDown) {
 			createDropDown(surface);
@@ -143,7 +143,6 @@ public class Country extends Frame{
 		if(statePageOpen) {
 			goToStatePage(surface, stateInput);
 		}
-		
 		if (clickVaxName) {
 			vaxNamesDisplay = vaxNames;
 		} else {
@@ -165,7 +164,6 @@ public class Country extends Frame{
 			peopleFullyVaxedDisplay = peopleFullyVaxedString;
 		}
 		
-		//add if you go back, make statePage = false
 		
 	}
 	
