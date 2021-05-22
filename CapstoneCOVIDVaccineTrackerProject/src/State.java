@@ -16,13 +16,13 @@ public class State extends Frame{
 	private PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
-	private double graphWidth, graphHeight, graphX, graphY;
-	
-	private int stateButtonX = 0;
-	private int stateButtonY = 0;
-	private float stateButtonDist = 0;
-	private int stateButtonWidth = 0;
-	private int stateButtonHeight = 0;
+//	private double graphWidth, graphHeight, graphX, graphY;
+//	
+//	private int stateButtonX = 0;
+//	private int stateButtonY = 0;
+//	private float stateButtonDist = 0;
+//	private int stateButtonWidth = 0;
+//	private int stateButtonHeight = 0;
 	
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
@@ -107,14 +107,16 @@ public class State extends Frame{
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		stateButtonX = graph.getButtonX();
-		stateButtonY = graph.getButtonY();
-		stateButtonDist = graph.getButtonDistance();
-		stateButtonWidth = graph.getButtonWidth();
-		stateButtonHeight = graph.getButtonHeight();
+//		stateButtonX = graph.getButtonX();
+//		stateButtonY = graph.getButtonY();
+//		stateButtonDist = graph.getButtonDistance();
+//		stateButtonWidth = graph.getButtonWidth();
+//		stateButtonHeight = graph.getButtonHeight();
 		buttonDistance = surface.height/20;
 		buttonWidth = surface.width/3;
 		buttonHeight = surface.height/25;
+		buttonX = (surface.width/20);
+		buttonY =  surface.height* 11 /20;
 		vaxAvailable = vaccine.get(2);
 		vaxDist = vaccine.get(3);
 		distPercent = vaccine.get(9);
@@ -183,14 +185,12 @@ public class State extends Frame{
 //		}
 		
 		if (graph.getInfoAvailable()) {
-			writeStats(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+			writeStats(surface, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 		}
 //		buttons(surface);
 	}
 	
-	public void writeStats(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
-		buttonX = (int)x;
-		buttonY = (int)y;
+	public void writeStats(PApplet p, float titleSize, float writingSize, float leading) {
 		p.textSize(writingSize);
 		p.textLeading(leading);
 		
