@@ -268,7 +268,6 @@ public class DrawingSurface extends PApplet{
 				//PRINT DISPLAY INFO
 				
 				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight())) {
-					System.out.println(state.getVaxAvailableDisplay());
 					map.getStates().get(map.getStateInput()).setClickVaxAvailable(!map.getStates().get(map.getStateInput()).getClickVaxAvailable());
 				}
 				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*2), state.getButtonWidth(),state.getButtonHeight())) {

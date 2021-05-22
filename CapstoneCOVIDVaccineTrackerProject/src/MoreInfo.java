@@ -67,8 +67,8 @@ public class MoreInfo{
 		screenWidth = surface.width;
 		johnsonY = this.y+screenHeight/3;
 		modernaY = this.y+ 2*(screenHeight/3);
-		buttonWidth = screenWidth/3;
-		buttonHeight = screenHeight/7;
+		buttonWidth = screenWidth/4;
+		buttonHeight = screenHeight/12;
 		drawVaccineButtons(surface);
 		drawInfo(surface, screenHeight/100);
 		if (pfizerButton) {
@@ -107,12 +107,12 @@ public class MoreInfo{
 	 * @post textSize screen height/50
 	 */
 	private void drawVaccineButtons(PApplet surface) {
-		buttonX = surface.width/20;
+		buttonX = surface.width/3;
 		buttonY = surface.height/5;
 		surface.textSize(screenHeight/50);
 		drawButton(surface, (int)buttonX, (int)buttonY, (int)buttonWidth, (int)buttonHeight, "Pfizer-BioNTech");
-		drawButton(surface, (int)buttonX, (int)(2*buttonY), (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
-		drawButton(surface, (int)buttonX, (int)(3*buttonY), (int)buttonWidth, (int)buttonHeight, "Moderna");
+		drawButton(surface, (int)(2*buttonX), (int)(buttonY), (int)buttonWidth, (int)buttonHeight, "Johnson & Johnson");
+		drawButton(surface, (int)(3*buttonX), (int)(buttonY), (int)buttonWidth, (int)buttonHeight, "Moderna");
 	}
 	
 	/**

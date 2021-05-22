@@ -47,7 +47,7 @@ public class StatesGraphics{
 		stat = new Stats();
 		name = state;
 		vaccine = stat.getLatestVaccineInfo(name);
-		System.out.println("state: " + state + " vaccine:" + vaccine);
+//		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
 	
