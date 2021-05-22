@@ -560,7 +560,8 @@ public class DrawingSurface extends PApplet{
 		
 		text("- press the map button to go to the country map\n"
 				+ "- the country map page shows a map of the country with buttons that will reveal \n   countrywide statistics about the vaccines when they are clicked on\n"
-				+ "- on the map page, click the three lines in the corner to open a drop down\n"
+				+ "- click each button to show the information"
+				+ "- on the map page, click the three lines in the corner to open \n   a drop down\n"
 				+ "- from there, there is an option to choose a state, which leads to the map of that state with its \n   corresponding statistics that will be revealed when the button is clicked on\n\n"
 				+ "- press the more info button to get more information\n"
 				+ "- the more information page will give you more information about the different types of vaccine\n\n"
