@@ -21,7 +21,7 @@ import processing.core.PApplet;
  */
 public class StatesGraphics{
 	
-	private Stats stat = new Stats();	
+	private Stats stat;	
 	private String name;
 	
 	private double graphWidth, graphHeight;
@@ -29,13 +29,7 @@ public class StatesGraphics{
 	private ArrayList<Double> cases, deaths, vaccineList;
 	private ArrayList<String> dates, vaccine, vaccineDates, covidDates;
 	
-	
-	private float buttonDistance;
-	private int buttonWidth, buttonHeight;
-	private int buttonX, buttonY;
 	private boolean infoAvailable;
-	
-	private int r, g, b, r1, g1, b1;
 
 	
 	/**constructor
@@ -50,16 +44,10 @@ public class StatesGraphics{
 	 * @param String state
 	 */
 	public StatesGraphics(String state) {
+		stat = new Stats();
 		name = state;
-		buttonX = 0;
-		buttonY = 0;
-		r = 99;
-		g = 207;
-		b = 248;
-		r1= 214;
-		g1= 244;
-		b1= 255;
 		vaccine = stat.getLatestVaccineInfo(name);
+		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
 	
@@ -334,9 +322,6 @@ public class StatesGraphics{
 	
 	public void draw (PApplet surface) {
 //		vaccine = stat.getLatestVaccineInfo(name);
-		buttonDistance = surface.height/20;
-		buttonWidth = surface.width/3;
-		buttonHeight = surface.height/25;
 		if (surface.height<surface.width) {
 			graphWidth = (surface.height/2);
 			graphHeight = (surface.height/2);
@@ -361,8 +346,6 @@ public class StatesGraphics{
 	 * @param y y coordinates of the top of where the text starts
 	 */
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
-		buttonX = (int)x;
-		buttonY = (int)y;
 		
 		p.fill(0);
 //		p.stroke(0);
@@ -380,43 +363,8 @@ public class StatesGraphics{
 		
 	}
 	
-	public void drawButton(PApplet surface, int x, int y, int w, int h, String text) {
-		surface.fill(r1,g1,b1);
-		surface.rect(x, y, w, h, 10);
-    	surface.textAlign(surface.CENTER, surface.CENTER);
-    	surface.fill(0);
-    	surface.text(text, x + w/2, y + h/2);
-    	
-	}
-	
-	public boolean overButton(PApplet surface, int x, int y, int w, int h) {
-	  if (surface.mouseX > x && surface.mouseX < (x + w) && surface.mouseY > y && surface.mouseY < (y + h)) {
-	    return true;
-	  }
-	  return false;
-	}
-	
 	
 	//get methods
-	public int getButtonX() {
-		return buttonX;
-	}
-	
-	public int getButtonY() {
-		return buttonY;
-	}
-	
-	public int getButtonWidth() {
-		return buttonWidth;
-	}
-	
-	public int getButtonHeight() {
-		return buttonHeight;
-	}
-	
-	public float getButtonDistance() {
-		return buttonDistance;
-	}
 		
 	
 	public boolean getInfoAvailable() {
