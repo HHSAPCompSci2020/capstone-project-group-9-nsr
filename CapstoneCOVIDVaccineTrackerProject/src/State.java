@@ -115,7 +115,7 @@ public class State extends Frame{
 		buttonDistance = surface.height/20;
 		buttonWidth = surface.width/3;
 		buttonHeight = surface.height/25;
-		buttonX = (surface.width/20);
+		buttonX = surface.width/20;
 		buttonY =  surface.height* 11 /20;
 		vaxAvailable = vaccine.get(2);
 		vaxDist = vaccine.get(3);
@@ -148,11 +148,12 @@ public class State extends Frame{
 			vaxAvailableDisplay = (vaxAvailableString);
 		}
 		System.out.println(clickVaxAvailable);
+		System.out.println("Button Width: " + buttonWidth);
+		System.out.println("Button Height: " + buttonHeight);
 		System.out.println("Top left: " + buttonX + ", " + buttonY);
-		System.out.println("Top right: " + buttonX+buttonWidth + ", " + buttonY);
-		System.out.println("Bottom left: " + buttonX + ", " + buttonY+buttonHeight);
-		System.out.println("Bottom right: " + buttonX+buttonWidth + ", " + buttonY+buttonHeight);
-		System.out.println(surface.mouseX + ", " + surface.mouseY);
+		System.out.println("Top right: " + (buttonX+buttonWidth) + ", " + buttonY);
+		System.out.println("Bottom left: " + buttonX + ", " + (buttonY+buttonHeight+buttonDistance));
+		System.out.println("Bottom right: " + (buttonX+buttonWidth) + ", " + (buttonY+buttonHeight+buttonDistance));
 //		if (clickVaxDistributed) {
 //			vaxDistDisplay = vaxDist;
 //		} else {
