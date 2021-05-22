@@ -33,10 +33,6 @@ public class StatesGraphics{
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
 	private int buttonX, buttonY;
-//	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
-//	private String vaxAvailable, vaxDist, distPercent, peopleVaxed, vaxedPercent, peopleFullyVaxed, fullyVaxedPercent;
-//	private String vaxAvailableString, vaxDistString, distPercentString, peopleVaxedString, vaxedPercentString, peopleFullyVaxedString, fullyVaxedPercentString;
-//	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
 	private boolean infoAvailable;
 	
 	private int r, g, b, r1, g1, b1;
@@ -57,34 +53,6 @@ public class StatesGraphics{
 		name = state;
 		buttonX = 0;
 		buttonY = 0;
-//		clickVaxAvailable = false;
-//		clickVaxDistributed = false;
-//		clickDistPercent = false;
-//		clickPeopleVaxed = false;
-//		clickTotalVaxPercent = false;
-//		clickFullyVaxed = false;
-//		clickFullyVaxedPercent = false;
-//		vaxAvailable = " " ;
-//		vaxDist = " " ;
-//		distPercent = " " ;
-//		peopleVaxed = " " ;
-//		vaxedPercent = " " ;
-//		peopleFullyVaxed = " " ;
-//		fullyVaxedPercent = " " ;
-//		vaxAvailableString = "total vaccinations available";
-//		vaxDistString = "total vaccinations distributed";
-//		distPercentString = "total distribution percentage";
-//		peopleVaxedString = "people vaccinated";
-//		vaxedPercentString = "total vaccinations percentage";
-//		peopleFullyVaxedString = "people fully vaccinated";
-//		fullyVaxedPercentString = "fully vaccinated percentage";
-//		vaxAvailableDisplay = " " ;
-//		vaxDistDisplay = " " ;
-//		distPercentDisplay = " " ;
-//		peopleVaxedDisplay = " " ;
-//		vaxedPercentDisplay = " " ;
-//		peopleFullyVaxedDisplay = " " ;
-//		fullyVaxedPercentDisplay = " " ;
 		r = 99;
 		g = 207;
 		b = 248;
@@ -376,52 +344,7 @@ public class StatesGraphics{
 			graphWidth = (surface.width/2);
 			graphHeight = (surface.width/2);
 		}
-		
-//		vaxAvailable = vaccine.get(2);
-//		vaxDist = vaccine.get(3);
-//		distPercent = vaccine.get(9);
-//		peopleVaxed = vaccine.get(4);
-//		vaxedPercent = vaccine.get(6) + "% of the state population";
-//		peopleFullyVaxed = vaccine.get(7);
-//		fullyVaxedPercent = vaccine.get(5) + "% of the state population";
-		
-		
-		
-//		if (clickVaxAvailable) {
-//			vaxAvailableDisplay = vaxAvailable;
-//		} else {
-//			vaxAvailableDisplay = vaxAvailableString;
-//		}
-//		if (clickVaxDistributed) {
-//			vaxDistDisplay = vaxDist;
-//		} else {
-//			vaxDistDisplay = vaxDistString;
-//		}
-//		if (clickDistPercent) {
-//			distPercentDisplay = distPercent;
-//		} else {
-//			distPercentDisplay = distPercentString;
-//		}
-//		if (clickPeopleVaxed) {
-//			peopleVaxedDisplay = peopleVaxed;
-//		} else {
-//			peopleVaxedDisplay = peopleVaxedString;
-//		}
-//		if (clickTotalVaxPercent) {
-//			vaxedPercentDisplay = vaxedPercent;
-//		} else {
-//			vaxedPercentDisplay = vaxedPercentString;
-//		}
-//		if (clickFullyVaxed) {
-//			peopleFullyVaxedDisplay = peopleFullyVaxed;
-//		} else {
-//			peopleFullyVaxedDisplay = peopleFullyVaxedString;
-//		}
-//		if (clickFullyVaxedPercent) {
-//			fullyVaxedPercentDisplay = fullyVaxedPercent;
-//		} else {
-//			fullyVaxedPercentDisplay = fullyVaxedPercentString;
-//		}
+
 		
 		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
@@ -449,17 +372,7 @@ public class StatesGraphics{
 		if(vaccine.size() > 0){
 			infoAvailable = true;
 			p.text("updated as of " + dates.get(dates.size()-1), (float)x, (float)(y));
-			
-//			p.textSize(writingSize);
-//			p.textLeading(leading);
-//
-//			drawButton(p, (int)x, (int)(y+buttonDistance), buttonWidth, buttonHeight, vaxAvailableDisplay);
-//			drawButton(p, (int)x, (int)(y+(2*buttonDistance)), buttonWidth, buttonHeight, vaxDistDisplay);
-//			drawButton(p, (int)x, (int)(y+(3*buttonDistance)), buttonWidth, buttonHeight, distPercentDisplay);
-//			drawButton(p, (int)x, (int)(y+(4*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay);
-//			drawButton(p, (int)x, (int)(y+(5*buttonDistance)), buttonWidth, buttonHeight, vaxedPercentDisplay);
-//			drawButton(p, (int)x, (int)(y+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay);
-//			drawButton(p, (int)x, (int)(y+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay);
+
 
 		} else {
 			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
@@ -505,71 +418,6 @@ public class StatesGraphics{
 		return buttonDistance;
 	}
 		
-//	public boolean getClickVaxAvailable() {
-//		return clickVaxAvailable;
-//	}
-//	
-//	public boolean getClickVaxDistributed() {
-//		return clickVaxDistributed;
-//	}
-//	
-//	public boolean getClickDistPercent() {
-//		return clickDistPercent;
-//	}
-//	
-//	public boolean getClickPeopleVaxed() {
-//		return clickPeopleVaxed;
-//	}
-//	
-//	public boolean getClickTotalVaxPercent() {
-//		return clickTotalVaxPercent;
-//	}
-//	
-//	public boolean getClickFullyVaxed() {
-//		return clickFullyVaxed;
-//	}
-//	
-//	public boolean getClickFullyVaxedPercent() {
-//		return clickFullyVaxedPercent;
-//	}
-//	
-//	//	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
-//
-//	public String getVaxAvailableDisplay() {
-//		return vaxAvailableDisplay;
-//	}
-//	
-//	public String getVaxAvailable() {
-//		return vaxAvailable;
-//	}
-//	
-//	public String getVaxAvailableString() {
-//		return vaxAvailableString;
-//	}
-//	
-//	public String getVaxDist() {
-//		return vaxDistDisplay;
-//	}
-//	
-//	public String getDistPercent() {
-//		return distPercentDisplay;
-//	}
-//	
-//	public String getPeopleVaxed() {
-//		return peopleVaxedDisplay;
-//	}
-//	
-//	public String getVaxedPercent() {
-//		return vaxedPercentDisplay;
-//	}
-//	
-//	public String getPeopleFullyVaxed() {
-//		return peopleFullyVaxedDisplay;
-//	}
-//	
-//	public String getFullyVaxedPercent() {
-//		return fullyVaxedPercentDisplay;
-//	}
 	
 	public boolean getInfoAvailable() {
 		return infoAvailable;
@@ -578,39 +426,6 @@ public class StatesGraphics{
 	public ArrayList<String> getVaccineInfo(){
 		return vaccine;
 	}
-	
-	//set methods	
-//	public void setClickVaxAvailable(boolean state) {
-//		clickVaxAvailable = state;
-//	}
-//	
-//	public void setClickVaxDistributed(boolean state) {
-//		clickVaxDistributed = state;
-//	}
-//	
-//	public void setClickDistPercent(boolean state) {
-//		clickDistPercent = state;
-//	}
-//	
-//	public void setClickPeopleVaxed(boolean state) {
-//		clickPeopleVaxed = state;
-//	}
-//	
-//	public void setClickTotalVaxPercent(boolean state) {
-//		clickTotalVaxPercent = state;
-//	}
-//	
-//	public void setClickFullyVaxed(boolean state) {
-//		clickFullyVaxed = state;
-//	}
-//	
-//	public void setClickFullyVaxedPercent(boolean state) {
-//		clickFullyVaxedPercent = state;
-//	}
-//	
-//	public void setVaxAvailableDisplay(String txt) {
-//		vaxAvailableDisplay = txt;
-//	}
 
 
 }

@@ -184,6 +184,14 @@ public class Country extends Frame{
 			peopleFullyVaxedDisplay = peopleFullyVaxedString;
 		}
 		
+//		System.out.println("Button Width: " + buttonWidth);
+//		System.out.println("Button Height: " + buttonHeight);
+//		System.out.println("Top left: " + buttonX + ", " + buttonY);
+//		System.out.println("Top right: " + (buttonX+buttonWidth) + ", " + buttonY);
+//		System.out.println("Bottom left: " + buttonX + ", " + (buttonY+buttonHeight+buttonDistance));
+//		System.out.println("Bottom right: " + (buttonX+buttonWidth) + ", " + (buttonY+buttonHeight+buttonDistance));
+//		System.out.println("________________________________________");
+//		System.out.println();
 		
 	}
 	
