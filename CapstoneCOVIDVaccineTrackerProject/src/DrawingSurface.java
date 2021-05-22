@@ -297,17 +297,17 @@ public class DrawingSurface extends PApplet{
 				mainPage = true;
 				reset();
 			}
-			if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)(moreInfo.getButtonX()-width/3.5), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(true);
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(false);
 			}
-			if(overButton((int)moreInfo.getButtonX(),(int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)(2*moreInfo.getButtonX()-width/3.5),(int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(false);
 				moreInfo.setJohnson(true);
 				moreInfo.setModerna(false);
 			}
-			if(overButton((int)moreInfo.getButtonX(), (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+			if(overButton((int)(3*moreInfo.getButtonX()-width/3.5), (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 				moreInfo.setPfizer(false);
 				moreInfo.setJohnson(false);
 				moreInfo.setModerna(true);
@@ -524,26 +524,26 @@ public class DrawingSurface extends PApplet{
 		moreInfo.draw(this);
 		fillBackButton();
 		textSize(height/50);
-    	if(overButton((int)moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+    	if(overButton((int)(moreInfo.getButtonX()-width/3.5), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
     		fill(r, g, b);
     	}else {
     			fill(r1,g1,b1);
     			}
-    	drawButton((int) moreInfo.getButtonX(), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
+    	drawButton((int) (moreInfo.getButtonX()-width/3.5), (int)moreInfo.getButtonY(), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Pfizer-BioNTech");
 	
-		if(overButton((int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+		if(overButton((int)(2*moreInfo.getButtonX()-width/3.5), (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 			fill(r, g, b);
 		}else {
 				fill(r1,g1,b1);
 				}
-			drawButton( (int)moreInfo.getButtonX(), (int)(2* moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
+			drawButton( (int)(2*moreInfo.getButtonX()-width/3.5), (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Johnson & Johnson");
 		
-		if(overButton((int)moreInfo.getButtonX(), (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
+		if(overButton((int)(3*moreInfo.getButtonX()-width/3.5), (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(), moreInfo.getButtonHeight())) {
 			fill(r, g, b);
 		}else {
 			fill(r1,g1,b1);
 			}
-		drawButton( (int)moreInfo.getButtonX(),  (int)(3*moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
+		drawButton( (int)(3*moreInfo.getButtonX()-width/3.5),  (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
 		
 	}
 	public void goToIns() {
@@ -559,9 +559,9 @@ public class DrawingSurface extends PApplet{
 		textAlign(LEFT);
 		
 		text("- press the map button to go to the country map\n"
-				+ "- the country map page shows a map of the country with countrywide statistics about the vaccines\n"
+				+ "- the country map page shows a map of the country with buttons that will reveal \n   countrywide statistics about the vaccines when they are clicked on\n"
 				+ "- on the map page, click the three lines in the corner to open a drop down\n"
-				+ "- from there, there is an option to choose a state, which leads to the map of that state with its \n   corresponding statistics\n\n"
+				+ "- from there, there is an option to choose a state, which leads to the map of that state with its \n   corresponding statistics that will be revealed when the button is clicked on\n\n"
 				+ "- press the more info button to get more information\n"
 				+ "- the more information page will give you more information about the different types of vaccine\n\n"
 				+ "- press the back button to go back to the main page\n"
