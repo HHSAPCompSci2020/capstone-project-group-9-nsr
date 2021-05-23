@@ -12,18 +12,18 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Country extends Frame{
-	private TreeMap<String, State> states = new TreeMap<String, State>();
+	private TreeMap<String, State> states;
 	private PImage map;
 	private int screenHeight, screenWidth;
 	private boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
 	private boolean statePageOpen;
 	private String stateInput;
 	private String[] allStateNames;
-	private Stats stats = new Stats();
+	private Stats stats;
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
 	private int buttonX, buttonY;
-	private ArrayList<String> list = stats.getCountryData();
+	private ArrayList<String> list;
 	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
 	private String vaxNamesString, vaxAvailableString, peopleVaxedString, peopleFullyVaxedString;
 	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
@@ -35,6 +35,9 @@ public class Country extends Frame{
 	public Country() {
 		super("US_MAP.png");
 		initializeStates();
+		stats = new Stats();
+		list = stats.getCountryData();
+		states = new TreeMap<String, State>();
 		stateInput = "";
 		openDropDown = false;
 		statePageOpen = false;

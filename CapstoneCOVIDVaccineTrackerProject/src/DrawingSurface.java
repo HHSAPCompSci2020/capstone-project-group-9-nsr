@@ -16,13 +16,13 @@ public class DrawingSurface extends PApplet{
 	
 	private int buttonW, buttonH;
 	private int mapX, mapY;   	 //coordinates and width/height  of the map button
-	private boolean mapClicked = false;		//if map button has been clicked
+	private boolean mapClicked;		//if map button has been clicked
 	
 	private int infoX, infoY;   //coordinates and width/height  of the map button
-	private boolean infoClicked = false;		//if INFO button has been clicked
+	private boolean infoClicked;		//if INFO button has been clicked
 	
 	private int insX, insY;    //coordinates and width/height  of the map button
-	private boolean insClicked = false;		//if map button has been clicked
+	private boolean insClicked;		//if map button has been clicked
 	
 	private int backButtonWidth, backButtonHeight;
 	private int backButtonX, backButtonY;
@@ -33,8 +33,8 @@ public class DrawingSurface extends PApplet{
 	private boolean mapPage;
 	private boolean infoPage;
 	private boolean insPage;
-	public boolean quit = false;
-	private int x=0;
+	public boolean quit;
+	private int x;
 	
 	public DrawingSurface() {
 		System.out.println("constructor start");
@@ -45,6 +45,17 @@ public class DrawingSurface extends PApplet{
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;
+		mapClicked = false;
+		infoClicked = false;
+		insClicked = false;
+		quit = false;
+		  r = 255;
+		  g = 202;
+		  b = 240;
+		  r1= 255;
+		  g1= 237;
+		  b1= 251;
+		  x = 0;
 		System.out.println("Drawing Surface init");
 	}
 	/**
