@@ -13,7 +13,7 @@ import processing.core.PImage;
 public class State extends Frame{
 	private StatesGraphics graph;
 	private String name;
-	private PImage map;
+	private PImage map, infoGraph;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
 	
@@ -90,8 +90,10 @@ public class State extends Frame{
 				peopleFullyVaxed = vaccine.get(7);
 				fullyVaxedPercent = vaccine.get(5) + "% of the state population";
 			}
+			graph.createGraph(surface, 7*(surface.width/11), surface.height/20, name);
 		}
 		map = surface.loadImage("maps/" + name +".png");
+		
 		mapWidth = map.width;
 		mapHeight = map.height;
 		screenHeight = surface.height;
@@ -110,6 +112,9 @@ public class State extends Frame{
 		
 
 		surface.image(map, screenWidth/100, screenHeight/100);
+		
+		infoGraph = surface.loadImage("graphs/" + name + ".png");
+		surface.image(infoGraph, (float)(7*(screenWidth/11)-(0.3*graph.getGraphWidth())), (float)(screenHeight/20-(0.1*graph.getGraphHeight())));
 
 		drawDropDownButton(surface, screenWidth);
 		
