@@ -28,6 +28,8 @@ public class State extends Frame{
 	private String vaxAvailableString, vaxDistString, distPercentString, peopleVaxedString, vaxedPercentString, peopleFullyVaxedString, fullyVaxedPercentString;
 	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
 	
+	private boolean hasBeenReset;
+	
 	/**
 	 * calls the no-args StatesGraphic constructor
 	 */
@@ -173,6 +175,18 @@ public class State extends Frame{
     	surface.text(text, x + w/2, y + h/2);
     	surface.noFill();
 	}
+	
+	public void reset() {
+		
+		setClickDistPercent(false);
+		setClickFullyVaxed(false);
+		setClickFullyVaxedPercent(false);
+		setClickPeopleVaxed(false);
+		setClickTotalVaxPercent(false);
+		setClickVaxAvailable(false);
+		setClickVaxDistributed(false);
+		setHasBeenReset(true);
+	}
 	//get methods
 	/**
 	 * @return name of the state
@@ -317,6 +331,10 @@ public class State extends Frame{
 		return fullyVaxedPercentString;
 	}
 	
+	public boolean getHasBeenReset() {
+		return hasBeenReset;
+	}
+	
 	//set methods
 	
 	public void setButtonInfo() {
@@ -397,5 +415,9 @@ public class State extends Frame{
 	
 	public void setFullyVaxedPercentDisplay(String txt) {
 		fullyVaxedPercentDisplay = txt;
+	}
+	
+	public void setHasBeenReset(boolean state) {
+		hasBeenReset = state;
 	}
 }

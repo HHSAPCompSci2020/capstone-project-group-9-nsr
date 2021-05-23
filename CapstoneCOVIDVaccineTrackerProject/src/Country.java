@@ -103,6 +103,8 @@ public class Country extends Frame{
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
 		State nextState = states.get(stateName);
+		
+		
 		nextState.draw(surface);
 	}
 	
@@ -132,6 +134,8 @@ public class Country extends Frame{
 		}
 		if(openDropDown) {
 			createDropDown(surface);
+			State nextState = states.get(stateInput);
+			nextState.reset();
 		}
 		if(statePageOpen) {
 			goToStatePage(surface, stateInput);
