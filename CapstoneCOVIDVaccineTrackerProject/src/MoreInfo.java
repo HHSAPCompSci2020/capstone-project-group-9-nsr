@@ -13,31 +13,10 @@ import processing.core.PApplet;
  */
 public class MoreInfo{
 	
-	private int x, y;
 	private float buttonX, buttonY;
 	private int buttonWidth, buttonHeight;
-	private double pfizerX, pfizerY;
-	private double johnsonX, johnsonY;
-	private double modernaX, modernaY;
 	private boolean pfizerButton, johnsonButton, modernaButton;
 	private int screenHeight, screenWidth;
-	
-	/**
-	 * constructor that initializes all fields:
-	 * x, y
-	 * buttonWidth, buttonHeight
-	 * x and y coordinates of each of the vaccine company buttons
-	 */
-	public MoreInfo(PApplet p) {
-//		this.x = 100;
-//		this.y = 100;
-//		pfizerX = this.x+10;
-//		pfizerY = this.y+10;
-//		johnsonX = pfizerX;
-//		johnsonY = pfizerY + buttonHeight + 10;
-//		modernaX = johnsonX;
-//		modernaY = johnsonY + buttonHeight + 10;
-	}
 	
 	/**
 	 * 
@@ -63,8 +42,6 @@ public class MoreInfo{
 	public void draw(PApplet surface) {
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		johnsonY = this.y+screenHeight/3;
-		modernaY = this.y+ 2*(screenHeight/3);
 		buttonWidth = screenWidth/4;
 		buttonHeight = screenHeight/12;
 		drawVaccineButtons(surface);

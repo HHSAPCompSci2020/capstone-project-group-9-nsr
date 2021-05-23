@@ -1,10 +1,7 @@
 /**The frame of the classes with pictures, CountryMap and State
 * @author sophie
 */
-import javax.swing.JButton;
-
 import processing.core.PApplet;
-import processing.core.PImage;
 
 /**the frame of the state and the country page
  * creates the frame

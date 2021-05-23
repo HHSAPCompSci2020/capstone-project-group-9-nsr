@@ -1,8 +1,4 @@
 
-import java.awt.Color;
-import java.util.TreeMap;
-
-import javax.swing.JButton;
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -32,7 +28,7 @@ public class DrawingSurface extends PApplet{
 	private int backButtonX, backButtonY;
 	private int quitX, quitY;
 	private int backButtonTextSize;
-	int r, g, b, r1, g1, b1;
+	private int r, g, b, r1, g1, b1;
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
@@ -41,11 +37,15 @@ public class DrawingSurface extends PApplet{
 	private int x=0;
 	
 	public DrawingSurface() {
+		System.out.println("constructor start");
 		map = new Country();
-		moreInfo = new MoreInfo(this);
+		System.out.println("Country init");
+		moreInfo = new MoreInfo();
+		System.out.println("more info init");
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;
+		System.out.println("Drawing Surface init");
 	}
 	
 	public void settings() {
@@ -83,6 +83,7 @@ public class DrawingSurface extends PApplet{
 		backButtonX = width-backButtonWidth-2*width/25;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
+//		System.out.println("drawing surface draw");
 		
 		  //checks what page the window is on
 		  if(mainPage) {
@@ -220,7 +221,6 @@ public class DrawingSurface extends PApplet{
 	 * and changes booleans to change pages
 	 */
 	public void mouseClicked() {
-		System.out.println("Mouse click: " + mouseX + ", " + mouseY);
 		if(mainPage) {
 			if (overButton(mapX, mapY, buttonW, buttonH)) {
 				mapClicked = true;
@@ -265,7 +265,6 @@ public class DrawingSurface extends PApplet{
 				
 				State state = map.getStates().get(map.getStateInput());
 				setStateButtonInfo(state);
-				//PRINT DISPLAY INFO
 				
 				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight())) {
 					map.getStates().get(map.getStateInput()).setClickVaxAvailable(!map.getStates().get(map.getStateInput()).getClickVaxAvailable());
@@ -289,7 +288,6 @@ public class DrawingSurface extends PApplet{
 					map.getStates().get(map.getStateInput()).setClickFullyVaxedPercent(!map.getStates().get(map.getStateInput()).getClickFullyVaxedPercent());
 				}
 			}
-				//get boolean and check over button, then change boolean
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {
@@ -410,6 +408,14 @@ public class DrawingSurface extends PApplet{
 		map.setClickFullyVaxed(false);
 		map.setClickPeopleVaxed(false);
 		map.setClickVaxName(false);
+		State state = map.getStates().get(map.getStateInput());
+		state.setClickDistPercent(false);
+		state.setClickFullyVaxed(false);
+		state.setClickFullyVaxedPercent(false);
+		state.setClickPeopleVaxed(false);
+		state.setClickTotalVaxPercent(false);
+		state.setClickVaxAvailable(false);
+		state.setClickVaxDistributed(false);
 		x = 0;
 		r = 255;
 		g = 202;
@@ -423,6 +429,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill(255)
 	 */
 	public void goToMap() {
+		System.out.println("go to country map");
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
@@ -479,7 +486,7 @@ public class DrawingSurface extends PApplet{
 				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight(), state.getFullyVaxedPercentDisplay());
 				
 			} else {
-				text("there is no numerical data available for " + state.getName(), (float)state.getButtonX(), (float)(state.getButtonY() + 30));
+
 			}
 			
 			

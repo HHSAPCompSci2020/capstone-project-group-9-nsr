@@ -14,7 +14,6 @@ import processing.core.PImage;
 public class Country extends Frame{
 	private TreeMap<String, State> states = new TreeMap<String, State>();
 	private PImage map;
-	private MoreInfo moreInfo;
 	private int screenHeight, screenWidth;
 	private boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
 	private boolean statePageOpen;
@@ -28,12 +27,6 @@ public class Country extends Frame{
 	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
 	private String vaxNamesString, vaxAvailableString, peopleVaxedString, peopleFullyVaxedString;
 	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
-	private int r, g, b, r1, g1, b1;
-//	private int stateButtonX = 0;
-//	private int stateButtonY = 0;
-//	private float stateButtonDist = 0;
-//	private int stateButtonWidth = 0;
-//	private int stateButtonHeight = 0;
 	
 	/**
 	 * constructor that initializes fields:
@@ -104,21 +97,14 @@ public class Country extends Frame{
 	 * @param stateName name of state chosen by user
 	 */
 	private void goToStatePage(PApplet surface, String stateName) {
-		State nextState = states.get(stateName);
+		System.out.println("go to state");
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
+		State nextState = states.get(stateName);
 		nextState.draw(surface);
 	}
 	
-	/**
-	 * takes you back to the home page of program
-	 * @param surface papplet parameter
-	 */
-	public void goToHome(PApplet surface) {
-		surface.fill(255);
-		surface.rect(0, 0, surface.width, surface.height);
-		moreInfo.draw(surface);
-	}
+	
 	
 	/**
 	 * draws all aspects of country class
@@ -128,7 +114,7 @@ public class Country extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		buttonDistance = (float) (screenWidth/4);
+		buttonDistance = screenWidth/4;
 		buttonWidth = (int) (screenWidth/4.5);
 		buttonHeight = screenHeight/15;
 		if(!statePageOpen) {
