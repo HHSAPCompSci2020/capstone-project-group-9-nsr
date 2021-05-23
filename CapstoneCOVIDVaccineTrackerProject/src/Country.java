@@ -14,7 +14,6 @@ import processing.core.PImage;
 public class Country extends Frame{
 	private TreeMap<String, State> states = new TreeMap<String, State>();
 	private PImage map;
-	private MoreInfo moreInfo;
 	private int screenHeight, screenWidth;
 	private boolean openDropDown, clickVaxName, clickAvailableVax, clickPeopleVaxed, clickFullyVaxed;
 	private boolean statePageOpen;
@@ -28,6 +27,12 @@ public class Country extends Frame{
 	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
 	private String vaxNamesString, vaxAvailableString, peopleVaxedString, peopleFullyVaxedString;
 	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
+	private int r, g, b, r1, g1, b1;
+//	private int stateButtonX = 0;
+//	private int stateButtonY = 0;
+//	private float stateButtonDist = 0;
+//	private int stateButtonWidth = 0;
+//	private int stateButtonHeight = 0;
 	
 	/**
 	 * constructor that initializes fields:
@@ -104,15 +109,7 @@ public class Country extends Frame{
 		nextState.draw(surface);
 	}
 	
-	/**
-	 * takes you back to the home page of program
-	 * @param surface papplet parameter
-	 */
-	public void goToHome(PApplet surface) {
-		surface.fill(255);
-		surface.rect(0, 0, surface.width, surface.height);
-		moreInfo.draw(surface);
-	}
+	
 	
 	/**
 	 * draws all aspects of country class
@@ -122,8 +119,8 @@ public class Country extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		buttonDistance = (float) (screenWidth/4);
-		buttonWidth = (int) (screenWidth/4.5);
+		buttonDistance = screenHeight/10;
+		buttonWidth = screenWidth/3;
 		buttonHeight = screenHeight/15;
 		if(!statePageOpen) {
 			if (screenHeight < screenWidth) {
@@ -134,7 +131,7 @@ public class Country extends Frame{
 			surface.image(map, screenWidth/100, screenHeight/100);
 			//draw button for drop down
 			drawDropDownButton(surface, screenWidth);
-			writeInfo(surface, (screenWidth/75), screenHeight* 17 /20, screenHeight/35, screenHeight/60);
+			writeInfo(surface, (7*screenWidth/11), screenHeight* 5 /20, screenHeight/35, screenHeight/40);
 		}
 		if(openDropDown) {
 			createDropDown(surface);
@@ -181,13 +178,13 @@ public class Country extends Frame{
 		p.fill(0);
 		p.textSize(titleSize);
 		
-		p.text("updated as of " + list.get(1), (float)buttonX, (float)(buttonY+buttonDistance/4));
+		p.text("updated as of " + list.get(1), (float)x, (float)(buttonY+buttonDistance/2));
 		
 		p.textSize(writingSize);
-		drawButton(p, (int)buttonX, (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, vaxNamesDisplay, 218);
-		drawButton(p, (int)(buttonX+buttonDistance), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
-		drawButton(p, (int)(buttonX+(2*buttonDistance)), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
-		drawButton(p, (int)(buttonX+(3*buttonDistance)), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
+		drawButton(p, (int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, vaxNamesDisplay, 218);
+		drawButton(p, (int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
+		drawButton(p, (int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
+		drawButton(p, (int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
 
 	}
 	
