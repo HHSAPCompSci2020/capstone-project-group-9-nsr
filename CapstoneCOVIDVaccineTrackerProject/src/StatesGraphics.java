@@ -375,14 +375,17 @@ public class StatesGraphics{
 		
 		if(vaccine.size() > 13){
 			infoAvailable = true;
-			p.text("updated as of " + covidDates.get(covidDates.size()-1), (float)x + 50, (float)(y + (p.height * 3 / 4)));
+//			p.text("updated as of " + covidDates.get(covidDates.size()-1), (float)x + 50, (float)(y + (p.height * 3 / 4)));
 
 
 		} else {
 			infoAvailable = false;
 			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
-		
+		p.textAlign(p.CENTER);
+		p.text("all data updated as of " + covidDates.get(covidDates.size()-1), (float)(p.width/4*3), (float)(p.height  / 4*3));
+		p.textAlign(p.LEFT);
+
 	}
 	
 	/**
