@@ -28,11 +28,13 @@ public class StatesGraphics{
 	
 	private Stats stat;	
 	private String name;
+	private double PIXEL_PER_Y, PIXEL_PER_X;
 	
-	private double graphWidth, graphHeight;
+	private double graphWidth, graphHeight, graphX, graphY;
 	
 	private ArrayList<Double> cases, deaths, vaccineList, prediction;
 	private ArrayList<String> vaccine, vaccineDates, covidDates;
+	private ArrayList<Point> points, points2, points3, points4;
 	
 	private boolean infoAvailable;
 
@@ -42,6 +44,7 @@ public class StatesGraphics{
 	 */
 	public StatesGraphics() {
 		this(null);
+
 		Timer timer = new Timer();
 		timer.schedule(new Stats(), 1000000);
 	}
@@ -53,6 +56,7 @@ public class StatesGraphics{
 	public StatesGraphics(String state) {
 		stat = new Stats();
 		name = state;
+
 		Timer timer = new Timer();
 		timer.schedule(new Stats(), 1000000);
 //		System.out.println("state: " + state + " vaccine:" + vaccine);
@@ -124,6 +128,9 @@ public class StatesGraphics{
 	 */
 	public void createGraph(PApplet p, double x, double y, String stateName){
 		
+		graphX = x;
+		graphY = y;
+		
 		cases = stat.getDoubleData(name, 3, "data/cases.csv");
 		deaths = stat.getDoubleData(name, 4, "data/cases.csv");
 		covidDates = stat.getStringData(name, 0, "data/cases.csv");
@@ -187,9 +194,9 @@ public class StatesGraphics{
 		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + graphHeight + 40)));
 
 		p.fill(255, 165, 0);
-		p.text("predicted population of covid-19 cases in " + name, (float)(x + 10), (float)((y + graphHeight + 55)));
+		p.text("predicted covid-19 cases in " + name, (float)(x + 10), (float)((y + graphHeight + 55)));
 
-		double PIXEL_PER_X = (graphWidth - 10) / (covidDates.size());
+		PIXEL_PER_X = (graphWidth - 10) / (covidDates.size());
 		
 		if(graphingVaccine) {
 			int diff = 0;
@@ -206,7 +213,7 @@ public class StatesGraphics{
 		
 		//number in each pixel
 //		System.out.println(width + " - " + 10 + " / " + diff);
-		final double PIXEL_PER_Y = (graphHeight - 10) / b;
+		PIXEL_PER_Y = (graphHeight - 10) / b;
 		
 		//coordinate of the base of the lines
 		double xAxis = x + 10;
@@ -218,10 +225,6 @@ public class StatesGraphics{
 		//keep track of how many days added
 		//if it is existing access the value at the same index in case data
 		//figure out the coordinates
-		ArrayList<Point> points = new ArrayList<Point>();
-		ArrayList<Point> points2 = new ArrayList<Point>();
-		ArrayList<Point> points3 = new ArrayList<Point>();
-		ArrayList<Point> points4 = new ArrayList<Point>();
 		
 		double initial = 0.0;
 		
@@ -230,6 +233,11 @@ public class StatesGraphics{
 		}
 		
 		double predInitial = PIXEL_PER_X * covidDates.size();
+		
+		points = new ArrayList<Point>();
+		points2 = new ArrayList<Point>();
+		points3 = new ArrayList<Point>();
+		points4 = new ArrayList<Point>();
 
 		while(!firstDate.equals(lastDate)) {
 				
@@ -272,29 +280,45 @@ public class StatesGraphics{
 			points4.add(po);
 			
 		}
-				
+
 		for(int i = 0; i < points.size()-1; i++) {
-//			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
 	
-			
+			//deaths
 			p.stroke(255, 0, 0);
+			p.fill(139, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
 			
+			if(i % 10 == 0)
+				p.circle((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)PIXEL_PER_X * 3);
+
+			//cases
 			p.stroke(0, 0, 255);
+			p.fill(0, 0, 139);
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 			
+			if(i % 10 == 0)
+				p.circle((float)points.get(i).getX(), (float)points.get(i).getY(), (float)PIXEL_PER_X * 3);
+			
+			//vaccination
 			if(i < points3.size()-2) {
 				p.stroke(0, 255, 0);
+				p.fill(0, 139, 0);
 				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
+					
+				if(i % 10 == 0)
+					p.circle((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)PIXEL_PER_X * 3);
 			}
 			
+			//prediction
 			if(i < points4.size()-2) {
 				p.stroke(255, 165, 0);
+				p.fill(230, 126, 0);
 				p.line((float)points4.get(i).getX(), (float)points4.get(i).getY(), (float)points4.get(i+1).getX(), (float)points4.get(i+1).getY());
+				
 			}
 						
 		}
-		
+			
 		p.stroke(0,0,0);
 		p.noFill();
 		
@@ -321,7 +345,7 @@ public class StatesGraphics{
 	
 	
 	public void draw (PApplet surface) {
-//		vaccine = stat.getLatestVaccineInfo(name);
+
 		if (surface.height<surface.width) {
 			graphWidth = (surface.height/2);
 			graphHeight = (surface.height/2);
@@ -330,10 +354,9 @@ public class StatesGraphics{
 			graphHeight = (surface.width/2);
 		}
 
-		
-//		createGraph(surface, 7*(surface.width/11), surface.height/20, name);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
-		
+		showGraphCoordinates(surface, PIXEL_PER_X * 3, points, points2, points3, points4, graphX + 10, graphY + graphHeight + 65);
+
 	}
 	
 	/**
@@ -362,6 +385,30 @@ public class StatesGraphics{
 			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
 		
+	}
+	
+	private void showGraphCoordinates(PApplet p, double diameter, ArrayList<Point> p1, ArrayList<Point> p2, ArrayList<Point> p3, ArrayList<Point> p4, double cx, double cy) {
+		//if mouseX mouseY is in one of the points range then show the text
+		double x = p.mouseX;
+		double y = p.mouseY;
+		
+		String text = "";
+		
+		for(int i = 0; i < p1.size(); i+=2) {
+			
+			if(x >= p1.get(i).getX()-diameter/2 && x <= p1.get(i).getX() + diameter * 1.5 && y >= p1.get(i).getY()-diameter/2 && y <= p1.get(i).getY()+diameter*1.5) {
+				text = "(" + deaths.get(i) + " on " + covidDates.get(i) + ")";
+			}else if(x >= p2.get(i).getX()-diameter/2 && x <= p2.get(i).getX() + diameter * 1.5 && y >= p2.get(i).getY()-diameter/2 && y <= p2.get(i).getY()+diameter*1.5) {
+				text = "(" + cases.get(i) + " on " + covidDates.get(i) + ")";
+			}else if(i < vaccineList.size() && i < p3.size()) {
+				if(x >= p3.get(i).getX()-diameter/2 && x <= p3.get(i).getX() + diameter * 1.5 && y >= p3.get(i).getY()-diameter/2 && y <= p3.get(i).getY()+diameter*1.5)
+					text = "(" + vaccineList.get(i) + " on " + vaccineDates.get(i) + ")";
+			}
+
+		}
+		p.textSize(12);
+		p.fill(0);
+		p.text(text, 850, 100); 
 	}
 	
 	
