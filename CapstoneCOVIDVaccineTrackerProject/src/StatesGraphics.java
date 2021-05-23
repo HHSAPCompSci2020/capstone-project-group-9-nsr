@@ -53,7 +53,6 @@ public class StatesGraphics{
 	public StatesGraphics(String state) {
 		stat = new Stats();
 		name = state;
-		vaccine = stat.getLatestVaccineInfo(name);
 		Timer timer = new Timer();
 		timer.schedule(new Stats(), 1000000);
 //		System.out.println("state: " + state + " vaccine:" + vaccine);
