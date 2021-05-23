@@ -61,7 +61,8 @@ public class StatesGraphics{
 	
 	/**
 	 * predicts data for the next 14 days based on the fully vaccinated population,
-	 * and the spread rate of covid-19. 
+	 * and the spread rate of covid-19. It also subtracts the patients from 14 days ago
+	 * because the average cure/death rate is 14 days.
 	 * 
 	 * @return array of predicted data sets
 	 */
@@ -79,15 +80,15 @@ public class StatesGraphics{
 
 			for(int i = 0; i < 14; i++) {
 				
-//				double casesFifteen = cases.get(cases.size()-(15 - i));
-//				double casesFourteen = cases.get(cases.size()-(14 - i));
-//				double diff = casesFifteen - casesFourteen;
-//								
-//				if(diff < 0) {
-//					diff = 0;
-//				}
+				double casesFifteen = cases.get(cases.size()-(15 - i));
+				double casesFourteen = cases.get(cases.size()-(14 - i));
+				double diff = casesFifteen - casesFourteen;
+								
+				if(diff < 0) {
+					diff = 0;
+				}
 				
-				double pred = (prediction.get(i) * 2) - (prediction.get(i) * full * 0.9);
+				double pred = (prediction.get(i) * 2) - (prediction.get(i) * full * 0.9) - diff;
 							
 				if(pred > prediction.get(i)) {
 					prediction.add(pred);
