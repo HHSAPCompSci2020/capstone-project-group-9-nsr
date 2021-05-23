@@ -249,16 +249,16 @@ public class DrawingSurface extends PApplet{
 				reset();
 			}
 			if(!map.getStatePageOpen()) {
-				if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) {
+				if(overButton((int)(map.getButtonX()),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight())) {
 					map.setClickVaxName(!map.getClickVaxName());
 				}
-				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *2), map.getButtonWidth(), map.getButtonHeight())) {
+				if(overButton((int)(map.getButtonX()+map.getButtonDistance()), (int)(map.getButtonY()+ map.getButtonDistance() /3), map.getButtonWidth(), map.getButtonHeight())) {
 					map.setClickAvailableVax(!map.getClickAvailableVax());
 				}
-				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *3), map.getButtonWidth(), map.getButtonHeight())) {
+				if(overButton((int)(map.getButtonX()+map.getButtonDistance()*2), (int)(map.getButtonY()+ map.getButtonDistance() /3), map.getButtonWidth(), map.getButtonHeight())) {
 					map.setClickPeopleVaxed(!map.getClickPeopleVaxed()); 
 				}
-				if(overButton(map.getButtonX(), (int)(map.getButtonY()+ map.getButtonDistance() *4), map.getButtonWidth(), map.getButtonHeight())) {
+				if(overButton((int)(map.getButtonX()+map.getButtonDistance()*3), (int)(map.getButtonY()+ map.getButtonDistance() /3), map.getButtonWidth(), map.getButtonHeight())) {
 					map.setClickFullyVaxed(!map.getClickFullyVaxed());
 				}
 			}	else { 
@@ -485,33 +485,33 @@ public class DrawingSurface extends PApplet{
 			
 			
 		} else {
-			if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight())) {
+			if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight())) {
 	    		fill(r, g, b);
 	    	}
 	    		
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()), map.getButtonWidth(), map.getButtonHeight(), map.getVaxNames());
+	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight(), map.getVaxNames());
 	    	
-	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight())) 
+	    	if(overButton((int)(map.getButtonX()+map.getButtonDistance()),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*2), map.getButtonWidth(), map.getButtonHeight(), map.getVaxAvailable());
-	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight())) 
+	    	drawButton((int)(map.getButtonX()+map.getButtonDistance()),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight(), map.getVaxAvailable());
+	    	if(overButton((int)(map.getButtonX()+map.getButtonDistance()*2),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*3), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleVaxed());
-	    	if(overButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight())) 
+	    	drawButton((int)(map.getButtonX()+map.getButtonDistance()*2),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleVaxed());
+	    	if(overButton((int)(map.getButtonX()+map.getButtonDistance()*3),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight())) 
 	    		fill(r, g, b);
 			else {
 				fill(r1,g1,b1);
 				}
-	    	drawButton(map.getButtonX(),(int)(map.getButtonY()+ map.getButtonDistance()*4), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleFullyVaxed());
+	    	drawButton((int)(map.getButtonX()+map.getButtonDistance()*3),(int)(map.getButtonY()+ map.getButtonDistance()/3), map.getButtonWidth(), map.getButtonHeight(), map.getPeopleFullyVaxed());
 		}
 	
 		fillBackButton();
