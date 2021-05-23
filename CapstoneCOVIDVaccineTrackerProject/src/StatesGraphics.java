@@ -60,9 +60,10 @@ public class StatesGraphics{
 	}
 	
 	/**
+	 * predicts data for the next 14 days based on the fully vaccinated population,
+	 * and the spread rate of covid-19. 
 	 * 
-	 * @param lastDay
-	 * @return
+	 * @return array of predicted data sets
 	 */
 	public ArrayList<Double> predictData(){
 		
@@ -112,7 +113,7 @@ public class StatesGraphics{
 	 * @param height height of the rectangle the graph is in
 	 * @throws ParseException 
 	 */
-	private void drawGraph(PApplet p, double x, double y, double width, double height){
+	private void createGraph(PApplet p, double x, double y, double width, double height){
 		
 		cases = stat.getDoubleData(name, 3, "data/cases.csv");
 		deaths = stat.getDoubleData(name, 4, "data/cases.csv");
@@ -302,7 +303,7 @@ public class StatesGraphics{
 		}
 
 		
-		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
+		createGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 		
 	}
