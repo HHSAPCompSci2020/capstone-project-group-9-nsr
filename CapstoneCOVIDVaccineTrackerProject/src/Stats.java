@@ -10,15 +10,23 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This class fetches data and stores them in arraylists
  * @author nodoka shibasaki
  *
  */
-public class Stats {
+public class Stats extends TimerTask{
 	
+	public Stats() {
+		Timer timer = new Timer();
+		timer.schedule(new Stats(), 100000);
+	}
 	
 		
 	/**
@@ -227,6 +235,19 @@ public class Stats {
 		}
 		
 		return parsed;
+		
+	}
+
+	public void run() {
+		
+		try {
+			downloadCountryCases();
+			downloadCountryVaccinesData();
+			downloadCasesData();
+			downloadVaccineData();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
