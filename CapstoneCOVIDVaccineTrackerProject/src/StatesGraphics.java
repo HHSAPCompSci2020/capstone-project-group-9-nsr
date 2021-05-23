@@ -192,15 +192,13 @@ public class StatesGraphics{
 		for(int i = 0; i < cases.size(); i++) {
 			if(b < cases.get(i)) {
 				b = cases.get(i);
-			}else if(i < vaccineList.size()) {
-				if(i < vaccineList.get(i));
-//					b = vaccineList.get(i);
 			}
 		}
 		
 		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		LocalDate firstDate = LocalDate.parse(covidDates.get(0), DATEFORMATTER);
+		LocalDate vaccineFirstDate = LocalDate.parse(vaccineDates.get(0), DATEFORMATTER);
 		LocalDate covidLastDate = LocalDate.parse(covidDates.get(covidDates.size()-1), DATEFORMATTER);
 		LocalDate vaccineLastDate = LocalDate.parse(vaccineDates.get(vaccineDates.size()-1), DATEFORMATTER);
 		LocalDate lastDate = covidLastDate;
@@ -241,13 +239,11 @@ public class StatesGraphics{
 
 		//find diff in last and first date
 		
-		Duration duration = Duration.between(firstDate.atStartOfDay(), lastDate.atStartOfDay());
+		Duration duration = Duration.between(firstDate.atStartOfDay(), vaccineFirstDate.atStartOfDay());
 		
 		//number in each pixel
 		final double PIXEL_PER_X = (width - 10) / dates.size();
-//		System.out.println(width + " - " + 10 + " / " + diff);
-		
-		
+//		 .out.println(width + " - " + 10 + " / " + diff);
 		
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
@@ -268,7 +264,7 @@ public class StatesGraphics{
 		while(!firstDate.equals(lastDate)) {
 				
 				if(covidDates.indexOf(firstDate.toString()) != -1) {
-					double px = xAxis + PIXEL_PER_X * covidDates.indexOf(firstDate.toString());
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
 					Point po = new Point();
 					double py = yAxis - PIXEL_PER_Y * deaths.get(covidDates.indexOf(firstDate.toString())) ;
 					po.setLocation(px, py);
@@ -276,7 +272,7 @@ public class StatesGraphics{
 				}
 				
 				if(covidDates.indexOf(firstDate.toString()) != -1) {
-					double px = xAxis + PIXEL_PER_X * covidDates.indexOf(firstDate.toString());
+					double px = xAxis + PIXEL_PER_X * dates.indexOf(firstDate.toString());
 					Point po = new Point();
 					double py = yAxis - PIXEL_PER_Y * cases.get(covidDates.indexOf(firstDate.toString())) ;
 					po.setLocation(px, py);
