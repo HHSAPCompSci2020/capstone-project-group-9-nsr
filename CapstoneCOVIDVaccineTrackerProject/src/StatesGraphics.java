@@ -286,16 +286,16 @@ public class StatesGraphics{
 			p.fill(139, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
 			
-//			if(i % 10 == 0)
-//				p.circle((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)PIXEL_PER_X * 3);
+			if(i % 10 == 0)
+				p.circle((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)PIXEL_PER_X * 3);
 
 			//cases
 			p.stroke(0, 0, 255);
 			p.fill(0, 0, 139);
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 			
-//			if(i % 10 == 0)
-//				p.circle((float)points.get(i).getX(), (float)points.get(i).getY(), (float)PIXEL_PER_X * 3);
+			if(i % 10 == 0)
+				p.circle((float)points.get(i).getX(), (float)points.get(i).getY(), (float)PIXEL_PER_X * 3);
 			
 			//vaccination
 			if(i < points3.size()-2) {
@@ -303,8 +303,8 @@ public class StatesGraphics{
 				p.fill(0, 139, 0);
 				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
 					
-//				if(i % 10 == 0)
-//					p.circle((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)PIXEL_PER_X * 3);
+				if(i % 10 == 0)
+					p.circle((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)PIXEL_PER_X * 3);
 			}
 			
 			//prediction
