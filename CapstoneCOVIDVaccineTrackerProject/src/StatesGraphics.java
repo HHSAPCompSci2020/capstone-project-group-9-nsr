@@ -151,15 +151,14 @@ public class StatesGraphics{
 		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
 		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
 		p.text("population", (float)((x - 70)), (float)(y + (height - 10)/2));
-		
 		p.fill(0, 0, 255);
-		p.text("population of covid-19 cases" + name, (float)(x + 10), (float)((y + height + 10)));
+		p.text("population of covid-19 cases in " + name, (float)(x + 10), (float)((y + height + 10)));
 		 
 		p.fill(255, 0, 0);
-		p.text("population of covid-19 deaths" + name, (float)(x + 10), (float)((y + height + 20)));
+		p.text("population of covid-19 deaths in " + name, (float)(x + 10), (float)((y + height + 25)));
 		
 		p.fill(0, 255, 0);
-		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + height + 30)));
+		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + height + 40)));
 
 		int diff = 0;
 		
