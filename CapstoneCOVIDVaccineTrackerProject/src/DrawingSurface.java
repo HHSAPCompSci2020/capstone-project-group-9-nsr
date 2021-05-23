@@ -47,11 +47,15 @@ public class DrawingSurface extends PApplet{
 		infoPage = false;
 		System.out.println("Drawing Surface init");
 	}
-	
+	/**
+	 * makes the window full screen
+	 */
 	public void settings() {
 		fullScreen();
 	}
-	
+	/**
+	 * sets up the window
+	 */
 	public void setup() {
 		titles = createFont("fonts/LondrinaOutline-Regular.ttf", 10);
 		body = createFont("fonts/Montserrat-Regular.ttf", 10);
@@ -558,12 +562,17 @@ public class DrawingSurface extends PApplet{
 		drawButton( (int)(3*moreInfo.getButtonX()-width/3.5),  (int)(moreInfo.getButtonY()), moreInfo.getButtonWidth(),moreInfo.getButtonHeight(), "Moderna");
 		
 	}
+	/**
+	 * goes to instruction page
+	 * @post fill(0)
+	 * @post text Size
+	 * @post leftAlign
+	 */
 	public void goToIns() {
 		callFont(titles, 0);
 		fill(255);
 		rect(0, 0, width, height);
 		fill(0);
-		textSize(width/60);
 		textSize(width/27);
 		text("Instructions", width/2, height/10);
 		callFont(body, 0);
@@ -582,11 +591,20 @@ public class DrawingSurface extends PApplet{
 	    	fillBackButton();
 	    	
 	}
-	
+	/**
+	 *  makes the font 
+	 *  @post fontColor
+	 *  @post font 
+	 **/
 	private void callFont(PFont font, int fontColor) {
 		fill(fontColor);
 		textFont(font);
 	}
+	/**
+	 * fills and draws the back button
+	 * @post fill
+	 * @post textSize
+	 */
 	public void fillBackButton() {
 		if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) 
 			fill(r, g, b);
@@ -596,7 +614,10 @@ public class DrawingSurface extends PApplet{
 		textSize(backButtonTextSize);	
 		drawButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight, "back");
 	}
-	
+	/**
+	 * set the state buttons info
+	 * @param state State
+	 */
 	public void setStateButtonInfo(State state) {
 		if (state.getClickVaxAvailable()) {
 			state.setVaxAvailableDisplay(state.getVaxAvailable());
