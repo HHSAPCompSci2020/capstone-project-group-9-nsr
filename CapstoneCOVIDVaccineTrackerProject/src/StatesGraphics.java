@@ -35,7 +35,7 @@ public class StatesGraphics{
 	private ArrayList<String> vaccine, vaccineDates, covidDates;
 	
 	private boolean infoAvailable;
-
+ 
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
