@@ -110,10 +110,10 @@ public class StatesGraphics{
 		vaccineDates = stat.getStringData(name, 0, "data/vaccineNumber.csv");
 		vaccineList = stat.getDoubleData(name, 7, "data/vaccineNumber.csv");
 		
+		boolean graphingVaccine = true;
+		
 		if(vaccineList.size() <= 0) {
-			infoAvailable = false;
-		}else {
-			infoAvailable = true;
+			graphingVaccine = false;
 		}
 		
 		//figure out the biggest number of the arraylist to scale y
@@ -169,7 +169,7 @@ public class StatesGraphics{
 
 		double PIXEL_PER_X = (width - 10) / (covidDates.size());
 		
-		if(infoAvailable) {
+		if(graphingVaccine) {
 			int diff = 0;
 			
 			for(int i = 0; i < covidDates.size(); i++) {
@@ -201,7 +201,8 @@ public class StatesGraphics{
 		ArrayList<Point> points3 = new ArrayList<Point>();
 		
 		double initial = 0.0;
-		if(infoAvailable) {
+		
+		if(graphingVaccine) {
 			initial = PIXEL_PER_X * covidDates.indexOf(vaccineDates.get(0));
 		}
 
@@ -223,7 +224,7 @@ public class StatesGraphics{
 					points2.add(po);
 				}
 				
-				if(infoAvailable) {
+				if(graphingVaccine) {
 					if(vaccineDates.indexOf(firstDate.toString()) != -1) {
 						double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
 						double px = xAxis + initial + PIXEL_PER_X * vaccineDates.indexOf(firstDate.toString());
@@ -251,14 +252,7 @@ public class StatesGraphics{
 				p.stroke(0, 255, 0);
 				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
 			}
-			
-//			if(i < prediction.size()-2) {
-//				
-//				p.stroke(0, 0, 255);
-//				p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
-//				
-//			}
-			
+						
 		}
 		
 		p.stroke(0,0,0);
@@ -299,9 +293,9 @@ public class StatesGraphics{
 		p.textSize(titleSize);
 		p.textAlign(p.LEFT);
 		
-		if(vaccine.size() > 0){
+		if(vaccine.size() > 13){
 			infoAvailable = true;
-			p.text("updated as of " + covidDates.get(covidDates.size()-1), (float)x, (float)(y));
+			p.text("updated as of " + covidDates.get(covidDates.size()-1), (float)x + 50, (float)(y + (p.height * 3 / 4)));
 
 
 		} else {
