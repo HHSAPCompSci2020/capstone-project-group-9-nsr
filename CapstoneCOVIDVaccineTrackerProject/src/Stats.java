@@ -24,8 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class Stats extends TimerTask{
 	
 	public Stats() {
-		Timer timer = new Timer();
-		timer.schedule(new Stats(), 100000);
+
 	}
 	
 		
@@ -75,7 +74,6 @@ public class Stats extends TimerTask{
 		List<String> lines = new ArrayList<String>();
 		
 		try {
-			downloadCountryCases();
 			lines = Files.readAllLines(Paths.get("data/countryCaseNumber.csv"), Charset.defaultCharset());
 		} catch (IOException e) {
             System.out.format("I/O error: %s%n", e);
@@ -163,10 +161,7 @@ public class Stats extends TimerTask{
 	public ArrayList<Double> getDoubleData(String state, int index, String filename) {
 
 		try {
-			
-			downloadVaccineData();
-			downloadCasesData();
-			
+
 			List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
 			ArrayList<Double> data = new ArrayList<Double>();
 			
@@ -200,7 +195,6 @@ public class Stats extends TimerTask{
 	public ArrayList<String> getCountryData(){
 		
 		try {
-			downloadCountryVaccinesData();
 			List<String> lines = Files.readAllLines(Paths.get("data/countryVaccinationNumber.csv"), Charset.defaultCharset());
 			String latest = "";
 			

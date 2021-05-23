@@ -8,6 +8,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JButton;
@@ -38,6 +39,8 @@ public class StatesGraphics{
 	 */
 	public StatesGraphics() {
 		this(null);
+		Timer timer = new Timer();
+		timer.schedule(new Stats(), 1000000);
 	}
 	
 	/**constructor
@@ -48,6 +51,8 @@ public class StatesGraphics{
 		stat = new Stats();
 		name = state;
 		vaccine = stat.getLatestVaccineInfo(name);
+		Timer timer = new Timer();
+		timer.schedule(new Stats(), 1000000);
 //		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
