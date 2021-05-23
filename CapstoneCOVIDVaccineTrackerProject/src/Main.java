@@ -1,6 +1,7 @@
 /**
  * @author roopa, sophie, nodoka
  */
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -8,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -29,7 +31,7 @@ public class Main{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 		
-		window.setVisible(true);		
+//		window.setVisible(true);		
 	}
 
 }
