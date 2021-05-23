@@ -136,6 +136,7 @@ public class State extends Frame{
 			vaxDistDisplay = vaxDistString;
 		}
 		if (clickDistPercent) {
+			distPercent = vaccine.get(9) + "% of the state population";
 			distPercentDisplay = distPercent;
 		} else {
 			distPercentDisplay = distPercentString;
@@ -151,6 +152,7 @@ public class State extends Frame{
 			vaxedPercentDisplay = vaxedPercentString;
 		}
 		if (clickFullyVaxed) {
+			peopleFullyVaxed = vaccine.get(7);
 			peopleFullyVaxedDisplay = peopleFullyVaxed;
 		} else {
 			peopleFullyVaxedDisplay = peopleFullyVaxedString;

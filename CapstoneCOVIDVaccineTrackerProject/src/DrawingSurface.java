@@ -444,7 +444,6 @@ public class DrawingSurface extends PApplet{
 	 * @post fill(255)
 	 */
 	public void goToMap() {
-		System.out.println("go to country map");
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);
