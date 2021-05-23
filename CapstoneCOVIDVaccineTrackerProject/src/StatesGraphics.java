@@ -30,7 +30,7 @@ public class StatesGraphics{
 	private String name;
 	private double PIXEL_PER_Y, PIXEL_PER_X;
 	
-	private double graphWidth, graphHeight, graphX, graphY;
+	private double graphWidth, graphHeight;
 	
 	private ArrayList<Double> cases, deaths, vaccineList, prediction;
 	private ArrayList<String> vaccine, vaccineDates, covidDates;
@@ -73,8 +73,8 @@ public class StatesGraphics{
 	
 	/**
 	 * predicts data for the next 14 days based on the fully vaccinated population,
-	 * and the spread rate of covid-19. It also subtracts the patients from 14 days ago
-	 * because the average cure/death rate is 14 days.
+	 * vaccinated once population and the spread rate of covid-19. It also subtracts 
+	 * the patients from 14 days ago because the average cure/death rate is 14 days.
 	 * 
 	 * @return array of predicted data sets
 	 */
@@ -85,8 +85,8 @@ public class StatesGraphics{
 		
 		if(vaccine.size() > 5 && !vaccine.get(8).equals("") && !vaccine.get(5).equals("") && cases.size() > 0) {
 													
-			double full = Double.parseDouble(vaccine.get(8));
-			full = full - full * Double.parseDouble(vaccine.get(5));
+			double full = Double.parseDouble(vaccine.get(7));
+			double one = Double.parseDouble(vaccine.get(3));
 			
 			prediction.add(cases.get(cases.size()-1));
 
@@ -100,7 +100,7 @@ public class StatesGraphics{
 					diff = 0;
 				}
 				
-				double pred = (prediction.get(i) * 2) - (prediction.get(i) * full * 0.9) - diff;
+				double pred = (prediction.get(i) * 2) - (full * 0.9) - (one * 0.8) - diff;
 							
 				if(pred > prediction.get(i)) {
 					prediction.add(pred);
@@ -127,9 +127,6 @@ public class StatesGraphics{
 	 * @throws ParseException 
 	 */
 	public void createGraph(PApplet p, double x, double y, String stateName){
-		
-		graphX = x;
-		graphY = y;
 		
 		cases = stat.getDoubleData(name, 3, "data/cases.csv");
 		deaths = stat.getDoubleData(name, 4, "data/cases.csv");
@@ -260,6 +257,7 @@ public class StatesGraphics{
 				if(graphingVaccine && vaccineList.size() > vaccineDates.indexOf(firstDate.toString())) {
 					if(vaccineDates.indexOf(firstDate.toString()) != -1) {
 						double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
+						
 						double px = xAxis + initial + PIXEL_PER_X * vaccineDates.indexOf(firstDate.toString());
 						Point po = new Point();
 						po.setLocation(px, py);
@@ -288,16 +286,16 @@ public class StatesGraphics{
 			p.fill(139, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
 			
-			if(i % 10 == 0)
-				p.circle((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)PIXEL_PER_X * 3);
+//			if(i % 10 == 0)
+//				p.circle((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)PIXEL_PER_X * 3);
 
 			//cases
 			p.stroke(0, 0, 255);
 			p.fill(0, 0, 139);
 			p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
 			
-			if(i % 10 == 0)
-				p.circle((float)points.get(i).getX(), (float)points.get(i).getY(), (float)PIXEL_PER_X * 3);
+//			if(i % 10 == 0)
+//				p.circle((float)points.get(i).getX(), (float)points.get(i).getY(), (float)PIXEL_PER_X * 3);
 			
 			//vaccination
 			if(i < points3.size()-2) {
@@ -305,8 +303,8 @@ public class StatesGraphics{
 				p.fill(0, 139, 0);
 				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
 					
-				if(i % 10 == 0)
-					p.circle((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)PIXEL_PER_X * 3);
+//				if(i % 10 == 0)
+//					p.circle((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)PIXEL_PER_X * 3);
 			}
 			
 			//prediction
@@ -355,7 +353,7 @@ public class StatesGraphics{
 		}
 
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
-		showGraphCoordinates(surface, PIXEL_PER_X * 3, points, points2, points3, points4, graphX + 10, graphY + graphHeight + 65);
+		showGraphCoordinates(surface, PIXEL_PER_X * 3, points, points2, points3);
 
 	}
 	
@@ -387,7 +385,15 @@ public class StatesGraphics{
 		
 	}
 	
-	private void showGraphCoordinates(PApplet p, double diameter, ArrayList<Point> p1, ArrayList<Point> p2, ArrayList<Point> p3, ArrayList<Point> p4, double cx, double cy) {
+	/**
+	 * 
+	 * @param p PApplet to draw on
+	 * @param diameter diameter of the circle hovered on
+	 * @param p1 arraylist of points of death of covid 19
+	 * @param p2 arraylist of points of cases of covid 19
+	 * @param p3 arraylist of points of 
+	 */
+	private void showGraphCoordinates(PApplet p, double diameter, ArrayList<Point> p1, ArrayList<Point> p2, ArrayList<Point> p3) {
 		//if mouseX mouseY is in one of the points range then show the text
 		double x = p.mouseX;
 		double y = p.mouseY;

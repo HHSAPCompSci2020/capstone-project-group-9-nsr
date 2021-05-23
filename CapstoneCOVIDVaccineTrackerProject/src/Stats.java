@@ -97,18 +97,22 @@ public class Stats extends TimerTask{
 				
 		try {
 			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
-			String latest = "";
+			String[] latest = new String[20];
 			
 			for(int i = 0; i < lines.size(); i++) {
 				String[] val = lines.get(i).split(",");
 				if(val[1].equalsIgnoreCase(state)) {
-					latest += lines.get(i) + ",";
+					latest = val;
 				}
 			}
 			
-			List<String> values = new ArrayList<>(Arrays.asList(latest.split(",")));
+			ArrayList<String> ret = new ArrayList<String>();
+			
+			for(int i = 0; i < latest.length; i++) {
+				ret.add(latest[i]);
+			}
 						
-			return (ArrayList<String>) values;
+			return ret;
 			
 		} catch (IOException e) {
             System.out.format("I/O error: %s%n", e);
