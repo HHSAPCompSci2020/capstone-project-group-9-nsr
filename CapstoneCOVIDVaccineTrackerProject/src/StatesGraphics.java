@@ -1,9 +1,17 @@
 
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import processing.core.PApplet;
 
 /**
@@ -39,7 +47,6 @@ public class StatesGraphics{
 	public StatesGraphics(String state) {
 		stat = new Stats();
 		name = state;
-		vaccine = stat.getLatestVaccineInfo(name);
 	}
 	
 	
@@ -94,8 +101,10 @@ public class StatesGraphics{
 	 * @param height height of the rectangle the graph is in
 	 * @throws ParseException 
 	 */
-	private void drawGraph(PApplet p, double x, double y, double width, double height){
-		
+	
+	public void createGraph(PApplet p, double x, double y, String stateName){
+		vaccine = stat.getLatestVaccineInfo(name);
+
 		cases = stat.getDoubleData(name, 3, "data/cases.csv");
 		deaths = stat.getDoubleData(name, 4, "data/cases.csv");
 		covidDates = stat.getStringData(name, 0, "data/cases.csv");
@@ -128,34 +137,34 @@ public class StatesGraphics{
 		LocalDate firstDate = LocalDate.parse(covidDates.get(0), DATEFORMATTER);
 		LocalDate lastDate = LocalDate.parse(covidDates.get(covidDates.size()-1), DATEFORMATTER);
 
-		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
-		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
+		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + graphHeight - 10));
+		p.line((float)x+10, (float)(y + graphHeight - 10), (float)(x + graphWidth - 10), (float)(y + graphHeight - 10));
 		
 		p.fill(0);
 		p.textSize(10);
 		p.text((int)b + "", (float)x - 30, (float)y);
 
 		for(int i = 1; i < 7; i++) {
-			p.text((int)(b * (7 - i) / 7)  + "", (float)x - 30, (float)(y + ((height - 10) * i / 7)));
+			p.text((int)(b * (7 - i) / 7)  + "", (float)x - 30, (float)(y + ((graphHeight - 10) * i / 7)));
 		}
 		
-		p.text(covidDates.get(0), (float)(x), (float)(y + height - 5));
-		p.text(covidDates.get(covidDates.size()-1), (float)(x - 10 + width), (float)(y + height - 5));
+		p.text(covidDates.get(0), (float)(x), (float)(y + graphHeight - 5));
+		p.text(covidDates.get(covidDates.size()-1), (float)(x - 10 + graphWidth), (float)(y + graphHeight - 5));
 
 		p.textSize(12);
-		p.text("# of covid cases in " + name, (float)(x + (width - 10)/2), (float)((y - 10)));
-		p.text("date", (float)(x + ( width - 10)/2), (float)((y + height)));
-		p.text("population", (float)((x - 70)), (float)(y + (height - 10)/2));
+		p.text("# of covid cases in " + name, (float)(x + (graphWidth - 10)/2), (float)((y - 10)));
+		p.text("date", (float)(x + ( graphWidth - 10)/2), (float)((y + graphHeight)));
+		p.text("population", (float)((x - 70)), (float)(y + (graphHeight - 10)/2));
 		p.fill(0, 0, 255);
-		p.text("population of covid-19 cases in " + name, (float)(x + 10), (float)((y + height + 10)));
+		p.text("population of covid-19 cases in " + name, (float)(x + 10), (float)((y + graphHeight + 10)));
 		 
 		p.fill(255, 0, 0);
-		p.text("population of covid-19 deaths in " + name, (float)(x + 10), (float)((y + height + 25)));
+		p.text("population of covid-19 deaths in " + name, (float)(x + 10), (float)((y + graphHeight + 25)));
 		
 		p.fill(0, 255, 0);
-		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + height + 40)));
+		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + graphHeight + 40)));
 
-		double PIXEL_PER_X = (width - 10) / (covidDates.size());
+		double PIXEL_PER_X = (graphWidth - 10) / (covidDates.size());
 		
 		if(graphingVaccine) {
 			int diff = 0;
@@ -166,14 +175,14 @@ public class StatesGraphics{
 				}
 			}
 			
-			PIXEL_PER_X = (width - 10) / (vaccineDates.size() + diff);
+			PIXEL_PER_X = (graphWidth - 10) / (vaccineDates.size() + diff);
 
 		}
-		final double PIXEL_PER_Y = (height - 10) / b;
+		final double PIXEL_PER_Y = (graphHeight - 10) / b;
 		
 		//coordinate of the base of the lines
 		double xAxis = x + 10;
-		double yAxis = y + height - 10;
+		double yAxis = y + graphHeight - 10;
 		ArrayList<Point> points = new ArrayList<Point>();
 		ArrayList<Point> points2 = new ArrayList<Point>();
 		ArrayList<Point> points3 = new ArrayList<Point>();
@@ -233,9 +242,29 @@ public class StatesGraphics{
 		
 		p.stroke(0,0,0);
 		p.noFill();
-
+		
+		
+		//saving the graph as a png image
+		if (p.height<p.width) {
+			graphWidth = (p.height/2);
+			graphHeight = (p.height/2);
+		} else {
+			graphWidth = (p.width/2);
+			graphHeight = (p.width/2);
+		}
+		
+		p.save("graphs/"+stateName+".png");
+		try {
+			BufferedImage source = ImageIO.read(new File("graphs/"+stateName+".png")) ;
+			BufferedImage croppedImage = source.getSubimage((int) (7*(p.width/11)-(0.3*graphWidth)), (int) (p.height/20-(0.1*graphHeight)), (int)(1.4*graphWidth), (int)(1.2*graphHeight));
+			ImageIO.write(croppedImage, "png", new File("graphs/"+stateName+".png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 	}
-	
 	
 	public void draw (PApplet surface) {
 		if (surface.height<surface.width) {
@@ -246,8 +275,6 @@ public class StatesGraphics{
 			graphHeight = (surface.width/2);
 		}
 
-		
-		drawGraph(surface, 7*(surface.width/11), surface.height/20, graphWidth, graphHeight);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 		
 	}
@@ -290,6 +317,12 @@ public class StatesGraphics{
 	public ArrayList<String> getVaccineInfo(){
 		return vaccine;
 	}
-
-
+	
+	public double getGraphWidth() {
+		return graphWidth;
+	}
+	
+	public double getGraphHeight() {
+		return graphHeight;
+	}
 }
