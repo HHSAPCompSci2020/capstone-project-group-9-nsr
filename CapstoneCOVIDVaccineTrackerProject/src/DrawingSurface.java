@@ -403,6 +403,14 @@ public class DrawingSurface extends PApplet{
 		map.setClickFullyVaxed(false);
 		map.setClickPeopleVaxed(false);
 		map.setClickVaxName(false);
+		State state = map.getStates().get(map.getStateInput());
+		state.setClickDistPercent(false);
+		state.setClickFullyVaxed(false);
+		state.setClickFullyVaxedPercent(false);
+		state.setClickPeopleVaxed(false);
+		state.setClickTotalVaxPercent(false);
+		state.setClickVaxAvailable(false);
+		state.setClickVaxDistributed(false);
 		x = 0;
 		r = 255;
 		g = 202;

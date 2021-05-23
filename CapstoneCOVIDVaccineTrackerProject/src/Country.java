@@ -119,8 +119,8 @@ public class Country extends Frame{
 		map = surface.loadImage("maps/US_MAP.png");
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		buttonDistance = screenHeight/10;
-		buttonWidth = screenWidth/3;
+		buttonDistance = screenWidth/4;
+		buttonWidth = (int) (screenWidth/4.5);
 		buttonHeight = screenHeight/15;
 		if(!statePageOpen) {
 			if (screenHeight < screenWidth) {
@@ -131,7 +131,7 @@ public class Country extends Frame{
 			surface.image(map, screenWidth/100, screenHeight/100);
 			//draw button for drop down
 			drawDropDownButton(surface, screenWidth);
-			writeInfo(surface, (7*screenWidth/11), screenHeight* 5 /20, screenHeight/35, screenHeight/40);
+			writeInfo(surface, (screenWidth/75), screenHeight* 17 /20, screenHeight/35, screenHeight/60);
 		}
 		if(openDropDown) {
 			createDropDown(surface);
@@ -178,13 +178,13 @@ public class Country extends Frame{
 		p.fill(0);
 		p.textSize(titleSize);
 		
-		p.text("updated as of " + list.get(1), (float)x, (float)(buttonY+buttonDistance/2));
+		p.text("updated as of " + list.get(1), (float)buttonX, (float)(buttonY+buttonDistance/4));
 		
 		p.textSize(writingSize);
-		drawButton(p, (int)buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight, vaxNamesDisplay, 218);
-		drawButton(p, (int)buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
-		drawButton(p, (int)buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
-		drawButton(p, (int)buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
+		drawButton(p, (int)buttonX, (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, vaxNamesDisplay, 218);
+		drawButton(p, (int)(buttonX+buttonDistance), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, vaxAvailableDisplay, 218);
+		drawButton(p, (int)(buttonX+(2*buttonDistance)), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
+		drawButton(p, (int)(buttonX+(3*buttonDistance)), (int)(buttonY+buttonDistance/3), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
 
 	}
 	
