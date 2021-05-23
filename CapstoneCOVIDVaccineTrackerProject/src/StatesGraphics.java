@@ -1,5 +1,7 @@
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.Duration;
@@ -11,6 +13,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 import processing.core.PApplet;
@@ -185,7 +188,7 @@ public class StatesGraphics{
 		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + graphHeight + 40)));
 
 		p.fill(255, 165, 0);
-		p.text("predicted population of covid-19 cases in " + name, (float)(x + 10), (float)((y + graphHeight + 40)));
+		p.text("predicted population of covid-19 cases in " + name, (float)(x + 10), (float)((y + graphHeight + 55)));
 
 		double PIXEL_PER_X = (graphWidth - 10) / (covidDates.size());
 		
@@ -295,6 +298,25 @@ public class StatesGraphics{
 		
 		p.stroke(0,0,0);
 		p.noFill();
+		
+		//saving the graph as a png image
+		if (p.height<p.width) {
+			graphWidth = (p.height/2);
+			graphHeight = (p.height/2);
+		} else {
+			graphWidth = (p.width/2);
+			graphHeight = (p.width/2);
+		}
+		
+		p.save("graphs/"+stateName+".png");
+		try {
+			BufferedImage source = ImageIO.read(new File("graphs/"+stateName+".png")) ;
+			BufferedImage croppedImage = source.getSubimage((int) (7*(p.width/11)-(0.3*graphWidth)), (int) (p.height/20-(0.1*graphHeight)), (int)(1.4*graphWidth), (int)(1.3*graphHeight));
+			ImageIO.write(croppedImage, "png", new File("graphs/"+stateName+".png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 	}
 	
@@ -310,7 +332,7 @@ public class StatesGraphics{
 		}
 
 		
-		createGraph(surface, 7*(surface.width/11), surface.height/20, name);
+//		createGraph(surface, 7*(surface.width/11), surface.height/20, name);
 		writeInfo(surface, (surface.width/20) , surface.height* 11 /20, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
 		
 	}

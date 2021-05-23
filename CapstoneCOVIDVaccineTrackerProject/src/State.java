@@ -113,7 +113,7 @@ public class State extends Frame{
 
 		surface.image(map, screenWidth/100, screenHeight/100);
 		
-		infoGraph = surface.loadImage("maps/" + name + ".png");
+		infoGraph = surface.loadImage("graphs/" + name + ".png");
 		surface.image(infoGraph, (float)(7*(screenWidth/11)-(0.3*graph.getGraphWidth())), (float)(screenHeight/20-(0.1*graph.getGraphHeight())));
 
 		drawDropDownButton(surface, screenWidth);
