@@ -300,7 +300,7 @@ public class StatesGraphics{
 
 		} else {
 			infoAvailable = false;
-//			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
+			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
 		}
 		
 	}

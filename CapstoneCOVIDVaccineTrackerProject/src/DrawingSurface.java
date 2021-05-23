@@ -479,7 +479,7 @@ public class DrawingSurface extends PApplet{
 				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight(), state.getFullyVaxedPercentDisplay());
 				
 			} else {
-				text("there is no numerical data available for " + state.getName(), (float)state.getButtonX(), (float)(state.getButtonY() + 30));
+
 			}
 			
 			
