@@ -434,48 +434,53 @@ public class DrawingSurface extends PApplet{
 			g1= 244;
 			b1= 255;
 			State state = map.getStates().get(map.getStateInput());
-			state.setButtonDist(height/20);
-			state.setButtonHeight(height/25);
-			state.setButtonWidth(width/3);
-			state.setButtonX(width/20);
-			state.setButtonY(height* 11 /20);
-			setStateButtonInfo(state);
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight())) {
-				fill(r, g, b);
+			if (state.getGraph().getInfoAvailable()) {
+				state.setButtonDist(height/20);
+				state.setButtonHeight(height/25);
+				state.setButtonWidth(width/3);
+				state.setButtonX(width/20);
+				state.setButtonY(height* 11 /20);
+				setStateButtonInfo(state);
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight())) {
+					fill(r, g, b);
+				}
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight(), state.getVaxAvailableDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*2), state.getButtonWidth(),state.getButtonHeight())) 
+					fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*2), state.getButtonWidth(),state.getButtonHeight(), state.getVaxDistDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*3), state.getButtonWidth(),state.getButtonHeight())) 
+						fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*3), state.getButtonWidth(),state.getButtonHeight(), state.getDistPercentDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*4), state.getButtonWidth(),state.getButtonHeight())) 
+						fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*4), state.getButtonWidth(),state.getButtonHeight(), state.getPeopleVaxedDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*5), state.getButtonWidth(),state.getButtonHeight())) 
+						fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*5), state.getButtonWidth(),state.getButtonHeight(), state.getVaxedPercentDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*6), state.getButtonWidth(),state.getButtonHeight())) 
+						fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*6), state.getButtonWidth(),state.getButtonHeight(), state.getPeopleFullyVaxedDisplay());
+				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight())) 
+						fill(r, g, b);
+					else 
+						fill(r1,g1,b1);
+				drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight(), state.getFullyVaxedPercentDisplay());
+				
+			} else {
+				text("there is no numerical data available for " + state.getName(), (float)state.getButtonX(), (float)(state.getButtonY() + 30));
 			}
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight(), state.getVaxAvailableDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*2), state.getButtonWidth(),state.getButtonHeight())) 
-				fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*2), state.getButtonWidth(),state.getButtonHeight(), state.getVaxDistDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*3), state.getButtonWidth(),state.getButtonHeight())) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*3), state.getButtonWidth(),state.getButtonHeight(), state.getDistPercentDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*4), state.getButtonWidth(),state.getButtonHeight())) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*4), state.getButtonWidth(),state.getButtonHeight(), state.getPeopleVaxedDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*5), state.getButtonWidth(),state.getButtonHeight())) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*5), state.getButtonWidth(),state.getButtonHeight(), state.getVaxedPercentDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*6), state.getButtonWidth(),state.getButtonHeight())) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*6), state.getButtonWidth(),state.getButtonHeight(), state.getPeopleFullyVaxedDisplay());
-			if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight())) 
-					fill(r, g, b);
-				else 
-					fill(r1,g1,b1);
-			drawButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()*7), state.getButtonWidth(),state.getButtonHeight(), state.getFullyVaxedPercentDisplay());
 			
 			
 			
