@@ -136,7 +136,7 @@ public class DrawingSurface extends PApplet{
 			  }
 		  }
 		  if(mapPage) {
-			  if(x<150) {
+			  if(x<75) {
 				  fill(0);
 				  callFont(titles, 0);
 				  textSize(width/18);
@@ -162,7 +162,7 @@ public class DrawingSurface extends PApplet{
 			  }
 		  }
 		  if(infoPage) {
-			  if(x<150) {
+			  if(x<75) {
 				  fill(0);
 				  callFont(titles, 0);
 				  textSize(width/18);
@@ -188,7 +188,7 @@ public class DrawingSurface extends PApplet{
 			  }
 		  }
 		  if(insPage) {
-			  if(x<150) {
+			  if(x<75) {
 				  fill(0);
 				  callFont(titles, 0);
 				  textSize(width/18);
@@ -351,12 +351,12 @@ public class DrawingSurface extends PApplet{
 		 fill(r, g, b);
 		  rect(x, y, w, h, 10);
 		  fill(0, 102, 153);
-		  if(animation<=50) 
+		  if(animation<=25) 
 			  text(text+ ".",x+ (w / 2), y + (h / 2));
-		  else if(animation>50 && animation<=100) {
+		  else if(animation>25 && animation<=50) {
 			  text(text+ "..",x + (w / 2), y + (h / 2));
 		  }
-		  else if(animation>100 && animation<=150) 
+		  else if(animation>50 && animation<=75) 
 			  text(text+ "...", x + (w / 2), y + (h / 2));
 		  else
 			  animation = 0;

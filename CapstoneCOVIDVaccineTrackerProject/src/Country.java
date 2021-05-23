@@ -128,7 +128,7 @@ public class Country extends Frame{
 			surface.image(map, screenWidth/100, screenHeight/100);
 			//draw button for drop down
 			drawDropDownButton(surface, screenWidth);
-			writeInfo(surface, (screenWidth/75), screenHeight* 17 /20, screenHeight/35, screenHeight/60);
+			writeInfo(surface, (screenWidth/75), screenHeight* 17 /20, screenHeight/35, screenHeight/70);
 		}
 		if(openDropDown) {
 			createDropDown(surface);
