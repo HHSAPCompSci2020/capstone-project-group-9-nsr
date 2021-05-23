@@ -406,7 +406,7 @@ public class StatesGraphics{
 			}
 
 		}
-		p.textSize(12);
+		p.textSize(p.height/60);
 		p.fill(0);
 		p.text(text, 850, 100); 
 	}
