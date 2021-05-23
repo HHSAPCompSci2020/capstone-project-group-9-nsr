@@ -1,8 +1,4 @@
 
-import java.awt.Color;
-import java.util.TreeMap;
-
-import javax.swing.JButton;
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -42,7 +38,7 @@ public class DrawingSurface extends PApplet{
 	
 	public DrawingSurface() {
 		map = new Country();
-		moreInfo = new MoreInfo(this);
+		moreInfo = new MoreInfo();
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;
@@ -289,7 +285,6 @@ public class DrawingSurface extends PApplet{
 					map.getStates().get(map.getStateInput()).setClickFullyVaxedPercent(!map.getStates().get(map.getStateInput()).getClickFullyVaxedPercent());
 				}
 			}
-				//get boolean and check over button, then change boolean
 		}
 		if(infoPage) {
 			if(overButton(backButtonX, backButtonY, backButtonWidth, backButtonHeight)) {

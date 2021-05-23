@@ -1,16 +1,9 @@
 
 import java.awt.Point;
-import java.io.IOException;
 import java.text.ParseException;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.JButton;
-
 import processing.core.PApplet;
 
 /**
@@ -47,7 +40,6 @@ public class StatesGraphics{
 		stat = new Stats();
 		name = state;
 		vaccine = stat.getLatestVaccineInfo(name);
-//		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
 	
@@ -116,8 +108,7 @@ public class StatesGraphics{
 			graphingVaccine = false;
 		}
 		
-		//figure out the biggest number of the arraylist to scale y
-		double b = cases.get(0); //write this as a text on top of the yaxis
+		double b = cases.get(0);
 		
 		for(int i = 1; i < cases.size(); i++) {
 			if(b < cases.get(i)) {
@@ -136,10 +127,7 @@ public class StatesGraphics{
 		
 		LocalDate firstDate = LocalDate.parse(covidDates.get(0), DATEFORMATTER);
 		LocalDate lastDate = LocalDate.parse(covidDates.get(covidDates.size()-1), DATEFORMATTER);
-		
-//		prediction = predictData(lastDate);
-		 
-		//draw the frame of the graph
+
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
 		p.line((float)x+10, (float)(y + height - 10), (float)(x + width - 10), (float)(y + height - 10));
 		
@@ -181,21 +169,11 @@ public class StatesGraphics{
 			PIXEL_PER_X = (width - 10) / (vaccineDates.size() + diff);
 
 		}
-		
-		//number in each pixel
-//		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
 		//coordinate of the base of the lines
 		double xAxis = x + 10;
 		double yAxis = y + height - 10;
-		
-		
-		
-		//add one day to first date and check if index of that date is existing
-		//keep track of how many days added
-		//if it is existing access the value at the same index in case data
-		//figure out the coordinates
 		ArrayList<Point> points = new ArrayList<Point>();
 		ArrayList<Point> points2 = new ArrayList<Point>();
 		ArrayList<Point> points3 = new ArrayList<Point>();
@@ -238,9 +216,7 @@ public class StatesGraphics{
 			firstDate = firstDate.plusDays(1);
 		}
 				
-		for(int i = 0; i < points.size()-1; i++) {
-//			System.out.println(points.get(i).getX() + ", " + points.get(i).getY() + ", " + points.get(i+1).getX() + ", " + points.get(i+1).getY());
-	
+		for(int i = 0; i < points.size()-1; i++) {	
 			
 			p.stroke(255, 0, 0);
 			p.line((float)points2.get(i).getX(), (float)points2.get(i).getY(), (float)points2.get(i+1).getX(), (float)points2.get(i+1).getY());
@@ -262,7 +238,6 @@ public class StatesGraphics{
 	
 	
 	public void draw (PApplet surface) {
-//		vaccine = stat.getLatestVaccineInfo(name);
 		if (surface.height<surface.width) {
 			graphWidth = (surface.height/2);
 			graphHeight = (surface.height/2);
@@ -289,7 +264,6 @@ public class StatesGraphics{
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		
 		p.fill(0);
-//		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(p.LEFT);
 		

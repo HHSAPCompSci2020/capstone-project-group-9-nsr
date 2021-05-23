@@ -16,13 +16,6 @@ public class State extends Frame{
 	private PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
-//	private double graphWidth, graphHeight, graphX, graphY;
-//	
-//	private int stateButtonX = 0;
-//	private int stateButtonY = 0;
-//	private float stateButtonDist = 0;
-//	private int stateButtonWidth = 0;
-//	private int stateButtonHeight = 0;
 	
 	private float buttonDistance;
 	private int buttonWidth, buttonHeight;
@@ -80,13 +73,6 @@ public class State extends Frame{
 		peopleFullyVaxedDisplay = peopleFullyVaxedString ;
 		fullyVaxedPercentDisplay = fullyVaxedPercentString ;
 		vaccine = graph.getVaccineInfo();
-//		vaxAvailable = vaccine.get(2);
-//		vaxDist = vaccine.get(3);
-//		distPercent = vaccine.get(9);
-//		peopleVaxed = vaccine.get(4);
-//		vaxedPercent = vaccine.get(6) + "% of the state population";
-//		peopleFullyVaxed = vaccine.get(7);
-//		fullyVaxedPercent = vaccine.get(5) + "% of the state population";
 	}
 	
 	
@@ -100,7 +86,6 @@ public class State extends Frame{
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-//		vaccine = graph.getVaccineInfo();
 		if (graph.getInfoAvailable()) {
 			vaxAvailable = vaccine.get(2);
 			vaxDist = vaccine.get(3);
@@ -128,11 +113,6 @@ public class State extends Frame{
 		surface.image(map, screenWidth/100, screenHeight/100);
 
 		drawDropDownButton(surface, screenWidth);
-		
-
-//		if (graph.getInfoAvailable()) {
-//			writeStats(surface, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
-//		}
 		
 		if (clickVaxAvailable) {
 			vaxAvailableDisplay = (vaxAvailable);
@@ -171,25 +151,6 @@ public class State extends Frame{
 		}
 		
 	}
-	
-//	public void writeStats(PApplet p, float titleSize, float writingSize, float leading) {
-//		buttonDistance = p.height/20;
-//		buttonWidth = p.width/3;
-//		buttonHeight = p.height/25;
-//		buttonX = p.width/20;
-//		buttonY =  p.height* 11 /20;
-//		p.textSize(writingSize);
-//		p.textLeading(leading);
-//		
-//
-//		drawButton(p, buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight,vaxAvailableDisplay,218);
-//		drawButton(p, buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxDistDisplay, 218);
-//		drawButton(p, buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, distPercentDisplay, 218);
-//		drawButton(p, buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
-//		drawButton(p, buttonX, (int)(buttonY+(5*buttonDistance)), buttonWidth, buttonHeight, vaxedPercentDisplay, 218);
-//		drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
-//		drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay, 218);
-//	}
 
 	public void drawButton(PApplet surface, int x, int y, int w, int h, String text, int fillColor) {
 		surface.fill(fillColor);
