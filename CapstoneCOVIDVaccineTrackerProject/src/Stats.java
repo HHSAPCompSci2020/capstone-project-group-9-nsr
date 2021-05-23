@@ -90,7 +90,6 @@ public class Stats {
 	public ArrayList<String> getLatestVaccineInfo(String state) {
 				
 		try {
-			downloadVaccineData();
 			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
 			String latest = "";
 			
