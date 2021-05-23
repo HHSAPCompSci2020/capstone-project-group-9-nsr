@@ -28,7 +28,7 @@ public class DrawingSurface extends PApplet{
 	private int backButtonX, backButtonY;
 	private int quitX, quitY;
 	private int backButtonTextSize;
-	int r, g, b, r1, g1, b1;
+	private int r, g, b, r1, g1, b1;
 	private boolean mainPage;
 	private boolean mapPage;
 	private boolean infoPage;
@@ -37,11 +37,15 @@ public class DrawingSurface extends PApplet{
 	private int x=0;
 	
 	public DrawingSurface() {
+		System.out.println("constructor start");
 		map = new Country();
+		System.out.println("Country init");
 		moreInfo = new MoreInfo();
+		System.out.println("more info init");
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;
+		System.out.println("Drawing Surface init");
 	}
 	
 	public void settings() {
@@ -79,6 +83,7 @@ public class DrawingSurface extends PApplet{
 		backButtonX = width-backButtonWidth-2*width/25;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
+//		System.out.println("drawing surface draw");
 		
 		  //checks what page the window is on
 		  if(mainPage) {
@@ -424,6 +429,7 @@ public class DrawingSurface extends PApplet{
 	 * @post fill(255)
 	 */
 	public void goToMap() {
+		System.out.println("go to country map");
 		fill(255);
 		rect(0, 0, width, height);
 		map.draw(this);

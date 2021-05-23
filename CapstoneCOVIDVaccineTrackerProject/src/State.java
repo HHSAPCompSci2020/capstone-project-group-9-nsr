@@ -65,37 +65,37 @@ public class State extends Frame{
 		vaxedPercentString = "total vaccinations percentage";
 		peopleFullyVaxedString = "people fully vaccinated";
 		fullyVaxedPercentString = "fully vaccinated percentage";
-		vaxAvailableDisplay = vaxAvailableString ;
-		vaxDistDisplay = vaxDistString ;
-		distPercentDisplay = distPercentString ;
-		peopleVaxedDisplay = peopleVaxedString ;
-		vaxedPercentDisplay = vaxedPercentString ;
-		peopleFullyVaxedDisplay = peopleFullyVaxedString ;
-		fullyVaxedPercentDisplay = fullyVaxedPercentString ;
-		vaccine = graph.getVaccineInfo();
+		vaxAvailableDisplay = "" ;
+		vaxDistDisplay = "" ;
+		distPercentDisplay = "" ;
+		peopleVaxedDisplay = "" ;
+		vaxedPercentDisplay = "" ;
+		peopleFullyVaxedDisplay = "" ;
+		fullyVaxedPercentDisplay = "" ;
 	}
-	
 	
 	/**
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
 	 * @param surface
 	 */
 	public void draw(PApplet surface) {
+		if (vaccine == null) {
+			vaccine = graph.getVaccineInfo();
+			if (graph.getInfoAvailable()) {
+				vaxAvailable = vaccine.get(2);
+				vaxDist = vaccine.get(3);
+				distPercent = vaccine.get(9) + "% of the state population";
+				peopleVaxed = vaccine.get(4);
+				vaxedPercent = vaccine.get(6) + "% of the state population";
+				peopleFullyVaxed = vaccine.get(7);
+				fullyVaxedPercent = vaccine.get(5) + "% of the state population";
+			}
+		}
 		map = surface.loadImage("maps/" + name +".png");
 		mapWidth = map.width;
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		if (graph.getInfoAvailable()) {
-			vaxAvailable = vaccine.get(2);
-			vaxDist = vaccine.get(3);
-			distPercent = vaccine.get(9) + "% of the state population";
-			peopleVaxed = vaccine.get(4);
-			vaxedPercent = vaccine.get(6) + "% of the state population";
-			peopleFullyVaxed = vaccine.get(7);
-			fullyVaxedPercent = vaccine.get(5) + "% of the state population";
-		}
-		
 		
 		if (screenHeight < screenWidth) {
 			if (mapWidth > screenWidth/2) {
@@ -108,11 +108,16 @@ public class State extends Frame{
 			map.resize(screenWidth/2, 0);
 		}
 		
-		graph.draw(surface);
-		
+
 		surface.image(map, screenWidth/100, screenHeight/100);
 
 		drawDropDownButton(surface, screenWidth);
+		
+		
+		
+		
+		graph.draw(surface);
+		
 		
 		if (clickVaxAvailable) {
 			vaxAvailableDisplay = (vaxAvailable);

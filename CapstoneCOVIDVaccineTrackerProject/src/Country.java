@@ -27,12 +27,6 @@ public class Country extends Frame{
 	private String vaxNames, vaxAvailable, peopleVaxed, peopleFullyVaxed;
 	private String vaxNamesString, vaxAvailableString, peopleVaxedString, peopleFullyVaxedString;
 	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
-	private int r, g, b, r1, g1, b1;
-//	private int stateButtonX = 0;
-//	private int stateButtonY = 0;
-//	private float stateButtonDist = 0;
-//	private int stateButtonWidth = 0;
-//	private int stateButtonHeight = 0;
 	
 	/**
 	 * constructor that initializes fields:
@@ -103,9 +97,10 @@ public class Country extends Frame{
 	 * @param stateName name of state chosen by user
 	 */
 	private void goToStatePage(PApplet surface, String stateName) {
-		State nextState = states.get(stateName);
+		System.out.println("go to state");
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
+		State nextState = states.get(stateName);
 		nextState.draw(surface);
 	}
 	
