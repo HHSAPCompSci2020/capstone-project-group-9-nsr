@@ -34,10 +34,10 @@ public class Country extends Frame{
 	 */
 	public Country() {
 		super("US_MAP.png");
+		states = new TreeMap<String, State>();
 		initializeStates();
 		stats = new Stats();
 		list = stats.getCountryData();
-		states = new TreeMap<String, State>();
 		stateInput = "";
 		openDropDown = false;
 		statePageOpen = false;
@@ -100,7 +100,6 @@ public class Country extends Frame{
 	 * @param stateName name of state chosen by user
 	 */
 	private void goToStatePage(PApplet surface, String stateName) {
-		System.out.println("go to state");
 		surface.fill(255);
 		surface.rect(0, 0, surface.width, surface.height);
 		State nextState = states.get(stateName);
