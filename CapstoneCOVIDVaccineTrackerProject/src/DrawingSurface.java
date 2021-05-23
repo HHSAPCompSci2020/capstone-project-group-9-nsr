@@ -216,7 +216,6 @@ public class DrawingSurface extends PApplet{
 	 * and changes booleans to change pages
 	 */
 	public void mouseClicked() {
-		System.out.println("Mouse click: " + mouseX + ", " + mouseY);
 		if(mainPage) {
 			if (overButton(mapX, mapY, buttonW, buttonH)) {
 				mapClicked = true;
@@ -261,7 +260,6 @@ public class DrawingSurface extends PApplet{
 				
 				State state = map.getStates().get(map.getStateInput());
 				setStateButtonInfo(state);
-				//PRINT DISPLAY INFO
 				
 				if(overButton(state.getButtonX(), (int)(state.getButtonY()+state.getButtonDistance()), state.getButtonWidth(),state.getButtonHeight())) {
 					map.getStates().get(map.getStateInput()).setClickVaxAvailable(!map.getStates().get(map.getStateInput()).getClickVaxAvailable());
