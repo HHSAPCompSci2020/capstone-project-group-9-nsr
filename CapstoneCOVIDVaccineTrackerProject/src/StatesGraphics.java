@@ -26,7 +26,7 @@ public class StatesGraphics{
 	
 	private double graphWidth, graphHeight;
 	
-	private ArrayList<Double> cases, deaths, vaccineList;
+	private ArrayList<Double> cases, deaths, vaccineList, prediction;
 	private ArrayList<String> dates, vaccine, vaccineDates, covidDates;
 	
 	private boolean infoAvailable;
@@ -110,6 +110,12 @@ public class StatesGraphics{
 		vaccineDates = stat.getStringData(name, 0, "data/vaccineNumber.csv");
 		vaccineList = stat.getDoubleData(name, 7, "data/vaccineNumber.csv");
 		
+		if(vaccineList.size() <= 0) {
+			infoAvailable = false;
+		}else {
+			infoAvailable = true;
+		}
+		
 		//figure out the biggest number of the arraylist to scale y
 		double b = cases.get(0); //write this as a text on top of the yaxis
 		
@@ -130,7 +136,8 @@ public class StatesGraphics{
 		
 		LocalDate firstDate = LocalDate.parse(covidDates.get(0), DATEFORMATTER);
 		LocalDate lastDate = LocalDate.parse(covidDates.get(covidDates.size()-1), DATEFORMATTER);
-		LocalDate copyOfLastDate = lastDate;
+		
+//		prediction = predictData(lastDate);
 		 
 		//draw the frame of the graph
 		p.line((float)x + 10, (float)y, (float)x + 10, (float)(y + height - 10));
@@ -161,16 +168,22 @@ public class StatesGraphics{
 		p.fill(0, 255, 0);
 		p.text("population of fully vaccinated in " + name, (float)(x + 10), (float)((y + height + 30)));
 
-		int diff = 0;
+		double PIXEL_PER_X = (width - 10) / (covidDates.size());
 		
-		for(int i = 0; i < covidDates.size(); i++) {
-			if(covidDates.get(i).equals(vaccineDates.get(0))) {
-				diff = i;
+		if(infoAvailable) {
+			int diff = 0;
+			
+			for(int i = 0; i < covidDates.size(); i++) {
+				if(covidDates.get(i).equals(vaccineDates.get(0))) {
+					diff = i;
+				}
 			}
+			
+			PIXEL_PER_X = (width - 10) / (vaccineDates.size() + diff);
+
 		}
 		
 		//number in each pixel
-		final double PIXEL_PER_X = (width - 10) / (vaccineDates.size() + diff);
 //		System.out.println(width + " - " + 10 + " / " + diff);
 		final double PIXEL_PER_Y = (height - 10) / b;
 		
@@ -188,7 +201,10 @@ public class StatesGraphics{
 		ArrayList<Point> points2 = new ArrayList<Point>();
 		ArrayList<Point> points3 = new ArrayList<Point>();
 		
-		double initial = PIXEL_PER_X * covidDates.indexOf(vaccineDates.get(0));
+		double initial = 0.0;
+		if(infoAvailable) {
+			initial = PIXEL_PER_X * covidDates.indexOf(vaccineDates.get(0));
+		}
 
 		while(!firstDate.equals(lastDate)) {
 				
@@ -208,13 +224,16 @@ public class StatesGraphics{
 					points2.add(po);
 				}
 				
-				if(vaccineDates.indexOf(firstDate.toString()) != -1) {
-					double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
-					double px = xAxis + initial + PIXEL_PER_X * vaccineDates.indexOf(firstDate.toString());
-					Point po = new Point();
-					po.setLocation(px, py);
-					points3.add(po);
+				if(infoAvailable) {
+					if(vaccineDates.indexOf(firstDate.toString()) != -1) {
+						double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
+						double px = xAxis + initial + PIXEL_PER_X * vaccineDates.indexOf(firstDate.toString());
+						Point po = new Point();
+						po.setLocation(px, py);
+						points3.add(po);
+					}
 				}
+				
 				
 			firstDate = firstDate.plusDays(1);
 		}
@@ -233,6 +252,13 @@ public class StatesGraphics{
 				p.stroke(0, 255, 0);
 				p.line((float)points3.get(i).getX(), (float)points3.get(i).getY(), (float)points3.get(i+1).getX(), (float)points3.get(i+1).getY());
 			}
+			
+//			if(i < prediction.size()-2) {
+//				
+//				p.stroke(0, 0, 255);
+//				p.line((float)points.get(i).getX(), (float)points.get(i).getY(), (float)points.get(i+1).getX(), (float)points.get(i+1).getY());
+//				
+//			}
 			
 		}
 		
