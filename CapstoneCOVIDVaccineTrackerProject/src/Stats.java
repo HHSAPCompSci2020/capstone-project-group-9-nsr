@@ -24,7 +24,7 @@ import java.util.List;
 public class Stats {
 	
 	private double mortalityRate = 0.0;
-
+	
 	/**
 	 * this method uses java.io api to copy the data on cvc approved vaccine dataset to the csv file in the data folder.
 	 * @throws IOException
@@ -71,6 +71,7 @@ public class Stats {
 		List<String> lines = new ArrayList<String>();
 		
 		try {
+			downloadCountryCases();
 			lines = Files.readAllLines(Paths.get("data/countryCaseNumber.csv"), Charset.defaultCharset());
 		} catch (IOException e) {
             System.out.format("I/O error: %s%n", e);
@@ -93,7 +94,7 @@ public class Stats {
 	public ArrayList<String> getLatestVaccineInfo(String state) {
 				
 		try {
-			
+			downloadVaccineData();
 			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
 			String latest = "";
 			
@@ -105,7 +106,6 @@ public class Stats {
 			}
 			
 			List<String> values = new ArrayList<>(Arrays.asList(latest.split(",")));
-			System.out.println(values.toString());
 						
 			return (ArrayList<String>) values;
 			
@@ -129,7 +129,8 @@ public class Stats {
 		
 		
 		try {
-			
+			downloadVaccineData();
+			downloadCasesData();
 			List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
 			ArrayList<String> data = new ArrayList<String >();
 			
@@ -160,7 +161,8 @@ public class Stats {
 	public ArrayList<Double> getDoubleData(String state, int index, String filename) {
 
 		try {
-			
+			downloadVaccineData();
+			downloadCasesData();
 			List<String> lines = Files.readAllLines(Paths.get(filename), Charset.defaultCharset());
 			ArrayList<Double> data = new ArrayList<Double>();
 			
@@ -194,7 +196,7 @@ public class Stats {
 	public ArrayList<String> getCountryData(){
 		
 		try {
-			
+			downloadCountryVaccinesData();
 			List<String> lines = Files.readAllLines(Paths.get("data/countryVaccinationNumber.csv"), Charset.defaultCharset());
 			String latest = "";
 			
