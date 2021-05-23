@@ -71,7 +71,7 @@ public class Stats {
 		List<String> lines = new ArrayList<String>();
 		
 		try {
-			lines = Files.readAllLines(Paths.get("countryCaseNumber.csv"), Charset.defaultCharset());
+			lines = Files.readAllLines(Paths.get("data/countryCaseNumber.csv"), Charset.defaultCharset());
 		} catch (IOException e) {
             System.out.format("I/O error: %s%n", e);
 		}
@@ -98,9 +98,9 @@ public class Stats {
 			String latest = "";
 			
 			for(int i = 0; i < lines.size(); i++) {
-				String[] values = lines.get(i).split(",");
-				if(values[1].equalsIgnoreCase(state)) {
-					latest = lines.get(i);
+				String[] val = lines.get(i).split(",");
+				if(val[1].equalsIgnoreCase(state)) {
+					latest += lines.get(i) + ",";
 				}
 			}
 			

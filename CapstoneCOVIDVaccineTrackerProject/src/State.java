@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -14,15 +16,24 @@ public class State extends Frame{
 	private PImage map;
 	private int mapWidth, mapHeight;
 	private int screenHeight, screenWidth;
-	private double graphWidth, graphHeight, graphX, graphY;
+//	private double graphWidth, graphHeight, graphX, graphY;
+//	
+//	private int stateButtonX = 0;
+//	private int stateButtonY = 0;
+//	private float stateButtonDist = 0;
+//	private int stateButtonWidth = 0;
+//	private int stateButtonHeight = 0;
 	
-	private int stateButtonX = 0;
-	private int stateButtonY = 0;
-	private float stateButtonDist = 0;
-	private int stateButtonWidth = 0;
-	private int stateButtonHeight = 0;
+	private float buttonDistance;
+	private int buttonWidth, buttonHeight;
+	private int buttonX, buttonY;
 	
-	private int r, g, b, r1, g1, b1;
+	private ArrayList<String> vaccine;
+	
+	private boolean clickVaxAvailable, clickVaxDistributed, clickDistPercent, clickPeopleVaxed, clickTotalVaxPercent, clickFullyVaxed, clickFullyVaxedPercent;
+	private String vaxAvailable, vaxDist, distPercent, peopleVaxed, vaxedPercent, peopleFullyVaxed, fullyVaxedPercent;
+	private String vaxAvailableString, vaxDistString, distPercentString, peopleVaxedString, vaxedPercentString, peopleFullyVaxedString, fullyVaxedPercentString;
+	private String vaxAvailableDisplay, vaxDistDisplay, distPercentDisplay, peopleVaxedDisplay, vaxedPercentDisplay, peopleFullyVaxedDisplay, fullyVaxedPercentDisplay;
 	
 	/**
 	 * calls the no-args StatesGraphic constructor
@@ -30,12 +41,6 @@ public class State extends Frame{
 	public State() {
 		super("US_MAP.png");
 		graph = new StatesGraphics();
-		r = 99;
-		g = 207;
-		b = 248;
-		r1= 214;
-		g1= 244;
-		b1= 255;
 	}
 	
 	/**
@@ -46,12 +51,42 @@ public class State extends Frame{
 		super(stateName+".png");
 		graph = new StatesGraphics(stateName);
 		name = stateName;
-		r = 99;
-		g = 207;
-		b = 248;
-		r1= 214;
-		g1= 244;
-		b1= 255;
+		clickVaxAvailable = false;
+		clickVaxDistributed = false;
+		clickDistPercent = false;
+		clickPeopleVaxed = false;
+		clickTotalVaxPercent = false;
+		clickFullyVaxed = false;
+		clickFullyVaxedPercent = false;
+		vaxAvailable = " " ;
+		vaxDist = " " ;
+		distPercent = " " ;
+		peopleVaxed = " " ;
+		vaxedPercent = " " ;
+		peopleFullyVaxed = " " ;
+		fullyVaxedPercent = " " ;
+		vaxAvailableString = "total vaccinations available";
+		vaxDistString = "total vaccinations distributed";
+		distPercentString = "total distribution percentage";
+		peopleVaxedString = "people vaccinated";
+		vaxedPercentString = "total vaccinations percentage";
+		peopleFullyVaxedString = "people fully vaccinated";
+		fullyVaxedPercentString = "fully vaccinated percentage";
+		vaxAvailableDisplay = vaxAvailableString ;
+		vaxDistDisplay = vaxDistString ;
+		distPercentDisplay = distPercentString ;
+		peopleVaxedDisplay = peopleVaxedString ;
+		vaxedPercentDisplay = vaxedPercentString ;
+		peopleFullyVaxedDisplay = peopleFullyVaxedString ;
+		fullyVaxedPercentDisplay = fullyVaxedPercentString ;
+		vaccine = graph.getVaccineInfo();
+//		vaxAvailable = vaccine.get(2);
+//		vaxDist = vaccine.get(3);
+//		distPercent = vaccine.get(9);
+//		peopleVaxed = vaccine.get(4);
+//		vaxedPercent = vaccine.get(6) + "% of the state population";
+//		peopleFullyVaxed = vaccine.get(7);
+//		fullyVaxedPercent = vaccine.get(5) + "% of the state population";
 	}
 	
 	
@@ -65,11 +100,16 @@ public class State extends Frame{
 		mapHeight = map.height;
 		screenHeight = surface.height;
 		screenWidth = surface.width;
-		stateButtonX = graph.getButtonX();
-		stateButtonY = graph.getButtonY();
-		stateButtonDist = graph.getButtonDistance();
-		stateButtonWidth = graph.getButtonWidth();
-		stateButtonHeight = graph.getButtonHeight();
+//		vaccine = graph.getVaccineInfo();
+		if (graph.getInfoAvailable()) {
+			vaxAvailable = vaccine.get(2);
+			vaxDist = vaccine.get(3);
+			distPercent = vaccine.get(9) + "% of the state population";
+			peopleVaxed = vaccine.get(4);
+			vaxedPercent = vaccine.get(6) + "% of the state population";
+			peopleFullyVaxed = vaccine.get(7);
+			fullyVaxedPercent = vaccine.get(5) + "% of the state population";
+		}
 		
 		
 		if (screenHeight < screenWidth) {
@@ -88,86 +128,69 @@ public class State extends Frame{
 		surface.image(map, screenWidth/100, screenHeight/100);
 
 		drawDropDownButton(surface, screenWidth);
-		buttons(surface);
-	}
-	
-	public void buttons(PApplet surface) {
-		r = 99;
-		g = 207;
-		b = 248;
-		r1= 214;
-		g1= 244;
-		b1= 255;
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth,stateButtonHeight, graph.getVaxAvailable(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth,stateButtonHeight)) 
-			surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth,stateButtonHeight, graph.getVaxDistDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth,stateButtonHeight, graph.getDistPercent(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth,stateButtonHeight, graph.getPeopleVaxedDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth,stateButtonHeight, graph.getVaxedPercentDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth,stateButtonHeight, graph.getPeopleFullyVaxedDisplay(), 218);
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth,stateButtonHeight)) 
-				surface.fill(r, g, b);
-			else 
-				surface.fill(r1,g1,b1);
-		drawButton(surface, stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth,stateButtonHeight, graph.getFullyVaxedPercentDisplay(), 218);
+		
+
+		if (graph.getInfoAvailable()) {
+			writeStats(surface, (float)surface.height/45, (float)surface.height/60, (float)surface.height/50);
+		}
+		
+		if (clickVaxAvailable) {
+			vaxAvailableDisplay = (vaxAvailable);
+		} else {
+			vaxAvailableDisplay = (vaxAvailableString);
+		}
+		if (clickVaxDistributed) {
+			vaxDistDisplay = vaxDist;
+		} else {
+			vaxDistDisplay = vaxDistString;
+		}
+		if (clickDistPercent) {
+			distPercentDisplay = distPercent;
+		} else {
+			distPercentDisplay = distPercentString;
+		}
+		if (clickPeopleVaxed) {
+			peopleVaxedDisplay = peopleVaxed;
+		} else {
+			peopleVaxedDisplay = peopleVaxedString;
+		}
+		if (clickTotalVaxPercent) {
+			vaxedPercentDisplay = vaxedPercent;
+		} else {
+			vaxedPercentDisplay = vaxedPercentString;
+		}
+		if (clickFullyVaxed) {
+			peopleFullyVaxedDisplay = peopleFullyVaxed;
+		} else {
+			peopleFullyVaxedDisplay = peopleFullyVaxedString;
+		}
+		if (clickFullyVaxedPercent) {
+			fullyVaxedPercentDisplay = fullyVaxedPercent;
+		} else {
+			fullyVaxedPercentDisplay = fullyVaxedPercentString;
+		}
 		
 	}
 	
-	public void mouseClicked() {
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickVaxAvailable(!getClickVaxAvailable());
-		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*2), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickVaxDistributed(!getClickVaxDistributed());
-		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*3), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickDistPercent(!getClickDistPercent());
-		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*4), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickPeopleVaxed(!getClickPeopleVaxed());
-		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*5), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickTotalVaxPercent(!getClickTotalVaxPercent());
-		} 
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*6), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickFullyVaxed(!getClickFullyVaxed());
-		}
-		if(overButton(stateButtonX, (int)(stateButtonY+stateButtonDist*7), stateButtonWidth, stateButtonHeight)) {
-			graph.setClickFullyVaxedPercent(!getClickFullyVaxedPercent());
-		}
-	}
-	
+	public void writeStats(PApplet p, float titleSize, float writingSize, float leading) {
+		buttonDistance = p.height/20;
+		buttonWidth = p.width/3;
+		buttonHeight = p.height/25;
+		buttonX = p.width/20;
+		buttonY =  p.height* 11 /20;
+		p.textSize(writingSize);
+		p.textLeading(leading);
+		
 
-	public boolean overButton(int x, int y, int w, int h) {
-	  if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
-	    return true;
-	  }
-	  return false;
+		drawButton(p, buttonX, (int)(buttonY+buttonDistance), buttonWidth, buttonHeight,vaxAvailableDisplay,218);
+		drawButton(p, buttonX, (int)(buttonY+(2*buttonDistance)), buttonWidth, buttonHeight, vaxDistDisplay, 218);
+		drawButton(p, buttonX, (int)(buttonY+(3*buttonDistance)), buttonWidth, buttonHeight, distPercentDisplay, 218);
+		drawButton(p, buttonX, (int)(buttonY+(4*buttonDistance)), buttonWidth, buttonHeight, peopleVaxedDisplay, 218);
+		drawButton(p, buttonX, (int)(buttonY+(5*buttonDistance)), buttonWidth, buttonHeight, vaxedPercentDisplay, 218);
+		drawButton(p, buttonX, (int)(buttonY+(6*buttonDistance)), buttonWidth, buttonHeight, peopleFullyVaxedDisplay, 218);
+		drawButton(p, buttonX, (int)(buttonY+(7*buttonDistance)), buttonWidth, buttonHeight, fullyVaxedPercentDisplay, 218);
 	}
-	
+
 	public void drawButton(PApplet surface, int x, int y, int w, int h, String text, int fillColor) {
 		surface.fill(fillColor);
 		surface.rect(x, y, w, h, 10);
@@ -189,108 +212,216 @@ public class State extends Frame{
 	}
 	
 	public int getButtonX() {
-		return graph.getButtonX();
+		return buttonX;
 	}
 	
 	public int getButtonY() {
-		return graph.getButtonY();
+		return buttonY;
 	}
 	
 	public int getButtonWidth() {
-		return graph.getButtonWidth();
+		return buttonWidth;
 	}
 	
 	public int getButtonHeight() {
-		return graph.getButtonHeight();
+		return buttonHeight;
 	}
 	
 	public float getButtonDistance() {
-		return graph.getButtonDistance();
+		return buttonDistance;
 	}
 		
 	public boolean getClickVaxAvailable() {
-		return graph.getClickVaxAvailable();
+		return clickVaxAvailable;
 	}
 	
 	public boolean getClickVaxDistributed() {
-		return graph.getClickVaxDistributed();
+		return clickVaxDistributed;
 	}
 	
 	public boolean getClickDistPercent() {
-		return graph.getClickDistPercent();
+		return clickDistPercent;
 	}
 	
 	public boolean getClickPeopleVaxed() {
-		return graph.getClickPeopleVaxed();
+		return clickPeopleVaxed;
 	}
 	
 	public boolean getClickTotalVaxPercent() {
-		return graph.getClickTotalVaxPercent();
+		return clickTotalVaxPercent;
 	}
 	
 	public boolean getClickFullyVaxed() {
-		return graph.getClickFullyVaxed();
+		return clickFullyVaxed;
 	}
 	
 	public boolean getClickFullyVaxedPercent() {
-		return graph.getClickFullyVaxedPercent();
+		return clickFullyVaxedPercent;
 	}
 	
 	public String getVaxAvailable() {
-		return graph.getVaxAvailable();
+		return vaxAvailable;
+	}
+	
+	public String getVaxAvailableDisplay() {
+		return vaxAvailableDisplay;
+	}
+	
+	public String getVaxAvailableString() {
+		return vaxAvailableString;
 	}
 	
 	public String getVaxDist() {
-		return graph.getVaxDistDisplay();
+		return vaxDist;
+	}
+	
+	public String getVaxDistDisplay() {
+		return vaxDistDisplay;
+	}
+	
+	public String getVaxDistString() {
+		return vaxDistString;
 	}
 	
 	public String getDistPercent() {
-		return graph.getDistPercent();
+		return distPercent;
+	}
+	
+	public String getDistPercentDisplay() {
+		return distPercentDisplay;
+	}
+	
+	public String getDistPercentString() {
+		return distPercentString;
 	}
 	
 	public String getPeopleVaxed() {
-		return graph.getPeopleVaxedDisplay();
+		return peopleVaxed;
+	}
+	
+	public String getPeopleVaxedDisplay() {
+		return peopleVaxedDisplay;
+	}
+	
+	public String getPeopleVaxedString() {
+		return peopleVaxedString;
 	}
 	
 	public String getVaxedPercent() {
-		return graph.getVaxedPercentDisplay();
+		return vaxedPercent;
+	}
+	
+	public String getVaxedPercentDisplay() {
+		return vaxedPercentDisplay;
+	}
+	
+	public String getVaxedPercentString() {
+		return vaxedPercentString;
 	}
 	
 	public String getPeopleFullyVaxed() {
-		return graph.getPeopleFullyVaxedDisplay();
+		return peopleFullyVaxed;
+	}
+	
+	public String getPeopleFullyVaxedDisplay() {
+		return peopleFullyVaxedDisplay;
+	}
+	
+	public String getPeopleFullyVaxedString() {
+		return peopleFullyVaxedString;
 	}
 	
 	public String getFullyVaxedPercent() {
-		return graph.getFullyVaxedPercentDisplay();
+		return fullyVaxedPercent;
 	}
 	
+	public String getFullyVaxedPercentDisplay() {
+		return fullyVaxedPercentDisplay;
+	}
+	
+	public String getFullyVaxedPercentString() {
+		return fullyVaxedPercentString;
+	}
 	
 	//set methods
+	
+	public void setButtonInfo() {
+		
+	}
+	
+	public void setButtonX(int num) {
+		buttonX = num;
+	}
+	
+	public void setButtonY(int num) {
+		buttonY = num;
+	}
+	
+	public void setButtonWidth(int num) {
+		buttonWidth = num;
+	}
+	
+	public void setButtonHeight(int num) {
+		buttonHeight = num;
+	}
+	
+	public void setButtonDist(float num) {
+		buttonDistance = num;
+	}
+	
 	public void setClickVaxAvailable(boolean state) {
-		graph.setClickVaxAvailable(state);
+		clickVaxAvailable = (state);
 	}
 	
 	public void setClickVaxDistributed(boolean state) {
-		graph.setClickVaxDistributed(state);
+		clickVaxDistributed = (state);
 	}
 	
 	public void setClickDistPercent(boolean state) {
-		graph.setClickDistPercent(state);
+		clickDistPercent = (state);
 	}
 	
 	public void setClickPeopleVaxed(boolean state) {
-		graph.setClickPeopleVaxed(state);
+		clickPeopleVaxed = (state);
 	}
 	
 	public void setClickTotalVaxPercent(boolean state) {
-		graph.setClickTotalVaxPercent(state);
+		clickTotalVaxPercent = (state);
 	}
 	
 	public void setClickFullyVaxed(boolean state) {
-		graph.setClickFullyVaxed(state);
+		clickFullyVaxed = (state);
 	}
 	
 	public void setClickFullyVaxedPercent(boolean state) {
-		graph.setClickFullyVaxedPercent(state);
+		clickFullyVaxedPercent = (state);
+	}
+	
+	public void setVaxAvailableDisplay(String txt) {
+		vaxAvailableDisplay = txt;
+	}
+	
+	public void setVaxDistDisplay(String txt) {
+		vaxDistDisplay = txt;
+	}
+	
+	public void setDistPercentDisplay(String txt) {
+		distPercent = txt;
+	}
+	
+	public void setPeopleVaxedDisplay(String txt) {
+		peopleVaxedDisplay = txt;
+	}
+	
+	public void setVaxedPercentDisplay(String txt) {
+		vaxedPercentDisplay = txt;
+	}
+	
+	public void setPeopleFullyVaxedDisplay(String txt) {
+		peopleFullyVaxed = txt;
+	}
+	
+	public void setFullyVaxedPercentDisplay(String txt) {
+		fullyVaxedPercentDisplay = txt;
 	}
 }

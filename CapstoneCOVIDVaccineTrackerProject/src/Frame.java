@@ -11,7 +11,7 @@ import processing.core.PImage;
  * @author Sophie
  *
  */
-public class Frame extends PApplet{
+public class Frame{
 	
 	private String fileName;
 	
@@ -38,6 +38,6 @@ public class Frame extends PApplet{
 	 * @param screenHeight height of the window
 	 */
 	public void drawBackButton(PApplet surface, int screenWidth, int screenHeight) {
-		surface.rect(width-width/25-width/100, height-height/25-height/100, width/25, height/25);
+		surface.rect(surface.width-surface.width/25-surface.width/100, surface.height-surface.height/25-surface.height/100, surface.width/25, surface.height/25);
 	}
 }
