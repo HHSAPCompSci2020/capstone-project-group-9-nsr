@@ -79,7 +79,7 @@ public class StatesGraphics{
 		vaccine = stat.getLatestVaccineInfo(name);	
 		prediction = new ArrayList<Double>();
 		
-		if(vaccine.size() > 5 && cases.size() > 0) {
+		if(vaccine.size() > 5 && !vaccine.get(8).equals("") && !vaccine.get(5).equals("") && cases.size() > 0) {
 													
 			double full = Double.parseDouble(vaccine.get(8));
 			full = full - full * Double.parseDouble(vaccine.get(5));
@@ -249,7 +249,7 @@ public class StatesGraphics{
 					points2.add(po);
 				}
 				
-				if(graphingVaccine) {
+				if(graphingVaccine && vaccineList.size() > vaccineDates.indexOf(firstDate.toString())) {
 					if(vaccineDates.indexOf(firstDate.toString()) != -1) {
 						double py = yAxis - PIXEL_PER_Y * vaccineList.get(vaccineDates.indexOf(firstDate.toString())) ;
 						double px = xAxis + initial + PIXEL_PER_X * vaccineDates.indexOf(firstDate.toString());

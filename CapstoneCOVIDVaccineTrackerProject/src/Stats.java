@@ -172,7 +172,9 @@ public class Stats extends TimerTask{
 						double d = Double.parseDouble(values[index]);
 						data.add(d);
 					}else {
-						data.add(data.get(data.size()-1));
+						if(data.size() != 0) {
+							data.add(data.get(data.size()-1));
+						}
 					}
 				}
 			}
