@@ -23,11 +23,7 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class Stats extends TimerTask{
-	
-	public Stats() {
 
-	}
-	
 		
 	/**
 	 * this method uses java.io api to copy the data on cvc approved vaccine dataset to the csv file in the data folder.
