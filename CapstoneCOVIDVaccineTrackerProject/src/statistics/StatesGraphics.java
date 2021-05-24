@@ -1,3 +1,4 @@
+package statistics;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -60,7 +61,6 @@ public class StatesGraphics{
 		name = state;
 		Timer timer = new Timer();
 		timer.schedule(new Stats(), 1000000);
-//		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
 	
@@ -212,7 +212,6 @@ public class StatesGraphics{
 		}
 		
 		//number in each pixel
-//		System.out.println(width + " - " + 10 + " / " + diff);
 		PIXEL_PER_Y = (graphHeight - 10) / b;
 		
 		//coordinate of the base of the lines
@@ -372,14 +371,11 @@ public class StatesGraphics{
 	private void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize, float leading) {
 		
 		p.fill(0);
-//		p.stroke(0);
 		p.textSize(titleSize);
 		p.textAlign(p.LEFT);
 		
 		if(vaccine.size() > 13){
 			infoAvailable = true;
-//			p.text("updated as of " + covidDates.get(covidDates.size()-1), (float)x + 50, (float)(y + (p.height * 3 / 4)));
-
 
 		} else {
 			infoAvailable = false;

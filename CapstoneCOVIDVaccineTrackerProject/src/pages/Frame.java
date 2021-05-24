@@ -1,3 +1,4 @@
+package pages;
 /**The frame of the classes with pictures, CountryMap and State
 * @author sophie
 */
@@ -12,7 +13,10 @@ public class Frame{
 	
 	private String fileName;
 	
-	//Constructor
+	/**
+	 * no-args constructor initializes field
+	 * @param name state name
+	 */
 	public Frame(String name) {
 		fileName = name;
 	}
