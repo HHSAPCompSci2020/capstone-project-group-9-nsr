@@ -37,11 +37,8 @@ public class DrawingSurface extends PApplet{
 	private int x;
 	
 	public DrawingSurface() {
-		System.out.println("constructor start");
 		map = new Country();
-		System.out.println("Country init");
 		moreInfo = new MoreInfo();
-		System.out.println("more info init");
 		mainPage = true;
 		mapPage = false;
 		infoPage = false;
@@ -56,7 +53,6 @@ public class DrawingSurface extends PApplet{
 		  g1= 237;
 		  b1= 251;
 		  x = 0;
-		System.out.println("Drawing Surface init");
 	}
 	/**
 	 * makes the window full screen
@@ -423,7 +419,6 @@ public class DrawingSurface extends PApplet{
 		map.setClickFullyVaxed(false);
 		map.setClickPeopleVaxed(false);
 		map.setClickVaxName(false);
-		State state = map.getStates().get(map.getStateInput());
 		x = 0;
 		r = 255;
 		g = 202;
