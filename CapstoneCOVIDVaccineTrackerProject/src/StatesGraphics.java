@@ -47,20 +47,8 @@ public class StatesGraphics{
 	public StatesGraphics() {
 		this(null);
 
-		Calendar time1 = Calendar.getInstance();
-		time1.set(Calendar.HOUR_OF_DAY, 2);
-		time1.set(Calendar.MINUTE, 0);
-		time1.set(Calendar.SECOND, 0);
-		
-		Calendar time2 = Calendar.getInstance();
-		time2.set(Calendar.HOUR_OF_DAY, 14);
-		time2.set(Calendar.MINUTE, 0);
-		time2.set(Calendar.SECOND, 0);
-		
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), time1.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
-		timer.schedule(new Stats(), time2.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
-
+		timer.schedule(new Stats(), 10000000);
 	}
 	
 	/**constructor
@@ -71,20 +59,9 @@ public class StatesGraphics{
 		stat = new Stats();
 		name = state;
 
-		Calendar time1 = Calendar.getInstance();
-		time1.set(Calendar.HOUR_OF_DAY, 2);
-		time1.set(Calendar.MINUTE, 0);
-		time1.set(Calendar.SECOND, 0);
-		
-		Calendar time2 = Calendar.getInstance();
-		time2.set(Calendar.HOUR_OF_DAY, 14);
-		time2.set(Calendar.MINUTE, 0);
-		time2.set(Calendar.SECOND, 0);
-		
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), time1.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
-		timer.schedule(new Stats(), time2.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
-		
+		timer.schedule(new Stats(), 10000000);
+//		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
 	
