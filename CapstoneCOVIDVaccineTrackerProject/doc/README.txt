@@ -108,10 +108,11 @@ Research:
 https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/index.html
 https://covid.cdc.gov/covid-data-tracker/#datatracker-home
 https://covid.cdc.gov/covid-data-tracker/#testing_testsper100k30day
-Vaccines by states
-Cases by state
-Vaccine data of United States
-Cases of country
+https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/us_state_vaccinations.csv
+https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv
+https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/United%20States.csv
+https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv
+
 	Coding Help:
 Linking buttons to a webpage
 Save graph to image
