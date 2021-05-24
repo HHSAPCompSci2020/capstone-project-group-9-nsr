@@ -103,9 +103,9 @@ public class State extends Frame{
 		
 		if (screenHeight < screenWidth) {
 			if (mapHeight > screenHeight/2) {
-				map.resize(0, (screenHeight/2));
+				map.resize(0, (screenHeight/2-screenWidth/50));
 			}
-			if (mapWidth > screenWidth/2) {
+			else if (mapWidth > screenWidth/2) {
 				map.resize(screenWidth/2-screenWidth/25, 0);
 			} 
 			
@@ -117,7 +117,7 @@ public class State extends Frame{
 		surface.image(map, screenWidth/100, screenHeight/100);
 		
 		infoGraph = surface.loadImage("graphs/" + name + ".png");
-		surface.image(infoGraph, (float)(7*(screenWidth/11)-(0.3*graph.getGraphWidth())), (float)(screenHeight/20-(0.1*graph.getGraphHeight())));
+		surface.image(infoGraph, (float)(7*(screenWidth/11)-(0.4*graph.getGraphWidth())), (float)(screenHeight/20-(0.1*graph.getGraphHeight())));
 
 		drawDropDownButton(surface, screenWidth);
 		

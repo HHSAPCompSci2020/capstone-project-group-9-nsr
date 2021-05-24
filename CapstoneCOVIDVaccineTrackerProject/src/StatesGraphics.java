@@ -334,7 +334,7 @@ public class StatesGraphics{
 		p.save("graphs/"+stateName+".png");
 		try {
 			BufferedImage source = ImageIO.read(new File("graphs/"+stateName+".png")) ;
-			BufferedImage croppedImage = source.getSubimage((int) (7*(p.width/11)-(0.3*graphWidth)), (int) (p.height/20-(0.1*graphHeight)), (int)(1.4*graphWidth), (int)(1.3*graphHeight));
+			BufferedImage croppedImage = source.getSubimage((int) (7*(p.width/11)-(0.4*graphWidth)), (int) (p.height/20-(0.1*graphHeight)), (int)(1.5*graphWidth), (int)(1.3*graphHeight));
 			ImageIO.write(croppedImage, "png", new File("graphs/"+stateName+".png"));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -382,7 +382,7 @@ public class StatesGraphics{
 
 		} else {
 			infoAvailable = false;
-			p.text("there is no numerical data available for " + name, (float)x, (float)(y + 30));
+			p.text("there is no numerical vaccination data available for " + name, (float)x, (float)(y + 30));
 		}
 		p.textAlign(p.CENTER);
 		p.text("all data updated as of " + covidDates.get(covidDates.size()-1), (float)(p.width/4*3), (float)(p.height  / 4*3));
