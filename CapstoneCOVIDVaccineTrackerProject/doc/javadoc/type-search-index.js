@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Country"},{"p":"<Unnamed>","l":"DrawingSurface"},{"p":"<Unnamed>","l":"Frame"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"MoreInfo"},{"p":"<Unnamed>","l":"State"},{"p":"<Unnamed>","l":"StatesGraphics"},{"p":"<Unnamed>","l":"Stats"}]
