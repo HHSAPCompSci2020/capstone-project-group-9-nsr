@@ -101,17 +101,21 @@ public class State extends Frame{
 		screenHeight = surface.height;
 		screenWidth = surface.width;
 		
+		
+		
 		if (screenHeight < screenWidth) {
-			if (mapHeight > screenHeight/2) {
-				map.resize(0, (screenHeight/2-screenWidth/50));
+			map.resize(0, (screenHeight/2-screenHeight/50));
+			int heightResizedArea = map.width*map.height;
+			map.resize(screenWidth/2, 0);
+			int widthResizedArea = map.width*map.height;
+			if (heightResizedArea < widthResizedArea) {
+				map.resize(0, (screenHeight/2-screenHeight/50));
 			}
-			else if (mapWidth > screenWidth/2) {
-				map.resize(screenWidth/2-screenWidth/25, 0);
-			} 
-			
 		} else {
-			map.resize(screenWidth/2-screenWidth/25, 0);
+			map.resize(screenWidth/2, 0);
 		}
+		
+		
 		
 
 		surface.image(map, screenWidth/100, screenHeight/100);
