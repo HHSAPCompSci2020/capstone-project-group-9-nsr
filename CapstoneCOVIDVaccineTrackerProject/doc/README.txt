@@ -112,6 +112,7 @@ Vaccines by states- https://raw.githubusercontent.com/owid/covid-19-data/master/
 Cases by state- https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv
 Vaccine data of United States- https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/country_data/United%20States.csv
 Cases of country- https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv
+learning more about covid-19- https://www.youtube.com/watch?v=FVIGhz3uwuQ
 
 Coding Help:
 Linking buttons to a webpage- https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
@@ -119,7 +120,6 @@ Save graph to image- https://processing.org/reference/save_.html
 Write an image to a file- https://examples.javacodegeeks.com/core-java/io/java-imageio-write-image-to-file/
 Image syntax- https://docs.oracle.com/javase/8/docs/api/java/awt/image/BufferedImage.html
 Working with the TreeMap- https://stackabuse.com/java-how-to-get-keys-and-values-from-a-map/
-learning more about covid-19- https://www.youtube.com/watch?v=FVIGhz3uwuQ
 Timer task java- https://docs.oracle.com/javase/7/docs/api/java/util/TimerTask.html
 
 Images:
