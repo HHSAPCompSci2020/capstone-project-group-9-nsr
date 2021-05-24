@@ -121,6 +121,7 @@ public class Stats extends TimerTask{
 	 * 
 	 * @param state name of the state of desire
 	 * @param index counted from 0 from right on cases.csv file
+	 * @param filename name of file that data is being read from
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
 	public ArrayList<String> getStringData(String state, int index, String filename) {
@@ -153,6 +154,7 @@ public class Stats extends TimerTask{
 	 * 
 	 * @param state name of the state of desire
 	 * @param index counted from 0 from right on cases.csv file
+	 * @param filename name of file that data is being read from
 	 * @return arraylist of string with all desired data from the state inputted
 	 */
 	public ArrayList<Double> getDoubleData(String state, int index, String filename) {

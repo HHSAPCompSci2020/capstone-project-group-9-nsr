@@ -78,7 +78,7 @@ public class State extends Frame{
 	
 	/**
 	 * draws the graph generated from the StatesGraphics class and writes all the numerical statistics
-	 * @param surface
+	 * @param surface PApplet that it is being drawn on
 	 */
 	public void draw(PApplet surface) {
 		if (vaccine == null) {

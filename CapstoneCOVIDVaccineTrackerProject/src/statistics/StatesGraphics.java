@@ -54,7 +54,7 @@ public class StatesGraphics{
 	
 	/**constructor
 	 * sets the name to the parameter String state
-	 * @param String state
+	 * @param state state that the graphics are being drawn for
 	 */
 	public StatesGraphics(String state) {
 		stat = new Stats();
@@ -123,10 +123,10 @@ public class StatesGraphics{
 	/**
 	 * draws graph by figuring out all points of where the graph needs to be plotted.
 	 * 
+	 * @param p PApplet graph is being drawn on
 	 * @param x x coordinate of the left up corner of where the graph is drawn
 	 * @param y y coordinate of the left up corner of where the graph is drawn
-	 * @param width width of the rectangle the graph is in
-	 * @param height height of the rectangle the graph is in
+	 * @param stateName name of state graph is being created for
 	 * @throws ParseException 
 	 */
 	public void createGraph(PApplet p, double x, double y, String stateName){

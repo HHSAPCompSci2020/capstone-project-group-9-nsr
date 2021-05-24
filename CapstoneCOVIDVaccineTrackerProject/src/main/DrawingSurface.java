@@ -367,7 +367,6 @@ public class DrawingSurface extends PApplet{
 	}
 	/**checks if the mouse is over the map and info button
 	 * makes the button darker when you hover over it and draws the button
-	 * @post textAlign center, center
 	 * @post fill
 	 */
 	public void buttons() {
