@@ -402,7 +402,7 @@ public class StatesGraphics{
 		
 		String text = "";
 		
-		for(int i = 0; i < p1.size(); i+=2) {
+		for(int i = 0; i < p1.size(); i++) {
 			
 			if(x >= p1.get(i).getX()-diameter/2 && x <= p1.get(i).getX() + diameter * 1.5 && y >= p1.get(i).getY()-diameter/2 && y <= p1.get(i).getY()+diameter*1.5) {
 				text = "(" + deaths.get(i) + " on " + covidDates.get(i) + ")";
