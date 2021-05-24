@@ -1,3 +1,4 @@
+package pages;
 /**This class sets the map of the US and the dropDown that allow the user to move to a state page. 
  *  @author roopa
 * date: 5/6/21
@@ -10,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import statistics.Stats;
 
 public class Country extends Frame{
 	private TreeMap<String, State> states;

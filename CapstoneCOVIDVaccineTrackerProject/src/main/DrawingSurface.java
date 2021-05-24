@@ -1,6 +1,11 @@
+package main;
 
+import pages.Country;
+import pages.MoreInfo;
+import pages.State;
 import processing.core.PApplet;
 import processing.core.PFont;
+import statistics.StatesGraphics;
 
 /**draws the graphics and
  * 

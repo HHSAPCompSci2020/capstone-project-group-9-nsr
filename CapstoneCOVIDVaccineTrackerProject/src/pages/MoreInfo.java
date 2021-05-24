@@ -1,3 +1,4 @@
+package pages;
 import java.awt.Desktop;
 import java.net.MalformedURLException;
 import java.net.URI;

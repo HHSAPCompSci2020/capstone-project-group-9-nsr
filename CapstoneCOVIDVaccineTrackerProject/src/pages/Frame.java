@@ -1,3 +1,4 @@
+package pages;
 /**The frame of the classes with pictures, CountryMap and State
 * @author sophie
 */
