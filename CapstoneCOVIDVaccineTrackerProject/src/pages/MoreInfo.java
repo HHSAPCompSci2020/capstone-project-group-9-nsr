@@ -9,7 +9,7 @@ import processing.core.PApplet;
 
 /**
  * 
- * @author roopa
+ * @author roopa srinivas
  *
  */
 public class MoreInfo{

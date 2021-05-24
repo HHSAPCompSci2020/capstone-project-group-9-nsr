@@ -9,8 +9,7 @@ import statistics.StatesGraphics;
 
 /**draws the graphics and
  * 
- * @author sophie
- *	@revision 5/13
+ * @author sophie lin
  */
 public class DrawingSurface extends PApplet{
 	private PFont titles, body;

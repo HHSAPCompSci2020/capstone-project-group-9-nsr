@@ -1,6 +1,6 @@
 package main;
 /**
- * @author roopa, sophie, nodoka
+ * @author roopa srinivas, sophie lin, nodoka shibasaki
  */
 
 import java.awt.Component;

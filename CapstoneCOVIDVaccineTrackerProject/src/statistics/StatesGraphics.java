@@ -24,7 +24,7 @@ import processing.core.PApplet;
 /**
  * This class gets creates graohics for the individual state classes including graphs and statistics.
  * 
- * @author nodoka
+ * @author nodoka shibasaki
  *
  */
 public class StatesGraphics{

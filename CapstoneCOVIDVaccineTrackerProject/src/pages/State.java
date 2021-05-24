@@ -7,9 +7,7 @@ import statistics.StatesGraphics;
 
 /**
  * 
- * @author roopa
- * date: 05/07/2021
- * @revision 1
+ * @author roopa srinivas
  *
  */
 public class State extends Frame{

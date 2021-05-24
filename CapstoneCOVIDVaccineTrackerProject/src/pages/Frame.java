@@ -6,7 +6,7 @@ import processing.core.PApplet;
 
 /**the frame of the state and the country page
  * creates the frame
- * @author Sophie
+ * @author sophie lin
  *
  */
 public class Frame{

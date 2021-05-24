@@ -1,8 +1,6 @@
 package pages;
 /**This class sets the map of the US and the dropDown that allow the user to move to a state page. 
- *  @author roopa
-* date: 5/6/21
-* @revision 1
+ *  @author roopa srinivas
 */
 import java.util.ArrayList;
 import java.util.TreeMap;
