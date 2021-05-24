@@ -10,8 +10,10 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -46,7 +48,7 @@ public class StatesGraphics{
 		this(null);
 
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 1000000);
+		timer.schedule(new Stats(), 10000000);
 	}
 	
 	/**constructor
@@ -58,7 +60,7 @@ public class StatesGraphics{
 		name = state;
 
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 1000000);
+		timer.schedule(new Stats(), 10000000);
 //		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
