@@ -94,31 +94,28 @@ public class Stats extends TimerTask{
 	 * @return recent data of vaccination info for that state
 	 */
 	public ArrayList<String> getLatestVaccineInfo(String state) {
-				
+		
+		List<String> lines = new ArrayList<String>();
+		String[] latest = new String[20];
+		ArrayList<String> ret = new ArrayList<String>();
+
 		try {
-			List<String> lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
-			String[] latest = new String[20];
+			lines = Files.readAllLines(Paths.get("data/vaccineNumber.csv"), Charset.defaultCharset());
 			
 			for(int i = 0; i < lines.size(); i++) {
-				String[] val = lines.get(i).split(",");
-				if(val[1].equalsIgnoreCase(state)) {
-					latest = val;
+				List<String> list = Arrays.asList(lines.get(i).split("\\s*,\\s*"));
+				ArrayList<String> values = new ArrayList<String>(list);
+				if(values.get(1).equalsIgnoreCase(state)) {
+					ret = values;
 				}
 			}
-			
-			ArrayList<String> ret = new ArrayList<String>();
-			
-			for(int i = 0; i < latest.length; i++) {
-				ret.add(latest[i]);
-			}
 						
-			return ret;
 			
 		} catch (IOException e) {
             System.out.format("I/O error: %s%n", e);
 		}
 		
-		return null;
+		return ret;
 		
 	}
 	

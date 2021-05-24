@@ -83,7 +83,7 @@ public class StatesGraphics{
 		vaccine = stat.getLatestVaccineInfo(name);	
 		prediction = new ArrayList<Double>();
 		
-		if(vaccine.size() > 5 && cases.size() > 0) {
+		if(vaccine.size() > 8 && vaccine != null && cases.size() > 0) {
 			if(!vaccine.get(8).equals("") && !vaccine.get(5).equals("")) {
 				double full = Double.parseDouble(vaccine.get(7));
 				double one = Double.parseDouble(vaccine.get(3));
