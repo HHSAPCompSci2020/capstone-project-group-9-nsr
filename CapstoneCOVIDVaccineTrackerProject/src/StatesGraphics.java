@@ -426,19 +426,34 @@ public class StatesGraphics{
 	
 	//get methods
 		
-	
+	/**
+	 * gets info available boolean
+	 * @return infoAvailable in the instance field
+	 */
 	public boolean getInfoAvailable() {
 		return infoAvailable;
 	}
 	
+	/**
+	 * gets arraylist of strings of latest vaccine info
+	 * @return vaccine the latest vaccine info
+	 */
 	public ArrayList<String> getVaccineInfo(){
 		return vaccine;
 	}
 	
+	/**
+	 * gets width of the graph drawn
+	 * @return graphWidth
+	 */
 	public double getGraphWidth() {
 		return graphWidth;
 	}
 
+	/**
+	 * gets height of the graph drawn
+	 * @return graphHeight
+	 */
 	public double getGraphHeight() {
 		return graphHeight;
 	}

@@ -234,6 +234,9 @@ public class Stats extends TimerTask{
 		
 	}
 
+	/**
+	 * method from timer task and is run when scheduled to do so.
+	 */
 	public void run() {
 		
 		try {
