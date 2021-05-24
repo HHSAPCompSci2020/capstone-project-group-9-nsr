@@ -29,8 +29,7 @@ public class Country extends Frame{
 	private String vaxNamesDisplay, vaxAvailableDisplay, peopleVaxedDisplay, peopleFullyVaxedDisplay;
 	
 	/**
-	 * constructor that initializes fields:
-	 * openDropDown, statePageOpen
+	 * constructor that initializes fields
 	 */
 	public Country() {
 		super("US_MAP.png");
@@ -171,6 +170,10 @@ public class Country extends Frame{
 	 * @param p PApplet to draw on
 	 * @param x x coordinates of center of all texts
 	 * @param y y coordinates of the top of where the text starts
+	 * @param titleSize text size of the title
+	 * @param writingSize text size of the common writing
+	 * @post textSize writingSize
+	 * @post textAlign left
 	 */
 	public void writeInfo(PApplet p, double x, double y, float titleSize, float writingSize) {
 		buttonX = (int)x;
@@ -189,6 +192,16 @@ public class Country extends Frame{
 
 	}
 	
+	/**
+	 * method to draw a button
+	 * @param surface PApplet to draw on
+	 * @param x x coordinate of top left of button
+	 * @param y y coordinate of top left of button
+	 * @param w width of button
+	 * @param h height of button
+	 * @param text text that is displayed inside the button
+	 * @param fillColor color of the button
+	 */
 	public void drawButton(PApplet surface, int x, int y, int w, int h, String text, int fillColor) {
 		surface.fill(fillColor);
 		surface.rect(x, y, w, h, 10);
@@ -198,13 +211,9 @@ public class Country extends Frame{
     	surface.noFill();
 	}
 	
-	public boolean overButton(PApplet p, int x, int y, int w, int h) {
-	  if (p.mouseX > x && p.mouseX < (x + w) && p.mouseY > y && p.mouseY < (y + h)) {
-	    return true;
-	  }
-	  return false;
-	}
-	
+	/**
+	 * sets the data stored in the button to a more readable format
+	 */
 	private void setDisplayInfo() {
 		
 		String[] vaxNamesTemp = vaxNames.split("\\s+");
@@ -251,91 +260,178 @@ public class Country extends Frame{
 		return screenWidth;
 	}
 	
+	/**
+	 * @return value of statePageOpen(if a state page is open)
+	 */
 	public boolean getStatePageOpen() {
 		return statePageOpen;
 	}
 	
+	/**
+	 * 
+	 * @return x coordinate of button
+	 */
 	public int getButtonX() {
 		return buttonX;
 	}
 	
+	/**
+	 * 
+	 * @return y coordinate of button
+	 */
 	public int getButtonY() {
 		return buttonY;
 	}
 	
+	/**
+	 * 
+	 * @return distance between buttons
+	 */
 	public float getButtonDistance() {
 		return buttonDistance;
 	}
 	
+	/**
+	 * 
+	 * @return width of button
+	 */
 	public int getButtonWidth() {
 		return buttonWidth;
 	}
 	
+	/**
+	 * 
+	 * @return height of button
+	 */
 	public int getButtonHeight() {
 		return buttonHeight;
 	}
 	
+	/**
+	 * 
+	 * @return text displayed on vaxNames button
+	 */
 	public String getVaxNames() {
 		return vaxNamesDisplay;
 	}
 	
+	/**
+	 * 
+	 * @return text displayed on vaxAvailable button
+	 */
 	public String getVaxAvailable() {
 		return vaxAvailableDisplay;
 	}
 	
+	/**
+	 * 
+	 * @return text displayed on peopleVaxed button
+	 */
 	public String getPeopleVaxed() {
 		return peopleVaxedDisplay;
 	}
 	
+	/**
+	 * 
+	 * @return text displayed on peopleFullyVaxed button
+	 */
 	public String getPeopleFullyVaxed() {
 		return peopleFullyVaxedDisplay;
 	}
 	
+	/**
+	 * 
+	 * @return state of clickVaxName field
+	 */
 	public boolean getClickVaxName() {
 		return clickVaxName;
 	}
 	
+	/**
+	 * 
+	 * @return state of clickAvailableVax field
+	 */
 	public boolean getClickAvailableVax() {
 		return clickAvailableVax;
 	}
 	
+	/**
+	 * 
+	 * @return state of clickPeopleVaxed field
+	 */
 	public boolean getClickPeopleVaxed() {
 		return clickPeopleVaxed;
 	}
 	
+	/**
+	 * 
+	 * @return state of clickFullyVaxed field
+	 */
 	public boolean getClickFullyVaxed() {
 		return clickFullyVaxed;
 	}
 	
+	/**
+	 * 
+	 * @return treemap that contains all the states
+	 */
 	public TreeMap<String, State> getStates(){
 		return states;
 	}
 	
+	/**
+	 * 
+	 * @return state selected from the drop down
+	 */
 	public String getStateInput() {
 		return stateInput;
 	}
 	
 	//set methods
+	/**
+	 * sets clickVaxName to state
+	 * @param state (true or false) 
+	 */
 	public void setClickVaxName(boolean state) {
 		clickVaxName = state;
 	}
 	
+	/**
+	 * sets clickAvailableVax to state
+	 * @param state (true or false)
+	 */
 	public void setClickAvailableVax(boolean state) {
 		clickAvailableVax = state;
 	}
 	
+	/**
+	 * sets clickPeopleVaxed to state
+	 * @param state (true or false)
+	 */
 	public void setClickPeopleVaxed(boolean state) {
 		clickPeopleVaxed = state;
 	}
 	
+	/**
+	 * sets clickFullyVaxed to state
+	 * @param state (true or false)
+	 */
 	public void setClickFullyVaxed(boolean state) {
 		clickFullyVaxed = state;
 	}
 	
+	/**
+	 * sets statePageOpen to state
+	 * @param state (true or false)
+	 */
 	public void setStatePageOpen(boolean state) {
 		statePageOpen = state;
 	}
 	
+	/**
+	 * sets openDropDown to state
+	 * @param state (true or false)
+	 */
 	public void setOpenDropDown(boolean state) {
 		openDropDown = state;
 	}
