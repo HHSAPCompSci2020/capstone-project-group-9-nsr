@@ -36,6 +36,9 @@ public class DrawingSurface extends PApplet{
 	public boolean quit;
 	private int x;
 	
+	/**
+	 * no-args constructor initializes fields
+	 */
 	public DrawingSurface() {
 		map = new Country();
 		moreInfo = new MoreInfo();
@@ -94,7 +97,6 @@ public class DrawingSurface extends PApplet{
 		backButtonX = width-backButtonWidth-2*width/25;
 		backButtonY = height-backButtonHeight-height/100;
 		backButtonTextSize = height/50;
-//		System.out.println("drawing surface draw");
 		
 		  //checks what page the window is on
 		  if(mainPage) {

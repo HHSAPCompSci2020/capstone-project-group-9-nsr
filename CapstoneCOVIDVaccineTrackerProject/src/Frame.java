@@ -12,7 +12,10 @@ public class Frame{
 	
 	private String fileName;
 	
-	//Constructor
+	/**
+	 * no-args constructor initializes field
+	 * @param name state name
+	 */
 	public Frame(String name) {
 		fileName = name;
 	}
