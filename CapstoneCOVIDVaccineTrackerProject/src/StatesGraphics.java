@@ -39,16 +39,16 @@ public class StatesGraphics{
 	private ArrayList<Point> points, points2, points3, points4;
 	
 	private boolean infoAvailable;
-
+	
+	private Timer timer;
 	
 	/**constructor
 	 * if no parameter is inputted, the name is set to null
 	 */
 	public StatesGraphics() {
 		this(null);
-
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 10000000);
+		timer.schedule(new Stats(), 1000000);
 	}
 	
 	/**constructor
@@ -58,9 +58,8 @@ public class StatesGraphics{
 	public StatesGraphics(String state) {
 		stat = new Stats();
 		name = state;
-
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 10000000);
+		timer.schedule(new Stats(), 1000000);
 //		System.out.println("state: " + state + " vaccine:" + vaccine);
 	}
 	
@@ -102,7 +101,7 @@ public class StatesGraphics{
 						diff = 0;
 					}
 					
-					double pred = (prediction.get(i) * 2) - (full * 0.9) - (one * 0.8) - diff;
+					double pred = (prediction.get(i) * 2) - (full) - (one * 0.9) - diff;
 								
 					if(pred > prediction.get(i)) {
 						prediction.add(pred);
