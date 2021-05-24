@@ -83,30 +83,32 @@ public class StatesGraphics{
 		vaccine = stat.getLatestVaccineInfo(name);	
 		prediction = new ArrayList<Double>();
 		
-		if(vaccine.size() > 5 && !vaccine.get(8).equals("") && !vaccine.get(5).equals("") && cases.size() > 0) {
-													
-			double full = Double.parseDouble(vaccine.get(7));
-			double one = Double.parseDouble(vaccine.get(3));
-			
-			prediction.add(cases.get(cases.size()-1));
+		if(vaccine.size() > 5 && cases.size() > 0) {
+			if(!vaccine.get(8).equals("") && !vaccine.get(5).equals("")) {
+				double full = Double.parseDouble(vaccine.get(7));
+				double one = Double.parseDouble(vaccine.get(3));
+				
+				prediction.add(cases.get(cases.size()-1));
 
-			for(int i = 0; i < 14; i++) {
-				
-				double casesFifteen = cases.get(cases.size()-(15 - i));
-				double casesFourteen = cases.get(cases.size()-(14 - i));
-				double diff = casesFifteen - casesFourteen;
+				for(int i = 0; i < 14; i++) {
+					
+					double casesFifteen = cases.get(cases.size()-(15 - i));
+					double casesFourteen = cases.get(cases.size()-(14 - i));
+					double diff = casesFifteen - casesFourteen;
+									
+					if(diff < 0) {
+						diff = 0;
+					}
+					
+					double pred = (prediction.get(i) * 2) - (full * 0.9) - (one * 0.8) - diff;
 								
-				if(diff < 0) {
-					diff = 0;
+					if(pred > prediction.get(i)) {
+						prediction.add(pred);
+					}else {
+						prediction.add(prediction.get(i));
+					}
 				}
-				
-				double pred = (prediction.get(i) * 2) - (full * 0.9) - (one * 0.8) - diff;
-							
-				if(pred > prediction.get(i)) {
-					prediction.add(pred);
-				}else {
-					prediction.add(prediction.get(i));
-				}
+								
 				
 			}
 			
