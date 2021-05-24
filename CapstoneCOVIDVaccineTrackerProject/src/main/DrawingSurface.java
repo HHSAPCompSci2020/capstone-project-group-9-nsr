@@ -15,7 +15,7 @@ import statistics.StatesGraphics;
 public class DrawingSurface extends PApplet{
 	private PFont titles, body;
 	
-	private Country map; 
+	private Country map;
 	private MoreInfo moreInfo;
 	private int animation=0;
 	
