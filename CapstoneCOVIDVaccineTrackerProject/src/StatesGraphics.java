@@ -10,8 +10,10 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -45,8 +47,20 @@ public class StatesGraphics{
 	public StatesGraphics() {
 		this(null);
 
+		Calendar time1 = Calendar.getInstance();
+		time1.set(Calendar.HOUR_OF_DAY, 2);
+		time1.set(Calendar.MINUTE, 0);
+		time1.set(Calendar.SECOND, 0);
+		
+		Calendar time2 = Calendar.getInstance();
+		time2.set(Calendar.HOUR_OF_DAY, 14);
+		time2.set(Calendar.MINUTE, 0);
+		time2.set(Calendar.SECOND, 0);
+		
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 1000000);
+		timer.schedule(new Stats(), time1.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
+		timer.schedule(new Stats(), time2.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
+
 	}
 	
 	/**constructor
@@ -57,9 +71,20 @@ public class StatesGraphics{
 		stat = new Stats();
 		name = state;
 
+		Calendar time1 = Calendar.getInstance();
+		time1.set(Calendar.HOUR_OF_DAY, 2);
+		time1.set(Calendar.MINUTE, 0);
+		time1.set(Calendar.SECOND, 0);
+		
+		Calendar time2 = Calendar.getInstance();
+		time2.set(Calendar.HOUR_OF_DAY, 14);
+		time2.set(Calendar.MINUTE, 0);
+		time2.set(Calendar.SECOND, 0);
+		
 		Timer timer = new Timer();
-		timer.schedule(new Stats(), 1000000);
-//		System.out.println("state: " + state + " vaccine:" + vaccine);
+		timer.schedule(new Stats(), time1.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
+		timer.schedule(new Stats(), time2.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
+		
 	}
 	
 	
